@@ -1,0 +1,270 @@
+.join{
+	background:center no-repeat  url('../gallery/bgimg02.png');
+	button{
+		@include button;
+	}
+	.section__title--wrapper.plus{
+		background-color: rgba(#000, 0.5);
+		padding: 2em 3em;
+		width: 65%;
+		margin: 0 auto;
+		text-align: center;
+		border-radius:4px;
+		@include responsivemd{
+			width: 85%;
+		}
+		@include responsivesm{
+			width: 100%;
+			padding: 2em 1em;
+		}
+		.section__title{
+			color: #fff;
+			margin-bottom: 1em;
+		}
+	}
+}
+
+footer{
+	padding-top: 40px;
+	font-size: 14px;
+
+	@include responsivesm{
+		padding-top: 20px;
+	}
+	.logo{
+		img{
+			height: 7rem;
+			@include responsivemd{
+				height: 5em;
+			}
+		}
+	}
+	@include article;
+	p.para{
+		
+		color: $lite;
+		margin: 2em 0;
+	}
+	.link{
+		margin-bottom: 8px;
+		color: $para;
+		&:hover{
+			color: $primary-color;
+		} 
+	}
+	.card__title{
+		@include card-title;
+		font-weight: bold;
+	}
+	ul{
+		@include ul;
+		li{
+			margin: 1.2em 0;
+			color: $para;	
+		}
+	}
+
+	.form-inline{
+		margin-top: 2em;
+		button{
+			@include button;
+			height: 60px;
+			width: 100px;
+			border-radius: 0;
+		}
+		.form-group{
+			width: 100%;
+			display: flex;
+		}
+		.form-control{
+			border:0;
+			border-radius:0;
+			box-shadow: none;
+			outline: 0;
+			height: 60px;
+			flex-grow: 2;
+		}
+		::placeholder{
+			color: $lite;
+			font-weight: 600;
+		}
+	}
+	article:first-child{
+		padding-right: 5em;
+		@include responsivemd{
+			padding-right: 1em;
+		}
+		@include responsivesm{
+			display: none;
+		}
+	}
+	article:last-child{
+		@include responsivemd{
+			padding-left: 0em;
+			margin-top: 20px;
+		}
+	}
+
+	.last__footer{
+		color: $para;
+		justify-content: space-between;
+		p{
+			margin-bottom: 0;
+		}
+		.d-flex{
+			a{
+				margin: 0 12px;
+				font-size: 18px;
+				color: $lite;
+				&:hover{
+					color: $primary-color;
+				}
+			}
+		}
+
+	}
+	.section-rule{
+		padding-bottom: 35px;
+	}
+}
+
+.modal, .sign-up-form{
+	.modal-dialog{
+		@include responsive(1280px){
+			margin: 0.5em auto;
+		}
+	}
+	.card__img{
+		height: 100%;
+		width: 100%;
+		img{
+			@include image;
+		}
+	}
+	.modal-dialog {
+		max-width: 860px;
+	}
+	.modal-content{
+		overflow: hidden;
+	}
+
+	button{
+		@include button;
+		width: 100%;
+		margin-bottom: 1em;
+		padding: 16px 20px;
+		@include responsive(1280px){
+			padding: 13px 20px;
+			margin-bottom: 10px;
+		}
+		img{
+			margin-right: 6px;
+		}
+		&.facebook, &.google{
+			background-color: transparent;
+			border:1px solid $lite;
+			color: $lite;
+			box-shadow: none !important;
+		}
+	}
+	.modal-header, .modal-body{
+		padding: 0;
+		border: 0;
+	}
+	.modal-header {
+		margin-bottom: 1.3em;
+	}
+	.wrapper{
+		padding: 2em;
+		position: relative;
+		@include responsive(1280px){
+			padding: 1.5em;
+		}
+	}
+	.modal-title {
+		font-weight: bold;
+		font-size: 1.4em;
+	}
+	.close{
+		position: absolute;
+		top:1em;
+		right: 1em;
+		color:#aaa;
+	}
+
+	.or{
+		display: flex;
+		position: relative;
+		color: $lite;
+		justify-content: center;
+		align-items: center;
+		margin: 1em 0;
+		&:before, &:after{
+			content: "";
+			height: 1px;
+			flex-grow: 2;
+			border-bottom: 1px solid $white;
+		}
+		span {
+			padding: 0 8px;
+		}
+	}
+
+	.form-control{
+		height: 50px;
+		outline: none;
+		box-shadow:none;
+		background-color: $white;
+		&:focus, &:focus-within{
+			border-color: $primary-color;
+		}
+	}
+	.form-group{
+		position: relative;
+	}
+	.input-group-text {
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		top: 9px;
+		right: 2px;
+		opacity: 0.4;
+		span{
+			font-size: 20px;
+		}
+	}
+	.para{
+		color: $lite;
+		font-size: 14px;
+		text-align: center;
+		font-weight: 500;
+		margin: 1em 0;
+		@include responsive(1280px){
+			margin: 4px 0;
+		}
+		.link{
+			color: $primary-color;
+		}
+	}
+	label a{
+		color: $para;
+	}
+	.col-lg-6.pl-0{
+		@include responsivemd{
+			display: none;
+		}
+	} 
+	.col-lg-6.wrapper {
+		@include responsivemd{
+			max-width: 500px;
+			margin: auto;
+		}
+	}
+}
+.sign-up-form{
+	.modal-dialog {
+		// max-width: 80%;
+	}
+	
+}
+

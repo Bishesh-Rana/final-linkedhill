@@ -1,0 +1,794 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap");
+/* --------------------------------------------------------
+version: 1.0
+last modified: 17.01.2022 by anjit
+author: Anjit Pariyar	
+email: anjitpariyar@gmail.com
+github: https://github.com/anjitzero
+----------------------------------------------------------*/
+
+// #03A87C
+$primary-color: #3f8809;
+$secondary-color: #313131;
+$red: #095288;
+$green: #67c02b;
+$dark: #2b2b2b;
+$para: #747474;
+$lite: #a7a7a7;
+$white: #f2f2f2;
+$width: 590px;
+$wid01: 830px;
+$wid02: 1000px;
+
+// whole part
+// ====MAXIN=====
+
+@mixin font($font) {
+  @if $font == pt {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+  } @else {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+  }
+}
+
+@mixin section-style {
+  margin: 0 auto;
+  @include responsivemin(0px) {
+    padding: 20px 0;
+
+    width: 95%;
+  }
+
+  @include responsivemin(760px) {
+    width: 95%;
+    padding: 30px 0;
+  }
+
+  @include responsivemin(1275px) {
+    width: 1200px;
+    padding: 60px 0;
+  }
+}
+
+@mixin image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin responsive($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+@mixin responsivemin($width) {
+  @media only screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin responsivelg {
+  @media only screen and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin responsivemd {
+  @media only screen and (max-width: 1020px) {
+    @content;
+  }
+}
+@mixin responsivemmd {
+  @media only screen and (max-width: 601px) {
+    @content;
+  }
+}
+@mixin responsivesm {
+  @media only screen and (max-width: 455px) {
+    @content;
+  }
+}
+@mixin responsivexsm {
+  @media only screen and (max-width: 390px) {
+    @content;
+  }
+}
+@mixin responsiveboth($width, $width01) {
+  @media screen and (max-width: $width) and (min-width: $width01) {
+    @content;
+  }
+}
+
+@mixin ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+@mixin transition-out {
+  transition: 0.3s ease-out;
+}
+@mixin transition-in {
+  transition: 0.3s ease-in;
+}
+
+@mixin box-shadow {
+  box-shadow: rgba(192, 192, 192, 0.38) 0px 5px 12px;
+}
+
+@mixin button {
+  background-color: $primary-color;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 4px;
+  text-transform: capitalize;
+  line-height: 16px;
+  position: relative;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #fff;
+  span {
+    margin-left: 6px;
+  }
+  @include transition-out;
+
+  @include responsivesm {
+    font-size: 14px;
+    padding: 12px 16px;
+    line-height: 14px;
+    border-width: 1px;
+  }
+  &:hover {
+    box-shadow: 0px 8px 18px rgba($red, 0.29);
+    background-color: $red;
+    color: #fff;
+  }
+  &:active {
+    @include transition-in;
+    transform: translateY(-2px);
+    box-shadow: none !important;
+    outline: none;
+  }
+}
+
+@mixin section-title() {
+  font-size: 23.8px;
+  margin: 0;
+  font-weight: 600;
+  color: $dark;
+  text-align: left;
+  margin-bottom: 16px;
+  @include lineclamp(1);
+  @include responsivesm {
+    font-size: 15px;
+    -webkit-line-clamp: 2;
+  }
+
+  // @if $odd == odd{
+  // 	text-align: right;
+  // 	border-left: 0;
+  // 	border-right: 6px solid $primary-color;
+  // 	i{
+  // 		left: auto;
+  // 		right: 2rem;
+  // 	}
+  // }
+}
+
+@mixin card-title {
+  font-size: 20px;
+  font-weight: normal;
+  color: $dark;
+  margin-bottom: 8px;
+  @include transition-out;
+  @include lineclamp(1);
+  font-weight: 600;
+  a {
+    @include lineclamp(1);
+  }
+
+  @include responsive(767px) {
+  }
+
+  @include responsivesm {
+    font-size: 16px;
+    margin-bottom: 6px;
+    height: auto;
+  }
+}
+@mixin small-title {
+}
+@mixin price {
+  @include card-title;
+  height: auto !important;
+  b {
+    font-size: 1.2em;
+    @include responsivesm {
+      color: $primary-color;
+      margin-bottom: 2px;
+      font-size: 1.3em;
+    }
+  }
+  @include responsivesm {
+    font-size: 12px;
+  }
+}
+
+@mixin card__margin {
+  margin-bottom: 40px;
+  // @include responsivesm{
+  // 	margin-bottom: 30px;
+  // }
+}
+
+@mixin flaticon_before {
+  font-family: Flaticon;
+  font-size: 1.5em;
+  font-style: normal;
+  @content;
+}
+
+@mixin flaticon {
+  &:before {
+    margin-left: 0 !important;
+    @content;
+  }
+}
+
+@mixin card--img($number) {
+  // img{
+  // 	@include image;
+  // }
+  @if $number==4 {
+    height: 180px;
+    @include responsive(1002px) {
+      // height: 210px;
+    }
+    @include responsive(768px) {
+      // height: 180px;
+    }
+    @include responsive(420px) {
+      height: 120px;
+    }
+  }
+  @if $number==3 {
+    height: 200px;
+    @include responsive(1002px) {
+      // height: 210px;
+    }
+    @include responsive(768px) {
+      height: 180px;
+    }
+    @include responsive(420px) {
+      height: 120px;
+    }
+  }
+  @if $number==2 {
+    height: 300px;
+    @include responsive(1002px) {
+      height: 210px;
+    }
+    @include responsive(768px) {
+      height: 180px;
+    }
+    @include responsive(420px) {
+      height: 150px;
+    }
+  }
+}
+
+@mixin lineclamp($line) {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin date {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 70px;
+  padding: 1rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 72px;
+  font-size: 1.29em;
+  line-height: 1.29rem;
+  text-transform: uppercase;
+  word-break: break-all;
+  font-weight: bold;
+  color: #fff;
+  // @include font(gilroy);
+  background-image: linear-gradient(
+    260deg,
+    rgba($primary-color, 0.6),
+    transparent
+  );
+  @include responsive(1001.5px) {
+    font-size: 1.2em;
+    line-height: 1.2;
+    height: 60px;
+    width: 52px;
+    padding: 0.5em;
+  }
+  @include responsive(777.5px) {
+    height: 50px;
+    width: 52px;
+  }
+  @include responsive(420px) {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@mixin feature {
+  font-size: 1em;
+  color: #787878;
+  // @include font('flexa');
+  font-weight: 400;
+  @include responsive(500px) {
+    font-size: 11px;
+  }
+}
+
+@mixin article {
+  padding: 0 0.75em;
+  @include responsivelg {
+    padding: 0 0.5em;
+  }
+  @include responsivesm {
+    padding: 0 4px;
+  }
+
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+@mixin scrollbar {
+  scroll-snap-type: x;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  &::-webkit-scrollbar {
+    background: transparent; /* make scrollbar transparent */
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+@mixin dropdown {
+  .dropdown-toggle {
+    &:after {
+      content: "\f078";
+      font-size: 12px;
+      margin-left: 3px;
+      -webkit-transform: translateY(2.5px) rotate(0deg);
+      transform: translateY(2.5px) rotate(0deg);
+      font-family: "Font Awesome 5 Free";
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-weight: 900;
+      -webkit-transition: 0.3s ease;
+      transition: 0.3s ease;
+      border: 0;
+    }
+  }
+}
+@mixin border-radius {
+  border-radius: 8px;
+}
+
+@mixin whole {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    @include responsive(589px) {
+      font-size: 12px;
+    }
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  a:active,
+  a:focus {
+    outline: 0;
+    border: none;
+    outline-style: none;
+  }
+
+  a {
+    transition: 0.3s ease;
+    color: currentColor;
+    &:hover {
+      color: $primary-color;
+    }
+    a:active {
+      color: $primary-color;
+    }
+  }
+
+  a:active {
+    color: $red;
+  }
+
+  h1,
+  h2,
+  h3 {
+    // text-transform: capitalize;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: $dark;
+    @include responsive(600px) {
+      font-size: 2rem;
+    }
+    @include responsivesm {
+      margin-bottom: 10px;
+    }
+  }
+
+  .logo {
+    img {
+      height: 3rem;
+      object-fit: contain;
+    }
+  }
+
+  body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    position: relative;
+    scroll-behavior: smooth;
+    color: $dark;
+    background-color: #fff;
+  }
+  .section-rule {
+    @include section-style;
+  }
+  img[src$=".jpg"] {
+    background-color: $primary-color;
+  }
+}
+
+@mixin paragraph {
+  line-height: 1.5;
+}
+.para {
+  @include paragraph;
+}
+
+@mixin text-mute {
+  color: $para;
+}
+.text-mute {
+  color: $para;
+}
+
+@mixin position {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin focus {
+  &:focus,
+  &:focus-within {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+  }
+}
+
+@mixin buttonhover($color) {
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-color: $color;
+  }
+}
+
+@mixin rest-style {
+  margin: 0 auto;
+  @include responsivemin(0px) {
+    padding: 18px 0;
+  }
+  @include responsivemin(768px) {
+    padding: 25px 0;
+  }
+  @include responsivemin(1002px) {
+    padding: 25px 0;
+  }
+
+  @include responsivemin(1210px) {
+  }
+}
+
+// ===ANIMATION==
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+}
+
+@include keyframes(shake) {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@include keyframes(opacity) {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@include keyframes(transform) {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+// ==START==
+
+.progress {
+  vertical-align: baseline;
+  height: 2px;
+  border: 0;
+  width: 100%;
+  @include transition-out;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f2f2f2 !important;
+}
+
+@mixin loop($count) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      @content;
+    }
+  }
+}
+@mixin drop-down {
+  .dropdown-menu {
+    position: absolute;
+    top: 80%;
+    padding: 0.5rem;
+    right: 0;
+    left: auto;
+    padding: 12px 0;
+    border: 0;
+    box-shadow: 0 0 9px #00000014;
+    text-align: center;
+    color: #666;
+    font-weight: 300;
+    .dropdown-item {
+      padding: 6px 12px;
+    }
+    width: auto;
+    min-width: 0;
+    padding: 12px;
+  }
+  .dropdown-toggle::after {
+    @include flaticon_before {
+      content: "\f101";
+      font-size: 11px;
+      color: #909090;
+      border: 0;
+      vertical-align: text-top;
+      margin-left: 6px;
+    }
+  }
+}
+.title-description {
+  font-size: 1em;
+  color: #565656;
+  margin-bottom: 25px;
+}
+@include whole;
+input::placeholder {
+  color: $para;
+}
+.description {
+  p {
+    font-size: 1em;
+  }
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  /* no standardized syntax available, no ie-friendly solution available */
+}
+
+$height: 52px;
+
+select + i {
+  position: absolute;
+  right: 0;
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.row {
+  margin: 0;
+}
+
+@include responsive(480px) {
+  .col-sm-6 {
+    padding: 0 4px !important;
+  }
+}
+
+.fixed-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow-y: scroll;
+  z-index: 10000 !important;
+  padding: 1rem;
+}
+
+hr {
+  border-color: #e8e8e8;
+  width: 100%;
+  margin: 35px 0;
+  border-width: 2px;
+  @include responsivesm {
+    margin: 25px 0px;
+  }
+}
+.section-title {
+  @include section-title;
+}
+mark {
+  background-color: $dark;
+  color: #fff;
+  padding: 3px 14px;
+}
+p {
+  @include responsive(678px) {
+    margin-bottom: 8px;
+  }
+}
+a {
+  display: inline-block;
+}
+@mixin tags {
+  .tags {
+    background-color: rgba($primary-color, 0.1);
+    padding: 8px 12px;
+    font-size: 14px;
+    margin: 0px 1px 5px 0;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: none;
+    &:last-child {
+      margin: 0;
+    }
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+      transition: background 0.3s ease-out;
+    }
+  }
+}
+
+.item {
+  // cursor:grab ;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  // -webkit-appearance: textfield;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+.form-check-input {
+  position: relative;
+  margin-top: 0;
+  margin-left: -1.25rem;
+  margin-right: 11px;
+}
+button.disabled {
+  cursor: not-allowed;
+}
+button:visited,
+button:focus {
+  outline: none;
+}
+
+// IE Supports
+
+body.edge {
+}
+body.overflow {
+  overflow-y: hidden;
+}
+/* --------------------------------------------------------
+version: 1.0
+last modified: 14.3.2020 by anjit
+author: Anjit Pariyar	
+email: anjitpariyar@gmail.com
+github: https://github.com/anjitzero
+----------------------------------------------------------*/
+
+.template--part {
+  p {
+    margin: initial;
+  }
+}
