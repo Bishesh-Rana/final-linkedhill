@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
          
-            <form class="searchProperty" method="get" action="{{ route('front.search-properties') }}">
+            <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
                 <div class="advance_search_modal">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -190,15 +190,20 @@
                             </div>
                         </div>
                         {{-- for rent --}}
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Rent</div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h3>rent</h3>
+
+
+                        </div>
                       </div>
                 </div>
-                <div class="modal-footer">
-                    <button  type="submit" class="btn btn-secondary advance_submit" data-bs-dismiss="modal">Search</button>
-                </div>
+                
                
             </form>
         </div>
+        <div class="modal-footer">
+                    <button  type="submit" form="searchform" class="btn btn-secondary advance_submit" data-bs-dismiss="modal">Search</button>
+                </div>
       
       </div>
     </div>
