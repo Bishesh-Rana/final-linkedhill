@@ -4691,9 +4691,13 @@ nav#linked_hill_nav {
     }
     .linked_hill_search_top label {
         cursor: pointer;
+        border: 1px solid #726a6a;
+        padding: 3px 10px;
+        border-radius: 5px;
     }
-    input:checked + label {
-        background: rgb(165, 159, 159);
+    .linked_hill_search_top input:checked + label {
+        background: rgb(143 134 134);
+        color: white;
     }
 
    
@@ -5073,14 +5077,16 @@ section#property_character_list {
     }
     .advance_search_modal label {
         cursor: pointer;
-        border: 1px solid black;
+        border: 1px solid #989393;
         border-radius: 6px;
         padding: 2px 10px;
         margin-right: 5px;
+        margin-bottom: 5px;
     }
     .advance_search_modal input:checked + label {
         background: #ccb9b9;
-        border: 1px solid black;
+        border: 1px solid #898989;
+        margin-bottom: 10px;
     }
 
     .advance_search_modal h3{
@@ -5092,4 +5098,15 @@ section#property_character_list {
     .advance_search_modal .selector_wrapper{
         border-bottom: 1px solid #ccbdbd;
         padding: 10px 0px;
+    }
+
+
+
+    .advance_search_modal .modal-body{
+        padding: 0% 1rem;
+
+    }
+
+    .purpose_wrapper{
+        position: sticky;top:0;background:white;
     }
