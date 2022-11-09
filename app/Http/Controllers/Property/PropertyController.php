@@ -52,7 +52,6 @@ class PropertyController extends CommonController
      */
     public function store(PropertyRequest $request)
     {
-
         $data = $request->validated();
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
@@ -255,10 +254,11 @@ class PropertyController extends CommonController
         $properties = Property::select('id', 'title', 'bath', 'bed', 'negotiable', 'status', 'property_address', 'admin_id')
         ->superAdmin()
         ->when(request('city_id'),fn($query)=>$query->where('city_id',request('city_id')))->latest();
+        // $properties = Property::get();
         return DataTables::of($properties)
             ->addColumn('image', function ($properties) {
                 $url =  count($properties->images) > 0  ? $properties->images->first->name->name : asset('images/default/no-property.png');
-                return '<img src=' . $url . '  class="news_img" align="center" />';
+                return '<img src=' . image($url) . '  class="news_img" align="center" />';
             })
             ->addColumn('status', function ($property) {
                 $a = $property->status == "1" ? " Approved " : " Unapproved ";

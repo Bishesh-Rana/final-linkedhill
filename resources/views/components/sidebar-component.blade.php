@@ -31,6 +31,13 @@
                 </a>
             </li>
 
+            <li class="">
+                <a href="{{ route('profile',auth()->user()->id) }}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Profile</p>
+                </a>
+            </li>
+
             @foreach ($sidebars as $key => $sidebar)
                 @canany($sidebar['permission'])
                     @if ($sidebar['child'])

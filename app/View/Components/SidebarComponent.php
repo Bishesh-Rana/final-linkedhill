@@ -381,6 +381,13 @@ class SidebarComponent extends Component
                 'permission' => ['customer-list', 'customer-create'],
                 'child' => null
             ],
+            // [
+            //     'title' => 'purchased Prroperty',
+            //     'icon' => 'group_work',
+            //     'href' => route('purchasedPrroperty'),
+            //     'permission' => ['purchasedPrroperty-list','purchasedPrroperty-delete'],
+            //     'child' => null
+            // ],
             [
                 'title' => 'Pages',
                 'icon' => 'book',

@@ -69,13 +69,24 @@ class StaffController extends Controller
                 'profile' => $request->profile,
                 'mobile' => $request->mobile,
                 'phone' => $request->phone,
+                'user_id' => auth()->user()->id,
             ]
         );
-
-        if ($request->roles) {
-            $staff->assignRole($request->roles);
+        if(auth()->user()->hasRole('Agent')){
+            foreach($request->roles as $role){
+                if($role == 1 || $role == 2){
+                    return redirect()->back()->with('message', "Your don't have permission to create");
+                }else{
+                    $staff->assignRole($request->roles);
+                } 
+            }
+                                 
+        }else{
+            if ($request->roles) {
+                $staff->assignRole($request->roles);
+            }
+            
         }
-
         return redirect(route('staffs.index'))->with('message', 'Staff created successfully.');
     }
 

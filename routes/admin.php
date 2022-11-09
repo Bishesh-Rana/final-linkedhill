@@ -63,6 +63,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('tradelink', TradelinkController::class);
     Route::resource('tradelink-category', TradelinkCategoryController::class);
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('purchased-property', [AdminController::class, 'purchasedProperty'])->name('purchasedPrroperty');
+    Route::get('profile/{id}', [AdminController::class, 'profile'])->name('profile');
+    Route::post('update-profile/{id}', [AdminController::class, 'updateProfile'])->name('update');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::delete('/deletePropertyImage/{id}', [PropertyController::class, 'deletePropertyImage'])->name('delete-property-image');
     Route::post('properties-status-update/{id}', [PropertyController::class, 'statusUpdate'])->name('properties.status.update');
