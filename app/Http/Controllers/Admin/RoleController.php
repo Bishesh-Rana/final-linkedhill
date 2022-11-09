@@ -16,7 +16,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::latest()->get();
+        if(auth()->user()->can('role-list')){
+            $roles = Role::latest()->get();
+        }elseif(auth()->user()->can('staffrole-list')){
+            $roles = Role::where('user_id',auth()->user()->id)->get();           
+        }
+        else{
+            $roles = Role::where('id','this');
+        }
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -28,13 +35,38 @@ class RoleController extends Controller
     public function create()
     {
         $role = new Role();
-        $permissions = Permission::get()
-            ->groupBy(function ($item, $key) {
-                return explode('-', $item->name)[0];
-            })
-            ->sortBy(function ($permission, $key) {
-                return count($permission);
-            });
+        if(auth()->user()->can('role-create')){
+            $permissions = Permission::get()
+                ->groupBy(function ($item, $key) {
+                    return explode('-', $item->name)[0];
+                })
+                ->sortBy(function ($permission, $key) {
+                    return count($permission);
+                });
+        }elseif(auth()->user()->can('staffrole-create')){
+            $latest_permission = [];
+            $permissions = Permission::get();
+            foreach($permissions as $permission){
+                if(auth()->user()->can($permission)){
+                    array_push($latest_permission,$permission);
+                }
+            }
+
+            // $permissions = (object) $latest_permission;
+
+            $permissions = $permissions
+                ->groupBy(function ($item, $key) {
+                    return explode('-', $item->name)[0];
+                })
+                ->sortBy(function ($permission, $key) {
+                    return count($permission);
+                });
+            
+        }else{
+            $permissions = Permission::where('name','this')->get();
+        }
+            
+        
         $selectedPermission = [];
         return view('admin.roles.create', compact('permissions', 'role','selectedPermission'));
     }
@@ -54,6 +86,7 @@ class RoleController extends Controller
 
         $role  = Role::create([
             'name' => $request->name,
+            'user_id' => auth()->user()->id,
         ]);
 
         if ($request->permissions) {
@@ -103,6 +136,7 @@ class RoleController extends Controller
 
         // update the Product
         $role->update($data);
+        $role->permissions()->sync([]);
         $role->permissions()->sync($request->permissions);
 
         return redirect(route('roles.index'))->with('message', 'Role updated successfully.');

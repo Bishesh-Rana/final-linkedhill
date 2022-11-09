@@ -19,25 +19,36 @@ class StaffController extends Controller
      */
 
     public function index()
-    {
+    { 
 
-        $users = User::whereHas('roles', function (Builder $query) {
-            $query->where('roles.name', '!=', 'Super Admin');
-        })->latest()->get();
+        if(auth()->user()->can('user-list')){
+            $users = User::whereHas('roles', function (Builder $query) {
+                $query->where('roles.name', '!=', 'Super Admin');
+            })->latest()->get();
+        }else{
+            if(auth()->user()->can('staff-list')){
+                $users = User::where('user_id', auth()->user()->id)->get();
+            }
+        }
 
         return view('admin.staffs.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function create()
     {
-
         $roles = Role::all();
+        $latest_roles = [];
+        if(auth()->user()->hasRole('Super Admin')){
+            $roles = $roles;
+        }else{
+            foreach($roles as $role){
+                if(auth()->user()->hasRole($role)){
+                    array_push($latest_roles,$role);
+                }
+            }
+            $roles = (object) $latest_roles;
+        }
+        
         return view('admin.staffs.create', compact('roles'));
     }
 
@@ -72,7 +83,7 @@ class StaffController extends Controller
                 'user_id' => auth()->user()->id,
             ]
         );
-        if(auth()->user()->hasRole('Agent')){
+        if(auth()->user()->can('staff-create')){
             foreach($request->roles as $role){
                 if($role == 1 || $role == 2){
                     return redirect()->back()->with('message', "Your don't have permission to create");
@@ -111,8 +122,18 @@ class StaffController extends Controller
 
     public function edit(User $staff)
     {
-
         $roles = Role::all();
+        $latest_roles = [];
+        if(auth()->user()->hasRole('Super Admin')){
+            $roles = $roles;
+        }else{
+            foreach($roles as $role){
+                if(auth()->user()->hasRole($role)){
+                    array_push($latest_roles,$role);
+                }
+            }
+            $roles = (object) $latest_roles;
+        }
         return view('admin.staffs.create', compact('staff', 'roles'));
     }
 
@@ -141,6 +162,7 @@ class StaffController extends Controller
 
         $staff->update($data);
         if ($request->roles) {
+            $staff->syncRoles([]);
             $staff->assignRole($request->roles);
         }
 

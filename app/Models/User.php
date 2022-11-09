@@ -48,7 +48,8 @@ class User extends Authenticatable
         'is_active',
         'reward_point',
         'referred_by',
-        'referral_code'
+        'referral_code',
+        'user_id'
     ];
 
     /**

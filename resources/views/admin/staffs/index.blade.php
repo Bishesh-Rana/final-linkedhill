@@ -20,7 +20,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    @can('user-create')
+                                    @canany(['user-create','staff-create'])
                                         <a href="{{ route('staffs.create') }}" aria-expanded="false">
                                             <i class="material-icons">add</i>Add User
                                             <div class="ripple-container"></div>
@@ -51,7 +51,7 @@
                                             <th>Mobile</th>
                                             <th>Phone</th>
                                             <th>is_active</th>
-                                            @canany(['update', 'view', 'delete'], auth()->user())
+                                            @canany(['staff-update', 'staff-view', 'staff-delete'], auth()->user())
                                                 <th class="disabled-sorting text-right">Actions</th>
                                             @endcanany
                                         </tr>
@@ -103,13 +103,13 @@
                                                     </form>
                                                 </td>
                                                 <td class="text-right">
-                                                    @can('update', $staff)
+                                                    @can('staff-update', $staff)
                                                         <a href="{{ route('staffs.edit', $staff->id) }}"
                                                             class="btn btn-simple btn-warning btn-icon edit" rel="tooltip"
                                                             data-original-title="Edit Staff"><i
                                                                 class="material-icons">edit</i></a>
                                                     @endcan
-                                                    @can('delete', $staff)
+                                                    @can('staff-delete', $staff)
                                                         <a href="#" class="btn btn-simple btn-danger btn-icon"
                                                             onclick="deleteStaff({{ $staff->id }})" rel="tooltip"
                                                             data-original-title="Delete Staff"><i
