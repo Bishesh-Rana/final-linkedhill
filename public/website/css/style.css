@@ -21,7 +21,7 @@ body {
 
 .btn {
     border-radius: 50px;
-    padding: 6px 25px;
+    /* padding: 6px 25px; */
 }
 
 .cs_padding {
@@ -3035,13 +3035,33 @@ div#Share_Feedback .modal-dialog {
 .property_thumbnail_ {
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 }
+.favicon{
+    position: absolute;
+    top: 3%;
+    right: 13%;
+    height: 25px;
+    width: 25px;
+    padding: 2px 5px;
+    border-radius: 100%;
+    background: white;
 
+}
+.favicon i{
+    color: red;
+}
+.favicon i .las{
+    color: red;
+}
 .property_owner {
     text-align: center;
     margin-top: 6px;
 }
-
+.top_tv_verified{
+    display: flex;
+    flex-wrap: wrap;
+}
 .top_tv_verified span {
     font-size: 10px;
     border: 1px solid #b2dfd8;
@@ -3050,6 +3070,8 @@ div#Share_Feedback .modal-dialog {
     padding: 2px 8px;
     border-radius: 14px;
     text-transform: uppercase;
+    margin-bottom: 3px;
+    margin-right: 5px;
 }
 
 .top_tv_verified span i {
@@ -3057,21 +3079,46 @@ div#Share_Feedback .modal-dialog {
 }
 
 .top_tt_title a {
-    font-size: 18px;
-    color: black;
+    font-size: 20px;
+    color: #4b4646;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
     text-transform: capitalize;
+    line-height: 30px;
 }
 
 .top_tt_title {
     margin-top: 8px;
     margin-bottom: 16px;
 }
+.top_tt_title a span{
+    color: #736b6b;
+    font-size: 14px;
+}
+.owner{
+    display: flex;
+    /* line-height: 40px; */
+}
+.owner p{
+    color: red;
+}
+.owner .icon i{
+    font-size: 16px;
+    color: #b96e6e;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 5px;
 
+}
+.owner .icon i:hover{
+    color: #e62222;
+    border: 1px solid;
+
+}
 .property_type_ptd_detail {
     background-color: #f5f5f5;
     border-radius: 8px;
@@ -3197,7 +3244,8 @@ div#Share_Feedback .modal-dialog {
 
 .show_button_area {
     text-align: center;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    margin-left: auto;
 }
 
 .show_button_area .button_show {
@@ -4874,6 +4922,7 @@ nav#linked_hill_nav {
     padding: 10px 30px;
     margin-right: 2px;
     height: 45px;
+    position: relative;
 }
 
 .surround_search {
@@ -5109,4 +5158,75 @@ section#property_character_list {
 
     .purpose_wrapper{
         position: sticky;top:0;background:white;
+    }
+
+    .propertylistsearch{
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+
+    }
+
+    .propertylistsearch .first-row .purpose{
+        width: 100%;
+        padding: 5px;
+    }
+    .propertylistsearch .first-row .multiple_select2option{
+        width: 100%;
+        height: 36px;
+    }
+    .propertylistsearch .first-row .sorting{
+        width: 100%;
+        padding: 5px;
+    }
+    .propertylistsearch .first-row .filter{
+        padding: 2px;
+        border: 1px solid black;
+    }
+
+    .propertylistsearch .first-row .filter img{
+        width: auto;
+        height: 30px;
+    }
+    .propertylistsearch .first-row .btn-update{
+        border-radius: unset;
+        background-color: #e64047;
+        color: white;
+        padding: 0px 14px;
+    }
+    .propertylistsearch .second-row{
+        display: none;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+    
+    .propertylistsearch .option_listing_dropDown {
+        position: absolute;
+        background-color: white;
+        width: 198px;
+        padding: 10px;
+        /* top: 0%; */
+        left: 0;
+        z-index: 1000000;
+        border: 1px solid rgba(0, 0, 0, .15);
+        display: none;
+    }
+
+    .propertylistsearch .moreOption{
+        position: relative;
+    }
+    .propertylistsearch .moreOptions{
+        position: absolute;
+        border: 1px solid black;
+        padding: 5px;
+        display: none;
+        width: 300px;
+        background-color: white;
+        z-index: 100000;
+    }
+    .propertylistsearch .moreOptions select{
+        background-color: white;
+        border: 1px solid;
+        margin-bottom: 5px;
     }

@@ -384,6 +384,7 @@ $('.advance-search').click(function() {
 });
 
 
+
 // $(document).ready(function(){
 //     $('#advanceLand').on('change',function(){
 //         let isChecked = $('#advanceLand').is(':checked');
@@ -461,6 +462,27 @@ $('.advance-search').click(function() {
         }
     })
 });
+
+function favorite(property){
+    $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+
+}
+
+
+$(document).ready(function(){
+    $('.filter').on('click', function(){
+        $(document).find('.second-row').toggle();
+        
+    })
+})
+$(document).ready(function(){
+    $('.moreOptionsToggler').on('click', function(){
+        $(document).find('.moreOptions').toggle();
+        
+    })
+})
+
+
 
 // $(document).ready(function() {
 //     //set initial state.

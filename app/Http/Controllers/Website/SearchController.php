@@ -12,6 +12,7 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        dd($request->all());
         $property =  Property::filter() ->paginate(20);
 
         return $this->returnResponse(PropertyResource::collection($property), $paginate = true);
