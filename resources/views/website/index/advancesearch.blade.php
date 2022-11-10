@@ -1,4 +1,5 @@
-<!-- Modal -->
+<div class="advance_search_modal">
+    <!-- Modal -->
 <div class="modal fade" id="advanceSearch" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -8,9 +9,16 @@
         </div>
         <div class="modal-body">
          
-            <form class="searchProperty" method="get" action="{{ route('front.search-properties') }}">
+            <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
                 <div class="advance_search_modal">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <div class="selector_wrapper purpose_wrapper">
+                        @foreach ($purposes as $key => $type)
+                            <input type='radio' name="purpose" value="{{ $type->id }}" id="adpurpose{{$key}}"/>
+                            <label for="adpurpose{{$key}}">{{ $type->name }}</label>
+                         @endforeach
+                    </div>
+
+                    {{-- <ul style="position: sticky;top:0;background:white;" class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Buy</button>
                         </li>
@@ -18,19 +26,18 @@
                           <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rent</button>
                         </li>
                        
-                    </ul>
+                    </ul> --}}
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Buy
-
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Category</h3>
                                        <div class="d-flex">
                                         @foreach ($propertyCat as $propertyC)
-                                        <div class="list_group">
-                                            <input class="form-check-input" type="checkbox" name="category_id" value="{{ $propertyC->name }}" id="'advance'+{{ $propertyC->name }}">
-                                            <label class="form-check-label" for="'advance'+{{ $propertyC->name }}">{{ $propertyC->name }}</label>
+                                        <div class="list_group_category">
+                                            <input  class="form-check-input" type="checkbox" name="ad_category_id" value="{{ $propertyC->name }}" id="advance{{$propertyC->id}}">
+                                            <label class="form-check-label" for="advance{{$propertyC->id}}">{{ $propertyC->name }}</label>
                                         </div>
                                         @if ($propertyC->id == 3)
                                         @break
@@ -42,10 +49,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div  class="selector_wrapper bedrooms">
                                         <h3>Bedrooms</h3> 
-                                        <input type="radio" name="bedCount" value="anybed" id="anybed">
-                                        <label for="anybed">Any Bed</label>
+                                        <input type="radio" name="bedCount" value="anybed" id="0bed">
+                                        <label for="0bed">Any Bed</label>
                                         <input type="radio" name="bedCount" value="1bed" id="1bed">
                                         <label for="1bed">1+ Bed</label>    
                                         <input type="radio" name="bedCount" value="2bed" id="2bed">
@@ -56,7 +63,7 @@
                                     
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div id="bath" class="selector_wrapper">
                                         <h3>Bathrooms</h3>
                                         <input type='radio' name="bath" value="1" id="bath-0"/>
                                         <label for="bath-0">Any Bath</label>
@@ -86,9 +93,17 @@
                                         <label for="park-3">3</label>  
                                     </div>                                  
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="selector_wrapper">
                                         <h3>Min Price</h3>
+                                        <select name="min_price" id="min_price">
+                                            <option value="0" selected>Min Price</option>
+                                            <option value="50000.00">Rs. 50000.00</option>
+                                            <option value="50000.00">Rs. 50000.00</option>
+                                            <option value="50000.00">Rs. 50000.00</option>
+                                            <option value="50000.00">Rs. 50000.00</option>
+                                        </select>
+                                        {{-- <h3>Min Price</h3>
                                         <input type='radio' name="minprice" value="50000" id="50000"/>
                                         <label for="50000">Rs. 5000.00</label>  
                                         <input type='radio' name="minprice" value="100000" id="100000"/>
@@ -96,23 +111,44 @@
                                         <input type='radio' name="minprice" value="1000000" id="1000000"/>
                                         <label for="1000000">Rs. 1000000.00</label>    
                                         <input type='radio' name="minprice" value="10000000" id="10000000"/>
-                                        <label for="10000000">Rs. 10000000.00</label> 
+                                        <label for="10000000">Rs. 10000000.00</label>  --}}
                                     </div>
                                      
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="selector_wrapper">
                                         <h3>Max Price</h3>
-                                        <input type='radio' name="maxprice" value="50000" id="max-50000"/>
+                                        <select name="end_prize" id="max_price">
+                                            <option selected>Max Price</option>
+                                            <option value="1100000.00">Rs. 1100000.00</option>
+                                            <option value="1500000.00">Rs. 1500000.00</option>
+                                            <option value="2000000.00">Rs. 2000000.00</option>
+                                            <option value="5000000.00">Rs. 5000000.00</option>
+                                        </select>
+                                        {{-- <input type='radio' name="maxprice" value="50000" id="max-50000"/>
                                         <label for="max-50000">Rs. 50000.00</label> 
                                         <input type='radio' name="maxprice" value="1100000" id="1100000"/>
                                         <label for="1100000">Rs. 1100000.00</label>  
                                         <input type='radio' name="maxprice" value="100000000" id="100000000"/>
                                         <label for="100000000">Rs. 100000000.00</label>
                                         <input type='radio' name="maxprice" value="1000000000" id="1000000000"/>
-                                        <label for="1000000000">Rs. 1000000000.00</label>    
+                                        <label for="1000000000">Rs. 1000000000.00</label>     --}}
                                     </div>
                                   
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="selector_wrapper">
+                                        <h3>Facing direction</h3>
+                                        <input type='radio' name="facedirection" value="east " id="east"/>
+                                        <label for="east">East</label>
+                                        <input type='radio' name="facedirection" value="south " id="south"/>
+                                        <label for="south">South</label>
+                                        <input type='radio' name="facedirection" value="West " id="West"/>
+                                        <label for="West">West</label>
+                                        <input type='radio' name="facedirection" value="north " id="north"/>
+                                        <label for="north">North</label>
+                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
@@ -148,7 +184,7 @@
                                     <div class="selector_wrapper">
                                         <h3>Common Facilities</h3>
                                        <div class="d-flex">
-                                        <div class="list_group">
+                                        <div class="list_group_facilities">
                                             <input class="form-check-input" type="checkbox" name="facilities" value="water" id="facility1">
                                             <label class="form-check-label" for="facility1">Water</label>
                                             <input class="form-check-input" type="checkbox" name="facilities" value="road" id="facility2">
@@ -189,17 +225,18 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- for rent --}}
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Rent</div>
                       </div>
                 </div>
-                <div class="modal-footer">
-                    <button  type="submit" class="btn btn-secondary advance_submit" data-bs-dismiss="modal">Search</button>
-                </div>
+                
                
             </form>
+        </div>
+        <div class="modal-footer">
+            <button  type="reset" value="reset" form="searchform" class="btn btn-secondary advance_submit" >Clear Filter</button>
+            <button  type="submit" form="searchform" class="btn btn-secondary advance_submit" data-bs-dismiss="modal">Search</button>
         </div>
       
       </div>
     </div>
   </div>
+</div>

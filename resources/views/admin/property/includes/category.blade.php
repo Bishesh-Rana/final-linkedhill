@@ -34,9 +34,22 @@
                                 id="{{ $property_category->id . 'home' }}">
                                 @forelse ($property_category->features as $key=>$feat)
                                     <div class="col-6">
-                                        <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
-                                            id="{{ $feat->id }}"
-                                            value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />
+                                        {{-- @dd(!$feat->value->isEmpty()) --}}
+                                        @if(!$feat->value->isEmpty())
+                                        <label class="label-style text-capitalize col-md-3">
+                                            {{ $feat->title }}
+                                        </label>
+                                            @foreach($feat->value as $val)
+                                                <div class="col-md-2">
+                                                    <input class="form-control" value='{{$val->value}}' name="features[{{ $feat->id }}]" type="radio" />
+                                                    <label>{{$val->value}}</label>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
+                                                id="{{ $feat->id }}"
+                                                value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />   
+                                        @endif
                                     </div>
                                 @empty
                                     <div class="col-6">

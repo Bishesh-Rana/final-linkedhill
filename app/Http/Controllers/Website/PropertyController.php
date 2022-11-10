@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
 use App\Models\Menu;
-use App\Models\Property;
 use App\Models\User;
-use App\Models\Advertisement;
+use App\Models\Purpose;
+use App\Models\Property;
 use App\Traits\CommonTrait;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use App\Models\Advertisement;
+use App\Models\PropertyCategory;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 
 class PropertyController extends Controller
 {
@@ -33,15 +35,18 @@ class PropertyController extends Controller
 
 
     public function search(Request $request)
-    {
-
-
+    {      
+        $filter = $request->all();
         $properties =  Property::filter() ->paginate(5);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property');
+        
+        $purposes = Purpose::all();
+        $property = Property::all();
+        $propertyCat = PropertyCategory::all();
 
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties','advertisements'))->with('meta', $this->getMeta());
+        return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])

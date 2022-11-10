@@ -52,6 +52,16 @@
                                         </span>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Value</label>
+                                    <input type="text" name="value" class="form-control" placeholder="Eg: unfurnish, semi-furnish, fully-furnish" >
+                                    @error('value')
+                                        <span class="error-message">
+                                            *{{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="label-style">Choose Category</label>

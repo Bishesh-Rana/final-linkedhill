@@ -193,8 +193,8 @@
                                             Enter Category Name
                                             {{-- <small>*</small> --}}
                                         </label>
-                                        <input class="form-control" name="name" value="{{ $category->name }}"
-                                            type="text" required />
+                                        <input type="text" class="form-control" name="name" value="{{ $category->name }}"
+                                             required /> 
                                     </div>
                                 </div>
 

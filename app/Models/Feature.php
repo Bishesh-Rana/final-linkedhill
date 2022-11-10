@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Feature extends Model
 {
@@ -26,5 +27,8 @@ class Feature extends Model
     public function getParsedTypeAttribute()
     {
         return self::TYPE[$this->type];
+    }
+    public function value(){
+        return $this->hasMany(FeatureValue::class,'feature_id');
     }
 }

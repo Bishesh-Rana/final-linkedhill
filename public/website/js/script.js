@@ -373,6 +373,7 @@ $('#click').click(function() {
 
     if ($('#click').text() == "Less Search Option") {
         $(this).text("More Search Option")
+
     } else {
         $(this).text("Less Search Option")
     }
@@ -380,8 +381,121 @@ $('#click').click(function() {
 
 $('.advance-search').click(function() {
     $(document).find('.advance_options').toggle();
+});
+
+
+
+// $(document).ready(function(){
+//     $('#advanceLand').on('change',function(){
+//         let isChecked = $('#advanceLand').is(':checked');
+//         if(isChecked){
+//             $(".bedrooms").hide();
+//         }
+//         else{
+//             $(".bedrooms").show();
+//         }
+//     })
+// });
+
+// $('.front-category').on('click', function(e){
+//     $($(this).data('element')).prop('checked', true);
+
+
+// });
+
+    $(document).ready ( function(e){   
+        $('input[type=radio][name=initialpurpose]').on('change', function() {
+            let purposeid = $(this).data('element');
+            $('#'+purposeid).prop("checked", true);
+        })
+    })
+
+    $('.front-category').on('change', function(e){
+        $($(this).data('element')).prop('checked', true);
+        var checkedcat = [];
+        $.each($("input[name='category_id']:checked"), function(){
+            checkedcat.push($(this).val());
+        });
+        if (checkedcat.length == 1 && checkedcat[0]==2){
+            $('#bath, #parking, #bed').hide();
+        }
+        else{
+            $('#bath, #parking,#bed').show();
+        }
+    })
+
+    $("#bed").on('change', function(){
+        var conceptName = $('#bed').find(":selected").data();
+        $('#'+conceptName.element).prop("checked", true);
+    })
+
+    $("#bath").on('change', function(){
+        var bath = $('#bath').find(":selected").data();
+        $('#'+bath.element).prop("checked", true);
+    })
+    $("#parking").on('change', function(){
+        var park = $('#parking').find(":selected").data();
+        $('#'+park.element).prop("checked", true);
+    })
+
+    $("#start_prize").on('change', function(){
+        var index = $('#start_prize').find(":selected").index();
+        $('#min_price').prop("selectedIndex", index);
+    })
+    $("#end_prize").on('change', function(){
+        var index = $('#end_prize').find(":selected").index();
+        $('#max_price').prop("selectedIndex", index);
+    })
+    $(document).ready(function(){
+        $('.list_group_category_advance').on('change', function(){
+            alert("changed")
+            var checkedcat = [];
+            $.each($("input[name='category_id']:checked"), function(){
+                checkedcat.push($(this).val());
+        });
+        if (checkedcat.length == 1 && checkedcat[0]==2){
+            $('#bath, #parking, #bed').hide();
+        }
+        else{
+            // alert('others check');
+            $('#bath, #parking,#bed').show();
+        }
+    })
+});
+
+function favorite(property){
+    $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+
+}
+
+
+$(document).ready(function(){
+    $('.filter').on('click', function(){
+        $(document).find('.second-row').toggle();
+        
+    })
+})
+$(document).ready(function(){
+    $('.moreOptionsToggler').on('click', function(){
+        $(document).find('.moreOptions').toggle();
+        
+    })
 })
 
+
+
+// $(document).ready(function() {
+//     //set initial state.
+//     $('#advanceland').val(this.checked);
+
+//     $('#checkbox1').change(function() {
+//         if(this.checked) {
+//             var returnVal = confirm("Are you sure?");
+//             $(this).prop("checked", returnVal);
+//         }
+//         $('#textbox1').val(this.checked);        
+//     });
+// });
 // // range slider js
 // window.onload = function() {
 //     slideOne();
