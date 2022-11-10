@@ -4931,7 +4931,7 @@ nav#linked_hill_nav {
 }
 
 .option_a1 {
-    /* width: calc(100%/5); */
+     /* width: calc(100%/5);  */
     margin-right: 2px;
 }
 
@@ -5162,14 +5162,18 @@ section#property_character_list {
 
     .propertylistsearch{
         background-color: white;
-        border: 1px solid black;
+        border: 1px solid #dfdfdf;
         border-radius: 5px;
-
+        padding: 5px;
+        margin-bottom: 20px;
     }
 
+    .first-row{
+        /* border-bottom: 1px solid black; */
+    }
     .propertylistsearch .first-row .purpose{
         width: 100%;
-        padding: 5px;
+        padding: 6px;
     }
     .propertylistsearch .first-row .multiple_select2option{
         width: 100%;
@@ -5177,11 +5181,21 @@ section#property_character_list {
     }
     .propertylistsearch .first-row .sorting{
         width: 100%;
-        padding: 5px;
+        padding: 6px;
     }
     .propertylistsearch .first-row .filter{
-        padding: 2px;
-        border: 1px solid black;
+        padding: 3px;
+        border: 1px solid #7a7878;
+        display: flex;
+        align-items: center;
+    }
+    .propertylistsearch .first-row .filter:hover{
+        color: #009681;
+    }
+    .propertylistsearch .first-row .filter i{
+        color: #009681;
+        font-size: 30px;
+        margin-left: 10px;
     }
 
     .propertylistsearch .first-row .filter img{
@@ -5218,15 +5232,64 @@ section#property_character_list {
     }
     .propertylistsearch .moreOptions{
         position: absolute;
-        border: 1px solid black;
+        left: 50%;
+        border: 1px solid #d3c4c4;
         padding: 5px;
         display: none;
         width: 300px;
         background-color: white;
         z-index: 100000;
+        transform: translate(-50%, 0px);
+        height: 300px;
+        overflow-y: scroll;
     }
+
     .propertylistsearch .moreOptions select{
         background-color: white;
         border: 1px solid;
         margin-bottom: 5px;
+        border: 1px solid #bfbaba;
     }
+
+    .propertylistsearch .option_1 {
+        background-color: white;
+        padding: 10px 30px;
+        margin: 2px 2px;
+        height: 46px;
+        position: relative;
+        border: 1px solid #9e9898;
+    }
+    
+    .propertylistsearch .option_a1 {
+        width: calc(100%/7);
+        margin: 2px;
+        border: 1px solid #938f8f;
+   }
+   .search-input{
+    border: 1px solid #7d7777;
+    padding: 0px;
+   }
+
+   .moreOptionsToggler{
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 0px 5px;
+   }
+
+   /* .moreOptionsToggler p::before{
+    position: absolute;
+    content: '\f107';
+    right: 0;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+    padding: 5px 15px;
+    top: 0;
+   } */
+   
+   .propertylistsearch label{
+    display: inline-block;
+    color: #4b4040;
+    font-weight: 700;
+    margin: 5px 5px;
+   }
+ 

@@ -470,6 +470,7 @@ function favorite(property){
 
 
 $(document).ready(function(){
+    $(document).find('.second-row').css("display", "none");
     $('.filter').on('click', function(){
         $(document).find('.second-row').toggle();
         
@@ -481,6 +482,39 @@ $(document).ready(function(){
         
     })
 })
+
+// sorting
+
+$(document).ready(function(){
+    $('.sorting').on('change', function(){
+        var sort = this.value;
+        var $wrapper = $('.property_pc_cover');
+        if( sort == 'pricelth'){
+            $('.property_detail_').sort(function(a, b) {
+                // $wrapper.find('.property_detail_').sort(function(a, b) {
+                    return +a.dataset.orderprice - +b.dataset.orderprice;
+                }).appendTo($wrapper);
+        } else if(sort == 'pricehtl'){
+            $('.property_detail_').sort(function(a, b) {
+                    return +b.dataset.orderprice - +a.dataset.orderprice  ;
+                }).appendTo($wrapper);
+        }
+        else if(sort == 'latest'){
+            alert(sort)
+            $('.property_detail_').sort(function(a, b) {
+                    return +a.dataset.latest - +b.dataset.latest;
+                }).appendTo($wrapper);
+        }
+        else if(sort == 'oldest'){
+            $('.property_detail_').sort(function(a, b) {
+                    return +b.dataset.latest - +a.dataset.latest;
+                }).appendTo($wrapper);
+        }
+    })
+    
+})
+
+
 
 
 
