@@ -13,7 +13,7 @@
                                 <span class="nav-tabs-title">Feature:</span>
                                 <li class="active">
                                     <a href="{{ route('feature.create') }}">
-                                        <i class="material-icons">settings</i>Manage Features
+                                        <i class="material-icons">settings</i>Add Features
                                     </a>
                                 </li>
                             </div>

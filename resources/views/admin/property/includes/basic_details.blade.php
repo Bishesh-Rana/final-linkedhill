@@ -86,7 +86,7 @@
 
 {{-- --------------------------------------------- --}}
 
-<div class="col-md-6">
+{{-- <div class="col-md-6">
     <div class="form-group" style="margin-top:15px;">
         <label class="label-style">Bedroom</label>
         <select class="form-control" name="bed" required style="padding: 7px 10px;">
@@ -121,7 +121,7 @@
         </select>
         <x-error name='bath' />
     </div>
-</div>
+</div> --}}
 
 {{-- --------------------------------------------- --}}
 
