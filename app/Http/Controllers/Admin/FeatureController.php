@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Feature;
+use Illuminate\Support\Arr;
+use App\Models\FeatureValue;
+use Illuminate\Http\Request;
+use App\Models\PropertyCategory;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeatureRequest;
-use Illuminate\Http\Request;
-use App\Models\Feature;
-use App\Models\PropertyCategory;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class FeatureController extends Controller
@@ -55,13 +56,22 @@ class FeatureController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(FeatureRequest $request)
-    {
+    {       
         $data = $request->validated();
         DB::beginTransaction();
         try {
             $feature =  Feature::create(Arr::except($data, 'category_id'));
             $feature->category()->sync($data['category_id']);
             DB::commit();
+
+            $feature_id = Feature::where('title','=',$request->title)->value('id');
+            $values = $request->value;
+                $values = explode(',',$values);
+                if(!empty($values)){
+                    foreach($values as $value){
+                        FeatureValue::create(['feature_id'=>$feature_id,'value'=>$value]);
+                    }
+                }
             return redirect()->route('feature.index')->with('message', 'Feature Created Successfully');
         } catch (\Throwable $th) {
             DB::rollBack();

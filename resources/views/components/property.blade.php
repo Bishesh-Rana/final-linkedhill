@@ -1,4 +1,4 @@
-@props(['label', 'value' => null, 'type' => 'text', 'id'])
+@props(['other','label', 'value' => null, 'type' => 'text', 'id'])
 <div class="form-group row">
     @if ($type == 'text')
         <label class="label-style text-capitalize col-md-3">
