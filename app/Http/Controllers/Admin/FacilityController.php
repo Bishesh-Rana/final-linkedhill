@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RoadType;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
-class RoadTypeController extends Controller
+class FacilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class RoadTypeController extends Controller
      */
     public function index()
     {
-        $types = RoadType::latest()->get();
-        return view('admin.road.index',compact('types'));
+        $facilities = Facility::latest()->get();
+        return view('admin.facility.index',compact('facilities'));
     }
 
     /**
@@ -38,17 +38,17 @@ class RoadTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:90',
+            'title' => 'required|max:90',
 
         ]);
-        $type = RoadType::create([
-            'name' => $request->name,
+        $facility = Facility::create([
+            'title' => $request->title,
 
         ]);
 
-        if ($type)
+        if ($facility)
         {
-            return back()->with('message','Road type created successfully');
+            return back()->with('message','Facility created successfully');
         }
     }
 
@@ -81,22 +81,9 @@ class RoadTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoadType $roadType)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:90',
-
-        ]);
-
-        $type =  $roadType->update([
-            'name' => $request->name,
-
-        ]);
-
-        if ($type)
-        {
-            return back()->with('message','Road type updated successfully');
-        }
+        //
     }
 
     /**
@@ -105,8 +92,8 @@ class RoadTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoadType $roadType)
+    public function destroy(Facility $facility)
     {
-        $roadType->delete();
+        $facility->delete();
     }
 }

@@ -8,41 +8,42 @@
  */
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CityController;
-use App\Http\Controllers\Admin\AmenityController;
-use App\Http\Controllers\Admin\PurposeController;
-use App\Http\Controllers\Admin\TypeController;
-use App\Http\Controllers\Admin\PropertyCategoryController;
-use App\Http\Controllers\Admin\RoadTypeController;
-use App\Http\Controllers\Admin\UnitController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\AgencyController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\StaffController;
-use App\Http\Controllers\Admin\NewsCategoryController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\TestimonialController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\TeamController;
-use App\Http\Controllers\Admin\AdvertisementController;
-use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\PricingController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\ServiceCategoryController;
-use App\Http\Controllers\Admin\TradelinkCategoryController;
-use App\Http\Controllers\Admin\TradelinkController;
 use App\Http\Controllers\GenericController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\AgencyController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\PricingController;
+use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\Admin\RoadTypeController;
+use App\Http\Controllers\Admin\TradelinkController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Property\PropertyController;
+use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\Property\PropertyFaqController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Admin\PropertyCategoryController;
+use App\Http\Controllers\Admin\TradelinkCategoryController;
 
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminLoginController::class, 'login']);
@@ -207,4 +208,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     //Features
     Route::get('features/get', [FeatureController::class, 'getFeatures'])->name('feature.get');
     Route::resource('feature', FeatureController::class);
+
+    //Facility
+    Route::resource('facility', FacilityController::class);
 });

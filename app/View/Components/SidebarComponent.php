@@ -122,6 +122,12 @@ class SidebarComponent extends Component
                         'permission' => ['feature-list'],
                         'href' => route('feature.index'),
                     ],
+                    [
+                        'title' => 'Facilities',
+                        'icon' => 'streetview',
+                        'permission' => ['property-list'],
+                        'href' => route('facility.index'),
+                    ],
 
                 ]
             ],
