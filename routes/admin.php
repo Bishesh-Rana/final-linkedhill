@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('get-properties', [PropertyController::class, 'getProperties'])->name('get.properties');
     Route::get('property-image/delete/{id}', [PropertyController::class, 'delete_image']);
     Route::post('update-menu/property', [MenuController::class, 'updateMenuOrder'])->name('update.menu');
+    Route::post('update-purpose/property', [PurposeController::class, 'updatePurposeOrder'])->name('update.purpose');
     Route::resources([
         'staffs' => StaffController::class,
         'properties' => PropertyController::class,

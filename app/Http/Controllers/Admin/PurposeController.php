@@ -108,4 +108,20 @@ class PurposeController extends Controller
         $purpose = Purpose::find($id);
         $purpose->delete();
     }
+    public function updatePurposeOrder(Request $request)
+    {
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['purposeItem'])) {
+            foreach ($arr['purposeItem'] as $key => $value) {  //id //parent_id
+                Purpose::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
+    }
 }
