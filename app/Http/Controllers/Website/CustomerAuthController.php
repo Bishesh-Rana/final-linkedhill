@@ -17,6 +17,18 @@ class CustomerAuthController extends Controller
     {
         return view('website.customer.auth.signup');
     }
+
+    public function signin()
+    {
+        return view('website.customer.auth.login');
+    }
+
+    public function registerform()
+    {
+        return view('website.customer.auth.register');
+    }
+
+    
     public function register(Request $request)
     {
         $validator = $this->validate(request(), [

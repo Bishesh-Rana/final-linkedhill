@@ -5293,3 +5293,59 @@ section#property_character_list {
     margin: 5px 5px;
    }
  
+
+   #user-credential_wrapper .first{
+    border: 1px solid #ebe6e6;
+    border-radius: 5px;
+    text-align: center;
+   }
+   #user-credential_wrapper .forgot{
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #ff2d37;
+   }
+   #user-credential_wrapper .forgot:hover{
+    color: #024e85;
+   }
+   #user-credential_wrapper input {
+    box-shadow: none;
+
+   }
+   .credential_wrapper .first{
+    text-align: center;
+    color: blanchedalmond
+
+   }
+   .credential_wrapper .first h1{
+    text-align: center;
+    color: #093a5b;
+   }
+   .credential_wrapper .first p{
+    text-align: center;
+    color: #093a5b;
+   }
+
+   #user-credential_wrapper .btn{
+    box-shadow: none;
+    width: fit-content;
+    padding: 5px 25px;
+    margin: auto;
+
+   }
+   
+   .login_register{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+
+   }
+
+   .login_register .login_registerbtn{
+    background: #e8f0fe;
+    border-radius: 5px;
+    margin: 0px 10px;
+   }

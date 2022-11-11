@@ -21,6 +21,8 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/search', [PropertyController::class, 'search'])->name('front.search-properties');
 
 Route::get('/login-register', [CustomerAuthController::class, 'signup'])->name('customer.signup');
+Route::get('/signin', [CustomerAuthController::class, 'signin'])->name('customer.signin');
+Route::get('/registerform', [CustomerAuthController::class, 'registerform'])->name('customer.registerform');
 Route::post('/customer-register', [CustomerAuthController::class, 'register'])->name('customer.register');
 Route::get('/customer/verify-otp/{id}', [CustomerAuthController::class, 'verityOtp'])->name('getOtp');
 Route::post('/customer/verify/{id}', [CustomerAuthController::class, 'verify'])->name('verify');
