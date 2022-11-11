@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Property;
 
-use App\Http\Controllers\Admin\CommonController;
-use App\Http\Requests\PropertyRequest;
-use App\Models\Amenity;
 use App\Models\Area;
 use App\Models\City;
-use App\Models\Property;
-use App\Models\PropertyCategory;
-use App\Models\PropertyImage;
-use App\Models\Purpose;
-use App\Models\RoadType;
 use App\Models\Type;
 use App\Models\Unit;
-use Illuminate\Http\Request;
+use App\Models\Amenity;
+use App\Models\Purpose;
+use App\Models\Facility;
+use App\Models\Property;
+use App\Models\RoadType;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use App\Models\PropertyImage;
+use App\Models\PropertyCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\PropertyRequest;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Controllers\Admin\CommonController;
 
 class PropertyController extends CommonController
 {
@@ -184,6 +185,7 @@ class PropertyController extends CommonController
 
 
             'purposes' => Purpose::get(),
+            'facilities' => Facility::get(),
             'amenties' => Amenity::get(),
             'property_types' => Type::get(),
             'property_categories' => PropertyCategory::with('features')->get(),

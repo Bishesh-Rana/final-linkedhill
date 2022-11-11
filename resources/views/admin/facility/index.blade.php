@@ -149,15 +149,9 @@
                                         <label>
                                             Enter Name
                                         </label>
-                                        <input class="form-control" name="name" value="{{$facility->title}}" type="text"  required/>
+                                        <input class="form-control" name="title" value="{{$facility->title}}" type="text"  required/>
                                     </div>
                                 </div>
-
-
-
-
-
-
                             </div>
                             <div class="clearfix"></div>
                             <div class="modal-footer">

@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AppReviewController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\DeviceCredentialController;
 use App\Http\Controllers\Api\EnquiryController;
+use App\Http\Controllers\Api\FacilityController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\Property\AreaSearchController;
@@ -37,10 +38,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-
+Route::get('facility',[FacilityController::class,'index']);
 
 Route::namespace('Api')->group(function () {
     Route::post('get-services', [ServiceController::class, 'getServices']);
+    
     Route::post('post-enquiry', [EnquiryController::class, 'store']);
     //Search Area
     Route::get('search-area', [AreaSearchController::class, 'search'])->name('search-area');

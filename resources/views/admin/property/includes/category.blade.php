@@ -40,8 +40,8 @@
                                             {{ $feat->title }}
                                         </label>
                                             @foreach($feat->value as $val)
-                                                <div class="col-md-2">
-                                                    <input class="form-control" value='{{$val->value}}' name="features[{{ $feat->id }}]" type="radio" />
+                                                <div class="col-md-1">
+                                                    <input class="form-control" type="radio" value='{{$val->value}}' name="features[{{ $feat->id }}]"  />
                                                     <label>{{$val->value}}</label>
                                                 </div>
                                             @endforeach
@@ -55,6 +55,7 @@
                                     <div class="col-6">
                                         No Features Found.
                                     </div>
+                                
                                 @endforelse
                             </div>
                         @endforeach

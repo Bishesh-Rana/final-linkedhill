@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FacilityController extends Controller
 {
@@ -15,8 +15,13 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        $facilities = Facility::latest()->get();
-        return view('admin.facility.index',compact('facilities'));
+        $facility = Facility::get();
+
+        $response=[
+            'msg'=>'Success',
+            'data'=>$facility
+        ];
+        return response()->json($response,200);
     }
 
     /**
@@ -37,19 +42,7 @@ class FacilityController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:90',
-
-        ]);
-        $facility = Facility::create([
-            'title' => $request->title,
-
-        ]);
-
-        if ($facility)
-        {
-            return back()->with('message','Facility created successfully');
-        }
+        //
     }
 
     /**
@@ -81,22 +74,9 @@ class FacilityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facility $facility)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required|max:90',
-
-        ]);
-
-        $facility =  $facility->update([
-            'title' => $request->title,
-
-        ]);
-
-        if ($facility)
-        {
-            return back()->with('message','Facility updated successfully');
-        }
+        //
     }
 
     /**
@@ -105,8 +85,8 @@ class FacilityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facility $facility)
+    public function destroy($id)
     {
-        $facility->delete();
+        //
     }
 }
