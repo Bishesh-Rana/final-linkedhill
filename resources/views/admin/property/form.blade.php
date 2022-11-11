@@ -105,6 +105,8 @@
 
                                     <!---  OTHER DETAIL ----->
                                     @include('admin.property.includes.facility')
+
+                                    
                                     @include('admin.property.includes.category')
                                     <!---  /OTHER DETAIL ----->
 

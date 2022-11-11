@@ -41,7 +41,7 @@
                                         </label>
                                             @foreach($feat->value as $val)
                                                 <div class="col-md-1">
-                                                    <input class="form-control" type="radio" value='{{$val->value}}' name="features[{{ $feat->id }}]"  />
+                                                    <input class="" type="radio" value='{{$val->value}}' name="features[{{ $feat->id }}]"  />
                                                     <label>{{$val->value}}</label>
                                                 </div>
                                             @endforeach

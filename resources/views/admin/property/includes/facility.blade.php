@@ -15,21 +15,14 @@
     </div>
     <div id="collapseNew" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <div class="col-md-6">
-                <div class="form-group  label-floating">
-                    <label class="label-style">
-                        Select facility
-                        <span class='required-error'>*</span>
-                    </label>
-
-                    <select class="form-control" name="facility" value="{{ old('title', $property->facility) }}"
-                        data-parsley-trigger="keyup">
-                        <option > Select Option </option>
-                        @foreach($facilities as $facility)
-                            <option value="{{$facility->title}}">{{$facility->title}}</option>
-                        @endforeach
-                    </select>
-                    <x-error name='title' />
+            <div class="col-md-12">
+                <div class="form-group  label-floating row">
+                    {{-- @dd($property->facility) --}}
+                    @foreach($facilities as $facility)
+                        <div class="col-sm-2"><input type="checkbox"name="facility[]" value="{{$facility->title}}"  >
+                            <label for="">{{$facility->title}}</label></div>
+                    @endforeach
+                    <x-error name='facility' />
                 </div>
             </div>
         </div>

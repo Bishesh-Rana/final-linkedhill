@@ -115,6 +115,12 @@ class Property extends Model
         return optional($this->images()->first())->name;
     }
 
+
+    public function facility()
+    {
+        return $this->hasMany(PropertyFacility::class,'property_id');
+    }
+
     protected function getFilters(): array
     {
         return [

@@ -37,7 +37,7 @@ class PropertyController extends Controller
     public function search(Request $request)
     {      
         $filter = $request->all();
-        $properties =  Property::filter() ->paginate(5);
+        $properties =  Property::filter()->paginate(5);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property');
         
