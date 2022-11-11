@@ -144,20 +144,20 @@
                     @endfor
                 </select>
             </div>
-            @dd($filter)
+            {{-- {{dd($filter)}} --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
-                    <option value="0" {{intval($filter['start_price']== 0) ?'selected':''}}>Min Price</option>
-                    <option value="5000.00" {{intval($filter['start_price']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
-                    <option value="10000.00" {{intval($filter['start_price']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
-                    <option value="50000.00" {{intval($filter['start_price']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
-                    <option value="100000.00" {{intval($filter['start_price']== 100000.00) ?'selected':''}}>Rs. 100000.00</option>
-                    <option value="1000000.00" {{intval($filter['start_price']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
+                    <option value="0" {{intval($filter['start_prize']== 0) ?'selected':''}}>Min Price</option>
+                    <option value="5000.00" {{intval($filter['start_prize']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
+                    <option value="10000.00" {{intval($filter['start_prize']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
+                    <option value="50000.00" {{intval($filter['start_prize']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
+                    <option value="100000.00" {{intval($filter['start_prize']== 100000.00) ?'selected':''}}>Rs. 100000.00</option>
+                    <option value="1000000.00" {{intval($filter['start_prize']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
                 </select>
             </div>
             <div class="option_a1">
                 <select name="end_prize" id="end_prize">
-                    <option selected>Max Price</option>
+                    <option value="0.00" {{(intval($filter['end_prize'])== 0.00)?'selected':''}}>Max Price</option>
                     <option value="1100000.00" {{(intval($filter['end_prize'])== 1100000)?'selected':''}}>Rs. 1100000.00</option>
                     <option value="1500000.00" {{(intval($filter['end_prize'])== 1500000)?'selected':''}}>Rs. 1500000.00</option>
                     <option value="2000000.00" {{(intval($filter['end_prize'])== 2000000)?'selected':''}}>Rs. 2000000.00</option>
@@ -189,7 +189,7 @@
                             @endforeach
                         </div>
                     </div>
-                    
+
                     <label for="buildingtype"> Building Type:-</label>
                     <select name="buildingtype" id="buildingtype">
                         <option value="underconstruction">Under Construction</option>
@@ -223,18 +223,10 @@
                         <option value="builder">Builder</option>
                         <option value="agent">Agent</option>
                     </select>
-
-
                 </div>
             </div>
-
-
-
         </div>
       </form>
-
-
-
     </div>
 </section>
 <section id="propertyListing_wrapper">

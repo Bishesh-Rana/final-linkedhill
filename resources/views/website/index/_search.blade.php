@@ -122,7 +122,7 @@
                         </div>
                         <div class="option_a1">
                             <select name="end_prize" id="end_prize">
-                                <option selected>Max Price</option>
+                                <option value ="0.00" selected >Max Price</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>

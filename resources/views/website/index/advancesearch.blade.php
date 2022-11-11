@@ -111,7 +111,7 @@
                                     <div class="selector_wrapper">
                                         <h3>Max Price</h3>
                                         <select name="end_prize" id="max_price">
-                                            <option selected>Max Price</option>
+                                            <option value="0.00" selected>Max Price</option>
                                             <option value="1100000.00">Rs. 1100000.00</option>
                                             <option value="1500000.00">Rs. 1500000.00</option>
                                             <option value="2000000.00">Rs. 2000000.00</option>
