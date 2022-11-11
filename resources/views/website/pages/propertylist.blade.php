@@ -109,61 +109,59 @@
                     </div>
                 </div>
             <div class="option_a1" id="bed">
-                @dd($filter)
-                <select name="bed">
-                   
-                    <option data-element="0bed" {{($filter['bed']== 0) ? 'selected':''}}>Any Bed</option>
-                    <option data-element="1bed" value="1">1+ Bed</option>
-                    <option data-element="2bed" value="2">2+ Bed</option>
-                    <option data-element="3bed" value="3">3+ Bed</option>
-                    <option data-element="4bed" value="3">4+ Bed</option>
-                    <option data-element="5bed" value="3">5+ Bed</option>
-                    <option data-element="6bed" value="3">6+ Bed</option>
-                    <option data-element="7bed" value="3">7+ Bed</option>
-                    <option data-element="8bed" value="3">8+ Bed</option>
-                    <option data-element="9bed" value="3">9+ Bed</option>
-                    <option data-element="10bed" value="3">10+ Bed</option>
+               
+                <select name="bed">   
+                    @for ($x=0; $x<=10; $x++)
+                    @if ( array_key_exists('bed',$filter ))
+                    <option data-element="{{$x}}bed" {{ ( intval( $filter['bed'])== $x) ? 'selected':''}} value="{{$x}}">{{($x == 0)?'Any':$x}} Bed</option>
+                    @else
+                    <option data-element="{{$x}}bed" value="{{$x}}">{{($x == 0)?'Any':$x}} Bed</option>
+                    @endif
+                    @endfor               
                 </select>
             </div>
             <div class="option_a1" id="bath">
                 <select name="bath" >
-                    <option data-element="bath-0" selected>Any Bath</option>
-                    <option data-element="bath-1" value="1">1+ Bath</option>
-                    <option data-element="bath-2" value="2">2+ Bath</option>
-                    <option data-element="bath-3" value="3">3+ Bath</option>
-                    <option data-element="bath-4" value="3">4+ Bath</option>
-                    <option data-element="bath-5" value="3">5+ Bath</option>
-                    <option data-element="bath-6" value="3">6+ Bath</option>
-                    <option data-element="bath-7" value="3">7+ Bath</option>
-                    <option data-element="bath-8" value="3">8+ Bath</option>
-                    <option data-element="bath-9" value="3">9+ Bath</option>
-                    <option data-element="bath-10" value="3">10+ Bath</option>
+                    @for ($x = 0; $x<=10; $x++)
+                    @if (array_key_exists('bath', $filter))
+                    <option data-element="bath-{{$x}}" {{( intval( $filter['bath'])==$x) ? 'selected':''}} value="{{$x}}">{{ ($x == 0)?'Any':$x }} Bath</option>
+                    @else
+                    <option data-element="bath-{{$x}}" value="{{$x}}" >{{ ($x == 0)?'Any':$x }} Bath</option>  
+                    @endif
+                    
+                    @endfor
                 </select>
             </div>
+
             <div class="option_a1" id="parking">
-                <select >
-                    <option data-element="park-0" selected>Any Parking</option>
-                    <option data-element="park-1" value="1">1+ Park</option>
-                    <option data-element="park-2" value="2">2+ Park</option>
-                    <option data-element="park-3" value="3">3+ Park</option>
+                <select>
+                    @for ($x = 0; $x <= 10; $x++)
+                    @if (array_key_exists('parking', $filter))
+                    <option data-element="park-{{$x}}" value="{{$x}}" {{(intval($filter['parking'])== $x)?'selected':''}}>{{ ($x == 0)?'Any':$x }} Park</option>
+                    @else
+                    <option data-element="park-{{$x}}" value="{{$x}}" >{{ ($x == 0)?'Any':$x }} Park</option>  
+                    @endif
+                    @endfor
                 </select>
             </div>
+            @dd($filter)
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
-                    <option value="0.00" selected>Min Price</option>
-                    <option value="50000.00">Rs. 50000.00</option>
-                    <option value="50000.00">Rs. 50000.00</option>
-                    <option value="50000.00">Rs. 50000.00</option>
-                    <option value="50000.00">Rs. 50000.00</option>
+                    <option value="0" {{intval($filter['start_price']== 0) ?'selected':''}}>Min Price</option>
+                    <option value="5000.00" {{intval($filter['start_price']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
+                    <option value="10000.00" {{intval($filter['start_price']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
+                    <option value="50000.00" {{intval($filter['start_price']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
+                    <option value="100000.00" {{intval($filter['start_price']== 100000.00) ?'selected':''}}>Rs. 100000.00</option>
+                    <option value="1000000.00" {{intval($filter['start_price']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
                 </select>
             </div>
             <div class="option_a1">
                 <select name="end_prize" id="end_prize">
                     <option selected>Max Price</option>
-                    <option value="1100000.00">Rs. 1100000.00</option>
-                    <option value="1500000.00">Rs. 1500000.00</option>
-                    <option value="2000000.00">Rs. 2000000.00</option>
-                    <option value="5000000.00">Rs. 5000000.00</option>
+                    <option value="1100000.00" {{(intval($filter['end_prize'])== 1100000)?'selected':''}}>Rs. 1100000.00</option>
+                    <option value="1500000.00" {{(intval($filter['end_prize'])== 1500000)?'selected':''}}>Rs. 1500000.00</option>
+                    <option value="2000000.00" {{(intval($filter['end_prize'])== 2000000)?'selected':''}}>Rs. 2000000.00</option>
+                    <option value="5000000.00" {{(intval($filter['end_prize'])== 5000000)?'selected':''}}>Rs. 5000000.00</option>
                 </select>
             </div>
             <div class="option_a1 moreOption">
@@ -191,9 +189,7 @@
                             @endforeach
                         </div>
                     </div>
-                   
-
-
+                    
                     <label for="buildingtype"> Building Type:-</label>
                     <select name="buildingtype" id="buildingtype">
                         <option value="underconstruction">Under Construction</option>
