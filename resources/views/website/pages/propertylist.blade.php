@@ -34,12 +34,21 @@
     <section class="container ">
       <form method="get" action="{{ route('front.search-properties') }}">
         <div class="propertylistsearch">
+            {{-- {{dd(($purposes[0]->name == $filter['purpose']))}} --}}
+            {{-- {{dd($filter)}} --}}
+               
+           
             <div class="first-row">
                 <div class="row g-1">
                     <div class="col-md-2">
                         <select class="purpose" name="purpose" id="purpose">
-                            @foreach ($purposes as $purpose)
-                                <option value="{{ $purpose->name }}">{{ $purpose->name }}</option>
+                            
+                            @foreach ($purposes as $purpose) 
+                            @if (array_key_exists('purpose', $filter ))
+                            <option value="{{ $purpose->name }}" {{($purpose->name == $filter['purpose']) ? 'selected':''}}>{{ $purpose->name }}</option>
+                            @else
+                            <option value="{{ $purpose->name }}" >{{ $purpose->name }}</option>
+                            @endif
                             @endforeach
 
                         </select>
@@ -89,7 +98,7 @@
                             <div class="list_group_category">
                                 <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}"
                                     type="checkbox" name="category_id" value="{{ $propertyC->id }}"
-                                    id="initial{{ $propertyC->id }}">
+                                    id="initial{{ $propertyC->id }}" selected>
                                 <label class="form-check-label"
                                     for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                             </div>
@@ -99,9 +108,11 @@
                         @endforeach
                     </div>
                 </div>
-            <div class="option_a1">
-                <select id="bed" name="bed">
-                    <option data-element="0bed" selected>Any Bed</option>
+            <div class="option_a1" id="bed">
+                @dd($filter)
+                <select name="bed">
+                   
+                    <option data-element="0bed" {{($filter['bed']== 0) ? 'selected':''}}>Any Bed</option>
                     <option data-element="1bed" value="1">1+ Bed</option>
                     <option data-element="2bed" value="2">2+ Bed</option>
                     <option data-element="3bed" value="3">3+ Bed</option>
@@ -114,27 +125,27 @@
                     <option data-element="10bed" value="3">10+ Bed</option>
                 </select>
             </div>
-            <div class="option_a1">
-                <select name="bath" id="bath">
+            <div class="option_a1" id="bath">
+                <select name="bath" >
                     <option data-element="bath-0" selected>Any Bath</option>
-                    <option data-element="bath-1" value="1">1+</option>
-                    <option data-element="bath-2" value="2">2+</option>
-                    <option data-element="bath-3" value="3">3+</option>
-                    <option data-element="bath-4" value="3">4+</option>
-                    <option data-element="bath-5" value="3">5+</option>
-                    <option data-element="bath-6" value="3">6+</option>
-                    <option data-element="bath-7" value="3">7+</option>
-                    <option data-element="bath-8" value="3">8+</option>
-                    <option data-element="bath-9" value="3">9+</option>
-                    <option data-element="bath-10" value="3">10+</option>
+                    <option data-element="bath-1" value="1">1+ Bath</option>
+                    <option data-element="bath-2" value="2">2+ Bath</option>
+                    <option data-element="bath-3" value="3">3+ Bath</option>
+                    <option data-element="bath-4" value="3">4+ Bath</option>
+                    <option data-element="bath-5" value="3">5+ Bath</option>
+                    <option data-element="bath-6" value="3">6+ Bath</option>
+                    <option data-element="bath-7" value="3">7+ Bath</option>
+                    <option data-element="bath-8" value="3">8+ Bath</option>
+                    <option data-element="bath-9" value="3">9+ Bath</option>
+                    <option data-element="bath-10" value="3">10+ Bath</option>
                 </select>
             </div>
-            <div class="option_a1">
-                <select id="parking">
+            <div class="option_a1" id="parking">
+                <select >
                     <option data-element="park-0" selected>Any Parking</option>
-                    <option data-element="park-1" value="1">1+</option>
-                    <option data-element="park-2" value="2">2+</option>
-                    <option data-element="park-3" value="3">3+</option>
+                    <option data-element="park-1" value="1">1+ Park</option>
+                    <option data-element="park-2" value="2">2+ Park</option>
+                    <option data-element="park-3" value="3">3+ Park</option>
                 </select>
             </div>
             <div class="option_a1">

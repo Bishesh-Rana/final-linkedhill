@@ -385,26 +385,27 @@ $('.advance-search').click(function() {
 
 
 
-// $(document).ready(function(){
-//     $('#advanceLand').on('change',function(){
-//         let isChecked = $('#advanceLand').is(':checked');
-//         if(isChecked){
-//             $(".bedrooms").hide();
-//         }
-//         else{
-//             $(".bedrooms").show();
-//         }
-//     })
-// });
+$(document).ready(function(){
+    $('.ad_category').on('change',function(){
+        var checkedcat =[];
+        $.each($("input[name='ad_category_id']:checked"), function(){
+            checkedcat.push($(this).val());
+        });
+        if (checkedcat.length == 1 && checkedcat[0]=='2'){
+            $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+        }
+        else{
+            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+        }
+    })
+});
 
-// $('.front-category').on('click', function(e){
-//     $($(this).data('element')).prop('checked', true);
-
-
-// });
+$('.front-category').on('click', function(e){
+    $($(this).data('element')).prop('checked', true);
+});
 
     $(document).ready ( function(e){   
-        $('input[type=radio][name=initialpurpose]').on('change', function() {
+        $('input[type=radio][name=purpose]').on('change', function() {
             let purposeid = $(this).data('element');
             $('#'+purposeid).prop("checked", true);
         })
@@ -417,10 +418,24 @@ $('.advance-search').click(function() {
             checkedcat.push($(this).val());
         });
         if (checkedcat.length == 1 && checkedcat[0]==2){
-            $('#bath, #parking, #bed').hide();
+            $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
         }
         else{
-            $('#bath, #parking,#bed').show();
+            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+        }
+    })
+
+    $('.ad_category').on('change', function(e){
+        $($(this).data('element')).prop('checked', true);
+        var checkedcat = [];
+        $.each($("input[name='ad_category_id']:checked"), function(){
+            checkedcat.push($(this).val());
+        });
+        if (checkedcat.length == 1 && checkedcat[0]==2){
+            $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+        }
+        else{
+            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
         }
     })
 
@@ -454,11 +469,11 @@ $('.advance-search').click(function() {
                 checkedcat.push($(this).val());
         });
         if (checkedcat.length == 1 && checkedcat[0]==2){
-            $('#bath, #parking, #bed').hide();
+            $('#bath, #parking, #bed').parent().hide();
         }
         else{
             // alert('others check');
-            $('#bath, #parking,#bed').show();
+            $('#bath, #parking,#bed').parent().show();
         }
     })
 });
@@ -500,14 +515,17 @@ $(document).ready(function(){
                 }).appendTo($wrapper);
         }
         else if(sort == 'latest'){
-            alert(sort)
             $('.property_detail_').sort(function(a, b) {
-                    return +a.dataset.latest - +b.dataset.latest;
+                var time1 = a.dataset.latest;
+                var time2 = b.dataset.latest;
+                    return +new Date(time1).getTime() - +new Date(time2).getTime();
                 }).appendTo($wrapper);
         }
         else if(sort == 'oldest'){
             $('.property_detail_').sort(function(a, b) {
-                    return +b.dataset.latest - +a.dataset.latest;
+                var time1 = a.dataset.latest;
+                var time2 = b.dataset.latest;
+                    return +new Date(time2).getTime() - +new Date(time1).getTime();
                 }).appendTo($wrapper);
         }
     })

@@ -36,7 +36,7 @@
                                        <div class="d-flex">
                                         @foreach ($propertyCat as $propertyC)
                                         <div class="list_group_category">
-                                            <input  class="form-check-input" type="checkbox" name="ad_category_id" value="{{ $propertyC->name }}" id="advance{{$propertyC->id}}">
+                                            <input  class="form-check-input ad_category" type="checkbox" name="ad_category_id" value="{{ $propertyC->id }}" id="advance{{$propertyC->id}}">
                                             <label class="form-check-label" for="advance{{$propertyC->id}}">{{ $propertyC->name }}</label>
                                         </div>
                                         @if ($propertyC->id == 3)
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div  class="selector_wrapper bedrooms">
+                                    <div id="bed" class="selector_wrapper bedrooms">
                                         <h3>Bedrooms</h3> 
                                         <input type="radio" name="bedCount" value="anybed" id="0bed">
                                         <label for="0bed">Any Bed</label>
@@ -81,7 +81,7 @@
                                   
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div id="parking" class="selector_wrapper">
                                         <h3>Parking</h3>
                                         <input type='radio' name="parking" value="1" id="park-0"/>
                                         <label for="park-0">Any</label>
@@ -151,7 +151,7 @@
                                     
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div id="buildingType" class="selector_wrapper">
                                         <h3>Building Type</h3>
                                         <input type='radio' name="buildingtype" value="underconstruction " id="underconstruction"/>
                                         <label for="underconstruction">Under Construction</label> 
@@ -163,7 +163,7 @@
                                     
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div id="buildingAge" class="selector_wrapper">
                                         <h3>Building Age</h3>
                                         <input type='radio' name="buildingage" value="ageany " id="ageany"/>
                                         <label for="ageany">Any Age</label> 
@@ -197,7 +197,7 @@
 
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="selector_wrapper">
+                                    <div id="furnishingType" class="selector_wrapper">
                                         <h3>Furnishing Type</h3>
                                         <input type='radio' name="furnishing" value="anyfurnishing " id="anyfurnishing"/>
                                         <label for="anyfurnishing">Any</label> 
