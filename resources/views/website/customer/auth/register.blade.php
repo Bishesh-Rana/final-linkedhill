@@ -25,16 +25,15 @@
                                 <form action="{{ route('customer.register') }}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Full Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="" name="name">
+                                            placeholder="Full Name" name="name">
                                         @if ($errors->has('name'))
                                             <strong class="text-danger">{{ $errors->first('name') }}</strong>
                                         @endif
                                     </div>
                                     <div class="mb-3">
                                         <input type="email" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="" name="email">
+                                            placeholder="Email ID" name="email">
                                         @if ($errors->has('email'))
                                             <strong class="text-danger">{{ $errors->first('email') }}</strong>
                                         @endif
@@ -43,7 +42,7 @@
                                         <div class="form_phone_number">
                                             <span>+977</span>
                                             <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="" name="mobile">
+                                                placeholder="Mobile No." name="mobile">
                                             @if ($errors->has('mobile'))
                                                 <strong class="text-danger">{{ $errors->first('mobile') }}</strong>
                                             @endif
@@ -52,7 +51,7 @@
                                     <div class="mb-3">
                                         <div class="form_group signUpinput_box_zee">
                                             <input type="password" class="form-control" id="password_field_signUp"
-                                                placeholder="" name="password">
+                                                placeholder="Password" name="password">
                                             <i class="lar la-eye"></i>
                                         </div>
                                         @if ($errors->has('password'))
@@ -60,20 +59,19 @@
                                         @endif
                                     </div>
                                     <div class="sign_up_msg">
-                                        <p> <input type="checkbox" name="privacy" id="privacy"> By clicking sign up, you agree to <a href="">the terms and conditions,
+                                        <p> <input type="checkbox" name="privacy" id="privacy" required> By clicking sign up, you agree to <a href="">the terms and conditions,
                                                 privacy
                                                 policy</a> of NepalHomes.com</p>
                                     </div>
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button>
                                     </div>
-                                </form>
-                               
+                                </form>                              
                                
                             </div>
                             <div class="d-flex login_register">
                                 <p class="">Already Registered??</p>
-                                <a href="{{route('signin')}}" class="btn login_registerbtn">Login</a>
+                                <a href="{{route('customer.signin')}}" class="btn login_registerbtn">Login</a>
                             </div>
                         </div>
                     </div>
