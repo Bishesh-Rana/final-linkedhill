@@ -43,7 +43,7 @@
                                 <form action="{{ route('slider.store') }}" method="post" enctype="multipart/form-data">
                         @endif
                         @csrf
-                        <x-image value="{{ $slider->image }}" />
+                        <x-image value="{{ image($slider->image) }}" />
                         <div class="col-md-6">
                             <div class="form-group  label-floating">
                                 <label class="label-style">

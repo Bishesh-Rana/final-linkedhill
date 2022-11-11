@@ -16,7 +16,22 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::latest()->get();
+        $latest_permissions = [];
+        if(auth()->user()->can('permission-list')){
+            $permissions = Permission::latest()->get();
+        }elseif(auth()->user()->can('staffpermission-list')){
+            $permissions = Permission::get();
+            foreach($permissions as $permission){
+                // dd($permission);
+                if(auth()->user()->can($permission->name)){
+                    array_push($latest_permissions,$permission);
+                }
+            }
+            $permissions = (array) $latest_permissions;
+        }else{
+            $permissions = Permission::where('name','this');
+        }
+        
 
         return view('admin.permission.index', compact('permissions'));
     }

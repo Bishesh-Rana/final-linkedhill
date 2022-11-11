@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\RoadType;
+use App\Models\Facility;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class RoadTypeController extends Controller
+class FacilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,13 @@ class RoadTypeController extends Controller
      */
     public function index()
     {
-        $types = RoadType::latest()->get();
-        return view('admin.road.index',compact('types'));
+        $facility = Facility::get();
+
+        $response=[
+            'msg'=>'Success',
+            'data'=>$facility
+        ];
+        return response()->json($response,200);
     }
 
     /**
@@ -37,19 +42,7 @@ class RoadTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:90',
-
-        ]);
-        $type = RoadType::create([
-            'name' => $request->name,
-
-        ]);
-
-        if ($type)
-        {
-            return back()->with('message','Road type created successfully');
-        }
+        //
     }
 
     /**
@@ -81,22 +74,9 @@ class RoadTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoadType $roadType)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:90',
-
-        ]);
-
-        $type =  $roadType->update([
-            'name' => $request->name,
-
-        ]);
-
-        if ($type)
-        {
-            return back()->with('message','Road type updated successfully');
-        }
+        //
     }
 
     /**
@@ -105,8 +85,8 @@ class RoadTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoadType $roadType)
+    public function destroy($id)
     {
-        $roadType->delete();
+        //
     }
 }

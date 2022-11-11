@@ -2,20 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\WebsiteRequest;
+use App\Models\User;
 use App\Models\Admin;
 use App\Models\Slider;
-use App\Models\Subscriber;
 use App\Models\Website;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admin\WebsiteRequest;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends CommonController
 {
     public function index()
     {
         return view('admin.index');
+    }
+
+    public function profile($id){
+        $admin = User::findOrFail($id);
+        return view('admin.profile.profile',compact('admin'));
+    }
+
+    public function purchasedProperty(){
+        
+    }
+
+    public function updateProfile($id, Request $request){
+        $user = User::findOrFail($id);
+        if($request->password != $request->password_confirmation){
+            return redirect()->back()->with('error', 'password do not match');
+        }
+        $user->update($request->all());
+        return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
 
     public function logout()

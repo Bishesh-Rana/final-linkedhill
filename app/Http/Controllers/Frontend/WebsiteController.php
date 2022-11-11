@@ -41,7 +41,7 @@ class WebsiteController extends CommonController
         $this->website['property_categories'] = PropertyCategory::get();
         $this->website['services'] = Service::latest()->limit(8)->get();
         $this->website['provinces'] = Province::all();
-        $this->website['purposes'] = Purpose::all();
+        $this->website['purposes'] = Purpose::orderBy('order','ASC')->get();
         $this->website['property_types'] = Type::all();
         $this->website['advertisement'] = Advertisement::where('page', 'home')->get();
 

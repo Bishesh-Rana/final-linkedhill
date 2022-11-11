@@ -66,61 +66,67 @@
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="card-content">
-
                         <div class="tab-content">
-
                             <div class="tab-pane active" id="panel1">
-
                                 <div class="material-datatables">
-                                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <!-- <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                         <tr>
                                             <th>S.No</th>
                                             <th>Purpose</th>
-
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
-
                                         <ol class="sortable">
                                             @foreach($purposes as $purpose)
-                                                <div>
-                                                    <tr>
+                                                <li>
+                                                    <div>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$purpose->name}}</td>
                                                         <td class="text-right">
                                                             <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$purpose->id}}" data-placement="top" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                             <button onclick="deleteCity({{$purpose->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
-
                                                         </td>
-                                                    </tr>
-                                                </div>
+                                                    </div>
+                                                </li>
                                             @endforeach
-
                                         </ol>
-                                    </table>
+                                    </table> -->
+                                    <ol class="sortable">
+                                        @foreach ($purposes as $key => $value)
+                                            <li id="purposeItem_{{ $value->id }}">
+                                                <div>
+                                                    <td>{{ $value->name }}</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$purpose->id}}" data-placement="top" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <button onclick="deleteCity({{$purpose->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
+                                                    </td>
+
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ol>
                                 </div>
-
+                                <div class="form-group mt-4">
+                                    <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
+                                            class="fa fa-save"></i>
+                                        Update Purpose
+                                    </button>
+                                    <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
+                                            class="fas fa-sync-alt"></i> Reset Order</a>
+                                </div>
                             </div>
-
-
-
                         </div>
-
                         <div class="form-footer text-right">
                             <div class="checkbox pull-left">
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -131,7 +137,6 @@
                     <form action="{{route('purpose.update',$purpose->id)}}" method="post">
                         @csrf
                         @method('put')
-
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel"><b>Edit Purpose</b></h5>
@@ -144,17 +149,10 @@
                                     <div class="form-group  label-floating">
                                         <label>
                                             Enter Purpose
-                                            {{--<small>*</small>--}}
                                         </label>
                                         <input class="form-control" name="name" value="{{$purpose->name}}" type="text"  />
                                     </div>
                                 </div>
-
-
-
-
-
-
                             </div>
                             <div class="clearfix"></div>
                             <div class="modal-footer">
@@ -164,8 +162,6 @@
                     </form>
                 </div>
             </div>
-
-
         @endforeach
 
     </div>
@@ -176,15 +172,46 @@
 
 <script src="{{ asset('dashboard/plugins/sortablejs/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('dashboard/plugins/sortablejs/jquery.mjs.nestedSortable.js') }}"></script>
-<script>
-    $('.sortable').nestedSortable({
-        handle: 'div',
-        items: 'tr',
-        toleranceElement: '> div',
-        maxLevels: 2,
-    });
+<script src="{{ asset('dashboard/plugins/toastrjs/toastr.min.js') }}"></script>
+    <script>
+        $('.sortable').nestedSortable({
+            handle: 'div',
+            items: 'li',
+            toleranceElement: '> div',
+            maxLevels: 2,
+        });
+        $("#serialize").click(function(e) {
+            e.preventDefault();
+            $(this).prop("disabled", true);
+            $(this).html(
+                `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Updating...`
+            );
+            var serialized = $('ol.sortable').nestedSortable('serialize');
+            //console.log(serialized);
+            $.ajax({
+                url: "{{ route('update.purpose') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    sort: serialized
+                },
+                success: function(res) {
+                    //location.reload();
+                    toastr.options.closeButton = true
+                    toastr.success('Purpose Order Successfuly', "Success !");
+                    $('#serialize').prop("disabled", false);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                }
+            });
+        });
 
-</script>
+        function show_alert() {
+            if (!confirm("Do you really want to do this?")) {
+                return false;
+            }
+            this.form.submit();
+        }
+    </script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#datatables').DataTable({

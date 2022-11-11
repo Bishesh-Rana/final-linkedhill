@@ -48,7 +48,8 @@ class User extends Authenticatable
         'is_active',
         'reward_point',
         'referred_by',
-        'referral_code'
+        'referral_code',
+        'user_id'
     ];
 
     /**
@@ -70,6 +71,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function user(){
+        return $this->hasMany(User::class,'user_id');
+    }
+
     public function hasAgency()
     {
         return $this->hasOne(AgencyDetail::class);
@@ -79,6 +84,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserAgent::class, 'user_id');
     }
+    // public function isSuper()
+    // {
+    //     $user = auth 
+    //     return true;
+    // }
 
     public function properties()
     {

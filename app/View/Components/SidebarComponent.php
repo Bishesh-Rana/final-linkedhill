@@ -122,6 +122,12 @@ class SidebarComponent extends Component
                         'permission' => ['feature-list'],
                         'href' => route('feature.index'),
                     ],
+                    [
+                        'title' => 'Facilities',
+                        'icon' => 'streetview',
+                        'permission' => ['property-list'],
+                        'href' => route('facility.index'),
+                    ],
 
                 ]
             ],
@@ -381,6 +387,13 @@ class SidebarComponent extends Component
                 'permission' => ['customer-list', 'customer-create'],
                 'child' => null
             ],
+            // [
+            //     'title' => 'purchased Prroperty',
+            //     'icon' => 'group_work',
+            //     'href' => route('purchasedPrroperty'),
+            //     'permission' => ['purchasedPrroperty-list','purchasedPrroperty-delete'],
+            //     'child' => null
+            // ],
             [
                 'title' => 'Pages',
                 'icon' => 'book',

@@ -29,7 +29,7 @@
         </div>
     </div>
     @endcan
-    @can('user-list')
+    @can('staff-list')
 
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
@@ -44,7 +44,10 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons text-success">add_box</i>
-                    <a href="{{route('staffs.create')}}">Add Staff</a>
+                    @can('staff-create')
+                        <a href="{{route('staffs.create')}}">Add Staff</a>
+                    @endcan
+
                 </div>
                 <div class="spacer"></div>
                 <div class="stats pull-right">

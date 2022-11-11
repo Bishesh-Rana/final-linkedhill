@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Property;
 
-use App\Http\Controllers\Admin\CommonController;
-use App\Http\Requests\PropertyRequest;
-use App\Models\Amenity;
 use App\Models\Area;
 use App\Models\City;
-use App\Models\Property;
-use App\Models\PropertyCategory;
-use App\Models\PropertyImage;
-use App\Models\Purpose;
-use App\Models\RoadType;
 use App\Models\Type;
 use App\Models\Unit;
-use Illuminate\Http\Request;
+use App\Models\Amenity;
+use App\Models\Purpose;
+use App\Models\Facility;
+use App\Models\Property;
+use App\Models\RoadType;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use App\Models\PropertyImage;
+use App\Models\PropertyCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\PropertyRequest;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Controllers\Admin\CommonController;
 
 class PropertyController extends CommonController
 {
@@ -52,7 +53,6 @@ class PropertyController extends CommonController
      */
     public function store(PropertyRequest $request)
     {
-
         $data = $request->validated();
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
@@ -185,6 +185,7 @@ class PropertyController extends CommonController
 
 
             'purposes' => Purpose::get(),
+            'facilities' => Facility::get(),
             'amenties' => Amenity::get(),
             'property_types' => Type::get(),
             'property_categories' => PropertyCategory::with('features')->get(),
@@ -255,10 +256,11 @@ class PropertyController extends CommonController
         $properties = Property::select('id', 'title', 'bath', 'bed', 'negotiable', 'status', 'property_address', 'admin_id')
         ->superAdmin()
         ->when(request('city_id'),fn($query)=>$query->where('city_id',request('city_id')))->latest();
+        // $properties = Property::get();
         return DataTables::of($properties)
             ->addColumn('image', function ($properties) {
                 $url =  count($properties->images) > 0  ? $properties->images->first->name->name : asset('images/default/no-property.png');
-                return '<img src=' . $url . '  class="news_img" align="center" />';
+                return '<img src=' . image($url) . '  class="news_img" align="center" />';
             })
             ->addColumn('status', function ($property) {
                 $a = $property->status == "1" ? " Approved " : " Unapproved ";

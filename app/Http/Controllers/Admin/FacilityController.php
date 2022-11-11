@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Purpose;
+use App\Models\Facility;
 use Illuminate\Http\Request;
 
-class PurposeController extends Controller
+class FacilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class PurposeController extends Controller
      */
     public function index()
     {
-        $purposes = Purpose::latest()->get();
-        return view('admin.purpose.index',compact('purposes'));
+        $facilities = Facility::latest()->get();
+        return view('admin.facility.index',compact('facilities'));
     }
 
     /**
@@ -38,16 +38,17 @@ class PurposeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:90',
+            'title' => 'required|max:90',
+
         ]);
-        $purpose = Purpose::create([
-            'name' => $request->name,
+        $facility = Facility::create([
+            'title' => $request->title,
 
         ]);
 
-        if ($purpose)
+        if ($facility)
         {
-            return back()->with('message','Purpose created successfully');
+            return back()->with('message','Facility created successfully');
         }
     }
 
@@ -80,20 +81,21 @@ class PurposeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Facility $facility)
     {
         $this->validate($request, [
-            'name' => 'required|max:90',
-        ]);
-
-        $purpose =  Purpose::where('id', $id)->update([
-            'name' => $request->name,
+            'title' => 'required|max:90',
 
         ]);
 
-        if ($purpose)
+        $facility =  $facility->update([
+            'title' => $request->title,
+
+        ]);
+
+        if ($facility)
         {
-            return back()->with('message','Purpose updated successfully');
+            return back()->with('message','Facility updated successfully');
         }
     }
 
@@ -103,25 +105,8 @@ class PurposeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Facility $facility)
     {
-        $purpose = Purpose::find($id);
-        $purpose->delete();
-    }
-    public function updatePurposeOrder(Request $request)
-    {
-        parse_str($request->sort, $arr);
-        $order = 1;
-        if (isset($arr['purposeItem'])) {
-            foreach ($arr['purposeItem'] as $key => $value) {  //id //parent_id
-                Purpose::where('id', $key)
-                    ->update([
-                        'order' => $order,
-                        'parent_id' => ($value == 'null') ? NULL : $value
-                    ]);
-                $order++;
-            }
-        }
-        return true;
+        $facility->delete();
     }
 }

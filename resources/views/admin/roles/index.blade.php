@@ -56,11 +56,11 @@
                                     <tr>
 
                                         <td>{{$loop->index+1}}</td>
-                                        <td>{{$role->name}}</td>
+                                        <td>{{@$role->name}}</td>
                                         <td>
-                                            @forelse ($role->permissions as $item)
-                                            <span class="label label-info">{{$item->name. '-' .
-                                                $item->for}}</span>
+                                            @forelse (@$role->permissions as $item)
+                                            <span class="label label-info">{{@$item->name. '-' .
+                                                @$item->for}}</span>
                                             @empty
                                             N/A
                                             @endforelse
@@ -71,7 +71,7 @@
                                                 class="btn btn-simple btn-warning btn-icon edit" rel="tooltip"
                                                 data-original-title="Edit Role"><i class="material-icons">edit</i></a>
                                             <a href="#" class="btn btn-simple btn-danger btn-icon"
-                                                onclick="deleteRole({{$role->id}})" rel="tooltip"
+                                                onclick="deleteRole({{@$role->id}})" rel="tooltip"
                                                 data-original-title="Delete Role"><i
                                                     class="material-icons">close</i></a>
                                         </td>
