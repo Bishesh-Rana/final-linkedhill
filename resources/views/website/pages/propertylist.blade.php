@@ -3,19 +3,6 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-    {{-- <section id="bread_crumb_wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul>
-                        <li><a href="{{ url('/') }}">Home</a>/</li>
-                        <li><a href="">{{ $pagedata->name }}</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section class="ads_inside_subpage">
         <div class="container">
             <div class="ads_section_cover">
@@ -23,7 +10,7 @@
                     <div class="col-lg-12">
                         @foreach ($advertisements as $ad)
                             <div class="ads_wrap">
-                                <img src="{{ $ad->image }}" alt="{{ $ad->title }}">
+                                <img src="{{ image($ad->image) }}" alt="{{ $ad->title }}">
                             </div>
                         @endforeach
                     </div>
@@ -33,11 +20,7 @@
     </section>
     <section class="container ">
       <form method="get" action="{{ route('front.search-properties') }}">
-        <div class="propertylistsearch">
-            {{-- {{dd(($purposes[0]->name == $filter['purpose']))}} --}}
-            {{-- {{dd($filter)}} --}}
-               
-           
+        <div class="propertylistsearch">                 
             <div class="first-row">
                 <div class="row g-1">
                     <div class="col-md-2">
@@ -249,9 +232,6 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="property_thumbnail_">
-                                                    {{-- <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                            <img src="{{ @$property->images->first()->name }}" alt="">
-                                                        </a> --}}
                                                     <div id="carouselExampleIndicators" class="carousel slide"
                                                         data-ride="carousel">
                                                         <ol class="carousel-indicators">
@@ -268,7 +248,7 @@
                                                                 <div
                                                                     class="carousel-item {{ @$loop->first ? 'active' : '' }}">
                                                                     <img class="d-block w-100"
-                                                                        src="{{ @$image->name }}" alt="First slide">
+                                                                        src="{{ image(@$image->name) }}" alt="First slide">
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -364,7 +344,7 @@
                                                         <ul>
                                                             @foreach ($property->amenities as $amenity)
                                                                 <li><img src=""
-                                                                        alt="">{{ $amenity->name }}</li>
+                                                                        alt="">{{ image($amenity->name) }}</li>
                                                             @endforeach
                                                         </ul>
                                                     </div>

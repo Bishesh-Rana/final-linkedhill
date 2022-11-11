@@ -17,28 +17,12 @@
                              @endforeach
                            
                         </ul>
-                        {{-- <input id="{{$key}}" type="button" class="px-5 py-1 {{($loop->first) ? 'active' : ''}}" name="{{ $type->name }}" value="{{ $type->name }}"> --}}
-                        {{-- <p class="btn ">{{ $type->name }}</p> --}}
-    
-    
-                            {{-- <option value="{{ $type->name }}">{{ $type->name }}</option> --}}
-                       
-    
                     </div>
-                  
-                    {{-- <div class="linked_hill_select_area">
-                        @csrf
-                        <select name="property_status" id="">
-                            @foreach ($purposes as $type)
-                            <option value="{{ $type->name }}">{{ $type->name }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
                     <div class="linked_hill_search_area d-flex">
                         <?php $name='';
                         ?>
                        <div class="multiple_select2option">
-                        <select class="js-example-basic-multiple" name="property_address" multiple="multiple" value="{{($type->property_address) }}">
+                        <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple" value="{{($type->property_address) }}">
                             @foreach ($property as $type)
                             @if($name==$type->property_address)
                             continue;
@@ -62,7 +46,7 @@
                                 <div class="option_listing_dropDown child_dropdown">
                                     @foreach ($propertyCat as $propertyC)
                                     <div class="list_group_category"> 
-                                        <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}">
+                                        <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id[]" value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}">
                                         <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                     </div>
                                     @if ($propertyC->id == 3)

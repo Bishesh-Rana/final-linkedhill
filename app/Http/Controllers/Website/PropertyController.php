@@ -35,12 +35,15 @@ class PropertyController extends Controller
 
 
     public function search(Request $request)
-    {      
+    {
+        // dd($request->purpose);
         $filter = $request->all();
-        $properties =  Property::filter()->paginate(5);
+        $properties =  Property::filter()
+        ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address')))     
+        ->paginate(5);
+        // dd($properties);
         $meta = $this->getMeta();
-        $advertisements = $this->getAd('property');
-        
+        $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();
         $property = Property::all();
         $propertyCat = PropertyCategory::all();
