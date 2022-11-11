@@ -34,12 +34,14 @@
     <section class="container ">
       <form method="get" action="{{ route('front.search-properties') }}">
         <div class="propertylistsearch">
+            {{-- {{dd(($purposes[0]->name == $filter['purpose']))}} --}}
+           
             <div class="first-row">
                 <div class="row g-1">
                     <div class="col-md-2">
                         <select class="purpose" name="purpose" id="purpose">
-                            @foreach ($purposes as $purpose)
-                                <option value="{{ $purpose->name }}">{{ $purpose->name }}</option>
+                            @foreach ($purposes as $purpose) 
+                                <option value="{{ $purpose->name }}" {{($purpose->name == $filter['purpose']) ? 'selected':''}}>{{ $purpose->name }}</option>
                             @endforeach
 
                         </select>
@@ -82,6 +84,7 @@
 
             </div>
             <div class="second-row">
+                {{-- {{dd($filter)}} --}}
                 <div class="option_1 multi_select_dropdown">
                     <p>Category<i class="las la-angle-down"></i></p>
                     <div class="option_listing_dropDown child_dropdown">
@@ -89,6 +92,7 @@
                             <div class="list_group_category">
                                 <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}"
                                     type="checkbox" name="category_id" value="{{ $propertyC->id }}"
+                                    {{-- {{$propertyC}} --}}
                                     id="initial{{ $propertyC->id }}">
                                 <label class="form-check-label"
                                     for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
@@ -117,24 +121,24 @@
             <div class="option_a1">
                 <select name="bath" id="bath">
                     <option data-element="bath-0" selected>Any Bath</option>
-                    <option data-element="bath-1" value="1">1+</option>
-                    <option data-element="bath-2" value="2">2+</option>
-                    <option data-element="bath-3" value="3">3+</option>
-                    <option data-element="bath-4" value="3">4+</option>
-                    <option data-element="bath-5" value="3">5+</option>
-                    <option data-element="bath-6" value="3">6+</option>
-                    <option data-element="bath-7" value="3">7+</option>
-                    <option data-element="bath-8" value="3">8+</option>
-                    <option data-element="bath-9" value="3">9+</option>
-                    <option data-element="bath-10" value="3">10+</option>
+                    <option data-element="bath-1" value="1">1+ Bath</option>
+                    <option data-element="bath-2" value="2">2+ Bath</option>
+                    <option data-element="bath-3" value="3">3+ Bath</option>
+                    <option data-element="bath-4" value="3">4+ Bath</option>
+                    <option data-element="bath-5" value="3">5+ Bath</option>
+                    <option data-element="bath-6" value="3">6+ Bath</option>
+                    <option data-element="bath-7" value="3">7+ Bath</option>
+                    <option data-element="bath-8" value="3">8+ Bath</option>
+                    <option data-element="bath-9" value="3">9+ Bath</option>
+                    <option data-element="bath-10" value="3">10+ Bath</option>
                 </select>
             </div>
             <div class="option_a1">
                 <select id="parking">
                     <option data-element="park-0" selected>Any Parking</option>
-                    <option data-element="park-1" value="1">1+</option>
-                    <option data-element="park-2" value="2">2+</option>
-                    <option data-element="park-3" value="3">3+</option>
+                    <option data-element="park-1" value="1">1+ Park</option>
+                    <option data-element="park-2" value="2">2+ Park</option>
+                    <option data-element="park-3" value="3">3+ Park</option>
                 </select>
             </div>
             <div class="option_a1">

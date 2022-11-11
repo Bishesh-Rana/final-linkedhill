@@ -404,7 +404,7 @@ $('.advance-search').click(function() {
 // });
 
     $(document).ready ( function(e){   
-        $('input[type=radio][name=initialpurpose]').on('change', function() {
+        $('input[type=radio][name=purpose]').on('change', function() {
             let purposeid = $(this).data('element');
             $('#'+purposeid).prop("checked", true);
         })
@@ -500,14 +500,17 @@ $(document).ready(function(){
                 }).appendTo($wrapper);
         }
         else if(sort == 'latest'){
-            alert(sort)
             $('.property_detail_').sort(function(a, b) {
-                    return +a.dataset.latest - +b.dataset.latest;
+                var time1 = a.dataset.latest;
+                var time2 = b.dataset.latest;
+                    return +new Date(time1).getTime() - +new Date(time2).getTime();
                 }).appendTo($wrapper);
         }
         else if(sort == 'oldest'){
             $('.property_detail_').sort(function(a, b) {
-                    return +b.dataset.latest - +a.dataset.latest;
+                var time1 = a.dataset.latest;
+                var time2 = b.dataset.latest;
+                    return +new Date(time2).getTime() - +new Date(time1).getTime();
                 }).appendTo($wrapper);
         }
     })
