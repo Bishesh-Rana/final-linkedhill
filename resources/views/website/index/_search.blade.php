@@ -74,7 +74,7 @@
                         </div>
                         <div class="option_a1">
                             <select  id="bed" name="bed">
-                                <option data-element="0bed" selected>Any Bed</option>
+                                <option data-element="0bed" value="0" selected>Any Bed</option>
                                 <option data-element="1bed" value="1">1+</option>
                                 <option data-element="2bed" value="2">2+</option>
                                 <option data-element="3bed" value="3">3+</option>
@@ -90,24 +90,24 @@
                         <div class="option_a1">
                             <select name="bath" id="bath">
                                 <option  data-element="bath-0"  selected>Any Bath</option>
-                                <option  data-element="bath-1" value="1">1+</option>
-                                <option  data-element="bath-2" value="2">2+</option>
-                                <option data-element="bath-3"  value="3">3+</option>
-                                <option  data-element="bath-4" value="3">4+</option>
-                                <option data-element="bath-5"  value="3">5+</option>
-                                <option data-element="bath-6"  value="3">6+</option>
-                                <option  data-element="bath-7" value="3">7+</option>
-                                <option  data-element="bath-8" value="3">8+</option>
-                                <option  data-element="bath-9" value="3">9+</option>
-                                <option  data-element="bath-10" value="3">10+</option>
+                                <option  data-element="bath-1" value="1">1+ Bath</option>
+                                <option  data-element="bath-2" value="2">2+ Bath</option>
+                                <option data-element="bath-3"  value="3">3+ Bath</option>
+                                <option  data-element="bath-4" value="3">4+ Bath</option>
+                                <option data-element="bath-5"  value="3">5+ Bath</option>
+                                <option data-element="bath-6"  value="3">6+ Bath</option>
+                                <option  data-element="bath-7" value="3">7+ Bath</option>
+                                <option  data-element="bath-8" value="3">8+ Bath</option>
+                                <option  data-element="bath-9" value="3">9+ Bath</option>
+                                <option  data-element="bath-10" value="3">10+ Bath</option>
                             </select>
                         </div>
                         <div class="option_a1">
                             <select id="parking">
                                 <option data-element="park-0" selected>Any Parking</option>
-                                <option data-element="park-1" value="1">1+</option>
-                                <option data-element="park-2" value="2">2+</option>
-                                <option data-element="park-3" value="3">3+</option>
+                                <option data-element="park-1" value="1">1+ Parking</option>
+                                <option data-element="park-2" value="2">2+ Parking</option>
+                                <option data-element="park-3" value="3">3+ Parking</option>
                             </select>
                         </div>
                         <div class="option_a1">
