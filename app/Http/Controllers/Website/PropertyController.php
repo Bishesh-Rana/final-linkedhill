@@ -39,6 +39,9 @@ class PropertyController extends Controller
         // dd($request->purpose);
         $filter = $request->all();
         $properties =  Property::filter()
+        ->when(request('property_address'), function($query){
+            $query->where('property_address', '=', request('property_address'));
+        }) // tej sir leh sikaunu vako
         ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address')))     
         ->paginate(5);
         // dd($properties);
