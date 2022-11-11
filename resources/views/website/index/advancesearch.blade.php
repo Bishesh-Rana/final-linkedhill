@@ -98,20 +98,12 @@
                                         <h3>Min Price</h3>
                                         <select name="min_price" id="min_price">
                                             <option value="0" selected>Min Price</option>
+                                            <option value="5000.00">Rs. 5000.00</option>
+                                            <option value="10000.00">Rs. 10000.00</option>
                                             <option value="50000.00">Rs. 50000.00</option>
-                                            <option value="50000.00">Rs. 50000.00</option>
-                                            <option value="50000.00">Rs. 50000.00</option>
-                                            <option value="50000.00">Rs. 50000.00</option>
+                                            <option value="100000.00">Rs. 100000.00</option>
+                                            <option value="1000000.00">Rs. 1000000.00</option>
                                         </select>
-                                        {{-- <h3>Min Price</h3>
-                                        <input type='radio' name="minprice" value="50000" id="50000"/>
-                                        <label for="50000">Rs. 5000.00</label>  
-                                        <input type='radio' name="minprice" value="100000" id="100000"/>
-                                        <label for="100000">Rs. 100000.00</label>  
-                                        <input type='radio' name="minprice" value="1000000" id="1000000"/>
-                                        <label for="1000000">Rs. 1000000.00</label>    
-                                        <input type='radio' name="minprice" value="10000000" id="10000000"/>
-                                        <label for="10000000">Rs. 10000000.00</label>  --}}
                                     </div>
                                      
                                 </div>
@@ -125,27 +117,19 @@
                                             <option value="2000000.00">Rs. 2000000.00</option>
                                             <option value="5000000.00">Rs. 5000000.00</option>
                                         </select>
-                                        {{-- <input type='radio' name="maxprice" value="50000" id="max-50000"/>
-                                        <label for="max-50000">Rs. 50000.00</label> 
-                                        <input type='radio' name="maxprice" value="1100000" id="1100000"/>
-                                        <label for="1100000">Rs. 1100000.00</label>  
-                                        <input type='radio' name="maxprice" value="100000000" id="100000000"/>
-                                        <label for="100000000">Rs. 100000000.00</label>
-                                        <input type='radio' name="maxprice" value="1000000000" id="1000000000"/>
-                                        <label for="1000000000">Rs. 1000000000.00</label>     --}}
                                     </div>
                                   
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Facing direction</h3>
-                                        <input type='radio' name="facedirection" value="east " id="east"/>
+                                        <input type='radio' name="property_facing" value="east " id="east"/>
                                         <label for="east">East</label>
-                                        <input type='radio' name="facedirection" value="south " id="south"/>
+                                        <input type='radio' name="property_facing" value="south " id="south"/>
                                         <label for="south">South</label>
-                                        <input type='radio' name="facedirection" value="West " id="West"/>
+                                        <input type='radio' name="property_facing" value="West " id="West"/>
                                         <label for="West">West</label>
-                                        <input type='radio' name="facedirection" value="north " id="north"/>
+                                        <input type='radio' name="property_facing" value="north " id="north"/>
                                         <label for="north">North</label>
                                     </div>
                                     

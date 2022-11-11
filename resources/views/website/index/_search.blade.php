@@ -89,7 +89,7 @@
                         </div>
                         <div class="option_a1">
                             <select name="bath" id="bath">
-                                <option  data-element="bath-0"  selected>Any Bath</option>
+                                <option  data-element="bath-0" value="0" selected>Any Bath</option>
                                 <option  data-element="bath-1" value="1">1+ Bath</option>
                                 <option  data-element="bath-2" value="2">2+ Bath</option>
                                 <option data-element="bath-3"  value="3">3+ Bath</option>
@@ -103,8 +103,8 @@
                             </select>
                         </div>
                         <div class="option_a1">
-                            <select id="parking">
-                                <option data-element="park-0" selected>Any Parking</option>
+                            <select name="parking" id="parking">
+                                <option data-element="park-0" value="0" selected>Any Parking</option>
                                 <option data-element="park-1" value="1">1+ Parking</option>
                                 <option data-element="park-2" value="2">2+ Parking</option>
                                 <option data-element="park-3" value="3">3+ Parking</option>
@@ -112,11 +112,12 @@
                         </div>
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
-                                <option value="0.00" selected>Min Price</option>
+                                <option value="0" selected>Min Price</option>
+                                <option value="5000.00">Rs. 5000.00</option>
+                                <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
-                                <option value="50000.00">Rs. 50000.00</option>
-                                <option value="50000.00">Rs. 50000.00</option>
-                                <option value="50000.00">Rs. 50000.00</option>
+                                <option value="100000.00">Rs. 100000.00</option>
+                                <option value="1000000.00">Rs. 1000000.00</option>
                             </select>
                         </div>
                         <div class="option_a1">
