@@ -3,12 +3,17 @@
 @section('content')
     <section id="user-credential_wrapper">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
+                <div class="col-md-4 p-5 first ">
+                    <h1>Login</h1>
+                    <p>Get access to your Wishlist and Recommendations</p>
+                    <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
+
+                </div>
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-lg-10 m-auto">
                             <div class="sign_up_in_wrapper">
-                                <h3>LOGIN</h3>
                                 @if (Session::has('error'))
                                     <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
                                         {{ Session::get('error') }}</p>
@@ -17,77 +22,36 @@
                                     <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
                                         {{ Session::get('success') }}</p>
                                 @endif
-                                <form action="{{ route('customer.login') }}" method="post">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="name@example.com" name="email">
-                                    </div>
-                                    <div class="mb-0">
-                                        <label for="password_field" class="form-label">Password</label>
-                                        <div class="form_group input_box_zee">
-                                            <input type="password" class="form-control" id="password_field" placeholder=""
-                                                name="password">
-                                            <i class="lar la-eye"></i>
-                                        </div>
-                                    </div>
-                                    <div class="forget_psw_Wrapper">
-                                        <a href="#">Forget Password ?</a>
-                                    </div>
-                                    <div class="sign_in_button">
-                                        <button class="btn btn-danger">Login</button>
-                                    </div>
-                                </form>
-                                <div class="sign_in_or_text">
-                                    <p>Or login with</p>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-lg-10 m-auto">
-                            <div class="sign_up_in_wrapper">
-                                <h3>Sign up</h3>
-
                                 <form action="{{ route('customer.register') }}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Full Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="" name="name">
+                                            placeholder="Full Name" name="name">
                                         @if ($errors->has('name'))
                                             <strong class="text-danger">{{ $errors->first('name') }}</strong>
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="" name="email">
+                                            placeholder="Email ID" name="email">
                                         @if ($errors->has('email'))
                                             <strong class="text-danger">{{ $errors->first('email') }}</strong>
                                         @endif
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Mobile no.</label>
                                         <div class="form_phone_number">
                                             <span>+977</span>
                                             <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="" name="mobile">
+                                                placeholder="Mobile No." name="mobile">
                                             @if ($errors->has('mobile'))
                                                 <strong class="text-danger">{{ $errors->first('mobile') }}</strong>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="password_field_signUp" class="form-label">Password</label>
                                         <div class="form_group signUpinput_box_zee">
                                             <input type="password" class="form-control" id="password_field_signUp"
-                                                placeholder="" name="password">
+                                                placeholder="Password" name="password">
                                             <i class="lar la-eye"></i>
                                         </div>
                                         @if ($errors->has('password'))
@@ -95,20 +59,27 @@
                                         @endif
                                     </div>
                                     <div class="sign_up_msg">
-                                        <p>By clicking sign up, you agree to <a href="">the terms and conditions,
+                                        <p> <input type="checkbox" name="privacy" id="privacy" required> By clicking sign up, you agree to <a href="">the terms and conditions,
                                                 privacy
                                                 policy</a> of NepalHomes.com</p>
                                     </div>
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button>
                                     </div>
-                                </form>
+                                </form>                              
+                               
+                            </div>
+                            <div class="d-flex login_register">
+                                <p class="">Already Registered??</p>
+                                <a href="{{route('customer.signin')}}" class="btn login_registerbtn">Login</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+             
+
+                {{-- <div class="col-lg-4">
                     <div class="user_notice_wrapper">
                         <h3>{{ $website->login_title }}</h3>
                         <p>{{ $website->login_sub_title }}</p>
@@ -119,7 +90,7 @@
                             <li><i class="las la-city"></i><span>{{ $website->four_login_sub_title }}</span></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
