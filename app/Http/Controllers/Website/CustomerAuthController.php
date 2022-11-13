@@ -27,6 +27,10 @@ class CustomerAuthController extends Controller
     {
         return view('website.customer.auth.register');
     }
+    public function forgot()
+    {
+        return view('website.customer.auth.forgotpassword');
+    }
 
     
     public function register(Request $request)
