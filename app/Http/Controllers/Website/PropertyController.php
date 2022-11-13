@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Purpose;
 use App\Models\Property;
+use App\Models\Feature;
 use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
@@ -36,11 +37,15 @@ class PropertyController extends Controller
 
     public function search(Request $request)
     {
-        // dd($request->purpose);
+        // dd($request->all());
         $filter = $request->all();
         $properties =  Property::filter()
-        ->when(request('property_address'), function($query){
-            $query->where('property_address', '=', request('property_address'));
+        ->when(request('bed'), function($query){
+            $var = $request->bed;
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','bedroom')->value('id');
+                $que->where(['feature_id'=>$feature_id,'value'=>$var]);
+            });
         }) // tej sir leh sikaunu vako
         ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address')))     
         ->paginate(5);
