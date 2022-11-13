@@ -13,7 +13,7 @@
                 <div class="advance_search_modal">
                     <div class="selector_wrapper purpose_wrapper">
                         @foreach ($purposes as $key => $type)
-                            <input type='radio' name="purpose" value="{{ $type->id }}" id="adpurpose{{$key}}"/>
+                            <input type='radio' name="purpose" value="{{ $type->name }}" id="adpurpose{{$key}}"/>
                             <label for="adpurpose{{$key}}">{{ $type->name }}</label>
                          @endforeach
                     </div>
@@ -51,39 +51,66 @@
                                 <div class="col-md-12">
                                     <div id="bed" class="selector_wrapper bedrooms">
                                         <h3>Bedrooms</h3> 
-                                        <input type="radio" name="bedCount" value="anybed" id="0bed">
+                                        <input type="radio" name="bed" value="" id="0bed">
                                         <label for="0bed">Any Bed</label>
-                                        <input type="radio" name="bedCount" value="1bed" id="1bed">
+                                        <input type="radio" name="bed" value="1" id="1bed">
                                         <label for="1bed">1+ Bed</label>    
-                                        <input type="radio" name="bedCount" value="2bed" id="2bed">
+                                        <input type="radio" name="bed" value="2" id="2bed">
                                         <label for="2bed">2+ Bed</label>     
-                                        <input type="radio" name="bedCount" value="3bed" id="3bed">
-                                        <label for="3bed">3+ Bed</label>                                       
+                                        <input type="radio" name="bed" value="3" id="3bed">
+                                        <label for="3bed">3+ Bed</label>  
+                                        <input type="radio" name="bed" value="4" id="4bed">
+                                        <label for="4bed">4+ Bed</label>                                       
+                                        <input type="radio" name="bed" value="5" id="5bed">
+                                        <label for="5bed">5+ Bed</label>  
+                                        <input type="radio" name="bed" value="6" id="6bed">
+                                        <label for="6bed">6+ Bed</label>  
+                                        <input type="radio" name="bed" value="6" id="6bed">
+                                        <label for="6bed">6+ Bed</label>  
+                                        <input type="radio" name="bed" value="7" id="7bed">
+                                        <label for="7bed">7+ Bed</label>  
+                                        <input type="radio" name="bed" value="8" id="8bed">
+                                        <label for="3bed">8+ Bed</label>  
+                                        <input type="radio" name="bed" value="9" id="9bed">
+                                        <label for="3bed">9+ Bed</label>  
+                                        <input type="radio" name="bed" value="10" id="10bed">
+                                        <label for="3bed">10+ Bed</label>  
+
                                     </div> 
                                     
                                 </div>
                                 <div class="col-md-12">
                                     <div id="bath" class="selector_wrapper">
                                         <h3>Bathrooms</h3>
-                                        <input type='radio' name="bath" value="1" id="bath-0"/>
+                                        <input type='radio' name="bath" value="" id="bath-0"/>
                                         <label for="bath-0">Any Bath</label>
-                                        <input type='radio' name="bath" value="2" id="bath-1"/>
+                                        <input type='radio' name="bath" value="1" id="bath-1"/>
                                         <label for="bath-1">1+</label>
-                                        <input type='radio' name="bath" value="3" id="bath-2"/>
+                                        <input type='radio' name="bath" value="2" id="bath-2"/>
                                         <label for="bath-2">2+</label>
-                                        <input type='radio' name="bath" value="4" id="bath-3"/>
+                                        <input type='radio' name="bath" value="3" id="bath-3"/>
                                         <label for="bath-3">3+</label>
-                                        <input type='radio' name="bath" value="5" id="bath-4"/>
+                                        <input type='radio' name="bath" value="4" id="bath-4"/>
                                         <label for="bath-4">4+</label>
-                                        <input type='radio' name="bath" value="6" id="bath-5"/>
+                                        <input type='radio' name="bath" value="5" id="bath-5"/>
                                         <label for="bath-5">5+</label>
+                                        <input type='radio' name="bath" value="6" id="bath-6"/>
+                                        <label for="bath-6">6+</label>
+                                        <input type='radio' name="bath" value="7" id="bath-7"/>
+                                        <label for="bath-7">7+</label>
+                                        <input type='radio' name="bath" value="8" id="bath-8"/>
+                                        <label for="bath-8">8+</label>
+                                        <input type='radio' name="bath" value="9" id="bath-9"/>
+                                        <label for="bath-9">9+</label>
+                                        <input type='radio' name="bath" value="10" id="bath-10"/>
+                                        <label for="bath-10">10+</label>
                                     </div>
                                   
                                 </div>
                                 <div class="col-md-12">
                                     <div id="parking" class="selector_wrapper">
                                         <h3>Parking</h3>
-                                        <input type='radio' name="parking" value="1" id="park-0"/>
+                                        <input type='radio' name="parking" value="" id="park-0"/>
                                         <label for="park-0">Any</label>
                                         <input type='radio' name="parking" value="1" id="park-1"/>
                                         <label for="park-1">1</label>
@@ -96,7 +123,7 @@
                                 <div class="col-md-6">
                                     <div class="selector_wrapper">
                                         <h3>Min Price</h3>
-                                        <select name="min_price" id="min_price">
+                                        <select name="start_prize" id="min_price">
                                             <option value="" selected>Min Price</option>
                                             <option value="5000.00">Rs. 5000.00</option>
                                             <option value="10000.00">Rs. 10000.00</option>
@@ -137,11 +164,13 @@
                                 <div class="col-md-12">
                                     <div id="buildingType" class="selector_wrapper">
                                         <h3>Building Type</h3>
-                                        <input type='radio' name="buildingtype" value="underconstruction " id="underconstruction"/>
+                                        <input type='radio' name="building_type" value="under construction" id="underconstruction"/>
                                         <label for="underconstruction">Under Construction</label> 
-                                        <input type='radio' name="buildingtype" value="new " id="new"/>
+                                        <input type='radio' name="building_type" value="new built" id="new"/>
                                         <label for="new">Newly Built</label>
-                                        <input type='radio' name="buildingtype" value="old " id="old"/>
+                                        <input type='radio' name="building_type" value="ready to move" id="new"/>
+                                        <label for="ready">Ready To Move</label>
+                                        <input type='radio' name="building_type" value="already built" id="old"/>
                                         <label for="old">Already Built</label>
                                     </div>
                                     
@@ -149,18 +178,16 @@
                                 <div class="col-md-12">
                                     <div id="buildingAge" class="selector_wrapper">
                                         <h3>Building Age</h3>
-                                        <input type='radio' name="buildingage" value="ageany " id="ageany"/>
+                                        <input type='radio' name="building_age" value="" id="ageany"/>
                                         <label for="ageany">Any Age</label> 
-                                        <input type='radio' name="buildingage" value="1year " id="1year"/>
+                                        <input type='radio' name="building_age" value="1" id="1year"/>
                                         <label for="1year">Below 1 year</label> 
-                                        <input type='radio' name="buildingage" value="5year " id="5year"/>
+                                        <input type='radio' name="building_age" value="5" id="5year"/>
                                         <label for="5year">Below 5 year</label>
-                                        <input type='radio' name="buildingage" value="10year " id="10year"/>
+                                        <input type='radio' name="building_age" value="10" id="10year"/>
                                         <label for="10year">Below 10 year</label>
-                                        <input type='radio' name="buildingage" value="20year " id="20year"/>
+                                        <input type='radio' name="building_age" value="20" id="20year"/>
                                         <label for="20year">Below 20 year</label>
-                                        <input type='radio' name="buildingage" value="above20 " id="above20"/>
-                                        <label for="above20">Above 20 year</label>
                                     </div>
                                    
                                 </div>
@@ -169,12 +196,10 @@
                                         <h3>Common Facilities</h3>
                                        <div class="d-flex">
                                         <div class="list_group_facilities">
-                                            <input class="form-check-input" type="checkbox" name="facilities" value="water" id="facility1">
-                                            <label class="form-check-label" for="facility1">Water</label>
-                                            <input class="form-check-input" type="checkbox" name="facilities" value="road" id="facility2">
-                                            <label class="form-check-label" for="facility2">Road</label>
-                                            <input class="form-check-input" type="checkbox" name="facilities" value="fencing" id="facility3">
-                                            <label class="form-check-label" for="facility3">Fencing</label>
+                                            @foreach($facilities as $key=>$facility)
+                                                <input class="form-check-input" type="checkbox" name="facility[]" value="{{$facility->title}}" id="facility{{$key+1}}">
+                                            <label class="form-check-label" for="facility{{$key+1}}">{{$facility->title}}</label>
+                                            @endforeach
                                         </div>
                                        </div>
                                     </div>
@@ -183,27 +208,28 @@
                                 <div class="col-md-12">
                                     <div id="furnishingType" class="selector_wrapper">
                                         <h3>Furnishing Type</h3>
-                                        <input type='radio' name="furnishing" value="anyfurnishing " id="anyfurnishing"/>
+                                        <input type='radio' name="Furnishing Type" value="
+                                        " id="anyfurnishing"/>
                                         <label for="anyfurnishing">Any</label> 
-                                        <input type='radio' name="furnishing" value="fullyfurnished " id="fullyfurnished"/>
+                                        <input type='radio' name="furnishing" value="fully-furnish" id="fullyfurnished"/>
                                         <label for="fullyfurnished">Fully Furnished</label> 
-                                        <input type='radio' name="furnishing" value="semifurnished " id="semifurnished"/>
+                                        <input type='radio' name="furnishing" value="semi-furnish" id="semifurnished"/>
                                         <label for="semifurnished">Semi Furnished</label> 
-                                        <input type='radio' name="furnishing" value="unfurnished " id="unfurnished"/>
-                                        <label for="unfurnished">Unfurnished</label> 
+                                        <input type='radio' name="furnishing" value="unfurnish" id="unfurnished"/>
+                                        <label for="unfurnished">unfurnished</label> 
                                     </div>
                                    
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Listed By</h3>
-                                        <input type='radio' name="listingby" value="AnyLister " id="AnyLister"/>
+                                        <input type='radio' name="listingby" value="" id="AnyLister"/>
                                         <label for="AnyLister">Any</label> 
-                                        <input type='radio' name="listingby" value="Owner " id="Owner"/>
+                                        <input type='radio' name="listingby" value="Owner" id="Owner"/>
                                         <label for="Owner">Owner</label> 
-                                        <input type='radio' name="listingby" value="Builder " id="Builder"/>
+                                        <input type='radio' name="listingby" value="Builder" id="Builder"/>
                                         <label for="Builder">Builder</label> 
-                                        <input type='radio' name="listingby" value="Agent " id="Agent"/>
+                                        <input type='radio' name="listingby" value="Agent" id="Agent"/>
                                         <label for="Agent">Agent</label> 
                                     </div>                                    
                                 </div>

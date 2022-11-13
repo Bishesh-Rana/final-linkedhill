@@ -314,9 +314,6 @@
                                                     @endisset
                                                     @if ($property->negotiable == false)
                                                         @isset($property->negotiable)
-                                                            {{-- @if (!is_null($property->negotiable)) --}}
-                                                            {{-- <span><i class="las la-check"></i>NONE NEGOTIABLE</span> --}}
-                                                            {{-- @endif --}}
                                                         @endisset
                                                     @else
                                                         @if ($property->negotiable == true)
