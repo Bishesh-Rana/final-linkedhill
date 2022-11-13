@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 p-5 first ">
-                    <h1>Login</h1>
-                    <p>Get access to your Orders, Wishlist and Recommendations</p>
+                    <h1>Forgot password??</h1>
+                    <p>Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
                     <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
 
                 </div>
@@ -22,7 +22,7 @@
                                     <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
                                         {{ Session::get('success') }}</p>
                                 @endif
-                                <form method="post" action="{{ route('customer.forgot') }}">
+                                <form method="post" action="{{ route('customer.resetpasswordmail') }}">
                                     @csrf
     
                                     <label for="exampleFormControlInput1">Registered Email:- </label>
@@ -44,7 +44,7 @@
                                         </div>
     
                                         {{-- @include('success.success') --}}
-                                        <a href="{{ url('/signin') }}">Back To Login</a>
+                                        <a href="{{ route('customer.signup') }}">Back To Login</a>
                                     </div>
                                 </form>
                                

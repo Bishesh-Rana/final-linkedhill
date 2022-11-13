@@ -65,7 +65,7 @@ class PropertyController extends Controller
         ->when(request('property_facing'), function($query, $var) {
             $query->whereHas('features', function ($que) use ($var){
                 $feature_id = Feature::where('title','=','Facing Direction')->value('id');
-                dd($var);
+                
                 $que->where('feature_id',$feature_id)->where('value','=',$var);
             });
         })     

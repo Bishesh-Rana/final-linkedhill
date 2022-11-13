@@ -25,6 +25,7 @@ Route::get('/signin', [CustomerAuthController::class, 'signin'])->name('customer
 Route::get('/registerform', [CustomerAuthController::class, 'registerform'])->name('customer.registerform');
 Route::post('/customer-register', [CustomerAuthController::class, 'register'])->name('customer.register');
 Route::get('[/forgot-password', [CustomerAuthController::class,'forgot'])->name('customer.forgot');
+Route::post('[/resetmail', [CustomerAuthController::class,'resetpasswordmail'])->name('customer.resetpasswordmail');
 Route::get('/customer/verify-otp/{id}', [CustomerAuthController::class, 'verityOtp'])->name('getOtp');
 Route::post('/customer/verify/{id}', [CustomerAuthController::class, 'verify'])->name('verify');
 Route::get('/customer/verify-re-otp/{id}', [CustomerAuthController::class, 'otp'])->name('customer.getOtp');

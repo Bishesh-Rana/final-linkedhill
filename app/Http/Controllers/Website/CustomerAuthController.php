@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Actions\Fortify\ResetUserPassword;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Customer;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
+use App\Actions\Fortify\ResetUserPassword;
 
 class CustomerAuthController extends Controller
 {
     public function signup()
     {
-        return view('website.customer.auth.signup');
+        // return view('website.customer.auth.signup');
+        return view('website.customer.auth.login');
     }
 
     public function signin()
     {
-        return view('website.customer.auth.login');
+        // return view('website.customer.auth.login');
+        return view('website.customer.auth.signup');
     }
 
     public function registerform()
@@ -165,6 +168,19 @@ class CustomerAuthController extends Controller
             //if the customer have not verified their email
             return redirect()->back()->with('error', 'Please verify your email first');
         }
+    }
+
+    public function resetpasswordmail(Request $request){
+        $request->validate(['email' => 'required|email']);
+ 
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+     
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __($status)])
+                    : back()->withErrors(['email' => __($status)]);
+
     }
 
     public function resetPassword(Request $request, $code)
