@@ -26,8 +26,8 @@
                     <div class="col-md-2">
                         <select class="purpose" name="purpose" id="purpose">
                             
-                            @foreach ($purposes as $purpose) 
-                            @if (array_key_exists('purpose', $filter ))
+                            @foreach ($purposes as $purpose)
+                            @if (array_key_exists('purpose', $filter )) 
                             <option value="{{ $purpose->name }}" {{($purpose->name == $filter['purpose']) ? 'selected':''}}>{{ $purpose->name }}</option>
                             @else
                             <option value="{{ $purpose->name }}" >{{ $purpose->name }}</option>
@@ -130,12 +130,23 @@
             {{-- {{dd($filter)}} --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
+                    @if (array_key_exists('start_prize', $filter ))
                     <option value="0" {{intval($filter['start_prize']== 0) ?'selected':''}}>Min Price</option>
                     <option value="5000.00" {{intval($filter['start_prize']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
                     <option value="10000.00" {{intval($filter['start_prize']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
                     <option value="50000.00" {{intval($filter['start_prize']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
                     <option value="100000.00" {{intval($filter['start_prize']== 100000.00) ?'selected':''}}>Rs. 100000.00</option>
                     <option value="1000000.00" {{intval($filter['start_prize']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
+
+                    @else
+                    <option value="0" >Min Price</option>
+                    <option value="5000.00">Rs. 5000.00</option>
+                    <option value="10000.00" >Rs. 10000.00</option>
+                    <option value="50000.00" >Rs. 50000.00</option>
+                    <option value="100000.00" >Rs. 100000.00</option>
+                    <option value="1000000.00" >Rs. 1000000.00</option>
+                    @endif
+                   
                 </select>
             </div>
             <div class="option_a1">
