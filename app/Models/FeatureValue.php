@@ -9,4 +9,10 @@ class FeatureValue extends Model
 {
     use HasFactory;
     protected $fillable=['feature_id','value'];
+
+    public function feature(){
+        return $this->belongsTo(Feature::class);
+    }
 }
+
+

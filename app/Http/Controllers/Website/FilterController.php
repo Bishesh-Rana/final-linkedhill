@@ -17,6 +17,13 @@ class FilterController extends Controller
             array_push($features,$feature);
         }
        }
-       return($features);   
+
+       foreach($features as $feature){
+        if($feature->value){
+            foreach($feature->value as $val){
+                dd($val->value);
+            }
+        }
+       } 
     }
 }
