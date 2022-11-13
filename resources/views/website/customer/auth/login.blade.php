@@ -37,7 +37,7 @@
                                         <div class="form_group input_box_zee">
                                             <input type="password" class="form-control" id="password_field" placeholder=""
                                                 name="password" required>
-                                                <a href="#" class="forgot">Forgot?</a>
+                                                <a href="{{route('customer.forgot')}}" class="forgot">Forgot?</a>
                                             {{-- <i class="lar la-eye"></i> --}}
                                         </div>
                                     </div>

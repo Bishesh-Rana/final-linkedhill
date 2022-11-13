@@ -17,8 +17,7 @@
                             <ul class="nav nav-tabs" data-tabs="tabs">
                                 @foreach ($property_categories as $key => $property_category)
                                     <li class="nav-item">
-                                        <a class="nav-link active toggleProperty"
-                                            href="#{{ $property_category->id . 'home' }}"
+                                        <a class="nav-link active toggleProperty" href="#{{ $property_category->id . 'home' }}"
                                             data-toggle="tab">{{ $property_category->name }}</a>
                                     </li>
                                 @endforeach
@@ -30,33 +29,36 @@
                 <div class="card-body">
                     <div class="tab-content text-center property-description">
                         @foreach ($property_categories as $key => $property_category)
-                            <div class="tab-pane row {{ $property->category_id == $property_category->id ? 'active' : null }}"
-                                id="{{ $property_category->id . 'home' }}">
+                            <div class="tab-pane {{ $property->category_id == $property_category->id ? 'active' : null }}"id="{{ $property_category->id . 'home' }}">
+                               <div class="row">
                                 @forelse ($property_category->features as $key=>$feat)
-                                    <div class="col-6">
-                                        {{-- @dd(!$feat->value->isEmpty()) --}}
-                                        @if(!$feat->value->isEmpty())
-                                        <label class="label-style text-capitalize col-md-3">
-                                            {{ $feat->title }}
-                                        </label>
-                                            @foreach($feat->value as $val)
-                                                <div class="col-md-1">
-                                                    <input class="" type="radio" value='{{$val->value}}' name="features[{{ $feat->id }}]"  />
-                                                    <label>{{$val->value}}</label>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
-                                                id="{{ $feat->id }}"
-                                                value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />   
-                                        @endif
-                                    </div>
-                                @empty
-                                    <div class="col-6">
-                                        No Features Found.
-                                    </div>
-                                
-                                @endforelse
+                                <div style="border: 1px solid black"> 
+                                    @if(!$feat->value->isEmpty())
+                                    <p class="label-style text-capitalize">
+                                        {{ $feat->title }}
+                                    </p>
+                                       <div class="d-flex">
+                                           @foreach($feat->value as $val)
+                                           <div class="">
+                                               <label for="facilities">{{$val->value}}</label>
+                                               <input type="radio" value='{{$val->value}}' id="facilities" name="features[{{ $feat->id }}]"  />
+                                               
+                                           </div>
+                                       @endforeach
+                                       </div>
+                                    @else
+                                        <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
+                                            id="{{ $feat->id }}"
+                                            value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />   
+                                    @endif
+                                  </div>
+                            @empty
+                                <div class="col-12">
+                                    No Features Found.
+                                </div>
+                            
+                            @endforelse
+                               </div>
                             </div>
                         @endforeach
                     </div>

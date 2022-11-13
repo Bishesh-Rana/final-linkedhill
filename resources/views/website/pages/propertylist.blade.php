@@ -402,9 +402,9 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-lg-4 advertisement">
+            <div class="col-lg-4 advertisement">
                 <div>
-                    <h5>Featured Products</h5>
+                    <h5>Featured Properties</h5>
                 </div>
                 @forelse ($properties as $property)
                     <div class="property_detail_ mb-2">
@@ -529,7 +529,7 @@
                     </div>
                 @endforelse
 
-            </div> --}}
+            </div>
         </div>
     </div>
 </section>
