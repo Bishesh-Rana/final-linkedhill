@@ -10,12 +10,14 @@ use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\CustomerAuthController;
 use App\Http\Controllers\Website\AgentRegistrationController;
 use App\Http\Controllers\Website\PropertyController;
+use App\Http\Controllers\Website\FilterController;
 use Illuminate\Support\Facades\Route;
 
 
 /* Routes for web pages */
 
 Route::get('/front', [HomeController::class, 'index'])->name('home');
+Route::get('filter', [FilterController::class,'basicFilter'])->name('filter');
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/search', [PropertyController::class, 'search'])->name('front.search-properties');

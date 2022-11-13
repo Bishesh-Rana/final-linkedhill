@@ -45,33 +45,32 @@
                                 <p>Property Type<i class="las la-angle-down"></i></p>
                                 <div class="option_listing_dropDown child_dropdown">
                                     @foreach ($propertyCat as $propertyC)
-                                    <div class="list_group_category"> 
-                                        <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}">
-                                        <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
-                                    </div>
-                                    @if ($propertyC->id == 3)
-                                    @break
-                                    @endif
-                                    @endforeach
+                                        <div class="list_group_category"> 
+                                            <input class="form-check-input front-category category" id="category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
+                                            <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
+                                        </div>
+                                    @endforeach 
                                 </div>
                             </div>
                         </div>
-                        <div class="option_a1">
-                            <select  id="bed" name="bed">
-                                <option data-element="0bed" value="" selected>Any Bed</option>
-                                <option data-element="1bed" value="1">1+</option>
-                                <option data-element="2bed" value="2">2+</option>
-                                <option data-element="3bed" value="3">3+</option>
-                                <option data-element="4bed" value="4">4+</option>
-                                <option data-element="5bed" value="5">5+</option>
-                                <option data-element="6bed" value="6">6+</option>
-                                <option data-element="7bed" value="7">7+</option>
-                                <option data-element="8bed" value="8">8+</option>
-                                <option data-element="9bed" value="9">9+</option>
-                                <option data-element="10bed" value="10">10+</option>
-                            </select>
+                        <div >
+                            <div class="option_a1">
+                                <select  id="bed" name="bed">
+                                    <option data-element="0bed" value="" selected>Any Bed</option>
+                                    <option data-element="1bed" value="1">1+</option>
+                                    <option data-element="2bed" value="2">2+</option>
+                                    <option data-element="3bed" value="3">3+</option>
+                                    <option data-element="4bed" value="4">4+</option>
+                                    <option data-element="5bed" value="5">5+</option>
+                                    <option data-element="6bed" value="6">6+</option>
+                                    <option data-element="7bed" value="7">7+</option>
+                                    <option data-element="8bed" value="8">8+</option>
+                                    <option data-element="9bed" value="9">9+</option>
+                                    <option data-element="10bed" value="10">10+</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="option_a1">
+                        {{-- <div class="option_a1">
                             <select name="bath" id="bath">
                                 <option  data-element="bath-0" value="" selected>Any Bath</option>
                                 <option  data-element="bath-1" value="1">1+ Bath</option>
@@ -93,7 +92,7 @@
                                 <option data-element="park-2" value="2">2+ Parking</option>
                                 <option data-element="park-3" value="3">3+ Parking</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
                                 <option value="" selected>Min Price</option>
@@ -162,3 +161,47 @@
     </form>
     </div>
 </div>
+
+@push('scripts')
+<script>
+     $(document).ready(function() {
+        var category_ids = [];
+        $('.category').on('change', function(){
+            let{
+                    value,
+                    id,
+                    checked
+                } = event.target;
+                if(id=="category"){
+                    if(checked){
+                        category_ids.push(value);
+                    }
+                    else{
+                        category_ids = category_ids.filter(function(data){
+                            return data != value;
+                        })
+                    }
+                }
+                $.ajax({
+                    url: "{{route('filter')}}",
+                    type: 'get',
+                    data: {
+                        category_ids: category_ids,
+                    },
+                    // dataType: 'JSON',
+                    success:function(response)
+                    {
+                        console.log(response);
+                        // $("#product").replaceWith(response);
+                    },
+                    error: function(response) {
+                    }
+                });
+               
+        });
+        
+     });
+
+    
+</script>
+@endpush

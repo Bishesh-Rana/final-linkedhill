@@ -300,7 +300,6 @@
                                                         <i class="las la-crop-alt"></i>
                                                         <span
                                                             class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                                    {{-- <span>Owner: {{ @$property->owner_name }}</span> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-8">

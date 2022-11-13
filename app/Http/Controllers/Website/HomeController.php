@@ -55,6 +55,7 @@ class HomeController extends Controller
 
 
         $this->website['property'] = Property::all();
+        // $this->website['features'] = Property::all();
 
 
         $this->website['propertyCat'] = PropertyCategory::all();
