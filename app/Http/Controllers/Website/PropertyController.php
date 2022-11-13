@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Purpose;
 use App\Models\Property;
+use App\Models\Feature;
 use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
@@ -35,12 +36,43 @@ class PropertyController extends Controller
 
 
     public function search(Request $request)
-    {      
+    {
+        // dd($request->all());
         $filter = $request->all();
-        $properties =  Property::filter() ->paginate(5);
+        $properties =  Property::filter()
+        ->when(request('bed'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Bedroom')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','>=',$var);
+            });
+        }) // tej sir leh sikaunu vako
+
+        ->when(request('bath'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Bathroom')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','>=',$var);
+            });
+        })
+        ->when(request('parking'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Parking')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','>=',$var);
+            });
+        })
+        ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address'))) 
+        ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
+        ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
+        ->when(request('property_facing'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Facing Direction')->value('id');
+                dd($var);
+                $que->where('feature_id',$feature_id)->where('value','=',$var);
+            });
+        })     
+        ->paginate(5);
+        // dd($properties);
         $meta = $this->getMeta();
-        $advertisements = $this->getAd('property');
-        
+        $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();
         $property = Property::all();
         $propertyCat = PropertyCategory::all();

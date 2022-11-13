@@ -15,7 +15,7 @@ class Purpose extends Filter
      */
     public function handle($query, Closure $next)
     {
-        $query->when(request('property_status'), fn ($query) => $query->where('property_status', '=', request('property_status')));
+        $query->when(request('purpose'), fn ($query) => $query->where('property_status', '=', request('purpose')));
         return $next($query);
     }
 }

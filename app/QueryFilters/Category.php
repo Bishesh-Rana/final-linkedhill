@@ -17,6 +17,7 @@ class Category extends Filter
     public function handle($query, Closure $next)
     {
         $categories =  is_array(request('category_id')) ? request('category_id') : [request('category_id')];
+        // dd($categories);
         $query->when(request('category_id') && !in_array(0, $categories), fn ($query) => [$query->whereIn('category_id', $categories)]);
         return $next($query);
     }

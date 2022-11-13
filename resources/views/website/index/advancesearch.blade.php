@@ -36,7 +36,7 @@
                                        <div class="d-flex">
                                         @foreach ($propertyCat as $propertyC)
                                         <div class="list_group_category">
-                                            <input  class="form-check-input ad_category" type="checkbox" name="ad_category_id" value="{{ $propertyC->id }}" id="advance{{$propertyC->id}}">
+                                            <input  class="form-check-input ad_category" type="checkbox" name="category_id" value="{{ $propertyC->id }}" id="advance{{$propertyC->id}}">
                                             <label class="form-check-label" for="advance{{$propertyC->id}}">{{ $propertyC->name }}</label>
                                         </div>
                                         @if ($propertyC->id == 3)
@@ -97,7 +97,7 @@
                                     <div class="selector_wrapper">
                                         <h3>Min Price</h3>
                                         <select name="min_price" id="min_price">
-                                            <option value="0" selected>Min Price</option>
+                                            <option value="" selected>Min Price</option>
                                             <option value="5000.00">Rs. 5000.00</option>
                                             <option value="10000.00">Rs. 10000.00</option>
                                             <option value="50000.00">Rs. 50000.00</option>
@@ -111,7 +111,7 @@
                                     <div class="selector_wrapper">
                                         <h3>Max Price</h3>
                                         <select name="end_prize" id="max_price">
-                                            <option value="0.00" selected>Max Price</option>
+                                            <option value="" selected>Max Price</option>
                                             <option value="1100000.00">Rs. 1100000.00</option>
                                             <option value="1500000.00">Rs. 1500000.00</option>
                                             <option value="2000000.00">Rs. 2000000.00</option>
@@ -123,13 +123,13 @@
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Facing direction</h3>
-                                        <input type='radio' name="property_facing" value="east " id="east"/>
+                                        <input type='radio' name="property_facing" value="East" id="east"/>
                                         <label for="east">East</label>
-                                        <input type='radio' name="property_facing" value="south " id="south"/>
+                                        <input type='radio' name="property_facing" value="South" id="south"/>
                                         <label for="south">South</label>
-                                        <input type='radio' name="property_facing" value="West " id="West"/>
+                                        <input type='radio' name="property_facing" value="West" id="West"/>
                                         <label for="West">West</label>
-                                        <input type='radio' name="property_facing" value="north " id="north"/>
+                                        <input type='radio' name="property_facing" value="North" id="north"/>
                                         <label for="north">North</label>
                                     </div>
                                     

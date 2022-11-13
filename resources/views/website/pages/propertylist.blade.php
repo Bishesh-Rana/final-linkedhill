@@ -3,19 +3,6 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-    {{-- <section id="bread_crumb_wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul>
-                        <li><a href="{{ url('/') }}">Home</a>/</li>
-                        <li><a href="">{{ $pagedata->name }}</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section class="ads_inside_subpage">
         <div class="container">
             <div class="ads_section_cover">
@@ -23,7 +10,7 @@
                     <div class="col-lg-12">
                         @foreach ($advertisements as $ad)
                             <div class="ads_wrap">
-                                <img src="{{ $ad->image }}" alt="{{ $ad->title }}">
+                                <img src="{{ image($ad->image) }}" alt="{{ $ad->title }}">
                             </div>
                         @endforeach
                     </div>
@@ -33,18 +20,14 @@
     </section>
     <section class="container ">
       <form method="get" action="{{ route('front.search-properties') }}">
-        <div class="propertylistsearch">
-            {{-- {{dd(($purposes[0]->name == $filter['purpose']))}} --}}
-            {{-- {{dd($filter)}} --}}
-               
-           
+        <div class="propertylistsearch">                 
             <div class="first-row">
                 <div class="row g-1">
                     <div class="col-md-2">
                         <select class="purpose" name="purpose" id="purpose">
                             
-                            @foreach ($purposes as $purpose) 
-                            @if (array_key_exists('purpose', $filter ))
+                            @foreach ($purposes as $purpose)
+                            @if (array_key_exists('purpose', $filter )) 
                             <option value="{{ $purpose->name }}" {{($purpose->name == $filter['purpose']) ? 'selected':''}}>{{ $purpose->name }}</option>
                             @else
                             <option value="{{ $purpose->name }}" >{{ $purpose->name }}</option>
@@ -147,12 +130,23 @@
             {{-- {{dd($filter)}} --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
+                    @if (array_key_exists('start_prize', $filter ))
                     <option value="0" {{intval($filter['start_prize']== 0) ?'selected':''}}>Min Price</option>
                     <option value="5000.00" {{intval($filter['start_prize']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
                     <option value="10000.00" {{intval($filter['start_prize']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
                     <option value="50000.00" {{intval($filter['start_prize']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
                     <option value="100000.00" {{intval($filter['start_prize']== 100000.00) ?'selected':''}}>Rs. 100000.00</option>
                     <option value="1000000.00" {{intval($filter['start_prize']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
+
+                    @else
+                    <option value="0" >Min Price</option>
+                    <option value="5000.00">Rs. 5000.00</option>
+                    <option value="10000.00" >Rs. 10000.00</option>
+                    <option value="50000.00" >Rs. 50000.00</option>
+                    <option value="100000.00" >Rs. 100000.00</option>
+                    <option value="1000000.00" >Rs. 1000000.00</option>
+                    @endif
+                   
                 </select>
             </div>
             <div class="option_a1">
@@ -249,9 +243,6 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="property_thumbnail_">
-                                                    {{-- <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                            <img src="{{ @$property->images->first()->name }}" alt="">
-                                                        </a> --}}
                                                     <div id="carouselExampleIndicators" class="carousel slide"
                                                         data-ride="carousel">
                                                         <ol class="carousel-indicators">
@@ -268,7 +259,7 @@
                                                                 <div
                                                                     class="carousel-item {{ @$loop->first ? 'active' : '' }}">
                                                                     <img class="d-block w-100"
-                                                                        src="{{ @$image->name }}" alt="First slide">
+                                                                        src="{{ image(@$image->name) }}" alt="First slide">
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -364,7 +355,7 @@
                                                         <ul>
                                                             @foreach ($property->amenities as $amenity)
                                                                 <li><img src=""
-                                                                        alt="">{{ $amenity->name }}</li>
+                                                                        alt="">{{ image($amenity->name) }}</li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
