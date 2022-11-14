@@ -28,8 +28,7 @@
                                             <div class="form_group">
                                                 <input type="password" class="form-control" id="txtPassword"
                                                     placeholder="Password" name="password">
-                                                    <a class="forgot toggle_pwd" href="#">Forgot??</a>
-                                                {{-- <i class="lar la-eye toggle_pwd"></i> --}}
+                                                    <a class="forgot toggle_pwd" href="{{route('customer.forgot')}}">Forgot??</a>
                                             </div>
                                             @if ($errors->has('password'))
                                                 <strong class="text-danger">{{ $errors->first('password') }}</strong>
