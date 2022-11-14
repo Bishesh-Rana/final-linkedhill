@@ -58,6 +58,7 @@ class FeatureController extends Controller
     public function store(FeatureRequest $request)
     {       
         $data = $request->validated();
+        $data['showOnFilter'] = $request->showOnFilter=='on'?'1':'0'; 
         DB::beginTransaction();
         try {
             $feature =  Feature::create(Arr::except($data, 'category_id'));
@@ -100,6 +101,7 @@ class FeatureController extends Controller
     {
         $feature = Feature::findorfail($id);
         $data = $request->validated();
+        $data['showOnFilter'] = $request->showOnFilter;
         DB::beginTransaction();
         try {
             $feature->update(Arr::except($data, 'category_id'));

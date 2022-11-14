@@ -300,7 +300,6 @@
                                                         <i class="las la-crop-alt"></i>
                                                         <span
                                                             class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                                    {{-- <span>Owner: {{ @$property->owner_name }}</span> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
@@ -314,9 +313,6 @@
                                                     @endisset
                                                     @if ($property->negotiable == false)
                                                         @isset($property->negotiable)
-                                                            {{-- @if (!is_null($property->negotiable)) --}}
-                                                            {{-- <span><i class="las la-check"></i>NONE NEGOTIABLE</span> --}}
-                                                            {{-- @endif --}}
                                                         @endisset
                                                     @else
                                                         @if ($property->negotiable == true)

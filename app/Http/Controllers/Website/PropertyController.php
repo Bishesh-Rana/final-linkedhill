@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Website;
 
 use App\Models\Menu;
 use App\Models\User;
+use App\Models\Feature;
 use App\Models\Purpose;
 use App\Models\Property;
-use App\Models\Feature;
 use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Models\PropertyCategory;
+use App\Models\PropertyFacility;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
@@ -65,10 +66,35 @@ class PropertyController extends Controller
         ->when(request('property_facing'), function($query, $var) {
             $query->whereHas('features', function ($que) use ($var){
                 $feature_id = Feature::where('title','=','Facing Direction')->value('id');
-                
                 $que->where('feature_id',$feature_id)->where('value','=',$var);
             });
-        })     
+        }) 
+        ->when(request('building_type'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                // dd($var);
+                $feature_id = Feature::where('title','=','Building Type')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','=',$var);
+            });
+        }) 
+        ->when(request('building_age'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Building Age')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','=',$var);
+            });
+        })   
+        ->when(request('furnishing'), function($query, $var) {
+            $query->whereHas('features', function ($que) use ($var){
+                $feature_id = Feature::where('title','=','Furnishing Type')->value('id');
+                $que->where('feature_id',$feature_id)->where('value','=',$var);
+            });
+        })  
+        ->when(request('facility'), function($query, $var) {
+            $query->whereHas('facility', function ($que) use ($var){   
+            foreach($var as $v){
+                $que->where('facility_id',1)->where('title','=',$var);
+            }                        
+            });
+        })  
         ->paginate(5);
         // dd($properties);
         $meta = $this->getMeta();

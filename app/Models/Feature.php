@@ -29,6 +29,6 @@ class Feature extends Model
         return self::TYPE[$this->type];
     }
     public function value(){
-        return $this->hasMany(FeatureValue::class,'feature_id');
+        return $this->hasMany(FeatureValue::class);
     }
 }

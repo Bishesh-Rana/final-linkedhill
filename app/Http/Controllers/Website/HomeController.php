@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use App\Models\Advertisement;
-use Illuminate\Http\Request;
-use App\Models\AgencyDetail;
+use App\Models\Faq;
 use App\Models\Blog;
 use App\Models\City;
+use App\Models\Menu;
+use App\Models\Type;
+use App\Models\User;
+use App\Models\Slider;
 use App\Models\Enquiry;
-use App\Models\Faq;
-use App\Models\Property;
-use App\Models\PropertyCategory;
-use App\Models\Province;
+use App\Models\Pricing;
 use App\Models\Purpose;
 use App\Models\Service;
-use App\Models\Slider;
-use App\Models\Subscriber;
-use App\Models\Type;
-use App\Models\Menu;
-use App\Models\Pricing;
-use App\Models\User;
 use App\Models\Website;
-use App\Notifications\PropertyInquery;
+use App\Models\Facility;
+use App\Models\Property;
+use App\Models\Province;
+use App\Models\Subscriber;
 use App\Traits\CommonTrait;
 use Illuminate\Support\Str;
+use App\Models\AgencyDetail;
+use Illuminate\Http\Request;
+use App\Models\Advertisement;
+use App\Models\PropertyCategory;
+use App\Http\Controllers\Controller;
+use App\Notifications\PropertyInquery;
 
 class HomeController extends Controller
 {
@@ -50,9 +51,11 @@ class HomeController extends Controller
         $this->website['services'] = Service::latest()->limit(8)->get();
         $this->website['provinces'] = Province::all();
         $this->website['purposes'] = Purpose::all();
+        $this->website['facilities'] = Facility::all();
 
 
         $this->website['property'] = Property::all();
+        // $this->website['features'] = Property::all();
 
 
         $this->website['propertyCat'] = PropertyCategory::all();

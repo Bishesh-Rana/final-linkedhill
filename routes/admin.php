@@ -45,6 +45,7 @@ use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\PropertyCategoryController;
 use App\Http\Controllers\Admin\TradelinkCategoryController;
 
+
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminLoginController::class, 'login']);
 
@@ -53,6 +54,7 @@ Route::get('testImageUploader', function () {
 });
 
 Route::resource('type', TypeController::class);
+
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
