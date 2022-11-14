@@ -19,6 +19,10 @@ class AgentRegistrationController extends Controller
     public function getAgentRegistration(){
         return view('website.agent.registration');
     }
+    public function getAgentLogin(){
+        return view('website.agent.login');
+    }
+    
     public function postAgentRegistration (Request $request){
         $validator = $this->validate(request(), [
             'name' => 'required',

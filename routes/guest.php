@@ -38,6 +38,8 @@ Route::post('/api-update-password', [CustomerAuthController::class, 'updatePassw
 
 Route::get('/agent-registration', [AgentRegistrationController::class, 'getAgentRegistration'])->name('agent.getRegistration');
 Route::post('/agent-registration', [AgentRegistrationController::class, 'postAgentRegistration'])->name('agent.postRegistration');
+Route::get('/agent-login', [AgentRegistrationController::class, 'getAgentLogin'])->name('agent.getLogin');
+Route::post('/agent-login', [AgentRegistrationController::class, 'postAgentLogin'])->name('agent.postLogin');
 Route::post('subscribe-us', [HomeController::class, 'subscribe_us'])->name('subscribe.us');
 Route::post('enquiry', [HomeController::class, 'storeEnquiry'])->name('store.enquiry');
 Route::get('blog/{slug}', [HomeController::class, 'blogSingle'])->name('blog.single');

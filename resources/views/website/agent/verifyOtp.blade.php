@@ -14,7 +14,7 @@
                                 <div class="customer-login-form otp-form row">
                                     <div class="col-md-5 text-center first">
                                         <h3>Otp Verification for Registration</h3>
-                                        <p>Register and keep record or your favorite Properties.</p>
+                                        <p>Register and List Your Properties.</p>
                                         <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
                                     
                                     </div>
@@ -46,7 +46,9 @@
                                                 <div class="register-benefits">
                                                     <h3>Sign up today and you will be able to :</h3>
                                                     <ul>
-                                                        <li>Track your Favorite properties.</li>
+                                                        <li>Post Your Property.</li>
+                                                        <li>Boost Your Property.</li>
+                                                        <li>Keep a record of actions on your property.</li>
                                                     </ul>
                                                 </div>
                                         </div>

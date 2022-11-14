@@ -5298,6 +5298,7 @@ section#property_character_list {
     border: 1px solid #ebe6e6;
     border-radius: 5px;
     text-align: center;
+    padding: 20px 5px;
    }
    #user-credential_wrapper .forgot{
     position: absolute;
@@ -5359,4 +5360,13 @@ section#property_character_list {
    .agent-type div{
     /* width: 50%; */
     margin-bottom: 10px;
+    margin-right: 5px;
    }
+
+   .tooltipinfo{
+    border: 1px solid #a9a5a5;
+    border-radius: 50%;
+    padding: 1px 5px;
+   }
+
+  
