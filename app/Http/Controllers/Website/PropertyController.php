@@ -41,53 +41,19 @@ class PropertyController extends Controller
         // dd($request->all());
         $filter = $request->all();
         $properties =  Property::filter()
-        ->when(request('bed'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Bedroom')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','>=',$var);
+        ->when(request('properties'), function($query, $var) {
+            foreach($var  as $key=>$value){
+                $query->whereHas('features', function ($que) use ($key,$value){  
+                    if(!$value == null )  {
+                        $que->where('feature_id',$key)->where('value','>=',$value);
+                    }                       
             });
+            }                     
         }) // tej sir leh sikaunu vako
-
-        ->when(request('bath'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Bathroom')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','>=',$var);
-            });
-        })
-        ->when(request('parking'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Parking')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','>=',$var);
-            });
-        })
         ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address'))) 
         ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
         ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
-        ->when(request('property_facing'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Facing Direction')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','=',$var);
-            });
-        }) 
-        ->when(request('building_type'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                // dd($var);
-                $feature_id = Feature::where('title','=','Building Type')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','=',$var);
-            });
-        }) 
-        ->when(request('building_age'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Building Age')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','=',$var);
-            });
-        })   
-        ->when(request('furnishing'), function($query, $var) {
-            $query->whereHas('features', function ($que) use ($var){
-                $feature_id = Feature::where('title','=','Furnishing Type')->value('id');
-                $que->where('feature_id',$feature_id)->where('value','=',$var);
-            });
-        })  
+
         ->when(request('facility'), function($query, $var) {
             $query->whereHas('facility', function ($que) use ($var){   
             foreach($var as $v){
@@ -96,7 +62,6 @@ class PropertyController extends Controller
             });
         })  
         ->paginate(5);
-        // dd($properties);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();
