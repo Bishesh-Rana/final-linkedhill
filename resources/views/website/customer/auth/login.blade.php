@@ -10,7 +10,7 @@
                     <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
 
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="row">
                         <div class="col-lg-10 m-auto">
                             <div class="sign_up_in_wrapper">
@@ -55,6 +55,17 @@
                                 <p class="">New to Linkedhill??</p>
                                 <a href="{{route('customer.registerform')}}" class="btn login_registerbtn">Signup</a>
                             </div>
+                            <div class=" d-flex login_register">
+                                <p class="">Are you a seller ??</p>
+                               
+                                    <a href="{{route('agent.getLogin')}}" class="btn login_registerbtn">Seller Login</a>
+                                
+                            </div>
+                            {{-- <div class="d-flex login_register">
+                                <h3 class="text-center">OR</h3>
+                                <p class="">Want to register as a seller ??</p>
+                                <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Seller Registration</a>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
