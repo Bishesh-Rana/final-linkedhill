@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use App\Actions\Fortify\ResetUserPassword;
+use App\Mail\PasswordResetMail;
 
 class CustomerAuthController extends Controller
 {
@@ -172,14 +173,29 @@ class CustomerAuthController extends Controller
 
     public function resetpasswordmail(Request $request){
         $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email',$request->email)->first();
+        if(empty($user)){
+            return back()->with('error', 'Your email is not found');
+        }else{
+            $code = $this->getOtp();
+            $user->update(['otp'=>$code]);
+            Mail::to($request->email)->send(new PasswordResetMail($request->email,$code));
+            return back()->with('success',"We sent you password reset link");
+        }
  
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        
+
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+
+
+
      
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+        // return $status === Password::RESET_LINK_SENT
+        //             ? back()->with(['status' => __($status)])
+        //             : back()->withErrors(['email' => __($status)]);
 
     }
 

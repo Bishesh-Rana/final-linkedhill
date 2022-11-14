@@ -37,13 +37,7 @@
     
                                         <input class="btn btn-danger reset" type="submit" value="Reset" name="login">
                                         <div>
-                                            {{-- @if (session('status'))
-                                <p  class="alert alert-success">{{ session('status') }}</p>
-                             @endif --}}
-    
                                         </div>
-    
-                                        {{-- @include('success.success') --}}
                                         <a href="{{ route('customer.signup') }}">Back To Login</a>
                                     </div>
                                 </form>
