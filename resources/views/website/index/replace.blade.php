@@ -1,4 +1,4 @@
-<div class="replace">
+<div class="replace d-flex">
     @php
         $i = 1;
     @endphp
@@ -17,8 +17,8 @@
         @php
             $i += 1;
         @endphp
-    {{-- @if($i > 2 )
+    @if($i > 2 )
         @break
-    @endif --}}
+    @endif
     @endforeach
 </div>

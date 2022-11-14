@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="replace">
+                        <div class="replace d-flex">
                             <!-- <div class="option_a1">
                                 <select  id="bed" name="bed">
                                     <option data-element="0bed" value="" selected>Any Bed</option>
@@ -191,7 +191,7 @@
                     // dataType: 'JSON',
                     success:function(response)
                     {
-                        // console.log(response);
+                        console.log(response);
                         $(".replace").replaceWith(response);
                     },
                     error: function(response) {

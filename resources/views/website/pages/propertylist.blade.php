@@ -151,11 +151,22 @@
             </div>
             <div class="option_a1">
                 <select name="end_prize" id="end_prize">
+                    @if (array_key_exists('purpose', $filter )) 
                     <option value="0.00" {{(intval($filter['end_prize'])== 0.00)?'selected':''}}>Max Price</option>
                     <option value="1100000.00" {{(intval($filter['end_prize'])== 1100000)?'selected':''}}>Rs. 1100000.00</option>
                     <option value="1500000.00" {{(intval($filter['end_prize'])== 1500000)?'selected':''}}>Rs. 1500000.00</option>
                     <option value="2000000.00" {{(intval($filter['end_prize'])== 2000000)?'selected':''}}>Rs. 2000000.00</option>
                     <option value="5000000.00" {{(intval($filter['end_prize'])== 5000000)?'selected':''}}>Rs. 5000000.00</option>
+                        
+                    @else
+                    <option value="0.00" selected>Max Price</option>
+                    <option value="1100000.00">Rs. 1100000.00</option>
+                    <option value="1500000.00">Rs. 1500000.00</option>
+                    <option value="2000000.00">Rs. 2000000.00</option>
+                    <option value="5000000.00">Rs. 5000000.00</option>
+                        
+                    @endif
+
                 </select>
             </div>
             <div class="option_a1 moreOption">

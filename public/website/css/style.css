@@ -1371,18 +1371,26 @@ div#property .owl-dots {
 #site_footer {
     background-color: #1f242e;
     padding-top: 72px;
-    margin-top: 117px;
+    margin-top: 50px;
 }
 
 .footer_top {
     position: relative;
-    padding: 35px 0;
+    padding: 26px 50px;
     border-top-left-radius: 50px;
     overflow: hidden;
     border-bottom-right-radius: 50px;
     position: absolute;
     width: calc(100% - 24px);
-    top: -170px;
+    top: -120px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+}
+.footer_top h3 {
+    color: white ;
+    z-index: 1;
 }
 
 .footer_top:before {
@@ -1418,8 +1426,8 @@ div#property .owl-dots {
     overflow: hidden;
     display: flex;
     padding: 1px 1px;
-    margin-left: 100px;
-    margin-top: 16px;
+    /* margin-left: 100px; */
+    /* margin-top: 16px; */
 }
 
 .subscribe_form input:focus,
@@ -1446,7 +1454,7 @@ div#property .owl-dots {
 }
 
 .footer_ft_left .navbar-brand {
-    color: black;
+    /* color: black; */
     margin-bottom: 5px;
     display: block;
     height: auto;
@@ -1454,7 +1462,7 @@ div#property .owl-dots {
 
 .footer_ft_left p {
     font-weight: 400;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 .follow_us ul {
@@ -1518,7 +1526,7 @@ div#property .owl-dots {
 }
 
 .footer_list {
-    padding-top: 90px;
+    padding-top: 30px;
 }
 
 .footer_list dl {
@@ -4895,7 +4903,9 @@ nav#linked_hill_nav {
     width: 90%;
     margin: 2px auto;
     justify-content: center;
-    /* flex-grow: 1; */
+    flex-grow: 1;
+    /* justify-content: space-between; */
+    flex-basis: auto;
 }
 
 .for_toggle_view {
@@ -4931,7 +4941,7 @@ nav#linked_hill_nav {
 }
 
 .option_a1 {
-     width: fit-content;
+     /* width: fit-content; */
      margin-right: 2px;
 }
 

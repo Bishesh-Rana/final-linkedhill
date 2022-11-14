@@ -88,7 +88,7 @@
                     <div class="me-2"> <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
                     </div>
                     <div>
-                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="lar la-user"></i>List Property</span>
+                         <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>List Property</span>
                     </a></div>
                     {{-- <ul>
                         <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
@@ -209,26 +209,15 @@
     <footer id="site_footer">
         <div class="container">
             <div class="footer_top">
-                <div class="row">
-                    <div class="col-lg-9 m-auto">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="footer_subscribe_text">
-                                    <h3>Newsletters</h3>
-                                    <p>Subscribe to the newsletter for all the latest updates</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <form id="newsletter" name="newsletter">
-                                    @csrf
-                                    <div class="subscribe_form">
-                                        <input type="text" placeholder="Your email address" name="email" id="subscribeRmail">
-                                        <button type="submit" class="btn btn-info">Subscribe Now</button>
-                                    </div>
-                                </form>
-                            </div>
+                <h3 style="z-index: 1">Subscribe to Our Newsletter.</h3>
+                <div class="newsletter_form">
+                    <form id="newsletter" name="newsletter">
+                        @csrf
+                        <div class="subscribe_form">
+                            <input type="text" placeholder="Your email address" name="email" id="subscribeRmail">
+                            <button type="submit" class="btn btn-info">Subscribe Now</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -236,7 +225,7 @@
                     <div class="footer_ft_left">
                         <a class="navbar-brand" href="{{ route('homepage') }}">
                             <img src="{{ image(config('websites.logo_footer')) }}"
-                                alt=""><span>{{ config('webistes.name') }}</span>
+                                alt=""><span style="color: #58585a; margin-left:20px;">LinkedHill</span>
                         </a>
                         <p>{!! @$website->short_description !!}</p>
                         <div class="follow_us">
