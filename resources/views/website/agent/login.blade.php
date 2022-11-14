@@ -44,6 +44,10 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="d-flex login_register">
+                                <p class="">New Seller ??</p>
+                                <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Signup</a>
+                            </div>
                         </div>
 
                     </div>
