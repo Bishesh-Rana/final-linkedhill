@@ -89,7 +89,7 @@
                         @endforeach
                     </div>
                 </div>
-            <div class="replace d-flex">
+                <div class=" d-flex"> {{-- replace --}}
                 @php
                     $i = 1;
                 @endphp
@@ -98,7 +98,7 @@
                     $name = App\Models\Feature::where('id',$key)->value('title');
                 @endphp
                     <div class="option_a1" id="{{$name}}">  
-                        <select name="property[{{$key}}]">
+                        <select name="properties[{{$key}}]">
                             <option value="">{{$name}}</option>
                             @foreach ($values as $value)
                             <option value="{{$value}}">{{$value}}</option>
@@ -119,35 +119,10 @@
                     @endphp
                 @endforeach
             </div>
-            {{-- <div class="option_a1" id="bath">
-                <select name="bath" >
-                    @for ($x = 0; $x<=10; $x++)
-                    @if (array_key_exists('bath', $filter))
-                    <option data-element="bath-{{$x}}" {{( intval( $filter['bath'])==$x) ? 'selected':''}} value="{{$x}}">{{ ($x == 0)?'Any':$x }} Bath</option>
-                    @else
-                    <option data-element="bath-{{$x}}" value="{{$x}}" >{{ ($x == 0)?'Any':$x }} Bath</option>  
-                    @endif
-                    
-                    @endfor
-                </select>
-            </div> --}}
-
-            {{-- <div class="option_a1" id="parking">
-                <select>
-                    @for ($x = 0; $x <= 10; $x++)
-                    @if (array_key_exists('parking', $filter))
-                    <option data-element="park-{{$x}}" value="{{$x}}" {{(intval($filter['parking'])== $x)?'selected':''}}>{{ ($x == 0)?'Any':$x }} Park</option>
-                    @else
-                    <option data-element="park-{{$x}}" value="{{$x}}" >{{ ($x == 0)?'Any':$x }} Park</option>  
-                    @endif
-                    @endfor
-                </select>
-            </div> --}}
-            {{-- {{dd($filter)}} --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
                     @if (array_key_exists('start_prize', $filter ))
-                    <option value="0" {{intval($filter['start_prize']== 0) ?'selected':''}}>Min Price</option>
+                    <option value="" {{intval($filter['start_prize']== 0) ?'selected':''}}>Min Price</option>
                     <option value="5000.00" {{intval($filter['start_prize']== 5000.00) ?'selected':''}}>Rs. 5000.00</option>
                     <option value="10000.00" {{intval($filter['start_prize']== 10000.00) ?'selected':''}}>Rs. 10000.00</option>
                     <option value="50000.00" {{intval($filter['start_prize']== 50000.00) ?'selected':''}}>Rs. 50000.00</option>
@@ -155,7 +130,7 @@
                     <option value="1000000.00" {{intval($filter['start_prize']== 1000000.00) ?'selected':''}}>Rs. 1000000.00</option>
 
                     @else
-                    <option value="0" >Min Price</option>
+                    <option value="" >Min Price</option>
                     <option value="5000.00">Rs. 5000.00</option>
                     <option value="10000.00" >Rs. 10000.00</option>
                     <option value="50000.00" >Rs. 50000.00</option>
@@ -168,14 +143,14 @@
             <div class="option_a1">
                 <select name="end_prize" id="end_prize">
                     @if (array_key_exists('purpose', $filter )) 
-                    <option value="0.00" {{(intval($filter['end_prize'])== 0.00)?'selected':''}}>Max Price</option>
+                    <option value="" {{(intval($filter['end_prize'])== 0.00)?'selected':''}}>Max Price</option>
                     <option value="1100000.00" {{(intval($filter['end_prize'])== 1100000)?'selected':''}}>Rs. 1100000.00</option>
                     <option value="1500000.00" {{(intval($filter['end_prize'])== 1500000)?'selected':''}}>Rs. 1500000.00</option>
                     <option value="2000000.00" {{(intval($filter['end_prize'])== 2000000)?'selected':''}}>Rs. 2000000.00</option>
                     <option value="5000000.00" {{(intval($filter['end_prize'])== 5000000)?'selected':''}}>Rs. 5000000.00</option>
                         
                     @else
-                    <option value="0.00" selected>Max Price</option>
+                    <option value="" selected>Max Price</option>
                     <option value="1100000.00">Rs. 1100000.00</option>
                     <option value="1500000.00">Rs. 1500000.00</option>
                     <option value="2000000.00">Rs. 2000000.00</option>
@@ -196,47 +171,31 @@
                     <div class="option_1 multi_select_dropdown">
                         <p>Common Facilities<i class="las la-angle-down"></i></p>
                         <div class="option_listing_dropDown child_dropdown">
-                            @foreach ($propertyCat as $propertyC)
+                            @foreach ($facilities as $facility)
                                 <div class="list_group_category">
-                                    <input class="form-check-input front-category property" id="property" data-element="#advance{{ $propertyC->id }}"
-                                        type="checkbox" name="category_id" value="{{ $propertyC->id }}"
-                                        id="initial{{ $propertyC->id }}">
-                                    <label class="form-check-label"
-                                        for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
+                                    <input class="form-check-input front-category" data-element="#advance{{ $facility->id }}"
+                                        type="checkbox" name="category_id" value="{{ $facility->id }}"
+                                        id="initial{{ $facility->id }}">
+                                    <label class="form-check-label" for="initial{{ $facility->id }}">{{ $facility->title }}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-
-                    <label for="buildingtype"> Building Type:-</label>
-                    <select name="buildingtype" id="buildingtype">
-                        <option value="underconstruction">Under Construction</option>
-                        <option value="new">Newly Built</option>
-                        <option value="alreadyused">Already Used</option>
-                    </select>
-                    <label for="direction"> Direction:-</label>
-                    <select name="direction" id="direction">
-                        <option value="east">East</option>
-                        <option value="south">South</option>
-                        <option value="west">West</option>
-                        <option value="north">North</option>
-                    </select>
-                    <label for="buildingage">Building Age</label>
-                    <select name="buildingage" id="buildingage">
-                        <option value="anyage">Any Age</option>
-                        <option value="below1">Below 1 Year</option>
-                        <option value="below5">Below 5 years</option>
-                    </select>
-                    <label for="furnishing">Furnishing Type</label>
-                    <select name="furnishing" id="furnishing">
-                        <option value="anyfurnished">Any</option>
-                        <option value="fullyfurnished">Fully Furnished</option>
-                        <option value="semifurnished">Semi Furnished</option>
-                        <option value="unfurnished">Unfurnished</option>
-                    </select>
+                    <div class="replace">
+                        @foreach($feature_values as $key=>$values)
+                            @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                            <label for="buildingtype"> {{$name}}:-</label>
+                            <select name="properties[{{$key}}]" id="buildingtype">
+                                <option value=""> Select {{$name}}</option>
+                                @foreach($values as $value)
+                                    <option value="{{$value}}">{{$value}}</option>
+                                @endforeach
+                            </select>
+                        @endforeach
+                    </div>
                     <label for="listedby">listed By</label>
                     <select name="listedby" id="listedby">
-                        <option value="any">Any</option>
+                        <option value="">Any</option>
                         <option value="owner">Owner</option>
                         <option value="builder">Builder</option>
                         <option value="agent">Agent</option>

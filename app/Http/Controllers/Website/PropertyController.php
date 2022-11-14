@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Feature;
 use App\Models\Purpose;
+use App\Models\Facility;
 use App\Models\Property;
 use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class PropertyController extends Controller
                     }                       
             });
             }                     
-        }) // tej sir leh sikaunu vako
+        })
         ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address'))) 
         ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
         ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
@@ -67,8 +68,7 @@ class PropertyController extends Controller
         $purposes = Purpose::all();
         $property = Property::all();
         $propertyCat = PropertyCategory::all();
-
-        //
+        $facilities = Facility::get();
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');
@@ -88,7 +88,7 @@ class PropertyController extends Controller
             $feature_values[$feature->id]=$values;
        }
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
+        return view('website.pages.propertylist', compact('facilities','pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])
