@@ -19,46 +19,47 @@
                                     @csrf
 
                                     <div class="mb-3">
+                                        <div class="myDIV">Hover over me.</div>
+                                        <div class="hide">I am shown when someone hovers over the div above.</div>
                                         <label for="exampleFormControlInput1" class="form-label">Agency Type:- </label> <br>
                                         <div class="agent-type">
-                                            <div>
+                                            <div  class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type1"
                                                     checked value="1" onclick="changeType()">
-                                                <label class="form-check-label" for="type1">
-                                                    Property Owner
-                                                    <button type="button" class="tooltipinfo" data-toggle="tooltip"
-                                                        data-placement="top" title="Property owner">
-                                                        <i class="las la-info"></i>
-                                                    </button>
+                                                <label class="form-check-label tooltiptoggler1" for="type1">
+                                                    Property Owner <div class="tooltipinfo"><i class="las la-info "></i>
+                                                        </div> 
                                                 </label>
+                                                <div class="tooltipdefault">If You are owner of property.
+                                                </div>
                                             </div>
-
-                                            <div>
+                                           
+                                            <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type2"
                                                     value="2" onclick="changeType()">
-                                                <label class="form-check-label" for="type2">Real Estate Company
+                                                <label class="form-check-label d-flex" for="type2"><p>Real Estate Company</p>
                                                     <button type="button" class="tooltipinfo" data-toggle="tooltip"
-                                                        data-placement="top" title="Real state Company">
+                                                        data-placement="top"  data-html="true" title="Licensed under Nepal Government and with more then 1 employees.">
                                                         <i class="las la-info"></i>
                                                     </button></label>
                                             </div>
-                                            <div>
+                                            <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type3"
                                                     value="3" onclick="changeType()">
                                                 <label class="form-check-label" for="type3">
                                                     Individual Agent <button type="button" class="tooltipinfo"
-                                                        data-toggle="tooltip" data-placement="top" title="Individual Agent">
+                                                        data-toggle="tooltip" data-placement="top" data-html="true" title="<div style='width:200px;height:fit-content;'>Someone who is licensed under Nepal Government rules & regulations and a single employee or work for himself/herself.</div>">
                                                         <i class="las la-info"></i>
                                                     </button>
                                                 </label>
                                             </div>
-                                            <div>
+                                            <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type4"
                                                     value="4" onclick="changeType()">
                                                 <label class="form-check-label" for="type4">
                                                     Builder/ Developer <button type="button" class="tooltipinfo"
                                                         data-toggle="tooltip" data-placement="top"
-                                                        title="Builder or developer">
+                                                        data-html="true" title="<div style='width:200px;height:fit-content;'>This account holder are someone’s who are licensed under Nepal Government rules & regulations. This account suits businesses who Build or develops different sites & relating to upcoming projects.</div>">
                                                         <i class="las la-info"></i>
                                                     </button>
                                                 </label>
