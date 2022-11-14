@@ -64,8 +64,9 @@
                     <div class="col-md-2">
                         
                         <select name="sorting" class="sorting" id="sorting">
-                            <option  value="pricelth"> Price(low to high)</option>
-                            <option value="pricehtl"> Price(high to low)</option>
+                            <option  value="">Select </option>
+                            <option  value="low"> Price(low to high)</option>
+                            <option value="high"> Price(high to low)</option>
                             <option value="latest">Latest</option>
                             <option value="oldest">Oldest</option>
                         </select>
@@ -79,31 +80,46 @@
                     <div class="option_listing_dropDown child_dropdown">
                         @foreach ($propertyCat as $propertyC)
                             <div class="list_group_category">
-                                <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}"
+                                <input class="form-check-input front-category property" id="property" data-element="#advance{{ $propertyC->id }}"
                                     type="checkbox" name="category_id" value="{{ $propertyC->id }}"
                                     id="initial{{ $propertyC->id }}" selected>
                                 <label class="form-check-label"
                                     for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                             </div>
-                            @if ($propertyC->id == 3)
-                            @break
-                        @endif
                         @endforeach
                     </div>
                 </div>
-            <div class="option_a1" id="bed">
-               
-                <select name="bed">   
-                    @for ($x=0; $x<=10; $x++)
-                    @if ( array_key_exists('bed',$filter ))
-                    <option data-element="{{$x}}bed" {{ ( intval( $filter['bed'])== $x) ? 'selected':''}} value="{{$x}}">{{($x == 0)?'Any':$x}} Bed</option>
-                    @else
-                    <option data-element="{{$x}}bed" value="{{$x}}">{{($x == 0)?'Any':$x}} Bed</option>
-                    @endif
-                    @endfor               
-                </select>
+            <div class="replace d-flex">
+                @php
+                    $i = 1;
+                @endphp
+                @foreach($feature_values as $key=>$values)
+                @php
+                    $name = App\Models\Feature::where('id',$key)->value('title');
+                @endphp
+                    <div class="option_a1" id="{{$name}}">  
+                        <select name="property[{{$key}}]">
+                            <option value="">{{$name}}</option>
+                            @foreach ($values as $value)
+                            <option value="{{$value}}">{{$value}}</option>
+                                {{-- @if( array_key_exists($name,$filter )) 
+                                    <option data-element="{{$value}}{{$name}}" {{ ( intval( $filter[{{$name}}])== $value) ? 'selected':''}} value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
+                                @else
+                                    <option data-element="{{$value}}{{$name}}" value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
+                                @endif --}}
+
+                            @endforeach               
+                        </select>
+                    </div>
+                    @php
+                        $i += 1;
+                        if($i==4){
+                            break;
+                        }
+                    @endphp
+                @endforeach
             </div>
-            <div class="option_a1" id="bath">
+            {{-- <div class="option_a1" id="bath">
                 <select name="bath" >
                     @for ($x = 0; $x<=10; $x++)
                     @if (array_key_exists('bath', $filter))
@@ -114,9 +130,9 @@
                     
                     @endfor
                 </select>
-            </div>
+            </div> --}}
 
-            <div class="option_a1" id="parking">
+            {{-- <div class="option_a1" id="parking">
                 <select>
                     @for ($x = 0; $x <= 10; $x++)
                     @if (array_key_exists('parking', $filter))
@@ -126,7 +142,7 @@
                     @endif
                     @endfor
                 </select>
-            </div>
+            </div> --}}
             {{-- {{dd($filter)}} --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
@@ -182,15 +198,12 @@
                         <div class="option_listing_dropDown child_dropdown">
                             @foreach ($propertyCat as $propertyC)
                                 <div class="list_group_category">
-                                    <input class="form-check-input front-category" data-element="#advance{{ $propertyC->id }}"
+                                    <input class="form-check-input front-category property" id="property" data-element="#advance{{ $propertyC->id }}"
                                         type="checkbox" name="category_id" value="{{ $propertyC->id }}"
                                         id="initial{{ $propertyC->id }}">
                                     <label class="form-check-label"
                                         for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                 </div>
-                                @if ($propertyC->id == 3)
-                                @break
-                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -367,26 +380,10 @@
                                                         </ul>
                                                     </div>
                                                 @endif
-                                                {{-- <div class="property_facing">
-                                                       
-                                                        <div class="show_button_area">
-                                                            <span class="button_show"><i
-                                                                    class="las la-angle-down"></i></span>
-                                                        </div>
-                                                    </div> --}}
                                                 <div class="property_text">
                                                     {!! @$property->property_detail !!}
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-1">
-                                                    <div class="property_Side text-center">
-                                                       
-                                                        <a href="tel:{{ @$property->owner_phone }}"
-                                                            class=" "><i class="las la-phone-volume"></i></a>
-                                                        <a href="#" class="" data-bs-toggle="modal"
-                                                            data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
-                                                    </div>
-                                                </div> --}}
                                         </div>
                                     </div>
                                 @empty
@@ -622,5 +619,46 @@
             }
         });
     });
+</script>
+<script>
+    $(document).ready(function() {
+       var category_ids = [];
+       $('.property').on('change', function(){
+           let{
+                   value,
+                   id,
+                   checked
+               } = event.target;
+               if(id=="property"){
+                   if(checked){
+                       category_ids.push(value);
+                   }
+                   else{
+                       category_ids = category_ids.filter(function(data){
+                           return data != value;
+                       })
+                   }
+               }
+               $.ajax({
+                   url: "{{route('filterProperty')}}",
+                   type: 'get',
+                   data: {
+                       category_ids: category_ids,
+                   },
+                   // dataType: 'JSON',
+                   success:function(response)
+                   {
+                       console.log(response);
+                       $(".replace").replaceWith(response);
+                   },
+                   error: function(response) {
+                   }
+               });
+              
+       });
+       
+    });
+
+   
 </script>
 @endpush

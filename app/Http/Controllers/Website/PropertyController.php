@@ -68,8 +68,27 @@ class PropertyController extends Controller
         $property = Property::all();
         $propertyCat = PropertyCategory::all();
 
+        //
+        $feature_values = [];
+        $features = [];
+        $id = PropertyCategory::where('name',"=","House")->value('id');
+        $category = PropertyCategory::findOrFail($id);
+        $all_feature = $category->features->where('showOnFilter',1);
+        foreach($all_feature as $key=> $feature){
+            array_push($features,$feature);
+        }
+
+       foreach($features as $feature){
+            $values = [];
+            if($feature->value){
+                foreach($feature->value as $val){
+                    array_push($values,$val->value);
+                }
+            }
+            $feature_values[$feature->id]=$values;
+       }
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat'))->with('meta', $this->getMeta());
+        return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])
