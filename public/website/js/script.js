@@ -1,7 +1,6 @@
 // password visible and not visibleStart
 $(document).ready(function() {
     $(".input_box_zee i").on("click", function() {
-        // alert('this');
         var passInput = $("#password_field");
         if (passInput.attr("type") === "password") {
             passInput.attr("type", "text");
@@ -12,7 +11,6 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
     $(".signUpinput_box_zee i").on("click", function() {
-        // alert('this');
         var passInput = $("#password_field_signUp");
         if (passInput.attr("type") === "password") {
             passInput.attr("type", "text");
@@ -412,6 +410,7 @@ $('.front-category').on('click', function(e){
     })
 
     $('.front-category').on('change', function(e){
+        
         $($(this).data('element')).prop('checked', true);
         var checkedcat = [];
         $.each($("input[name='category_id']:checked"), function(){
@@ -425,10 +424,13 @@ $('.front-category').on('click', function(e){
         }
     })
 
-    $('.ad_category').on('change', function(e){
+    $('.ad_category').on('click', function(e){
         $($(this).data('element')).prop('checked', true);
         var checkedcat = [];
-        $.each($("input[name='ad_category_id']:checked"), function(){
+        $.each($("input[name='category_id']:checked"), function(){
+            checkedcat.push($(this).val());
+        });
+        $.each($("input[name='category_id']:unchecked"), function(){
             checkedcat.push($(this).val());
         });
         if (checkedcat.length == 1 && checkedcat[0]==2){
@@ -463,7 +465,6 @@ $('.front-category').on('click', function(e){
     })
     $(document).ready(function(){
         $('.list_group_category_advance').on('change', function(){
-            alert("changed")
             var checkedcat = [];
             $.each($("input[name='category_id']:checked"), function(){
                 checkedcat.push($(this).val());
@@ -472,7 +473,6 @@ $('.front-category').on('click', function(e){
             $('#bath, #parking, #bed').parent().hide();
         }
         else{
-            // alert('others check');
             $('#bath, #parking,#bed').parent().show();
         }
     })

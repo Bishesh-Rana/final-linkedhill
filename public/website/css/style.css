@@ -5122,7 +5122,7 @@ section#property_character_list {
         margin-right: 15px;
     }
     .advance_search_modal input {
-        visibility:hidden;
+        /* visibility:hidden; */
     }
     .advance_search_modal label {
         cursor: pointer;
