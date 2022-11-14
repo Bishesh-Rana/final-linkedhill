@@ -5132,7 +5132,11 @@ section#property_character_list {
         margin-right: 15px;
     }
     .advance_search_modal input {
-        /* visibility:hidden; */
+        visibility:hidden;
+    }
+    
+    .categoryselector input {
+        visibility:initial;
     }
     .advance_search_modal label {
         cursor: pointer;
@@ -5379,4 +5383,11 @@ section#property_character_list {
     padding: 1px 5px;
    }
 
-  
+   .dynamic{
+    display: flex;
+    flex-wrap: wrap;
+
+   }
+  .selector{
+    width: 25%;
+  }

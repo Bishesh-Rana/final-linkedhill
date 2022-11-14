@@ -430,9 +430,9 @@ $('.front-category').on('click', function(e){
         $.each($("input[name='category_id']:checked"), function(){
             checkedcat.push($(this).val());
         });
-        $.each($("input[name='category_id']:unchecked"), function(){
-            checkedcat.push($(this).val());
-        });
+        // $.each($("input[name='category_id']:unchecked"), function(){
+        //     checkedcat.push($(this).val());
+        // });
         if (checkedcat.length == 1 && checkedcat[0]==2){
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
         }
