@@ -164,13 +164,13 @@ body {
     color: white;
     font-weight: 700;
     position: relative;
-    height: 38px;
+    height: 70px;
 }
 
 #site_banner_slider {
     position: relative;
     overflow: hidden;
-    margin-top: -58px;
+    margin-top: -68px;
 }
 
 div#site_carousel .carousel-control-prev {
@@ -2340,7 +2340,7 @@ section#bread_crumb_wrapper {
 a.navbar-brand img {
     position: relative;
     top: -2px;
-    height: 35px;
+    height: 60px;
 }
 
 .footer_ft_left a.navbar-brand img {
@@ -4710,7 +4710,7 @@ div#navbarSupportedContent {
 nav#linked_hill_nav .nav-item a {
     color: white;
     text-transform: capitalize;
-    padding: 17px 23px;
+    padding: 17px 10px;
 }
 
 nav#linked_hill_nav {
@@ -4931,8 +4931,8 @@ nav#linked_hill_nav {
 }
 
 .option_a1 {
-     /* width: calc(100%/5);  */
-    margin-right: 2px;
+     width: fit-content;
+     margin-right: 2px;
 }
 
 .option_a1 select {
@@ -4946,7 +4946,7 @@ nav#linked_hill_nav {
 
 .property_item_linkedhill {
     position: relative;
-    /* width: calc(100%/6); */
+    width: 18%;
 }
 .amenites_item img {
     height: 33px;
@@ -5348,4 +5348,15 @@ section#property_character_list {
     background: #e8f0fe;
     border-radius: 5px;
     margin: 0px 10px;
+   }
+
+   .agent-type{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
+   }
+   .agent-type div{
+    /* width: 50%; */
+    margin-bottom: 10px;
    }

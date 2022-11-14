@@ -22,8 +22,8 @@ class CustomerAuthController extends Controller
 
     public function signin()
     {
-        // return view('website.customer.auth.login');
-        return view('website.customer.auth.signup');
+        return view('website.customer.auth.login');
+        // return view('website.customer.auth.signup');
     }
 
     public function registerform()

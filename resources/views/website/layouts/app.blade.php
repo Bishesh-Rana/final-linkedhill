@@ -84,8 +84,11 @@
                     @endif
                 @endforeach
                 </ul>
-                <div class="social_link">
-                    <div> <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i> Login / Register</span>
+                <div class="social_link d-flex">
+                    <div class="me-2"> <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
+                    </div>
+                    <div>
+                         <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>List Property</span>
                     </a></div>
                     {{-- <ul>
                         <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
