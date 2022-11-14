@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div >
-                            <div class="option_a1">
+                        <div class="replace">
+                            <!-- <div class="option_a1">
                                 <select  id="bed" name="bed">
                                     <option data-element="0bed" value="" selected>Any Bed</option>
                                     <option data-element="1bed" value="1">1+</option>
@@ -68,9 +68,9 @@
                                     <option data-element="9bed" value="9">9+</option>
                                     <option data-element="10bed" value="10">10+</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
-                        {{-- <div class="option_a1">
+                        <!-- <div class="option_a1">
                             <select name="bath" id="bath">
                                 <option  data-element="bath-0" value="" selected>Any Bath</option>
                                 <option  data-element="bath-1" value="1">1+ Bath</option>
@@ -92,7 +92,7 @@
                                 <option data-element="park-2" value="2">2+ Parking</option>
                                 <option data-element="park-3" value="3">3+ Parking</option>
                             </select>
-                        </div> --}}
+                        </div> -->
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
                                 <option value="" selected>Min Price</option>
@@ -191,8 +191,8 @@
                     // dataType: 'JSON',
                     success:function(response)
                     {
-                        console.log(response);
-                        // $("#product").replaceWith(response);
+                        // console.log(response);
+                        $(".replace").replaceWith(response);
                     },
                     error: function(response) {
                     }

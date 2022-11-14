@@ -30,13 +30,16 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
+                                <div id="feature">
+
+                                </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Category</h3>
                                        <div class="d-flex">
                                         @foreach ($propertyCat as $propertyC)
                                         <div class="list_group_category">
-                                            <input  class="form-check-input ad_category" type="checkbox" name="category_id" value="{{ $propertyC->id }}" id="advance{{$propertyC->id}}">
+                                            <input  class="form-check-input ad_category filter" type="checkbox" name="category_id" value="{{ $propertyC->id }}" id="filter">
                                             <label class="form-check-label" for="advance{{$propertyC->id}}">{{ $propertyC->name }}</label>
                                         </div>
                                         @if ($propertyC->id == 3)
@@ -250,3 +253,47 @@
     </div>
   </div>
 </div>
+
+@push('scripts')
+<script>
+     $(document).ready(function() {
+        var category_ids = [];
+        $('.filter').on('change', function(){
+            let{
+                    value,
+                    id,
+                    checked
+                } = event.target;
+                if(id=="filter"){
+                    if(checked){
+                        category_ids.push(value);
+                    }
+                    else{
+                        category_ids = category_ids.filter(function(data){
+                            return data != value;
+                        })
+                    }
+                }
+                $.ajax({
+                    url: "{{route('filter')}}",
+                    type: 'get',
+                    data: {
+                        category_ids: category_ids,
+                    },
+                    // dataType: 'JSON',
+                    success:function(response)
+                    {
+                        // console.log(response);
+                        $(".feature").replaceWith(response);
+                    },
+                    error: function(response) {
+                    }
+                });
+               
+        });
+        
+     });
+
+    
+</script>
+@endpush
