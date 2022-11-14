@@ -152,10 +152,8 @@
                     data: {
                         category_ids: category_ids,
                     },
-                    // dataType: 'JSON',
                     success:function(response)
                     {
-                        // console.log(response);
                         $(".advance").replaceWith(response);
 
                     },
