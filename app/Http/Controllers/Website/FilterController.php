@@ -15,7 +15,7 @@ class FilterController extends Controller
         foreach($request->category_ids as $cat_id){
             $category = PropertyCategory::findOrFail($cat_id);
             $all_feature = $category->features->where('showOnFilter',1);
-            foreach($all_feature as $feature){
+            foreach($all_feature as $key=> $feature){
                 array_push($features,$feature);
             }
        }

@@ -78,6 +78,10 @@ class HomeController extends Controller
     {
 
         $pagedata = Menu::where('slug', $slug)->where('active', true)->first();
+        $purposes = Purpose::all();
+        $property = Property::all();
+        $filter = [];
+        $propertyCat = PropertyCategory::all();
         if ($pagedata != null) {
             $pagevalue = @$pagedata->type;
             $meta = $this->getMeta($pagedata);
@@ -125,7 +129,7 @@ class HomeController extends Controller
                     $properties = Property::where(['status' => 1])->with(['faqs', 'images'])->latest()->paginate(3);
                     $advertisements = $this->getAd('property');
 
-                    return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties', 'advertisements'));
+                    return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');
