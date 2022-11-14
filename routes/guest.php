@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/front', [HomeController::class, 'index'])->name('home');
 Route::get('filter', [FilterController::class,'basicFilter'])->name('filter');
 Route::get('advance-filter', [FilterController::class,'advanceFilter'])->name('advanceFilter');
+Route::get('filter-property', [FilterController::class,'filterProperty'])->name('filterProperty');
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/search', [PropertyController::class, 'search'])->name('front.search-properties');

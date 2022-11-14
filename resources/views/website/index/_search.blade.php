@@ -150,11 +150,6 @@
                 <div class="linked_hill_button_wraper">
                     <p class="click" id="click">More Search </p>
                 </div>
-               
-                {{-- <div class="toggle-botton-wrapper">
-                   
-                    
-                </div> --}}
                 
             </div>
         </div>
