@@ -47,7 +47,7 @@ use App\Http\Controllers\Admin\TradelinkCategoryController;
 
 
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('admin/login', [AdminLoginController::class, 'login']);
+Route::post('admin/login', [AdminLoginController::class, 'login'])->name('adminn.login');
 
 Route::get('testImageUploader', function () {
     return view('admin.testImage');

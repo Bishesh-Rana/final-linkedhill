@@ -89,36 +89,55 @@
                         @endforeach
                     </div>
                 </div>
-                <div class=" d-flex"> {{-- replace --}}
-                @php
-                    $i = 1;
-                @endphp
-                @foreach($feature_values as $key=>$values)
-                @php
-                    $name = App\Models\Feature::where('id',$key)->value('title');
-                @endphp
-                    <div class="option_a1" id="{{$name}}">  
-                        <select name="properties[{{$key}}]">
-                            <option value="">{{$name}}</option>
-                            @foreach ($values as $value)
-                            <option value="{{$value}}">{{$value}}</option>
-                                {{-- @if( array_key_exists($name,$filter )) 
-                                    <option data-element="{{$value}}{{$name}}" {{ ( intval( $filter[{{$name}}])== $value) ? 'selected':''}} value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
+                    <div class="option_a1" id="bed"> 
+                        @php
+                            $id = App\Models\Feature::where('title','=','Bedroom')->value('id');
+                        @endphp 
+                        <select name="properties[{{$id}}]">
+                            <option value="">Bedroom</option>
+                            @for($i=1;$i<=10;$i++)
+                                {{-- @if( array_key_exists("bed",$filter )) 
+                                    <option data-element="{{$i}}bed" {{ ( intval( $filter['bed'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$value}}</option>
                                 @else
-                                    <option data-element="{{$value}}{{$name}}" value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
+                                    <option data-element="{{$i}}bed" value="{{$i}}">{{($i == 0)?'':$i}} </option>
                                 @endif --}}
-
-                            @endforeach               
+                                <option value="{{$i}}">{{$i}}</option>
+                            @endfor           
                         </select>
                     </div>
-                    @php
-                        $i += 1;
-                        if($i==4){
-                            break;
-                        }
-                    @endphp
-                @endforeach
-            </div>
+                    <div class="option_a1" id="bath"> 
+                        @php
+                            $id = App\Models\Feature::where('title','=','Bathroom')->value('id');
+                        @endphp 
+                        <select name="properties[{{$id}}]">
+                            <option value="">Bathroom</option>
+                            @for($i=1;$i<=10;$i++)
+                                {{-- @if( array_key_exists("bath",$filter )) 
+                                    <option data-element="{{$i}}bath" {{ ( intval( $filter['bath'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$i}}</option>
+                                @else
+
+                                    <option data-element="{{$i}}bath" value="{{$i}}">{{($i == 0)?'':$i}}</option>
+                                @endif   --}}
+                                <option value="{{$i}}">{{$i}}</option>
+                            @endfor           
+                        </select>
+                    </div>
+                    <div class="option_a1" id="parking"> 
+                        @php
+                            $id = App\Models\Feature::where('title','=','Parking')->value('id');
+                        @endphp 
+                        <select name="properties[{{$id}}]">
+                            <option value="">Parking</option>
+                            {{-- @for($i=1;$i<=4;$i++)
+                                @if( array_key_exists("parking",$filter )) 
+                                    <option data-element="{{$i}}parking" {{ ( intval( $filter['parking'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$i}}</option>
+                                @else
+                                    <option data-element="{{$i}}parking" value="{{$i}}">{{($i == 0)?'':$i}}</option>
+                                @endif  
+                            @endfor           --}}
+                            <option value="{{$i}}">{{$i}}</option>
+                        </select>
+                    </div>
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
                     @if (array_key_exists('start_prize', $filter ))
@@ -182,7 +201,9 @@
                         </div>
                     </div>
                     <div class="replace">
+                        @php $i = 1; @endphp
                         @foreach($feature_values as $key=>$values)
+                        @if($i>3)
                             @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
                             <label for="buildingtype"> {{$name}}:-</label>
                             <select name="properties[{{$key}}]" id="buildingtype">
@@ -191,6 +212,8 @@
                                     <option value="{{$value}}">{{$value}}</option>
                                 @endforeach
                             </select>
+                        @endif
+                            @php $i += 1; @endphp
                         @endforeach
                     </div>
                     <label for="listedby">listed By</label>

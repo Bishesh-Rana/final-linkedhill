@@ -443,7 +443,7 @@ class SidebarComponent extends Component
                     [
                         'title' => 'Users',
                         'icon' => 'create',
-                        'permission' => ['role-list'],
+                        'permission' => ['user-list','staff-list'],
                         'href' => route('staffs.index'),
                     ]
                 ]

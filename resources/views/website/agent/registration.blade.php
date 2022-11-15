@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-md-7 m-auto">
                             <div class="sign_up_in_wrapper">
-                                <form action="{{ route('agent.postRegistration') }}" method="post">
+                                <form action="{{ route('agent.postRegistration') }}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="mb-3">
@@ -23,7 +23,7 @@
                                         <div class="agent-type">
                                             <div>
                                                 <input class="form-check-input" type="radio" name="type" id="type1"
-                                                    checked value="1" onclick="changeType()">
+                                                    checked value="Property owner" onclick="changeType()">
                                                 <label class="form-check-label" for="type1">
                                                     Property Owner
                                                     <button type="button" class="tooltipinfo" data-toggle="tooltip"
@@ -35,7 +35,7 @@
 
                                             <div>
                                                 <input class="form-check-input" type="radio" name="type" id="type2"
-                                                    value="2" onclick="changeType()">
+                                                    value="Real Estate Company" onclick="changeType()">
                                                 <label class="form-check-label" for="type2">Real Estate Company
                                                     <button type="button" class="tooltipinfo" data-toggle="tooltip"
                                                         data-placement="top" title="Real state Company">
@@ -44,7 +44,7 @@
                                             </div>
                                             <div>
                                                 <input class="form-check-input" type="radio" name="type" id="type3"
-                                                    value="3" onclick="changeType()">
+                                                    value="Individual Agent" onclick="changeType()">
                                                 <label class="form-check-label" for="type3">
                                                     Individual Agent <button type="button" class="tooltipinfo"
                                                         data-toggle="tooltip" data-placement="top" title="Individual Agent">
@@ -54,7 +54,7 @@
                                             </div>
                                             <div>
                                                 <input class="form-check-input" type="radio" name="type" id="type4"
-                                                    value="4" onclick="changeType()">
+                                                    value="Builder/ Developer" onclick="changeType()">
                                                 <label class="form-check-label" for="type4">
                                                     Builder/ Developer <button type="button" class="tooltipinfo"
                                                         data-toggle="tooltip" data-placement="top"
@@ -109,8 +109,8 @@
                                         <div class="mb-3 col-md-6">
                                             <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
                                             <input type="file" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="" name="logo">
-                                            @if ($errors->has('logo'))
+                                                placeholder="" name="image">
+                                            @if ($errors->has('image'))
                                                 <strong class="text-danger">{{ $errors->first('logo') }}</strong>
                                             @endif
                                         </div>
@@ -118,7 +118,7 @@
                                         
                                         <div class="mb-3 col-md-6 ">
                                             <label for="exampleFormControlInput1" class="form-label">PAN Card (scan copy)</label>
-                                            <input type="file" class="form-control" id="exampleFormControlInput1"placeholder="" name="pan">
+                                            <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="" name="pan">
                                             @if ($errors->has('pan'))
                                                 <strong class="text-danger">{{ $errors->first('pan') }}</strong>
                                             @endif
@@ -145,8 +145,8 @@
                                             <div class="form_phone_number">
                                                 <span>+977</span>
                                                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="Tel no." name="agency_phone">
-                                                @if ($errors->has('agency_phone'))
+                                                    placeholder="Tel no." name="phone">
+                                                @if ($errors->has('phone'))
                                                     <strong
                                                         class="text-danger">{{ $errors->first('agency_phone') }}</strong>
                                                 @endif
@@ -244,4 +244,10 @@
         });
     });
 </script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script>
+    $('#filemanager').filemanager("image");
+    $('#panfile').filemanager("image");
+</script>
+
 @endpush

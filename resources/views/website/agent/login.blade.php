@@ -11,9 +11,18 @@
                            <p>Login First to list your property.</p>
                            <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
                         </div>
-                        <div class="col-md-4 m-auto">
+                        
+                        <div class="col-md-4 m-auto">\
+                        @if (Session::has('error'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                                {{ Session::get('error') }}</p>
+                        @endif
+                        @if (Session::has('success'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                                {{ Session::get('success') }}</p>
+                        @endif
                             <div class="sign_up_in_wrapper">
-                                <form action="" method="post">
+                                <form action="{{route('agent.postLogin')}}" method="post">
                                     @csrf
                                     <div class="row">                                    
                                         <div class="mb-3 col-md-12">

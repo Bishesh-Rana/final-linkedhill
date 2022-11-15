@@ -144,8 +144,7 @@
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td class="text-16 lh-26 a-center pb-25" style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px;  padding-bottom: 25px;">
-                                                                                                    {{$user->name}} register new Agency  on date {{$user->hasAgency->created_at->format('d-M-Y')}}.<br>
-                                                                                                    <b> Agency Name  </b> : {{$user->hasAgency->agency_name}}
+                                                                                                    {{$user->name}} register new Agency  on date {{$user->hasAgency->created_at->format('d-M-Y')}}.<br>                                                                                                    <b> Agency Name  </b> : {{$user->hasAgency->agency_name}}
                                                                                                     <br>
                                                                                                     <b> Agency Email </b> : {{$user->hasAgency->agency_email}}
                                                                                                     <br>
@@ -156,9 +155,6 @@
                                                                                                     <br>
                                                                                                     <b> Agency Website </b> : {{$user->hasAgency->website}}
                                                                                                     @endif
-
-
-
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -167,7 +163,7 @@
                                                                                                     <table border="0" cellspacing="0" cellpadding="0" style="min-width: 200px;">
                                                                                                         <tr>
                                                                                                             <td class="btn-16 c-white l-white" bgcolor="#3F8809;" style="font-size:16px; line-height:20px; mso-padding-alt:15px 35px; font-family:'PT Sans', Arial, sans-serif; text-align:center; font-weight:bold; text-transform:uppercase; border-radius:25px; min-width:auto !important; color:#ffffff;">
-                                                                                                                <a href="{{route('agency.show',$user->id)}}" target="_blank" class="link c-white" style="display: block; padding: 15px 35px; text-decoration:none; color:#ffffff;">
+                                                                                                                <a href="{{route('agency.show',$user->hasAgency->id)}}" target="_blank" class="link c-white" style="display: block; padding: 15px 35px; text-decoration:none; color:#ffffff;">
                                                                                                                     <span class="link c-white" style="text-decoration:none; color:#ffffff;">View Agency Detail</span>
                                                                                                                 </a>
                                                                                                             </td>
@@ -264,7 +260,7 @@
                                                     </table>
                                                 </td>
                                             </tr>
-                                        </table>											<!-- END Footer -->
+                                        </table>									<!-- END Footer -->
 
                                         <!-- END Bottom -->
                                     </td>
