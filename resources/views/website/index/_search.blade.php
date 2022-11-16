@@ -6,8 +6,6 @@
             <div class="col-lg-12">
                 <div class="linked_hill_flex_wrap">
                     <div class="linked_hill_search_top ">
-                        @csrf
-                        
                         <ul>
                             @foreach ($purposes as $key => $type)
                             <li >

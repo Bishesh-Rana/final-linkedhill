@@ -16,6 +16,7 @@ use App\Models\PropertyFacility;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Arr;
 
 class PropertyController extends Controller
 {
@@ -40,15 +41,46 @@ class PropertyController extends Controller
     public function search(Request $request)
     {
         // dd($request->all());
+
         $filter = $request->all();
-        $properties =  Property::filter()
-        ->when(request('properties'), function($query, $var) {
-            foreach($var  as $key=>$value){
-                $query->whereHas('features', function ($que) use ($key,$value){  
-                    if(!$value == null )  {
-                        $que->where('feature_id',$key)->where('value','>=',$value);
-                    }                       
-            });
+        // $property = Property::with('features')->latest()->first();
+        // dd($property);
+        // $properties = Property::with('features')->where('category_id', $request->category_id)->get();
+        // dd(collect($properties)->toArray());
+        // $collections = collect($properties)->map(function($row, $index){
+        //       if(count($row->features) <= 0){
+        //         return null;
+        //       }else{
+        //         return $row;
+
+        //       }
+        // });
+
+        // dd(collect($collections)->whereNotNull()->toArray());
+        
+        $properties = [];
+        foreach($request->properties as $key=>$pro){
+            if($pro != null){
+                $properties[$key]=$pro;
+            }
+        }
+        // dd($properties);
+        // dd($properties); Arr::get($filter, 'properties')
+        // Arr::get($filter, 'properties')
+        $properties =  Property::filter() 
+        ->when(!empty($properties), function($query, $properties) {
+            foreach($properties  as $key=>$value){
+                // dd($value);
+                // if(!$value == null){
+                    $query->whereHas('features', function ($que) use ($key,$value){  
+                        if((int) $value == 0){
+                            $que->where('feature_id',$key)->where('value','=',$value);
+                        }else{
+                            $value = (int) $value;
+                            $que->where('feature_id',$key)->where('value','>=',$value);
+                        }              
+                    });
+                // }
             }                     
         })
         ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address'))) 
@@ -57,11 +89,44 @@ class PropertyController extends Controller
 
         ->when(request('facility'), function($query, $var) {
             $query->whereHas('facility', function ($que) use ($var){   
-            foreach($var as $v){
-                $que->where('facility_id',1)->where('title','=',$var);
+            foreach($var as $v){ 
+                $que->where('title','=',$v);
             }                        
             });
-        })  
+        })
+        ->when(request('listedby'), function($query,$var){
+            switch($var){
+                case "owner":
+                    $query->orderBy('owner_name');
+                    break;
+                case "agent":
+                    $query->whereHas('agent',function($que){
+                        $que->orderBy('owner_id');
+                    });
+                    break;
+                default:
+                    $query->orderBy('created_at');
+
+            }
+        }) 
+        ->when(request('sorting'),function($query, $var){
+            switch($var){
+                case "low":
+                    $query->orderBy('start_price');
+                    break;
+                case "hign":
+                    $query->orderBy('start_price',"DESC");
+                    break;
+                case 'latest':
+                    $query->orderBy('created_at','DESC');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at');
+                    break;
+                default:
+                    $query->orderBy('created_at');
+            }
+        }) 
         ->paginate(5);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property'); 

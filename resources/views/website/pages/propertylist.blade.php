@@ -89,18 +89,24 @@
                         @endforeach
                     </div>
                 </div>
-                    <div class="option_a1" id="bed"> 
+
+                
+                <div class="option_a1" id="bed"> 
                         @php
                             $id = App\Models\Feature::where('title','=','Bedroom')->value('id');
                         @endphp 
                         <select name="properties[{{$id}}]">
                             <option value="">Bedroom</option>
                             @for($i=1;$i<=10;$i++)
+
+
                                 {{-- @if( array_key_exists("bed",$filter )) 
                                     <option data-element="{{$i}}bed" {{ ( intval( $filter['bed'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$value}}</option>
                                 @else
                                     <option data-element="{{$i}}bed" value="{{$i}}">{{($i == 0)?'':$i}} </option>
                                 @endif --}}
+
+
                                 <option value="{{$i}}">{{$i}}</option>
                             @endfor           
                         </select>
@@ -112,12 +118,16 @@
                         <select name="properties[{{$id}}]">
                             <option value="">Bathroom</option>
                             @for($i=1;$i<=10;$i++)
+
+
                                 {{-- @if( array_key_exists("bath",$filter )) 
                                     <option data-element="{{$i}}bath" {{ ( intval( $filter['bath'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$i}}</option>
                                 @else
 
                                     <option data-element="{{$i}}bath" value="{{$i}}">{{($i == 0)?'':$i}}</option>
                                 @endif   --}}
+
+
                                 <option value="{{$i}}">{{$i}}</option>
                             @endfor           
                         </select>
@@ -128,6 +138,8 @@
                         @endphp 
                         <select name="properties[{{$id}}]">
                             <option value="">Parking</option>
+
+                            
                             {{-- @for($i=1;$i<=4;$i++)
                                 @if( array_key_exists("parking",$filter )) 
                                     <option data-element="{{$i}}parking" {{ ( intval( $filter['parking'])== $i) ? 'selected':''}} value="{{$i}}">{{($i == 0)?'':$i}}</option>
@@ -135,9 +147,13 @@
                                     <option data-element="{{$i}}parking" value="{{$i}}">{{($i == 0)?'':$i}}</option>
                                 @endif  
                             @endfor           --}}
+
+
+
                             <option value="{{$i}}">{{$i}}</option>
                         </select>
                     </div>
+                {{-- chahiyo vane tala xa for design --}}
             <div class="option_a1">
                 <select name="start_prize" id="start_prize">
                     @if (array_key_exists('start_prize', $filter ))
@@ -193,29 +209,53 @@
                             @foreach ($facilities as $facility)
                                 <div class="list_group_category">
                                     <input class="form-check-input front-category" data-element="#advance{{ $facility->id }}"
-                                        type="checkbox" name="category_id" value="{{ $facility->id }}"
+                                        type="checkbox" name="facility[]" value="{{ $facility->title }}"
                                         id="initial{{ $facility->id }}">
                                     <label class="form-check-label" for="initial{{ $facility->id }}">{{ $facility->title }}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                    <div class="replace">
+
+                    {{-- <div class="replace"> 
                         @php $i = 1; @endphp
                         @foreach($feature_values as $key=>$values)
                         @if($i>3)
-                            @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
-                            <label for="buildingtype"> {{$name}}:-</label>
-                            <select name="properties[{{$key}}]" id="buildingtype">
-                                <option value=""> Select {{$name}}</option>
-                                @foreach($values as $value)
-                                    <option value="{{$value}}">{{$value}}</option>
+                        @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                        <div class="option_1 multi_select_dropdown">
+                            <p>{{$name}}<i class="las la-angle-down"></i></p>
+                            <div class="option_listing_dropDown child_dropdown">
+                                @foreach ($values as $value)
+                                    <div class="list_group_category">
+                                        <input class="form-check-input front-category" data-element="#advance{{ $value }}"
+                                            type="checkbox" name="properties[{{$key}}]" value="{{ $value}}"
+                                            id="initial{{ $value}}">
+                                        <label class="form-check-label" for="initial{{ $value }}">{{ $value }}</label>
+                                    </div>
                                 @endforeach
-                            </select>
+                            </div>
+                        </div>
                         @endif
-                            @php $i += 1; @endphp
+                        @php $i += 1; @endphp
+                        @endforeach
+                    </div> --}}
+                    <div class="replace">
+                        @php $i=1 @endphp
+                        @foreach($feature_values as $key=>$values)
+                            @if($i>3)
+                                @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                                <label for="buildingtype"> {{$name}}:-</label>
+                                <select name="properties[{{$key}}]" id="buildingtype">
+                                    <option value=""> Select {{$name}}</option>
+                                    @foreach($values as $value)
+                                        <option value="{{$value}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                            @endif
+                            @php $i += 1  @endphp
                         @endforeach
                     </div>
+                    
                     <label for="listedby">listed By</label>
                     <select name="listedby" id="listedby">
                         <option value="">Any</option>
@@ -644,3 +684,55 @@
    
 </script>
 @endpush
+
+
+
+ 
+                    
+
+
+{{-- <div class="option_1 multi_select_dropdown" id="bed">
+                    @php $id = App\Models\Feature::where('title','=','Bedroom')->value('id'); @endphp
+                    <p>Bedroom<i class="las la-angle-down"></i></p>
+                    <div class="option_listing_dropDown child_dropdown">
+                        @for($i=1;$i<=10;$i++)
+                        <div class="list_group_category">
+                            <input class="form-check-input front-category property" id="property" data-element="#advance{{ $i }}"
+                                type="checkbox" name="properties[{{$id}}]" value="{{ $i }}"
+                                id="initial{{ $i }}" selected>
+                            <label class="form-check-label"
+                                for="initial{{ $i }}">{{ $i }}</label>
+                        </div>
+                        @endfor
+                    </div>
+                </div>
+                <div class="option_1 multi_select_dropdown" id="bath">
+                    @php $id = App\Models\Feature::where('title','=','Bathroom')->value('id'); @endphp
+                    <p>Bathroom<i class="las la-angle-down"></i></p>
+                    <div class="option_listing_dropDown child_dropdown">
+                        @for($i=1;$i<=10;$i++)
+                        <div class="list_group_category">
+                            <input class="form-check-input front-category property" id="property" data-element="#advance{{ $i }}"
+                                type="checkbox" name="properties[{{$id}}]" value="{{ $i }}"
+                                id="initial{{ $i }}" selected>
+                            <label class="form-check-label"
+                                for="initial{{ $i }}">{{ $i }}</label>
+                        </div>
+                        @endfor
+                    </div>
+                </div>
+                <div class="option_1 multi_select_dropdown" id="parking">
+                    @php $id = App\Models\Feature::where('title','=','Parking')->value('id'); @endphp
+                    <p>Parking<i class="las la-angle-down"></i></p>
+                    <div class="option_listing_dropDown child_dropdown">
+                        @for($i=1;$i<=5;$i++)
+                        <div class="list_group_category">
+                            <input class="form-check-input front-category property" id="property" data-element="#advance{{ $i }}"
+                                type="checkbox" name="properties[{{$id}}]" value="{{ $i }}"
+                                id="initial{{ $i }}" selected>
+                            <label class="form-check-label"
+                                for="initial{{ $i }}">{{ $i }}</label>
+                        </div>
+                        @endfor
+                    </div>
+                </div> --}}
