@@ -112,7 +112,7 @@
 
                     <div class="card-content">
 
-                        <div class="tab-content">
+                        <!-- <div class="tab-content">
 
                             <div class="tab-pane active" id="panel1">
 
@@ -158,6 +158,34 @@
 
 
 
+                        </div> -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="panel1">
+                                <div class="material-datatables">
+                                    <ol class="sortable">
+                                        @foreach ($categories as $key => $category)
+                                            <li id="categoryItem_{{ $category->id }}">
+                                                <div>
+                                                    <td>{{ $category->name }}</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$category->id}}" data-placement="top" title="Edit Category"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <button onclick="deleteCity({{$category->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
+                                                    </td>
+
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ol>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
+                                            class="fa fa-save"></i>
+                                        Update Category
+                                    </button>
+                                    <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
+                                            class="fas fa-sync-alt"></i> Reset Order</a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-footer text-right">
@@ -241,15 +269,46 @@
 @push('script')
     <script src="{{ asset('dashboard/plugins/sortablejs/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/sortablejs/jquery.mjs.nestedSortable.js') }}"></script>
+    <script src="{{ asset('dashboard/plugins/toastrjs/toastr.min.js') }}"></script>
+    <script>
+        $('.sortable').nestedSortable({
+            handle: 'div',
+            items: 'li',
+            toleranceElement: '> div',
+            maxLevels: 2,
+        });
+        $("#serialize").click(function(e) {
+            e.preventDefault();
+            $(this).prop("disabled", true);
+            $(this).html(
+                `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Updating...`
+            );
+            var serialized = $('ol.sortable').nestedSortable('serialize');
+            $.ajax({
+                url: "{{ route('update.property.category') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    sort: serialized
+                },
+                success: function(res) {
+                    toastr.options.closeButton = true
+                    toastr.success('Purpose Order Successfuly', "Success !");
+                    $('#serialize').prop("disabled", false);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                }
+            });
+        });
+
+        function show_alert() {
+            if (!confirm("Do you really want to do this?")) {
+                return false;
+            }
+            this.form.submit();
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.sortable').nestedSortable({
-                handle: 'div',
-                items: 'tr',
-                toleranceElement: '> div',
-                maxLevels: 2,
-            });
-
 
             $('#datatables').DataTable({
                 //            "pagingType": "full_numbers",

@@ -106,4 +106,20 @@ class PropertyCategoryController extends Controller
         'error' => "there is related data",
     ]);
     }
+
+    public function updateCategoryOrder(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['categoryItem'])) {
+            foreach ($arr['categoryItem'] as $key => $value) {  //id //parent_id
+                PropertyCategory::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
+    }
 }

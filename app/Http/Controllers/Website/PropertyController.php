@@ -67,7 +67,7 @@ class PropertyController extends Controller
         $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();
         $property = Property::all();
-        $propertyCat = PropertyCategory::all();
+        $propertyCat = PropertyCategory::orderBy('order')->get();
         $facilities = Facility::get();
         $feature_values = [];
         $features = [];
