@@ -31,27 +31,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="panel1">
 
-{{--
-                            <div class="form-group label-floating is-empty">
-                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                    <div class="fileinput-new thumbnail">
 
-                                        <img src="{{isset($staff) ? $staff->imageUrl() : asset('dashboard/img/placeholder.jpg')}}"
-                                            id="image" class="img-thumbnail img-responsive" alt="">
-
-                                    </div>
-                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                    <div>
-                                        <span class="btn btn-default btn-round btn-file">
-                                            <span class="fileinput-new">Add Image</span>
-                                            <span class="fileinput-exists">Change</span>
-                                            <input type="file" name="featured_image" id="image" />
-                                        </span>
-                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
-                                            data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <x-image name="profile" value="{{ @$staff->profile }}" />
 
 

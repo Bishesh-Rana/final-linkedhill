@@ -12,7 +12,7 @@
                 @foreach($values as $key1=>$value)
                    <div  class="selector">
                     <input type='radio' name="properties[{{$key}}]" value="{{$value}}" id="{{$name}}{{$key1}}"/>
-                    <label for="{{$name}}{{$key1}}">{{$value}}  {{$name}}{{$key1}}</label>
+                    <label for="{{$name}}{{$key1}}">{{$value}}</label>
                    </div>
                 @endforeach 
                 </div> 

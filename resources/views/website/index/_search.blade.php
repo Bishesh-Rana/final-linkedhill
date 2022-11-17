@@ -52,6 +52,37 @@
                             </div>
                         </div>
                         <div class="replace d-flex">
+                                @php $i=1 @endphp
+                                @foreach($feature_values as $key=>$values)
+                                @if($i<=3)
+                                <div class="option_a1">
+                                <select name="properties[{{$key}}]" id="start_prize">
+                                    @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                                    <option selected disabled>Select {{$name}}</option>
+                                    @foreach($values as $value)
+                                        <option value="{{$value}}">{{$value}}</option>
+                                    @endforeach
+                                    @php $i = $i + 1; @endphp
+                                </select>
+                                </div>
+                                @endif
+                                @endforeach
+                                
+                            
+                            {{-- @php $i=1 @endphp
+                            @foreach($feature_values as $key=>$values)
+                                @if($i<=3)
+                                    @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                                    <label for="buildingtype"> {{$name}}:-</label>
+                                    <select name="properties[{{$key}}]" id="buildingtype">
+                                        <option selected disabled> Select {{$name}}</option>
+                                        @foreach($values as $value)
+                                            <option value="{{$value}}">{{$value}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                                @php $i += 1  @endphp
+                            @endforeach --}}
                             {{-- for dynamic feature--}}
                         </div>
                         <div class="option_a1">
@@ -79,23 +110,6 @@
                        
                         <div class="option_a1  advance-search">
                             <p data-bs-toggle="modal" data-bs-target="#advanceSearch">Advance Search</p>
-
-                            {{-- <div class="advance_options">
-                                <p >Advance search options</p>
-                            </div> --}}
-                            {{-- <select name="" id="">
-                                <option selected>Property Type</option>
-                                @foreach ($property as $type)
-                                    @if($name==$type->type)
-                                        continue;
-                                    @else
-                                    <option val="{{ $type->type }}">{{ $type->type }}</option>
-                                    <?php
-                                        $name=$type->type;
-                                    ?>
-                                    @endif
-                                @endforeach
-                            </select> --}}
                         </div>
                         
                         <div class="surround_search">

@@ -61,7 +61,25 @@ class HomeController extends Controller
         $this->website['propertyCat'] = PropertyCategory::orderBy('order')->get();
 
         // $this->website['Website'] = Website::all();
+        $feature_values = [];
+        $features = [];
+        $id = PropertyCategory::where('name',"=","House")->value('id');
+        $category = PropertyCategory::findOrFail($id);
+        $all_feature = $category->features->where('showOnFilter',1);
+        foreach($all_feature as $key=> $feature){
+            array_push($features,$feature);
+        }
 
+       foreach($features as $feature){
+            $values = [];
+            if($feature->value){
+                foreach($feature->value as $val){
+                    array_push($values,$val->value);
+                }
+            }
+            $feature_values[$feature->id]=$values;
+       }
+       $this->website['feature_values'] = $feature_values;
 
 
         $this->website['property_types'] = Type::all();
@@ -128,8 +146,26 @@ class HomeController extends Controller
 
                     $properties = Property::where(['status' => 1])->with(['faqs', 'images'])->latest()->paginate(3);
                     $advertisements = $this->getAd('property');
+                    $feature_values = [];
+                    $features = [];
+                    $id = PropertyCategory::where('name',"=","House")->value('id');
+                    $category = PropertyCategory::findOrFail($id);
+                    $all_feature = $category->features->where('showOnFilter',1);
+                    foreach($all_feature as $key=> $feature){
+                        array_push($features,$feature);
+                    }
 
-                    return view('website.pages.propertylist', compact('pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                foreach($features as $feature){
+                        $values = [];
+                        if($feature->value){
+                            foreach($feature->value as $val){
+                                array_push($values,$val->value);
+                            }
+                        }
+                        $feature_values[$feature->id]=$values;
+                }
+
+                    return view('website.pages.propertylist', compact('feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');
