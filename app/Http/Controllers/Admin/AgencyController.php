@@ -19,6 +19,8 @@ class AgencyController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
+    protected $data;
+  
     public function index()
     {
         $this->data['agencies'] = AgencyDetail::with('agent')->get();

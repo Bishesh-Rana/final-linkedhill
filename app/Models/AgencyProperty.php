@@ -10,6 +10,7 @@ class AgencyProperty extends Model
     use HasFactory;
 
     protected $table ="agency_property";
+    protected $fillable = ['property_id','owner_id','agency_id'];
 
     public function property()
     {

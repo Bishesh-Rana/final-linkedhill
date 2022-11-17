@@ -14,13 +14,14 @@ use App\Models\RoadType;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\PropertyImage;
+use App\Models\AgencyProperty;
 use App\Models\PropertyCategory;
+use App\Models\PropertyFacility;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\PropertyRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\Admin\CommonController;
-use App\Models\PropertyFacility;
 
 class PropertyController extends CommonController
 {
@@ -73,6 +74,16 @@ class PropertyController extends CommonController
             $property->amenities()->sync($data['amenities'] ?? []);
             DB::commit();  
 
+            if(auth()->user()->hasRole('Agent')){
+                $property = Property::where('title',$request->title)->first();
+                if(auth()->user()->user_id == null){
+                    $agency_id = null;
+                }else{
+                    $agency_id = auth()->user()->user_id;
+                }
+                AgencyProperty::create(['property_id'=>$property->id,'owner_id'=>auth()->user()->id,'agency_id'=>$agency_id]);
+            }
+
             if(!empty($request->facility)){
                 foreach($request->facility as $fac){
                     PropertyFacility::create(['property_id'=>$property->id,'title'=>$fac]);
@@ -123,13 +134,8 @@ class PropertyController extends CommonController
     public function update(PropertyRequest $request, $id)
     {
         // dd($request->all);
-
         $property = Property::findorfail($id);
-
         $data = $request->all();
-
-
-
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
@@ -156,6 +162,13 @@ class PropertyController extends CommonController
             $property->features()->sync($sync);
             $property->amenities()->sync($data['amenities'] ?? []);
             DB::commit();
+
+            if(!empty($request->facility)){
+                foreach($request->facility as $fac){
+                    PropertyFacility::where('property_id','=',$property->id)->delete();
+                    PropertyFacility::create(['property_id'=>$property->id,'title'=>$fac]);
+                }
+            }
             request()->session()->flash('message', 'property updated successfully');
             return redirect()->route('properties.index');
         } catch (\Throwable $th) {

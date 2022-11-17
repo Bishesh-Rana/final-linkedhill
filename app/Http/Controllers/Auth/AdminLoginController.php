@@ -47,10 +47,20 @@ class AdminLoginController extends Controller
         }
 
 
-
         if (auth()->attempt(['email'=>$request->email , 'password'=>$request->password],$request->remember))
         {
-            return redirect()->intended(route('admin.dashboard'));
+            if(auth()->user()->hasRole('Super Admin')){
+                dd('bishesh');
+                return redirect()->intended(route('admin.dashboard'));
+            }elseif(auth()->user()->hasRole('Admin')){
+                dd('asafdsf');
+                return redirect()->intended(route('admin.dashboard'));
+            }else{
+                dd('asdd');
+                Auth::logout();
+                return back()->with('error','Email Not Found');
+            }
+            
         }
 
 

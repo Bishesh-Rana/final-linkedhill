@@ -47,7 +47,7 @@ use App\Http\Controllers\Admin\TradelinkCategoryController;
 
 
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('admin/login', [AdminLoginController::class, 'login']);
+Route::post('admin/login', [AdminLoginController::class, 'login'])->name('adminn.login');
 
 Route::get('testImageUploader', function () {
     return view('admin.testImage');
@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('property-image/delete/{id}', [PropertyController::class, 'delete_image']);
     Route::post('update-menu/property', [MenuController::class, 'updateMenuOrder'])->name('update.menu');
     Route::post('update-purpose/property', [PurposeController::class, 'updatePurposeOrder'])->name('update.purpose');
+    Route::post('update-category/property', [PropertyCategoryController::class, 'updateCategoryOrder'])->name('update.property.category');
     Route::resources([
         'staffs' => StaffController::class,
         'properties' => PropertyController::class,

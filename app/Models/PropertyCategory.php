@@ -15,6 +15,7 @@ class PropertyCategory extends Model
         'image',
         'description',
         'icon',
+        'order',
     ];
 
     public function properties()

@@ -45,7 +45,7 @@ class HomeController extends Controller
         $this->website['sliders'] = Slider::orderBy('order', 'asc')->where('hide', 1)->get();
         $this->website['agencies'] = AgencyDetail::latest()->limit(5)->get();
 
-        $this->website['property_categories'] = PropertyCategory::limit(4)->get();
+        $this->website['property_categories'] = PropertyCategory::orderBy('order')->get();
 
 
         $this->website['services'] = Service::latest()->limit(8)->get();
@@ -58,7 +58,7 @@ class HomeController extends Controller
         // $this->website['features'] = Property::all();
 
 
-        $this->website['propertyCat'] = PropertyCategory::all();
+        $this->website['propertyCat'] = PropertyCategory::orderBy('order')->get();
 
         // $this->website['Website'] = Website::all();
 
@@ -81,7 +81,7 @@ class HomeController extends Controller
         $purposes = Purpose::all();
         $property = Property::all();
         $filter = [];
-        $propertyCat = PropertyCategory::all();
+        $propertyCat = PropertyCategory::orderBy('order')->get();
         if ($pagedata != null) {
             $pagevalue = @$pagedata->type;
             $meta = $this->getMeta($pagedata);

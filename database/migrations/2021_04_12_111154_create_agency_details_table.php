@@ -16,7 +16,7 @@ class CreateAgencyDetailsTable extends Migration
         Schema::create('agency_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('type')->default('1')->comment('individual,company');
+            $table->string('type')->comment('individual,company,.....');
             $table->string('agency_name', 30);
             $table->tinyInteger('status')->default('1')->comment('verified,unverified,rejected,blocked');
             $table->string('status_remarks')->nullable();

@@ -98,7 +98,6 @@ class CustomerAuthController extends Controller
     }
 
     public function Otp($id){
-        dd('bishesh');
         $customer = User::where('id',$id)->first();
         $otp = $this->getOtp();
         $customer->update([

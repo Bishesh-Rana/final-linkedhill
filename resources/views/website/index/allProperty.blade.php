@@ -1,30 +1,39 @@
-<div class="replace d-flex">
-    @php
-        $i = 1;
-    @endphp
-    @foreach($feature_values as $key=>$values)
-    @php
-        $name = App\Models\Feature::where('id',$key)->value('title');
-    @endphp
-        <div class="option_a1" id="{{$name}}">  
-            <select name="property[{{$key}}]">
-                <option value="">{{$name}}</option>
-                @foreach ($values as $value)
-                <option value="{{$value}}">{{$value}}</option>
-                    {{-- @if( array_key_exists($name,$filter )) 
-                        <option data-element="{{$value}}{{$name}}" {{ ( intval( $filter[{{$name}}])== $value) ? 'selected':''}} value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
-                    @else
-                        <option data-element="{{$value}}{{$name}}" value="{{$value}}">{{($value == 0)?'':$value}} {{$name}}</option>
-                    @endif --}}
 
-                @endforeach               
+<div class="replace">
+    @php $i=1 @endphp
+    @foreach($feature_values as $key=>$values)
+        @if($i>3)
+            @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+            <label for="buildingtype"> {{$name}}:-</label>
+            <select name="properties[{{$key}}]" id="buildingtype">
+                <option selected disabled> Select {{$name}}</option>
+                @foreach($values as $value)
+                    <option value="{{$value}}">{{$value}}</option>
+                @endforeach
             </select>
-        </div>
-        @php
-            $i += 1;
-            if($i==4){
-                break;
-            }
-        @endphp
+        @endif
+        @php $i += 1  @endphp
     @endforeach
 </div>
+{{-- <div class="replace"> 
+    @php $i = 1; @endphp
+    @foreach($feature_values as $key=>$values)
+    @if($i>3)
+    @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+    <div class="option_1 multi_select_dropdown">
+        <p>{{$name}}<i class="las la-angle-down"></i></p>
+        <div class="option_listing_dropDown child_dropdown">
+            @foreach ($values as $value)
+                <div class="list_group_category">
+                    <input class="form-check-input front-category" data-element="#advance{{ $value }}"
+                        type="checkbox" name="properties[{{$key}}]" value="{{ $value}}"
+                        id="initial{{ $value}}">
+                    <label class="form-check-label" for="initial{{ $value }}">{{ $value }}</label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+    @php $i += 1; @endphp
+    @endforeach
+</div> --}}

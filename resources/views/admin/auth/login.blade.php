@@ -53,10 +53,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-
-
-
-                        <form method="POST" action="{{route('login')}}">
+                        @if (Session::has('error'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                                {{ Session::get('error') }}</p>
+                        @endif
+                        @if (Session::has('success'))
+                            <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                                {{ Session::get('success') }}</p>
+                        @endif
+                        <form method="POST" action="{{route('adminn.login')}}">
                             @csrf
                             <div class="card card-login">
                                 @if(Session::has('error_message'))

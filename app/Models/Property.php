@@ -86,7 +86,7 @@ class Property extends Model
 
     public function agent()
     {
-        return $this->hasOne(AgencyProperty::class, 'property_id');
+        return $this->hasMany(AgencyProperty::class, 'property_id');
     }
     public function faqs()
     {

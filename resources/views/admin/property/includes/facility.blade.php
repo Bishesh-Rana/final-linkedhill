@@ -16,10 +16,10 @@
     <div id="collapseNew" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
             <div class="col-md-12">
-                <div class="form-group  label-floating row">
+                <div class="form-group  label-floating row"> 
                     {{-- @dd($property->facility) --}}
                     @foreach($facilities as $facility)
-                        <div class="col-sm-2"><input type="checkbox"name="facility[]" value="{{$facility->title}}"  >
+                        <div class="col-sm-2"><input type="checkbox"name="facility[]" value="{{$facility->title}}"  @php if($property->facility != null ){foreach($property->facility as $fac){if($fac->title == $facility->title){echo('checked'); }}} @endphp>
                             <label for="">{{$facility->title}}</label></div>
                     @endforeach
                     <x-error name='facility' />

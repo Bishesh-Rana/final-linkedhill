@@ -6,8 +6,6 @@
             <div class="col-lg-12">
                 <div class="linked_hill_flex_wrap">
                     <div class="linked_hill_search_top ">
-                        @csrf
-                        
                         <ul>
                             @foreach ($purposes as $key => $type)
                             <li >
@@ -54,48 +52,11 @@
                             </div>
                         </div>
                         <div class="replace d-flex">
-                            <!-- <div class="option_a1">
-                                <select  id="bed" name="bed">
-                                    <option data-element="0bed" value="" selected>Any Bed</option>
-                                    <option data-element="1bed" value="1">1+</option>
-                                    <option data-element="2bed" value="2">2+</option>
-                                    <option data-element="3bed" value="3">3+</option>
-                                    <option data-element="4bed" value="4">4+</option>
-                                    <option data-element="5bed" value="5">5+</option>
-                                    <option data-element="6bed" value="6">6+</option>
-                                    <option data-element="7bed" value="7">7+</option>
-                                    <option data-element="8bed" value="8">8+</option>
-                                    <option data-element="9bed" value="9">9+</option>
-                                    <option data-element="10bed" value="10">10+</option>
-                                </select>
-                            </div> -->
+                            {{-- for dynamic feature--}}
                         </div>
-                        <!-- <div class="option_a1">
-                            <select name="bath" id="bath">
-                                <option  data-element="bath-0" value="" selected>Any Bath</option>
-                                <option  data-element="bath-1" value="1">1+ Bath</option>
-                                <option  data-element="bath-2" value="2">2+ Bath</option>
-                                <option data-element="bath-3"  value="3">3+ Bath</option>
-                                <option  data-element="bath-4" value="4">4+ Bath</option>
-                                <option data-element="bath-5"  value="5">5+ Bath</option>
-                                <option data-element="bath-6"  value="6">6+ Bath</option>
-                                <option  data-element="bath-7" value="7">7+ Bath</option>
-                                <option  data-element="bath-8" value="8">8+ Bath</option>
-                                <option  data-element="bath-9" value="9">9+ Bath</option>
-                                <option  data-element="bath-10" value="10">10+ Bath</option>
-                            </select>
-                        </div>
-                        <div class="option_a1">
-                            <select name="parking" id="parking">
-                                <option data-element="park-0" value="" selected>Any Parking</option>
-                                <option data-element="park-1" value="1">1+ Parking</option>
-                                <option data-element="park-2" value="2">2+ Parking</option>
-                                <option data-element="park-3" value="3">3+ Parking</option>
-                            </select>
-                        </div> -->
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
-                                <option value="" selected>Min Price</option>
+                                <option selected disabled>Min Price</option>
                                 <option value="5000.00">Rs. 5000.00</option>
                                 <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
@@ -105,7 +66,7 @@
                         </div>
                         <div class="option_a1">
                             <select name="end_prize" id="end_prize">
-                                <option value ="" selected >Max Price</option>
+                                <option selected disabled>Max Price</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>

@@ -8,7 +8,7 @@
         @endphp
         <div class="option_a1">
             <select name="properties[{{$key}}]">
-                <option data-element="0bed" value="" selected>{{$name}}</option>
+                <option data-element="0bed" selected disabled>{{$name}}</option>
                     @foreach($values as $value)
                         <option data-element="1bed" value="{{$value}}">{{$value}}+</option>
                     @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\DeviceCredentialController;
 use App\Http\Controllers\Api\EnquiryController;
 use App\Http\Controllers\Api\FacilityController;
+use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\Property\AreaSearchController;
@@ -92,6 +93,7 @@ Route::namespace('Api')->group(function () {
     Route::post('road-type', [PropertyController::class, 'roadType']);
     Route::post('amenties', [PropertyController::class, 'amenties']);
     Route::post('search', [SearchController::class, 'search']);
+    Route::post('category-filter', [FilterController::class, 'filter']);
     Route::post('test', [PropertyController::class, 'test']);
     Route::post('privacy-policy', [ApiController::class, 'ourPolicy']);
     Route::post('terms-and-conditions', [ApiController::class, 'termsConditions']);
