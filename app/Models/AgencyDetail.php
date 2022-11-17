@@ -12,7 +12,7 @@ class AgencyDetail extends Model
     use SoftDeletes;
     protected $fillable = [
         'user_id', 'agency_name', 'agency_email', 'website', 'address', 'agency_phone', 'agency_mobile',
-        'type', 'national_id', 'company_reg_no', 'vat_pan_no', 'verified_at', 'logo','other_document','status'
+        'type', 'national_id','pan','company_registration','tax_clearance', 'company_reg_no', 'vat_pan_no', 'verified_at', 'image','other_document','status'
     ];
     public const TYPE = [
         '1' => 'Individual',
@@ -31,10 +31,10 @@ class AgencyDetail extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getLogoAttribute($name)
-    {
-        return asset('images/logo/') . '/' . $name;
-    }
+    // public function getLogoAttribute($name)
+    // {
+    //     return asset('images/logo/') . '/' . $name;
+    // }
 
     public function getStatusAttribute()
     {

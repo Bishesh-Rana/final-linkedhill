@@ -1,6 +1,6 @@
 @props(['name' => 'image', 'value' => null, 'javascript' => Str::random(8)])
 
-<div class="form-group label-floating is-empty">
+<div class="form-group label-floating is-empty"> 
     <label class="control-label">{{ $name }}</label>
     <div class="fileinput fileinput-new text-center">
         <div class="fileinput-new " id="holder-{{ $javascript }}">

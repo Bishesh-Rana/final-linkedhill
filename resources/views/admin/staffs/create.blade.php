@@ -33,6 +33,7 @@
 
 
                             <x-image name="profile" value="{{ @$staff->profile }}" />
+                            <x-image name="Pan Card" value="{{ @$staff->hasAgency->pan }}" />
 
 
                             <div class="row">

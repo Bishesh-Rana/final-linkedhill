@@ -88,6 +88,12 @@ class Property extends Model
     {
         return $this->hasMany(AgencyProperty::class, 'property_id');
     }
+
+    public function favorite()
+    {
+        return $this->hasMany(FavoriteProperty::class, 'property_id');
+    }
+
     public function faqs()
     {
         return $this->hasMany(PropertyFaq::class, 'property_id')->orderBy('created_at', 'ASC');

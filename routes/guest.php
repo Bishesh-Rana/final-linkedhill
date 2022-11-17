@@ -48,3 +48,4 @@ Route::get('blog/{slug}', [HomeController::class, 'blogSingle'])->name('blog.sin
 Route::get('property-detail/{id}/{slug}', [PropertyController::class, 'propertyDetail'])->name('property.detail');
 
 Route::get('/{menu_slug}', [HomeController::class, 'getMenu'])->name('menu');
+Route::get('/favorite', [HomeController::class, 'favorite'])->name('favorite');

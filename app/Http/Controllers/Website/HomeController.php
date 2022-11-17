@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Models\PropertyCategory;
 use App\Http\Controllers\Controller;
+use App\Models\FavoriteProperty;
 use App\Notifications\PropertyInquery;
 
 class HomeController extends Controller
@@ -264,5 +265,30 @@ class HomeController extends Controller
             'og_site_name' => config('websites.name'),
             'twitter' => config('websites.twitter'),
         ];
+    }
+
+    public function favorite(Request $request){
+        return "sdfadsf";
+        if(isset(auth()->user()->id)){
+            dd('fsa');
+            return response()->json([
+                'error' => "Please Login first",
+            ]);
+        }else{
+            $favorite_property = FavoriteProperty::where(['user_id'=>auth()->user()->id,'property_id'=>$request->property_id])->first();
+            if(!empty($favorite_property)){
+                dd('bsihesh');
+                $favorite_property->delete();
+                return response()->json([
+                    'success'=>"completed",
+                ]);
+            }else{
+                FavoriteProperty::create(['user_id'=>auth()->user()->id,'property_id'=>$request->property_id]);
+                dd('rana');
+                return response()->json([
+                    'success'=>"completed",
+                ]);
+            }
+        }
     }
 }

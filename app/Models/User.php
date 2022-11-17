@@ -81,6 +81,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(AgencyDetail::class);
     }
+    public function favorite()
+    {
+        return $this->hasMany(FavoriteProperty::class);
+    }
 
     public function appliedAgencies()
     {

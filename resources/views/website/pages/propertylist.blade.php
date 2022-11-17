@@ -359,8 +359,8 @@
                                                         </div>
 
                                                         <div onclick="favorite({{ $property->id }})" class="favicon">
-                                                            <a href="#" class="favorite{{ $property->id }}"><i
-                                                                    class=" lar la-heart "></i></a>
+                                                            <a href="javascript:;" class="favorite{{ $property->id }}"><i
+                                                                    class="lar la-heart "></i></a>
                                                         </div>
                                                         <div class="property_owner">
                                                             @if ($property->bed !== 0)
@@ -654,6 +654,31 @@
     </div>
 @endsection
 @push('scripts')
+    <script>
+        function favorite(property){
+        $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+        $.ajax({
+            url: "{{ route('favorite') }}",
+            type: 'get',
+            data: {
+                property_id: property,
+            },
+            // dataType: 'JSON',
+            success: function(response) {
+                console.log(response);
+                alert(response);
+                if(response.success){
+                    alert('Action completed');
+                }
+                if(response.error){
+                    alert('Please login first');
+                }
+                
+            },
+        });
+
+    }
+    </script>
     <script>
         $("form[name='propertyEnquiry']").submit(function(e) {
 
