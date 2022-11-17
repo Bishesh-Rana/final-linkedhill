@@ -6,7 +6,7 @@
             @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
             <label for="buildingtype"> {{$name}}:-</label>
             <select name="properties[{{$key}}]" id="buildingtype">
-                <option value=""> Select {{$name}}</option>
+                <option selected disabled> Select {{$name}}</option>
                 @foreach($values as $value)
                     <option value="{{$value}}">{{$value}}</option>
                 @endforeach

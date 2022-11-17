@@ -224,6 +224,21 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="selector_wrapper">
+                            <select name="facing">
+                                <option selected disabled> Property Facing </option>
+                                <option value="East"> East </option>
+                                <option value="West"> West </option>
+                                <option value="North"> North </option>
+                                <option value="South"> South </option>
+                                <option value="South-East"> South-East </option>
+                                <option value="South-West"> South-West </option>
+                                <option value="North-East"> North-East </option>
+                                <option value="North-West"> North-West </option>
+                            </select>
+                        </div>                                    
+                    </div>
 
                     {{-- <div class="replace"> 
                         @php $i = 1; @endphp

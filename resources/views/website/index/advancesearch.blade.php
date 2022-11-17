@@ -97,8 +97,31 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
+                                        <h3>Property Facing</h3>
+                                        <input type='radio' name="facing" selected disabled id="AnyFacing"/>
+                                        <label for="AnyFacing">Any</label> 
+                                        <input type='radio' name="facing" value="East" id="East"/>
+                                        <label for="East">East</label> 
+                                        <input type='radio' name="facing" value="West" id="West"/>
+                                        <label for="West">West</label> 
+                                        <input type='radio' name="facing" value="North" id="North"/>
+                                        <label for="North">North</label> 
+
+                                        <input type='radio' name="facing" value="North-East" id="North-East"/>
+                                        <label for="North-East">North-East</label> 
+                                        <input type='radio' name="facing" value="North-West" id="North-West"/>
+                                        <label for="North-West">North-West</label> 
+                                        <input type='radio' name="facing" value="South-East" id="South-East"/>
+                                        <label for="South-East">South-East</label> 
+                                        <input type='radio' name="facing" value="South-West" id="South-West"/>
+                                        <label for="South-West">South-West</label> 
+
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="selector_wrapper">
                                         <h3>Listed By</h3>
-                                        <input type='radio' name="listingby" value="" id="AnyLister"/>
+                                        <input type='radio' name="listingby" selected disabled id="AnyLister"/>
                                         <label for="AnyLister">Any</label> 
                                         <input type='radio' name="listingby" value="Owner" id="Owner"/>
                                         <label for="Owner">Owner</label> 
