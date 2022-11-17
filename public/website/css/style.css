@@ -393,7 +393,7 @@ div#site_carousel .carousel-item img {
 
 .about_loan_thumbnail p {
     font-size: 16px;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
     color: #7e7e7e;
 }
 
@@ -402,9 +402,10 @@ div#site_carousel .carousel-item img {
 }
 
 .loan_images img {
-    height: 100px;
-    width: auto;
+    height: auto;
+    width: 100%;
     margin: auto;
+    border-radius: 15px;
 }
 
 .site_title h2 {
@@ -3065,7 +3066,13 @@ div#Share_Feedback .modal-dialog {
 }
 .property_owner {
     text-align: center;
-    margin-top: 6px;
+    /* margin-top: -30px; */
+    background: #ffffff8a;
+    /* z-index: 100000000000; */
+    position: absolute;
+    padding: 3px 5px;
+    width: 100%;
+    bottom: 0px;
 }
 .top_tv_verified{
     display: flex;
@@ -5003,7 +5010,7 @@ nav#linked_hill_nav {
 }
 .property_owner span {
     position: relative;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .character_list_title h1 {
@@ -5058,7 +5065,8 @@ section#property_character_list {
     font-size: 18px;
 }
 .type_badge {
-    font-weight: 700;
+    font-weight: 600;
+    color: black;
 }
 #news_insights_wrapper,
 #premium_wrapper {
@@ -5227,7 +5235,8 @@ section#property_character_list {
         display: none;
         display: flex;
         flex-wrap: wrap;
-
+        flex-basis: fit-content;
+        justify-content: center;
     }
     
     .propertylistsearch .option_listing_dropDown {
@@ -5276,7 +5285,7 @@ section#property_character_list {
     }
     
     .propertylistsearch .option_a1 {
-        width: calc(100%/7);
+        width: calc(100%/8);
         margin: 2px;
         border: 1px solid #938f8f;
    }
@@ -5413,18 +5422,63 @@ section#property_character_list {
     display: block;
 }
 
-.brand-name{
-    /* font-family: 'Josefin Sans', sans-serif; */
-    font-family: 'Lobster', cursive;
+.brandname-front{
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Lobster', cursive; */
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 30px;
+    color: white;
+    font-weight: 800;
 }
 
-.footer-brandname{
-    font-family: 'Lobster', cursive;
+
+.brandname-back{
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Lobster', cursive; */
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 30px;
-    color: #58585a; 
-    margin-left:20px;
+    color: white;
+    font-weight: 400;
+}
+.footer-brandname-front{
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Lobster', cursive; */
+    /* font-family: 'Open Sans', sans-serif; */
+    font-size: 30px;
+    color: #635f5f;
+    font-weight: 800;
+}
+.footer-brandname-back{
+    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Lobster', cursive; */
+    /* font-family: 'Open Sans', sans-serif; */
+    font-size: 30px;
+    color: #635f5f;
+    font-weight: 400;
+}
+
+.about_loan_thumbnail{
+        /* border: 1px solid; */
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: #acaaaa 0px 0px 1px 3px;
+}
+
+
+.about_loan_thumbnail:hover {
+    /* border: 1px solid; */
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: #acaaa4 0px 5px 10px 6px;
+}
+
+.property-block{
+background: #f0f0f0;
+padding: 10px;
+border-radius: 10px;
+}
+
+.carousel-control-prev ,.carousel-control-next{
+    width: fit-content;
 
 }
