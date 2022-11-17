@@ -25,7 +25,6 @@
                                         <div class="agent-type">
                                             <div  class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type1"
-<<<<<<< HEAD
                                                     checked value="Property owner" onclick="changeType()">
                                                 <label class="form-check-label" for="type1">
                                                     Property Owner
@@ -33,12 +32,6 @@
                                                         data-placement="top" title="Property owner">
                                                         <i class="las la-info"></i>
                                                     </button>
-=======
-                                                    checked value="1" onclick="changeType()">
-                                                <label class="form-check-label tooltiptoggler1" for="type1">
-                                                    Property Owner <div class="tooltipinfo"><i class="las la-info "></i>
-                                                        </div> 
->>>>>>> 9204429c84ed926973d7237902d72dabe8c9a5c7
                                                 </label>
                                                 <div class="tooltipdefault">If You are owner of property.
                                                 </div>
@@ -46,13 +39,8 @@
                                            
                                             <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type2"
-<<<<<<< HEAD
                                                     value="Real Estate Company" onclick="changeType()">
                                                 <label class="form-check-label" for="type2">Real Estate Company
-=======
-                                                    value="2" onclick="changeType()">
-                                                <label class="form-check-label d-flex" for="type2"><p>Real Estate Company</p>
->>>>>>> 9204429c84ed926973d7237902d72dabe8c9a5c7
                                                     <button type="button" class="tooltipinfo" data-toggle="tooltip"
                                                         data-placement="top"  data-html="true" title="Licensed under Nepal Government and with more then 1 employees.">
                                                         <i class="las la-info"></i>

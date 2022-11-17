@@ -60,7 +60,7 @@
             <div class="container">
                 <div class="row">
                     @foreach ($property_categories as $category)
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="about_loan_thumbnail text-center">
                                 <div class="loan_images">
                                     <img src="{{ image(@$category->icon) }}" alt="">
@@ -69,7 +69,7 @@
                                 <p>{{ Str::limit(strip_tags($category->description), 150, '...') }}</p>
 
                                 <a href="{{ route('front.search-properties', ['category_id' => $category->id]) }}"
-                                    class="btn btn-danger">Find a
+                                    class="btn btn-danger mb-2">Find a
                                     {{ $category->name }}</a>
                             </div>
                         </div>

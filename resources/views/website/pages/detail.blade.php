@@ -3,6 +3,19 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
+@if ($advertisement->count())
+<div class="ads_section_cover">
+    <div class="row">
+        <div class="col-lg-12">
+            @foreach ($advertisement as $item)
+            <div class="ads_wrap" {{ $item->display_size }}>
+                <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
     <section id="bread_crumb_wrapper">
         <div class="container">
             <div class="row">
@@ -16,23 +29,11 @@
         </div>
     </section>
 
-    @if ($advertisement->count())
-        <div class="ads_section_cover">
-            <div class="row">
-                <div class="col-lg-12">
-                    @foreach ($advertisement as $item)
-                    <div class="ads_wrap" {{ $item->display_size }}>
-                        <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    @endif
+ 
 
     <section id="detail_info_wrapper">
         <div class="container">
-            <div class="property_detail_wrapper">
+            <div class="property_detail_wrapper mt-3">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="property_inner">

@@ -55,8 +55,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="linked_hill_nav">
             <div class="container">
               <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ image(config('websites.logo')) }}" alt="">
-                    <span class="text-white navbar-brand brand-name"> {{ config('webisites.logo') }} Linkedhill</span>
+                    <img src="{{ image(config('websites.logo')) }}" alt=""><span class="brandname-front">Linked</span><span class="text-white navbar-brand brandname-back">hill</span>
                 </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -225,7 +224,8 @@
                     <div class="footer_ft_left">
                         <a class="navbar-brand" href="{{ route('homepage') }}">
                             <img src="{{ image(config('websites.logo_footer')) }}"
-                                alt=""><span class="footer-brandname" style="">LinkedHill</span>
+                                alt="">
+                                <span class="footer-brandname-front">Linked</span><span class="footer-brandname-back">hill</span>
                         </a>
                         <p>{!! @$website->short_description !!}</p>
                         <div class="follow_us">
