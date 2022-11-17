@@ -68,7 +68,7 @@ class PropertyController extends Controller
         // dd($properties); Arr::get($filter, 'properties')
         // Arr::get($filter, 'properties')
         $properties =  Property::filter() 
-        ->when(!empty($properties), function($query, $properties) {
+        ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                 // dd($value);
                 // if(!$value == null){
