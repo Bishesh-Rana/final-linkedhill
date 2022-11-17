@@ -24,8 +24,7 @@
             <div class="first-row">
                 <div class="row g-1">
                     <div class="col-md-2">
-                        <select class="purpose" name="purpose" id="purpose">
-                            
+                        <select class="purpose" name="purpose" id="purpose">                            
                             @foreach ($purposes as $purpose)
                                 @if (array_key_exists('purpose', $filter )) 
                                     <option value="{{ $purpose->name }}" {{($purpose->name == $filter['purpose']) ? 'selected':''}}>{{ $purpose->name }}</option>
@@ -33,7 +32,6 @@
                                     <option value="{{ $purpose->name }}" >{{ $purpose->name }}</option>
                                 @endif
                             @endforeach
-
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -84,7 +82,7 @@
             </div>
             <div class="second-row">
                 <div class="option_1 multi_select_dropdown">
-                    <p>Category<i class="las la-angle-down"></i></p>
+                    <p>Property Type<i class="las la-angle-down"></i></p>
                     <div class="option_listing_dropDown child_dropdown">
                         @foreach ($propertyCat as $propertyC)
                             <div class="list_group_category">

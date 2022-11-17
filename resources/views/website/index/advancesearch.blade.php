@@ -18,15 +18,7 @@
                          @endforeach
                     </div>
 
-                    {{-- <ul style="position: sticky;top:0;background:white;" class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Buy</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rent</button>
-                        </li>
-                       
-                    </ul> --}}
+                   
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
@@ -35,14 +27,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
-                                        <h3>Category</h3>
+                                        <h3>Property Type</h3>
                                        <div class="d-flex">
                                         
                                         {{-- <div class="list_group_category "> --}}
-                                        <div>
-                                            @foreach ($propertyCat as $propertyC)
-                                            <input  class="form-check-input ad_category filter" id="filter" type="checkbox" name="category_id" value="{{$propertyC->id}}" >
-                                            <label class="form-check-label" for="filter">{{ $propertyC->name }}</label>
+                                        <div class="categoryselector">
+                                            @foreach ($propertyCat as $key=>$propertyC)
+                                            <input  class="form-check-input ad_category filter" data-ele="filter" id="{{$propertyC}}{{$key}}" type="checkbox" name="category_id" value="{{$propertyC->id}}" >
+                                            <label class="form-check-label" for="{{$propertyC}}{{$key}}">{{ $propertyC->name }}</label>
                                             {{-- @if ($propertyC->id == 3)
                                             @break
                                             @endif --}}
@@ -94,6 +86,24 @@
                                 </div>
                                 <div class="advance">
                                     {{-- feature comes here --}}
+                                    @foreach($feature_values as $key=>$values)
+                                        @php
+                                            $name = App\Models\Feature::where('id',$key)->value('title');
+                                        @endphp
+                                        <div class="col-md-12">
+                                            <div id="parking" class="selector_wrapper" >
+                                                <h3>{{$name}}</h3>                                  
+                                                <div class="dynamic ">
+                                                @foreach($values as $key1=>$value)
+                                                <div  class="selector">
+                                                    <input type='radio' name="properties[{{$key}}]" value="{{$value}}" id="{{$name}}"/>
+                                                    <label for="{{$name}}{{$key1}}"> {{$value}}</label>
+                                                </div>
+                                                @endforeach 
+                                                </div> 
+                                            </div>                                  
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
@@ -156,10 +166,10 @@
         $('.filter').on('change', function(){
             let{
                     value,
-                    id,
+                    dataset,
                     checked
                 } = event.target;
-                if(id=="filter"){
+                if(dataset.ele=="filter"){
                     if(checked){
                         category_ids.push(value);
                     }

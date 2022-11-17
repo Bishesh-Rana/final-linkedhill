@@ -72,24 +72,7 @@
                                 echo old('email');
                             } ?>">
                         </div>
-
-                        <div class="form-group">
-                            <label>Profile Picture</label>
-                            <div></div>
-                            <div class="custom-file" style="width:40%">
-                                <input type="file" name="profile" >
-                                <div><br></div>
-                                <img src="" id="profile-img-tag" width="100px" height="58px" style="display:none;" />
-                            </div>
-                            @if (!empty($admin->profile))
-                            <br>
-                            <img id="profile" src="{{ asset('uploads/'.'admins/'.$admin->profile) }}" alt="<?php if (isset($admin->profile)) {
-                                echo $admin->profile;
-                            } ?>" height="100" width="100">
-                            <a title="Delete" id="delete" class="btn btn-danger btn-circle btn-xs"><i class="fa fa-times"></i></a>
-
-                            @endif
-                        </div>
+                        <x-image name="profile" value="{{ @$admin->profile }}" />
                         <div><br></div>
 
                         <div class="form-group m-form__group">                       

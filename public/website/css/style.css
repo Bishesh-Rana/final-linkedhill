@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&family=Lobster&family=Open+Sans:ital,wght@0,300;0,400;1,400;1,500&display=swap');
 body {
     font-family: 'Nunito Sans', sans-serif;
 }
@@ -5132,7 +5133,11 @@ section#property_character_list {
         margin-right: 15px;
     }
     .advance_search_modal input {
-        /* visibility:hidden; */
+        visibility:hidden;
+    }
+    
+    .categoryselector input {
+        visibility:initial;
     }
     .advance_search_modal label {
         cursor: pointer;
@@ -5367,16 +5372,59 @@ section#property_character_list {
     justify-content: space-between;
     flex-wrap: wrap;
    }
-   .agent-type div{
-    /* width: 50%; */
+   .agent-type .fortooltip{
+    position: relative;
+    width: 50%;
     margin-bottom: 10px;
-    margin-right: 5px;
+    /* margin-right: 5px; */
    }
 
    .tooltipinfo{
     border: 1px solid #a9a5a5;
     border-radius: 50%;
     padding: 1px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: fit-content;
    }
 
-  
+   .dynamic{
+    display: flex;
+    flex-wrap: wrap;
+
+   }
+  .selector{
+    width: 25%;
+  }
+
+.tooltipdefault {
+    max-width: 200px!important; 
+    height: fit-content;
+    position: absolute;
+    display: none;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+
+}
+
+.tooltiptoggler1:hover + .tooltipdefault{
+    display: block;
+}
+
+.brand-name{
+    /* font-family: 'Josefin Sans', sans-serif; */
+    font-family: 'Lobster', cursive;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-size: 30px;
+}
+
+.footer-brandname{
+    font-family: 'Lobster', cursive;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-size: 30px;
+    color: #58585a; 
+    margin-left:20px;
+
+}
