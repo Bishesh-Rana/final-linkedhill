@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
-                                        <h3>Category</h3>
+                                        <h3>Property Type</h3>
                                        <div class="d-flex">
                                         
                                         {{-- <div class="list_group_category "> --}}

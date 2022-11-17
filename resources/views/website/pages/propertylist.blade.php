@@ -74,7 +74,7 @@
             </div>
             <div class="second-row">
                 <div class="option_1 multi_select_dropdown">
-                    <p>Category<i class="las la-angle-down"></i></p>
+                    <p>Property Type<i class="las la-angle-down"></i></p>
                     <div class="option_listing_dropDown child_dropdown">
                         @foreach ($propertyCat as $propertyC)
                             <div class="list_group_category">
