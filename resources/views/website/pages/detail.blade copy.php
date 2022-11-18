@@ -1,136 +1,128 @@
-@extends('website.layouts.app', ['pageTitle' => $property->title])
+@extends('website.layouts.app',['pageTitle'=>$property->title])
 @section('meta')
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-    @if ($advertisement->count())
-        <div class="ads_section_cover">
-            <div class="row">
-                <div class="col-lg-12">
-                    @foreach ($advertisement as $item)
-                        <div class="ads_wrap" {{ $item->display_size }}>
-                            <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
-                        </div>
-                    @endforeach
-                </div>
+@if ($advertisement->count())
+<div class="ads_section_cover">
+    <div class="row">
+        <div class="col-lg-12">
+            @foreach ($advertisement as $item)
+            <div class="ads_wrap" {{ $item->display_size }}>
+                <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
             </div>
+            @endforeach
         </div>
-    @endif
+    </div>
+</div>
+@endif
     <section id="bread_crumb_wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a>/</li>
-                        <li><a href="{{ url('/properties') }}">Properties</a>/</li>
                         <li><a href="#">{{ $property->title }}</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-
-
-
+ 
 
     <section id="detail_info_wrapper">
         <div class="container">
-            <div class="property_detail_images">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @foreach ($property->images as $image)
-                            <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                <a href="{{ image(@$image->name) }}" class="lightbox" title="">
-                                    <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="property_detail_wrapper">
+          
+        </div>
+    </section>
+    
+    <section id="property_container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                      <div class="property_detail_wrapper mt-3">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <div class="property_inner">
-                            <div class="d-flex">
-                                <h1>{{ @$property->title }} by &nbsp;{{ @$property->user->name }}</h1>
+                            <h1>{{ @$property->title }}</h1>
+                            <p>by <a href="">{{ @$property->user->name }}</a>  <a class="call-icon me-2" href="tel:{{ @$property->owner_phone }}"
+                                class=" "><i class="las la-phone-volume"></i></a></p>
+                                @if ($property->user->is_active == 1)
+                                <p class="verified-btn"><i class="las la-check"></i>Verified Builder</p>
+                            @endif
+                            <div class="main-price">
+                                <i class="las la-coins"></i><strong>{{ $property->start_price }}</strong>
                             </div>
                             <div class="property_address">
                                 <div class="text_tx_property">
                                     <span><i class="las la-map-marker-alt"></i></span>
-                                    <span>{{ @$property->property_address }}</span>
+                                    <span> <a class="detail-address" href="http://maps.google.com/?q={{ @$property->property_address }}"
+                                         target="_blank">{{ @$property->property_address }} </a></span>
                                 </div>
-
                                 {{-- <div class="button_tx_property">
                                     <a href="http://maps.google.com/?q={{ @$property->property_address }}"
                                         class="btn" target="_blank"><i class="las la-street-view"></i>Get
                                         Direction</a>
                                 </div> --}}
                             </div>
-                            <div class="top_tv_verified mt-3">
-                                <span><i class="las la-check"></i>{{ @$property->property_facing }}
-                                </span>
-
-                                @isset($property->type)
-                                    <span><i class="las la-check"></i>{{ $property->type }}</span>
-                                @endisset
-                                @if ($property->negotiable == false)
-                                    @isset($property->negotiable)
-                                    @endisset
-                                @else
-                                    @if ($property->negotiable == true)
-                                        @isset($property->negotiable)
-                                            <span><i class="las la-check"></i>NEGOTIABLE</span>
-                                        @endisset
-                                    @endif
-                                @endif
-                                @if ($property->insurance !== false)
-                                    @isset($property->insurance)
-                                        <span><i class="las la-check"></i>Insurance</span>
-                                    @endisset
-                                @endif
-
-                                @if ($property->user->is_active == 1)
-                                    <span><i class="las la-check"></i>Verified Builder</span>
-                                @endif
-
-                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
+                        <div class="over_view_info position-relative">
+                            <div class="d-flex">
+                                <span>Total Area:- </span>
+                            <p class="ms-2">{{ $property->total_area . ' ' . $property->area_unit->name }}
+                            </p>
+                            </div>
+                            <p>
+                                {!! $property->property_detail !!}
+                            </p>
+                            <div class="fav-wrapper">
+                                <a href="#" id="favourite"><i class="lar la-heart"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    {{-- <div class="col-lg-4">
                         <div class="property_verified_ text-end">
                             <ul>
                                 <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                {{-- <li><a href="#"><i class="las la-share-alt-square"></i></a></li> --}}
+                                <li><a href="#"><i class="las la-share-alt-square"></i></a></li>
                             </ul>
-                            <div class="main-price">
-                                <i class="las la-coins"></i><strong>RS. {{ $property->start_price }}</strong>
-                            </div>
-
+                            @if ($property->user->is_active == 1)
+                                <p><i class="las la-check"></i>Verified Builder</p>
+                            @endif
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="property_container">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
                     <div class="row">
-                        <div class="col-lg-12">
 
+                        <div class="col-lg-12">
+                            <div class="property_detail_images">
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($property->images as $image)
+                                            <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
+                                                <a href="{{ image(@$image->name) }}" class="lightbox" title="">
+                                                    <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="detail_scroll_spy_">
@@ -169,13 +161,13 @@
                                 <!-- End Nav Section -->
 
                                 <!-- Start Home Section -->
-                                <div id="Overview" class="section">
+                                {{-- <div id="Overview" class="section">
                                     <div class="containerWrapper">
                                         <div class="content-wrapper">
                                             <div class="content">
                                                 <div class="over_view_wrapper">
-                                                    <div class="spy_common_title">
-                                                        <h1>Overview</h1>
+                                                    <div class="spy_common_title d-flex">
+                                                        <h1>{{ $property->title }}</h1><p>by <a href="#">{{ @$property->user->name }}</a></p>
                                                     </div>
                                                     <div class="over_view_flex">
                                                         <div class="over_view_info">
@@ -188,16 +180,16 @@
                                                             <p>NPR {{ @$property->start_price }} </p>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="over_view_bottom_flex" id="hello">
-                                                    </div> --}}
+                                                    <div class="over_view_bottom_flex" id="hello">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Home Section -->
                                 <!-- Start About Me Section -->
-                                <div id="about" class="section">
+                                {{-- <div id="about" class="section">
                                     <div class="containerWrapper">
                                         <div class="about_wrapper">
                                             <div class="about_aw_wrapper">
@@ -208,7 +200,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Start Testimonials Section -->
                                 <div id="Amenities" class="section">
                                     <div class="containerWrapper">
@@ -294,33 +286,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="near_nb_by_wrap">
-                                                    <div class="spy_common_title">
-                                                        <h1>Nearby Projects - {{ $property->title }}</h1>
-                                                    </div>
-                                                    <div class="near_by_property">
-                                                        <div class="owl-carousel" id="nearby_slider">
-                                                            @foreach ($related as $relate)
-                                                                <div>
-                                                                    <div class="near_by_thumbnail">
-                                                                        <a
-                                                                            href="{{ route('property.detail', ['id' => $relate->id, 'slug' => $relate->slug]) }}"><img
-                                                                                src="{{ image(@$relate->images->first()->name) }}"
-                                                                                alt=""></a>
-                                                                        <div class="near_by_content">
-                                                                            <span>Rs. {{ $relate->start_price }}</span>
-                                                                            <strong>{{ $relate->address }}</strong>
-                                                                            <p><a
-                                                                                    href="">{{ $relate->city->name }}</a>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -329,48 +295,22 @@
                                 <!-- scroll spy End -->
                             </div>
                         </div>
-                        <div class="col-lg-12"></div>
                     </div>
                 </div>
                 <div class="col-lg-4 relative_position">
                     <div class="detail_right_bar">
                         <div class="row">
-                            <div class="col-lg-12">
-                               <div class="right_bar">
-                                <div class="map_container">
-                                    <div class="over_view_bottom_flex" id="hello">
-                                    </div>
-                                </div>
-                                <div class="builder_wrapper d-flex">
-                                    <div class="profile"><img src="{{ asset('frontend/gallery/no_result.jpg') }}" alt=""></div>
-                                    <div style="width: 50%;padding-left: 10px;">
-                                        <p class="builder_name">{{ $property->user->name }}</p>
-                                        <p class="builder_address">{{$property->user->full_address}} Adress</p>
-
-                                    </div>
-                                   <div>
-                                    <div class="icon_wrapper">
-                                        <a href="tel:{{ @$property->user->mobile ?? @$property->user->phone }}"><i class="las la-phone"></i></a>
-                                        {{-- <span>{{ @$property->user->mobile ?? @$property->user->phone }}</span> --}}
-
-                                    </div>
-
-                                   </div>
-                                   <div>
-                                    <div class="icon_wrapper" data-bs-toggle="modal" data-bs-target="#send_message_model">
-                                        <i class="las la-envelope"></i>
-                                        
-                                    </div>
-
-                                   </div>
-                                   
-
-                                </div>
-                               </div>
-                            </div>
                             {{-- <div class="col-lg-12">
+                                <div class="builder_wrapper">
+                                    <h1>Builder</h1>
+                                    <p>{{ @$property->user->name }}</p>
+                                    <span>{{ @$property->user->mobile ?? @$property->user->phone }}</span>
+
+                                </div>
+                            </div> --}}
+                            <div class="col-lg-12">
                                 <div class="builder_contact_form">
-                                    <h1 >Contact<span>Builder</span></h1>
+                                    <h1>Contact <span>Builder</span></h1>
                                     <form name="propertyEnquiry">
                                         <div class="builder_bf_form">
                                             @csrf
@@ -378,8 +318,7 @@
                                                 <input type="text" class="form-control" id="exampleFormControlInput1"
                                                     placeholder="Name" name="name" value="{{ old('name') }}">
                                             </div>
-                                            <input type="hidden" name="propertyId" value="{{ $property->id }}"
-                                                readonly>
+                                            <input type="hidden" name="propertyId" value="{{ $property->id }}" readonly>
                                             <div class="mb-3">
                                                 <input type="email" class="form-control" id="exampleFormControlInput1"
                                                     placeholder="Email Id" name="email" value="{{ old('email') }}">
@@ -395,9 +334,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="form_right">
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1" placeholder="Mobile No."
-                                                        name="contact_info" value="{{ old('contact_info') }}">
+                                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                        placeholder="Mobile No." name="contact_info"
+                                                        value="{{ old('contact_info') }}">
                                                 </div>
                                             </div>
 
@@ -405,12 +344,11 @@
                                                 <input type="text" class="form-control" id="exampleFormControlInput1"
                                                     placeholder="Subject" name="subject" value="{{ old('subject') }}">
                                             </div>
-                                            <input type="hidden" name="subject" value="{{ $property->id }}" readonly>
+                                            {{-- <input type="hidden" name="subject" value="{{ $property->id }}" readonly> --}}
 
                                             <div class="mb-3">
-                                                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"
-                                                    placeholder="Write Message"></textarea>
-                                            </div>
+                                                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" placeholder="Write Message"></textarea>
+                                              </div>
 
                                             <div class="form_eligibility">
                                                 <div class="form-check">
@@ -429,8 +367,33 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="near_nb_by_wrap">
+                <div class="spy_common_title">
+                    <h1>Nearby Properties - {{ $property->title }}</h1>
+                </div>
+                <div class="near_by_property">
+                    <div class="owl-carousel" id="nearby_slider">
+                        @foreach ($related as $relate)
+                            <div>
+                                <div class="near_by_thumbnail">
+                                    <a href="{{ route('property.detail', ['id' => $relate->id, 'slug' => $relate->slug]) }}">
+                                        <img class="detail-owl-img" src="{{ image(@$relate->images->first()->name) }}"
+                                        alt=""></a>
+                                    <div class="near_by_content">
+                                        <span>Rs. {{ $relate->start_price }}</span>
+                                        <strong>{{ $relate->address }}</strong>
+                                        <p><a href="">{{ $relate->city->name }}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -452,8 +415,7 @@
                 <div class="modal-body">
                     <div class="builder_bf_form">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name"
-                                required>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name" required>
                         </div>
                         <div class="mb-3">
                             <input type="email" class="form-control" id="exampleFormControlInput1"
@@ -498,74 +460,7 @@
         </div>
     </div>
     <!-- END builder inquire form model -->
-    <div class="modal fade share_feedback" id="send_message_model" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h1>Contact Builder</h1>
-                    <form name="propertyEnquiry">
-                        <div class="builder_bf_form">
-                            @csrf
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Name" name="name" value="{{ old('name') }}">
-                            </div>
-                            <input type="hidden" name="propertyId" value="{{ $property->id }}"
-                                readonly>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Email Id" name="email" value="{{ old('email') }}">
-                            </div>
-                            <div class="form_flex">
-                                <div class="form_left">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option value="in" selected="">+977</option>
-                                    </select>
-                                </div>
-                                <div class="form_right">
-                                    <input type="text" class="form-control"
-                                        id="exampleFormControlInput1" placeholder="Mobile No."
-                                        name="contact_info" value="{{ old('contact_info') }}">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Subject" name="subject" value="{{ old('subject') }}">
-                            </div>
-                            {{-- <input type="hidden" name="subject" value="{{ $property->id }}" readonly> --}}
-
-                            <div class="mb-3">
-                                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"
-                                    placeholder="Write Message"></textarea>
-                            </div>
-
-                            <div class="form_eligibility">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="defaultCheck1" required>
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        I wish to share my information with builder.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form_fs_submit">
-                                <button class="btn btn-danger">Submit</button>
-                                <span>I agree to {{ config('websites.name') }} <a
-                                        href="#linkhill">T&C</a></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- START Modal report-->
+    <!-- START Modal -->
     <div class="modal fade" id="Share_Feedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -637,7 +532,7 @@
         $(document).ready(function() {
             var addr = '{{ $property->property_address }}';
             var embed = `<iframe
-            width="100%" height="250px" style="border:0;" allowfullscreen="" loading="lazy"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
             src = 'https://maps.google.com/maps?&amp;q="+
             ${encodeURIComponent(addr)} +
                 "&amp;output=embed'></iframe>`;

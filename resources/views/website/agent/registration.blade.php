@@ -19,8 +19,6 @@
                                     @csrf
 
                                     <div class="mb-3">
-                                        <div class="myDIV">Hover over me.</div>
-                                        <div class="hide">I am shown when someone hovers over the div above.</div>
                                         <label for="exampleFormControlInput1" class="form-label">Agency Type:- </label> <br>
                                         <div class="agent-type">
                                             <div  class="fortooltip ">
@@ -28,8 +26,7 @@
                                                     checked value="Property owner" onclick="changeType()">
                                                 <label class="form-check-label" for="type1">
                                                     Property Owner
-                                                    <button type="button" class="tooltipinfo" data-toggle="tooltip"
-                                                        data-placement="top" title="Property owner">
+                                                    <button type="button" class="tooltipinfo">
                                                         <i class="las la-info"></i>
                                                     </button>
                                                 </label>

@@ -18,6 +18,7 @@
             </div>
         </div>
     </section>
+    {{-- filter --}}
     <section class="container ">
         <form method="get" action="{{ route('front.search-properties') }}">
             <div class="propertylistsearch">
@@ -297,9 +298,12 @@
                         </div>
                     </div>
                 </div>
+        
+            </div>
         </form>
-        </div>
+        
     </section>
+
     <section id="propertyListing_wrapper">
         <div class="container">
             <div class="row">
@@ -470,124 +474,116 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 advertisement">
                     <div>
                         <h5>Featured Properties</h5>
                     </div>
+                    
                     @forelse ($properties as $property)
-                        <div class="property_detail_ mb-2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="property_thumbnail_">
-                                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="0"
-                                                    class="active"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                            </ol>
-                                            <div class="carousel-inner">
-
-                                                @foreach ($property->images as $image)
-                                                    <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                                        <img class="d-block w-100" src="{{ @$image->name }}"
-                                                            alt="First slide">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleIndicators"
-                                                role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleIndicators"
-                                                role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
+                    @if ($property['feature'])
+                    <div class="featuredProducts mb-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="property_thumbnail_">
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($property->images as $image)
+                                                <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
+                                                    <a href="{{ image(@$image->name) }}" class="lightbox" title="">
+                                                        <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
+                                                    </a>
+                                                </div>
+                                            @endforeach
                                         </div>
-
-                                        <div onclick="favorite({{ $property->id }})" class="favicon">
-                                            <a href="#" class="favorite{{ $property->id }}"><i
-                                                    class=" lar la-heart "></i></a>
-                                        </div>
-                                        <div class="property_owner">
-                                            @if ($property->bed !== 0)
-                                                <span title="bedroom"><i class="las la-bed"></i><span
-                                                        class="type_badge">{{ $property->bed }}</span></span>
-                                            @endif
-
-                                            @if ($property->bath !== 0)
-                                                <span title="bathroom"><i class="las la-bath"></i><span
-                                                        class="type_badge">{{ $property->bath }}</span></span>
-                                            @endif
-                                            <span title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
-                                                <i class="las la-crop-alt"></i>
-                                                <span
-                                                    class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                        </div>
-
+                                      
                                     </div>
+                                    
 
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="top_tv_verified">
-                                        <span><i class="las la-check"></i>{{ @$property->property_facing }} </span>
-
-                                        @isset($property->type)
-                                            <span><i class="las la-check"></i>{{ $property->type }}</span>
-                                        @endisset
-                                        @if ($property->negotiable == false)
-                                            @isset($property->negotiable)
-                                            @endisset
-                                        @else
-                                            @if ($property->negotiable == true)
-                                                @isset($property->negotiable)
-                                                    <span><i class="las la-check"></i>NEGOTIABLE</span>
-                                                @endisset
-                                            @endif
-                                        @endif
-                                        @if ($property->insurance !== false)
-                                            @isset($property->insurance)
-                                                <span><i class="las la-check"></i>Insurance</span>
-                                            @endisset
+                                    <div onclick="favorite({{ $property->id }})" class="favicon">
+                                        <a href="#" class="favorite{{ $property->id }}"><i
+                                                class=" lar la-heart "></i></a>
+                                    </div>
+                                    <div class="property_owner">
+                                        @if ($property->bed !== 0)
+                                            <span title="bedroom"><i class="las la-bed"></i><span
+                                                    class="type_badge">{{ $property->bed }}</span></span>
                                         @endif
 
+                                        @if ($property->bath !== 0)
+                                            <span title="bathroom"><i class="las la-bath"></i><span
+                                                    class="type_badge">{{ $property->bath }}</span></span>
+                                        @endif
+                                        <span title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
+                                            <i class="las la-crop-alt"></i>
+                                            <span
+                                                class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
                                     </div>
-                                    <div class="top_tt_title">
-                                        <a class=""
-                                            href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                            <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
-                                            <span> {{ @$property->title }}</span></a>
-                                    </div>
-                                    <div class="owner ">
-                                        <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
-                                        <a class="icon me-2" href="tel:{{ @$property->owner_phone }}" class=" "><i
-                                                class="las la-phone-volume"></i></a>
-                                        <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
-                                            data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
-                                        <div class="show_button_area">
-                                            <span class="button_show"><i class="las la-angle-down"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    @if ($property->amenities->count() > 0)
-                                        <div class="property_type_ptd_detail">
-                                            <ul>
-                                                @foreach ($property->amenities as $amenity)
-                                                    <li><img src="" alt="">{{ $amenity->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
 
-                                    <div class="property_text">
-                                        {!! @$property->property_detail !!}
-                                    </div>
                                 </div>
 
                             </div>
+                            <div class="col-md-12">
+                                <div class="top_tv_verified">
+                                    <span><i class="las la-check"></i>{{ @$property->property_facing }} </span>
+
+                                    @isset($property->type)
+                                        <span><i class="las la-check"></i>{{ $property->type }}</span>
+                                    @endisset
+                                    @if ($property->negotiable == false)
+                                        @isset($property->negotiable)
+                                        @endisset
+                                    @else
+                                        @if ($property->negotiable == true)
+                                            @isset($property->negotiable)
+                                                <span><i class="las la-check"></i>NEGOTIABLE</span>
+                                            @endisset
+                                        @endif
+                                    @endif
+                                    @if ($property->insurance !== false)
+                                        @isset($property->insurance)
+                                            <span><i class="las la-check"></i>Insurance</span>
+                                        @endisset
+                                    @endif
+
+                                </div>
+                                <div class="top_tt_title">
+                                    <a class=""
+                                        href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
+                                        <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
+                                        <span> {{ @$property->title }}</span></a>
+                                </div>
+                                <div class="owner ">
+                                    <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
+                                    <a class="icon me-2" href="tel:{{ @$property->owner_phone }}" class=" "><i
+                                            class="las la-phone-volume"></i></a>
+                                    <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
+                                        data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
+                                    <div class="show_button_area">
+                                        <span class="button_show"><i class="las la-angle-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                @if ($property->amenities->count() > 0)
+                                    <div class="property_type_ptd_detail">
+                                        <ul>
+                                            @foreach ($property->amenities as $amenity)
+                                                <li><img src="" alt="">{{ $amenity->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <div class="property_text">
+                                    {!! @$property->property_detail !!}
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+                        
+                    @endif
+                       
                     @empty
                         <div>
                             <div class="no_result_found_wrapper">
@@ -644,7 +640,7 @@
                                 <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-danger" type="submit">Send Message</button>
+                                <button class="btn btn-danger"  type="submit" data-bs-dismiss="modal" aria-label="Close">Send Message</button>
                             </div>
                         </div>
                     </form>
