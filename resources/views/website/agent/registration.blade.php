@@ -21,7 +21,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Agency Type:- </label> <br>
                                         <div class="agent-type">
-                                            <div  class="fortooltip ">
+                                            {{-- <div  class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type1"
                                                     checked value="Property owner" onclick="changeType()">
                                                 <label class="form-check-label" for="type1">
@@ -32,7 +32,7 @@
                                                 </label>
                                                 <div class="tooltipdefault">If You are owner of property.
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                            
                                             <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" id="type2"
@@ -116,7 +116,7 @@
                                                             placeholder="Image" id="thumbnaillogo" readonly>
                                                         <a id="lfmlogo" data-input="thumbnaillogo"
                                                             data-preview="holderlogo" class="btn btn-primary"
-                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                            class="btn btn-outline-primary waves-effect" type="button">Select</a>
                                                         @error('logo')
                                                             <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
                                                         @enderror
@@ -136,13 +136,13 @@
 
                                             <div class="input-group">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="title">PAN Card (scan copy)</label>
+                                                    <label class="form-label" for="title">PAN Card</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="pan" value="{{ old('pan') }}"
                                                             placeholder="Pan Card" id="thumbnailpan" readonly>
                                                         <a id="lfmpan" data-input="thumbnailpan"
                                                             data-preview="holderpan" class="btn btn-primary"
-                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                            class="btn btn-outline-primary waves-effect" type="button">Select</a>
                                                         @error('pan')
                                                             <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
                                                         @enderror
@@ -159,13 +159,13 @@
                                         <div class="mb-3 col-md-6 company" style="display: none;">
                                             <div class="input-group">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="title">Company Registration (scan copy)</label>
+                                                    <label class="form-label" for="title">Company Registration </label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="companyRegistration" value="{{ old('companyRegistration') }}"
                                                             placeholder="Company Registration(pdf)" id="thumbnailcompanyRegistration" readonly>
                                                         <a id="lfmcompanyRegistration" data-input="thumbnailcompanyRegistration"
                                                             data-preview="holdercompanyRegistration" class="btn btn-primary"
-                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                            class="btn btn-outline-primary waves-effect" type="button">Select</a>
                                                         @error('companyRegistration')
                                                             <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
                                                         @enderror
@@ -184,13 +184,13 @@
                                         <div class="mb-3 col-md-6 company" style="display: none;">
                                             <div class="input-group">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="title">Tax Clearance (scan copy)</label>
+                                                    <label class="form-label" for="title">Tax Clearance</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="taxClearance" value="{{ old('taxClearance') }}"
                                                             placeholder="Tax Clearance(pdf)" id="thumbnailtaxClearnce" readonly>
                                                         <a id="lfmtaxClearance" data-input="thumbnailtaxClearnce"
                                                             data-preview="holdertaxClearnce" class="btn btn-primary"
-                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                            class="btn btn-outline-primary waves-effect" type="button">Select</a>
                                                         @error('taxClearance')
                                                             <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
                                                         @enderror
@@ -248,7 +248,7 @@
 
                                     <div class="sign_up_msg">
                                         <p> <input class="me-2" type="checkbox" name="privacypolicy" id="privacypolicy" checked required> By clicking sign up, you agree to 
-                                            <a href="#">the terms and conditions,privacy policy</a> of linkedhill.com</p>
+                                            <a href="#">the terms and conditions & privacy policy</a> of linkedhill.com.np</p>
                                     </div>
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button>

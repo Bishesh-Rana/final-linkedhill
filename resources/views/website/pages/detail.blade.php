@@ -40,11 +40,13 @@
                     <div class="carousel-inner">
                         @foreach ($property->images as $image)
                             <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                <a href="{{ image(@$image->name) }}" class="lightbox" title="">
-                                    <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                                </a>
+                                <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
+                                {{-- <a href="{{ image(@$image->name) }}" class="lightbox" title="">
+                                
+                                </a> --}}
                             </div>
                         @endforeach
+                        
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="prev">
@@ -58,83 +60,9 @@
                     </button>
                 </div>
             </div>
-            <div class="property_detail_wrapper">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="property_inner">
-                            <div class="d-flex">
-                                <h1>{{ @$property->title }} by &nbsp;{{ @$property->user->name }}</h1>
-                            </div>
-                            <div class="property_address">
-                                <div class="text_tx_property">
-                                    <span><i class="las la-map-marker-alt"></i></span>
-                                    <span>{{ @$property->property_address }}</span>
-                                </div>
-
-                                {{-- <div class="button_tx_property">
-                                    <a href="http://maps.google.com/?q={{ @$property->property_address }}"
-                                        class="btn" target="_blank"><i class="las la-street-view"></i>Get
-                                        Direction</a>
-                                </div> --}}
-                            </div>
-                            <div class="top_tv_verified mt-3">
-                                <span><i class="las la-check"></i>{{ @$property->property_facing }}
-                                </span>
-
-                                @isset($property->type)
-                                    <span><i class="las la-check"></i>{{ $property->type }}</span>
-                                @endisset
-                                @if ($property->negotiable == false)
-                                    @isset($property->negotiable)
-                                    @endisset
-                                @else
-                                    @if ($property->negotiable == true)
-                                        @isset($property->negotiable)
-                                            <span><i class="las la-check"></i>NEGOTIABLE</span>
-                                        @endisset
-                                    @endif
-                                @endif
-                                @if ($property->insurance !== false)
-                                    @isset($property->insurance)
-                                        <span><i class="las la-check"></i>Insurance</span>
-                                    @endisset
-                                @endif
-
-                                @if ($property->user->is_active == 1)
-                                    <span><i class="las la-check"></i>Verified Builder</span>
-                                @endif
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="property_verified_ text-end">
-                            <ul>
-                                @if(auth()->user())
-                                    @if(!$property->favorite->isEmpty())
-                                        @foreach($property->favorite as $favorite)
-                                            @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
-                                                <li><a href="#" id="favourite"><i class="las la-heart"></i></a></li>
-                                            @else
-                                                <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                    @endif
-                                @else
-                                    <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                @endif
-                                <li><a href="#"><i class="las la-share-alt-square"></i></a></li>
-                            </ul>
-                            <div class="main-price">
-                                <i class="las la-coins"></i><strong>RS. {{ $property->start_price }}</strong>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{-- <div class="property_detail_wrapper">
+              
+            </div> --}}
         </div>
     </section>
 
@@ -144,6 +72,105 @@
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="property_inner">
+                                        <div class="main-price">
+                                            <i class="las la-coins"></i><strong>RS. {{ $property->start_price }} </strong>
+                                        </div>
+                                        {{-- @dd($property) --}}
+                                        
+                                      
+                                        <div class="property_address">
+                                            <div class="text_tx_property">
+                                                <span><i class="las la-map-marker-alt"></i></span>
+                                                <span>{{ @$property->property_address }}</span>
+                                            </div>
+            
+                                            {{-- <div class="button_tx_property">
+                                                <a href="http://maps.google.com/?q={{ @$property->property_address }}"
+                                                    class="btn" target="_blank"><i class="las la-street-view"></i>Get
+                                                    Direction</a>
+                                            </div> --}}
+                                        </div>
+                                        <div class="detail_property_owner">
+                                            @if ($property->bed !== 0)
+                                                <span title="bedroom" class="detail_icon_"><i class="las la-bed"></i><span
+                                                        class="type_badge">{{ $property->bed }}</span></span>
+                                            @endif
+                                            @if ($property->bath !== 0)
+                                                <span title="bathroom" class="detail_icon_"><i class="las la-bath"></i>
+                                                    <span class="type_badge">{{ $property->bath }}</span></span>
+                                            @endif
+                                            {{-- @if (array_key_exists('park', $property)) --}}
+
+                                            @if ($property->park !== 0)
+                                            <span title="Parking" class="detail_icon_"><i class="las la-car"></i>
+                                                <span class="type_badge">{{ $property->park }}</span></span>
+                                            @endif
+                                            <span title="{{ $property->total_area . ' ' . $property->area_unit->name }}"class="detail_icon_">
+                                                <i class="las la-crop-alt"></i>
+                                                <span class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span>
+                                            </span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <h1>{{ @$property->title }}</h1>
+                                        </div>
+                                        <div class="top_tv_verified mt-3">
+            
+                                            @isset($property->type)
+                                                <span><i class="las la-check"></i>{{ $property->type }}</span>
+                                            @endisset
+                                            <span><i class="las la-check"></i>{{ @$property->property_facing }}
+                                            </span>
+                                            @if ($property->negotiable == false)
+                                                @isset($property->negotiable)
+                                                @endisset
+                                            @else
+                                                @if ($property->negotiable == true)
+                                                    @isset($property->negotiable)
+                                                        <span><i class="las la-check"></i>NEGOTIABLE</span>
+                                                    @endisset
+                                                @endif
+                                            @endif
+                                            @if ($property->insurance !== false)
+                                                @isset($property->insurance)
+                                                    <span><i class="las la-check"></i>Insurance</span>
+                                                @endisset
+                                            @endif
+            
+                                            @if ($property->user->is_active == 1)
+                                                <span><i class="las la-check"></i>Verified Builder</span>
+                                            @endif
+            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="property_verified_ text-end">
+                                        <ul>
+                                            @if(auth()->user())
+                                                @if(!$property->favorite->isEmpty())
+                                                    @foreach($property->favorite as $favorite)
+                                                        @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
+                                                            <li><a href="#" id="favourite"><i class="las la-heart"></i></a></li>
+                                                        @else
+                                                            <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                                @endif
+                                            @else
+                                                <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                            @endif
+                                            {{-- <li><a href="#"><i class="las la-share-alt-square"></i></a></li> --}}
+                                        </ul>
+                                      
+            
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-lg-12">
@@ -152,14 +179,19 @@
                                 <!-- Start Nav Section -->
                                 <nav id="navbar_scroll_spy" class="navbar">
                                     <ul class="nav-menu">
-                                        <li>
+                                        {{-- <li>
                                             <a data-scroll="Overview" href="#Overview" class="dot active">
+                                                <span>Overview</span>
+                                            </a>
+                                        </li> --}}
+                                        <li>
+                                            <a data-scroll="about" href="#about" class="dot">
                                                 <span>Overview</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-scroll="about" href="#about" class="dot">
-                                                <span>About</span>
+                                            <a data-scroll="specifications" href="#specifications" class="dot">
+                                                <span>specifications</span>
                                             </a>
                                         </li>
 
@@ -168,11 +200,7 @@
                                                 <span>Amenities</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a data-scroll="specifications" href="#specifications" class="dot">
-                                                <span>specifications</span>
-                                            </a>
-                                        </li>
+                                       
                                         <li>
                                             <a data-scroll="FAQ" href="#FAQ" class="dot">
                                                 <span>FAQ</span>
@@ -183,7 +211,7 @@
                                 <!-- End Nav Section -->
 
                                 <!-- Start Home Section -->
-                                <div id="Overview" class="section">
+                                {{-- <div id="Overview" class="section">
                                     <div class="containerWrapper">
                                         <div class="content-wrapper">
                                             <div class="content">
@@ -202,13 +230,13 @@
                                                             <p>NPR {{ @$property->start_price }} </p>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="over_view_bottom_flex" id="hello">
-                                                    </div> --}}
+                                                    <div class="over_view_bottom_flex" id="hello">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Home Section -->
                                 <!-- Start About Me Section -->
                                 <div id="about" class="section">
@@ -216,13 +244,41 @@
                                         <div class="about_wrapper">
                                             <div class="about_aw_wrapper">
                                                 <div class="spy_common_title">
-                                                    <h1>About - {{ $property->title }}</h1>
+                                                    <h1>Overview </h1>
                                                 </div>
                                                 {!! $property->property_detail !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                     <!-- Start Contact Section -->
+                                     <div id="specifications" class="section">
+                                        <div class="containerWrapper">
+                                            <div class="content-wrapper">
+                                                <div class="content">
+                                                    <div class="specification_sw_wrapper">
+                                                        <div class="spy_common_title">
+                                                            <h1>Project specifications</h1>
+                                                        </div>
+                                                        <div class="specification_sc_content">                                                            
+                                                            <div class="specification_sf_flex">
+                                                                    {{-- <div class="specification_box">
+                                                                        <span>Face Direction</span>
+                                                                        <span>{{@$property->property_facing}}</span>
+                                                                    </div> --}}
+                                                                @foreach ($property->features as $item)
+                                                                    <div class="specification_box">
+                                                                        <span>{{ $item->title }}</span>
+                                                                        <span>{!! @$item->pivot->value == 'true' ? '<i class="las la-check"></i>' : $item->pivot->value !!}</span>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <!-- Start Testimonials Section -->
                                 <div id="Amenities" class="section">
                                     <div class="containerWrapper">
@@ -247,35 +303,7 @@
                                 </div>
                                 <!-- End Testimonials Section -->
 
-                                <!-- Start Contact Section -->
-                                <div id="specifications" class="section">
-                                    <div class="containerWrapper">
-                                        <div class="content-wrapper">
-                                            <div class="content">
-                                                <div class="specification_sw_wrapper">
-                                                    <div class="spy_common_title">
-                                                        <h1>Details - {{ $property->title }}</h1>
-                                                    </div>
-                                                    <div class="specification_sc_content">
-                                                        <h3>Project specifications</h3>
-                                                        <div class="specification_sf_flex">
-                                                                <div class="specification_box">
-                                                                    <span>Face Direction</span>
-                                                                    <span>{{@$property->property_facing}}</span>
-                                                                </div>
-                                                            @foreach ($property->features as $item)
-                                                                <div class="specification_box">
-                                                                    <span>{{ $item->title }}</span>
-                                                                    <span>{!! @$item->pivot->value == 'true' ? '<i class="las la-check"></i>' : $item->pivot->value !!}</span>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                           
 
                                 <div id="Amenities" class="section">
                                     <div class="containerWrapper">
@@ -333,33 +361,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="near_nb_by_wrap">
-                                                    <div class="spy_common_title">
-                                                        <h1>Nearby Projects - {{ $property->title }}</h1>
-                                                    </div>
-                                                    <div class="near_by_property">
-                                                        <div class="owl-carousel" id="nearby_slider">
-                                                            @foreach ($related as $relate)
-                                                                <div>
-                                                                    <div class="near_by_thumbnail">
-                                                                        <a
-                                                                            href="{{ route('property.detail', ['id' => $relate->id, 'slug' => $relate->slug]) }}"><img
-                                                                                src="{{ image(@$relate->images->first()->name) }}"
-                                                                                alt=""></a>
-                                                                        <div class="near_by_content">
-                                                                            <span>Rs. {{ $relate->start_price }}</span>
-                                                                            <strong>{{ $relate->address }}</strong>
-                                                                            <p><a
-                                                                                    href="">{{ $relate->city->name }}</a>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -368,7 +370,9 @@
                                 <!-- scroll spy End -->
                             </div>
                         </div>
-                        <div class="col-lg-12"></div>
+                        <div class="col-lg-12">
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 relative_position">
@@ -381,94 +385,55 @@
                                     </div>
                                 </div>
                                 <div class="builder_wrapper d-flex">
-                                    <div class="profile"><img src="{{ asset('frontend/gallery/no_result.jpg') }}" alt=""></div>
-                                    <div style="width: 50%;padding-left: 10px;">
+                                    <div class="profile"><img src="{{ asset('frontend/gallery/dummyprofile.png') }}" alt=""></div>
+                                    <div style="width:50%;padding-left: 10px;">
                                         <p class="builder_name">{{ $property->user->name }}</p>
                                         <p class="builder_address">{{$property->user->full_address}} Adress</p>
-
                                     </div>
                                    <div>
                                     <div class="icon_wrapper">
                                         <a href="tel:{{ @$property->user->mobile ?? @$property->user->phone }}"><i class="las la-phone"></i></a>
                                         {{-- <span>{{ @$property->user->mobile ?? @$property->user->phone }}</span> --}}
-
                                     </div>
-
                                    </div>
                                    <div>
                                     <div class="icon_wrapper" data-bs-toggle="modal" data-bs-target="#send_message_model">
                                         <i class="las la-envelope"></i>
-                                        
                                     </div>
-
-                                   </div>
-                                   
-
+                                   </div>                                  
                                 </div>
                                </div>
                             </div>
-                            {{-- <div class="col-lg-12">
-                                <div class="builder_contact_form">
-                                    <h1 >Contact<span>Builder</span></h1>
-                                    <form name="propertyEnquiry">
-                                        <div class="builder_bf_form">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="Name" name="name" value="{{ old('name') }}">
-                                            </div>
-                                            <input type="hidden" name="propertyId" value="{{ $property->id }}"
-                                                readonly>
-                                            <div class="mb-3">
-                                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="Email Id" name="email" value="{{ old('email') }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <input type="time" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="Prefered Time" name="" value="">
-                                            </div>
-                                            <div class="form_flex">
-                                                <div class="form_left">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option value="in" selected="">+977</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form_right">
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1" placeholder="Mobile No."
-                                                        name="contact_info" value="{{ old('contact_info') }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                                    placeholder="Subject" name="subject" value="{{ old('subject') }}">
-                                            </div>
-                                            <input type="hidden" name="subject" value="{{ $property->id }}" readonly>
-
-                                            <div class="mb-3">
-                                                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"
-                                                    placeholder="Write Message"></textarea>
-                                            </div>
-
-                                            <div class="form_eligibility">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="defaultCheck1" required>
-                                                    <label class="form-check-label" for="defaultCheck1">
-                                                        I wish to share my information with builder.
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form_fs_submit">
-                                                <button class="btn btn-danger">Submit</button>
-                                                <span>I agree to {{ config('websites.name') }} <a
-                                                        href="#linkhill">T&C</a></span>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="near_nb_by_wrap">
+                        <div class="spy_common_title">
+                            <h1>Nearby Projects</h1>
+                        </div>
+                        <div class="near_by_property">
+                            <div class="owl-carousel" id="nearby_slider">
+                                @foreach ($related as $relate)
+                                    <div>
+                                        <div class="near_by_thumbnail">
+                                            <a
+                                                href="{{ route('property.detail', ['id' => $relate->id, 'slug' => $relate->slug]) }}"><img
+                                                    src="{{ image(@$relate->images->first()->name) }}"
+                                                    alt=""></a>
+                                            <div class="near_by_content">
+                                                <span>Rs. {{ $relate->start_price }}</span>
+                                                <strong>{{ $relate->address }}</strong>
+                                                <p><a
+                                                        href="">{{ $relate->city->name }}</a>
+                                                </p>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div> --}}
+                                    </div>
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
                 </div>

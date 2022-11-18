@@ -2059,6 +2059,12 @@ ul.list_info li {
     color: #7e7e7e;
 }
 
+.sign_up_in_wrapper{
+    border: 1px solid #ebe6e6;
+    padding: 8px;
+    border-radius: 5px;
+}
+
 .sign_up_in_wrapper h3 {
     font-size: 20px;
     font-weight: 700;
@@ -2089,9 +2095,17 @@ ul.list_info li {
     color: #ff2d37;
 }
 
+.sign_up_button {
+    display: flex;
+    justify-content: center;
+
+}
+
+
 .sign_up_button .btn {
     width: 100%;
 }
+
 
 .sign_up_msg {
     margin-bottom: 25px;
@@ -2200,8 +2214,8 @@ section#bread_crumb_wrapper {
     font-weight: 700;
     margin-bottom: 0;
     text-transform: capitalize;
-    font-weight: 700;
-    font-size: 25px;
+    font-weight: 600;
+    font-size: 16px;
     line-height: 33px;
     color: #353030;
 }
@@ -2848,7 +2862,7 @@ div#nearby_slider .owl-nav button span {
 .builder_wrapper {
     border: 1px solid #d7d7d7;
     padding: 15px 22px;
-    border-radius: 8px;
+    border-radius: 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -4870,7 +4884,7 @@ nav#linked_hill_nav {
     justify-content: space-between;
 }
 .advance-search {
-    width: 18%;
+    width: 22%;
     background-color: rgb(0 0 0 / 53%);
     display: flex;
     justify-content: space-between;
@@ -4980,7 +4994,7 @@ nav#linked_hill_nav {
 
 .property_item_linkedhill {
     position: relative;
-    width: 18%;
+    width: 22%;
 }
 .amenites_item img {
     height: 33px;
@@ -5393,13 +5407,13 @@ section#property_character_list {
 
    .agent-type{
     display: flex;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     justify-content: space-between;
     flex-wrap: wrap;
    }
    .agent-type .fortooltip{
     position: relative;
-    width: 50%;
+    /* width: 50%; */
     margin-bottom: 10px;
     /* margin-right: 5px; */
    }
@@ -5439,7 +5453,7 @@ section#property_character_list {
 }
 
 .brandname-front{
-    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Josefin Sans', sans-serif; */
     /* font-family: 'Lobster', cursive; */
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 30px;
@@ -5449,9 +5463,9 @@ section#property_character_list {
 
 
 .brandname-back{
-    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Josefin Sans', sans-serif; */
     /* font-family: 'Lobster', cursive; */
-    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
     font-size: 30px;
     color: white;
     font-weight: 400;
@@ -5728,3 +5742,26 @@ body {
     background-color: #259133;
     border-radius: 80px;
 }
+
+.detail_property_owner{
+    background: #ffffff8a;
+    padding: 3px 5px;
+    width: 100%;
+    bottom: 0px;
+}
+.property_inner{
+    margin-bottom: 10px;
+}
+.detail_property_owner .detail_icon_{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.near_by_thumbnail img{
+    height: 200px;
+object-fit: cover;
+object-position: center;
+
+}
+
+

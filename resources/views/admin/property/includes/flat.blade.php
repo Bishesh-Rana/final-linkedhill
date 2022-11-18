@@ -25,7 +25,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    
                     <div class="form-group" style="margin-top:10px;">
                         {!! Form::select('built_up_area_unit', $units, old('built_up_area_unit', $property->built_up_area_unit), ['class' => 'form-control select2','style' => 'width: 100%;']) !!}
 

@@ -7,12 +7,12 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-md-5 text-center first">
-                            <h3>Seller Login</h3>
+                            <h3>Login</h3>
                            <p>Login First to list your property.</p>
                            <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
                         </div>
                         
-                        <div class="col-md-4 m-auto">\
+                        <div class="col-md-4 m-auto">
                         @if (Session::has('error'))
                             <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
                                 {{ Session::get('error') }}</p>
@@ -51,11 +51,16 @@
                                         <button type="submit" class="btn btn-danger">Login</button>
                                     </div>
                                 </form>
+                                <div class="d-flex login_register">
+                                    <p style="margin-top: 20px;" class="">New User </p>
+                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Signup</a>
+                                </div>
+                                <div class="d-flex login_register">
+                                    <p style="margin-top: 20px;" class="">Agent Login</p>
+                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Login/Signup</a>
+                                </div>
                             </div>
-                            <div class="d-flex login_register">
-                                <p class="">New Seller ??</p>
-                                <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Signup</a>
-                            </div>
+                            
                         </div>
 
                     </div>

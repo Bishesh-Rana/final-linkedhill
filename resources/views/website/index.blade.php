@@ -60,7 +60,7 @@
             <div class="container">
                 <div class="row">
                     @foreach ($property_categories as $category)
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="about_loan_thumbnail text-center">
                                 <div class="loan_images">
                                     <img src="{{ image(@$category->icon) }}" alt="">

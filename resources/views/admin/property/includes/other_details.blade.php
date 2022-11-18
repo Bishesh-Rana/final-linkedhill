@@ -29,8 +29,6 @@
                     <option value="October" @if($property->built_year_month == "October")selected @endif>October</option>
                     <option value="November" @if($property->built_year_month == "November")selected @endif>November</option>
                     <option value="December" @if($property->built_year_month == "December")selected @endif>December</option>
-
-
                 </select>
             </div>
             <div class="col-md-4">

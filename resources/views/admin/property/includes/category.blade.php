@@ -30,33 +30,38 @@
                     <div class="tab-content text-center property-description">
                         @foreach ($property_categories as $key => $property_category)
                             <div class="tab-pane {{ $property->category_id == $property_category->id ? 'active' : null }}"id="{{ $property_category->id . 'home' }}">
-                               <div class="row">
+                               <div class="row g-3">
                                 @forelse ($property_category->features as $key=>$feat)
-                                <div style="border: 1px solid black"> 
-                                    @if(!$feat->value->isEmpty())
-                                    <p class="label-style text-capitalize">
-                                        {{ $feat->title }}
-                                    </p>
-                                       <div class="d-flex">
-                                        
-                                           @foreach($feat->value as $val)
-
-                                           {{-- @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp --}}
-                                           <div class="">
-                                               <label for="facilities">{{$val->value}}</label>
-                                               <input type="radio" value='{{$val->value}}' id="facilities" name="features[{{ $feat->id }}]" @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp/>
-                                               
+                                <div class="col-md-12"> 
+                                    <div style="border: 1px solid black">
+                                        @if(!$feat->value->isEmpty())
+                                        <p class="label-style text-capitalize">
+                                            {{ $feat->title }}
+                                        </p>
+                                           <div style="padding:2px 10px;display:flex;">
+                                            
+                                               @foreach($feat->value as $val)
+    
+                                               {{-- @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp --}}
+                                               <div style="margin-right: 10px" class="">
+                                                   <label for="facilities">{{$val->value}}</label>
+                                                   <input type="radio" value='{{$val->value}}' id="facilities" name="features[{{ $feat->id }}]" 
+                                                   @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp/>
+                                                   
+                                               </div>
+                                           @endforeach
                                            </div>
-                                       @endforeach
-                                       </div>
-                                    @else
-                                        <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
-                                            id="{{ $feat->id }}"
-                                            value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />   
-                                    @endif
+                                        @else
+                                            <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
+                                                id="{{ $feat->id }}"
+                                                value="{{ optional($selectedFeatures->firstWhere('feature_id', $feat->id))->value }}" />   
+                                        @endif
+
+                                    </div>
+                                   
                                   </div>
                             @empty
-                                <div class="col-12">
+                                <div>
                                     No Features Found.
                                 </div>
                             

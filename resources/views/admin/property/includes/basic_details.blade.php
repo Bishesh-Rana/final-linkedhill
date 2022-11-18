@@ -18,12 +18,13 @@
             <div class="form-group col-md-6">
                 <label class="label-style">Purpose to Post Property</label>
                 <div class="radio">
+                    
                     @foreach ($purposes as $purpose)
                         <label>
                             <input type="radio" name="property_status" value="{{ $purpose->name }}"
                                 @if ($property->property_status == $purpose->name) checked="true" @endif><span
                                 class="circle"></span><span class="check"></span>
-                            {{ $purpose->name }}
+                                {{$purpose->name == "Buy" ? "Sell" : $purpose->name}}
                         </label>
                     @endforeach
                 </div>
@@ -45,13 +46,16 @@
             </div>
             <div class="form-group col-md-12">
                 <label class="label-style">Property Category</label>
-                <div class="radio">
+                <div class="radio" id="categorytype"> 
                     @foreach ($property_categories as $property_category)
                         <label>
-                            <input type="radio" name="category_id"
+                            <input type="radio" name="category_id"  id="category_id"
                                 @if ($property->category_id == $property_category->id) checked="true" @endif
-                                value="{{ $property_category->id }}"><span class="circle"></span><span
-                                class="check"></span> {{ $property_category->name }}
+                                value="{{ $property_category->id }}" 
+                                data-testval="{{ $property_category->name }}">
+                                <span class="circle"></span>
+                                <span class="check"></span> 
+                                {{ $property_category->name }}
                         </label>
                     @endforeach
                 </div>

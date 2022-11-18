@@ -12,7 +12,7 @@
 
             <div class="col-md-4">
                 <div class="form-group  label-floating" style="margin-top:10px;">
-                    <label class="label-style">Start Price <span class='required-error'>*</span>
+                    <label class="label-style">Total Price <span class='required-error'>*</span>
                     </label>
                     <input class="form-control" name="start_price"
                         value="{{ old('start_price', $property->start_price) }}" type="text" data-parsley-trigger="keyup" data-parsley-type="number" data-parsley-type-message="only numbers" required />
@@ -24,12 +24,23 @@
                     <label class="label-style">Price Label </label>
                     <select class="form-control select2 select2-hidden-accessible" name="price_label"
                         data-placeholder="Select City" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                        <option value="Per Month" @if ($property->price_label == 'Per Month') selected @endif>Per Month</option>
-                        <option value="Per Aana" @if ($property->price_label == 'Per Aana') selected @endif>Per Aana</option>
-                        <option value="Per Ropani" @if ($property->price_label == 'Per Ropani') selected @endif>Per Ropani</option>
-                        <option value="Per Daam" @if ($property->price_label == 'Per Daam') selected @endif>Per Daam</option>
+                        <option value="Total" @if ($property->price_label == 'Total') selected @endif>Total</option>
+                       
+                        <option value="Weekly" @if ($property->price_label == 'Weekly') selected @endif>Weekly</option>
+                        <option value="Fortnightly" @if ($property->price_label == 'Fortnightly') selected @endif>Fortnightly</option>
+                        <option value="Monthly" @if ($property->price_label == 'Monthly') selected @endif>Monthly</option>
+                        <option value="Quarterly" @if ($property->price_label == 'Quarterly') selected @endif>Quarterly</option>
+                        <option value="Halfyearly" @if ($property->price_label == 'Halfyearly') selected @endif>Half-Yearly</option>
+                        <option value="Annually" @if ($property->price_label == 'Yearly') selected @endif>Annually</option>
+                        <option value="other" @if ($property->price_label == 'other') selected @endif>Other(Specify)</option>
                     </select>
                     <x-error name='price_label' />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-top:10px;">
+                <label class="label-style" >Other </label> <br>
+                <input type="text" name="Price-tag-other" id="Price-other">
                 </div>
             </div>
 

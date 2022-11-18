@@ -33,6 +33,10 @@
             opacity: 5;
             position: relative;
         }
+        .radio-wrapper label{
+            margin-right: 20px
+
+        }
 
     </style>
 @endpush
@@ -94,8 +98,21 @@
 
 
                                     <!--  TOTAL AREA & ROAD --->
-                                    @include('admin.property.includes.total_area')
+                                    <div class="total_area">
+                                        @include('admin.property.includes.total_area')
+                                    </div>
                                     <!--  TOTAL AREA & ROAD --->
+                                   
+                                      <!---  Price ----->
+                                      @include('admin.property.includes.price')
+                                      <!---  /Price ----->
+                                        <!---  OTHER DETAIL ----->
+                                   
+
+                                    
+                                    @include('admin.property.includes.category')
+                                    @include('admin.property.includes.facility')
+                                    <!---  /OTHER DETAIL ----->
 
                                     <!--  UPLOAD IMAGES   --->
                                     @include(
@@ -103,16 +120,9 @@
                                     )
                                     <!--  /UPLOAD IMAGES  --->
 
-                                    <!---  OTHER DETAIL ----->
-                                    @include('admin.property.includes.facility')
+                                  
 
-                                    
-                                    @include('admin.property.includes.category')
-                                    <!---  /OTHER DETAIL ----->
-
-                                    <!---  Price ----->
-                                    @include('admin.property.includes.price')
-                                    <!---  /Price ----->
+                                  
 
                                     <!---  OWNER DETAIL ----->
                                     @include(
@@ -130,27 +140,39 @@
                                         <label class="label-style">
                                             Featured
                                             <span class='required-error'>*</span>
-                                        </label>
-                                        <div class="togglebutton">
-                                            <label class="lead"
-                                                style="color:black;font-weight:bold;font-size:11pt;">
-                                                Not Featured <input type="checkbox" value="1" name="feature"
+                                        </label> <br>  
+                                        <div class="radio-wrapper">
+                                            <input  type="radio" name="feature" value="1" id="notfeature" >
+                                            <label for="notfeature" class="me-2">Not Featured</label>
+                                            <input type="radio" name="feature" value="2" id="feature" class="me-2">
+                                            <label for="feature">Featured</label>
+                                        </div>
+                                        {{-- <div class="togglebutton">
+                                            <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
+                                                Not Featured 
+                                                <input type="checkbox" value="1" name="feature"
                                                     @if ($property->feature) checked @endif> Feature
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="form-group">
                                         <label class="label-style">
                                             Insurance
                                             <span class='required-error'>*</span>
                                         </label>
-                                        <div class="togglebutton">
-                                            <label class="lead"
-                                                style="color:black;font-weight:bold;font-size:11pt;">
+                                        <br> 
+                                        <div class="radio-wrapper"> 
+                                        <input  type="radio" name="insurance" value="1" id="non-insurance" >
+                                        <label for="non-insurance" class="me-2">Not Availabe</label>
+                                        <input type="radio" name="insurance" value="2" id="insurance" class="me-2">
+                                        <label for="insurance">Availabe</label>
+                                        </div>
+                                        {{-- <div class="togglebutton">
+                                            <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
                                                 Not Available <input type="checkbox" value="1" name="insurance"
                                                     @if ($property->insurance) checked @endif>Available
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -159,13 +181,21 @@
                                             Negotiable
                                             <span class='required-error'>*</span>
                                         </label>
-                                        <div class="togglebutton">
+                                        <br>
+                                        <div class="radio-wrapper">
+                                            <input  type="radio" name="negotiable" value="1" id="non-negotiable" >
+                                            <label for="non-negotiable" class="pe-2">Not Negotiable</label>
+                                            <input type="radio" name="negotiable" value="2" id="negotiable" class="me-2">
+                                            <label for="negotiable">Negotiable</label>
+                                        </div>
+
+                                        {{-- <div class="togglebutton">
                                             <label class="lead"
                                                 style="color:black;font-weight:bold;font-size:11pt;">
                                                 None Negotiable <input type="checkbox" value="1" name="negotiable"
                                                     @if ($property->negotiable) checked @endif>Negotiable
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <!-- /panel -group-->
@@ -226,6 +256,19 @@
     <script src="{{ asset('dashboard/fileinputs/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
     <script>
         $.fn.fileinput.defaults.theme = 'gly';
+    </script>
+    <script>
+        $('#categorytype').on('click', function(){
+            let a = $('input[name="category_id"]:checked').data('testval');
+            if(a == "Apartment/Flat"){
+                $('.total_area').hide();
+            }
+            else{
+                $('.total_area').show();
+            }
+        })
+    
+
     </script>
     <script>
         $("#file-5").fileinput({
