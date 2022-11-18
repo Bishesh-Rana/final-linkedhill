@@ -16,7 +16,7 @@ class PropertyCategoryController extends Controller
      */
     public function index()
     {
-        $categories = PropertyCategory::latest()->get();
+        $categories = PropertyCategory::orderBy('order')->get();
         return view('admin.propertyCategory.index', compact('categories'));
     }
 
@@ -102,9 +102,6 @@ class PropertyCategoryController extends Controller
             ]);
         }
         
-    return response()->json([
-        'error' => "there is related data",
-    ]);
     }
 
     public function updateCategoryOrder(Request $request){

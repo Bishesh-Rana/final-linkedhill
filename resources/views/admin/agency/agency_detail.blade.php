@@ -28,10 +28,11 @@
                             @method('put')
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group label-floating is-empty">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
+                                                <label>Profile</label>
                                                 <img src="{{$agency->logo}}" id="image" class="img-thumbnail img-responsive" alt="">
 
                                             </div>
@@ -40,7 +41,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail">
+                                                <label>Pan</label>
+                                                <img src="{{$agency->pan}}" id="pan" class="img-thumbnail img-responsive" alt="">
+
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-4">
                                     <div class=" card form-group" style="margin-top:18px; padding: 20px">
                                         <label>Update Agency Status</label>
                                         <select class="form-control select2 select2-hidden-accessible" name="status"  data-placeholder="Select Category" style="width: 100%;" tabindex="-1" aria-hidden="true">
@@ -55,11 +69,7 @@
                                             <br>
                                             <button type="submit" class="btn btn-sm btn-fill btn-success float-right">Update</button>
                                         </div>
-
                                     </div>
-
-
-
                                 </div>
                             </div>
 

@@ -108,6 +108,7 @@
                                             @endif
                                         </div>
                                         <div class="mb-3 col-md-6">
+<<<<<<< HEAD
                                             <div class="input-group">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="title">Profile Image</label>
@@ -124,15 +125,19 @@
                                                 </div>
                                             </div>
                                             {{-- <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
+=======
+                                            <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
+>>>>>>> 024b8a8634041c0ce1cce9bb785ca80618c4b6ce
                                             <input type="file" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="" name="image">
-                                            @if ($errors->has('image'))
+                                                placeholder="" name="logo">
+                                            @if ($errors->has('logo'))
                                                 <strong class="text-danger">{{ $errors->first('logo') }}</strong>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                         
                                         
                                         <div class="mb-3 col-md-6 ">
+<<<<<<< HEAD
 
                                             <div class="input-group">
                                                 <div class="mb-1">
@@ -151,12 +156,16 @@
                                             </div>
                                             
                                             {{-- <label for="exampleFormControlInput1" class="form-label">PAN Card (scan copy)</label>
+=======
+                                            <label for="exampleFormControlInput1" class="form-label">PAN Card (scan copy)</label>
+>>>>>>> 024b8a8634041c0ce1cce9bb785ca80618c4b6ce
                                             <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="" name="pan">
                                             @if ($errors->has('pan'))
                                                 <strong class="text-danger">{{ $errors->first('pan') }}</strong>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                         <div class="mb-3 col-md-6 company" style="display: none;">
+<<<<<<< HEAD
                                             <div class="input-group">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="title">Company Registration </label>
@@ -173,15 +182,19 @@
                                                 </div>
                                             </div>
                                             {{-- <label for="companyregistration" class="form-label">Company Registration (scan
+=======
+                                            <label for="companyregistration" class="form-label">Company Registration (scan
+>>>>>>> 024b8a8634041c0ce1cce9bb785ca80618c4b6ce
                                                 copy)</label>
                                             <input type="file" class="form-control" id="companyregistration"
                                                 placeholder="" name="companyregistration">
                                             @if ($errors->has('companyregistration'))
                                                 <strong
                                                     class="text-danger">{{ $errors->first('companyregistration') }}</strong>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                         <div class="mb-3 col-md-6 company" style="display: none;">
+<<<<<<< HEAD
                                             <div class="input-group">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="title">Tax Clearance</label>
@@ -198,11 +211,14 @@
                                                 </div>
                                             </div>
                                             {{-- <label for="taxclearance" class="form-label">Tax Clearance (scan copy)</label>
+=======
+                                            <label for="taxclearance" class="form-label">Tax Clearance (scan copy)</label>
+>>>>>>> 024b8a8634041c0ce1cce9bb785ca80618c4b6ce
                                             <input type="file" class="form-control" id="taxclearance" placeholder=""
                                                 name="taxclearance">
                                             @if ($errors->has('pan'))
                                                 <strong class="text-danger">{{ $errors->first('pan') }}</strong>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <div class="form_phone_number">
@@ -306,14 +322,6 @@
             $("#txtPassword").attr("type", type);
         });
     });
-</script>
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-<script>
-    $('#filemanager').filemanager("image"); 
-    $('#lfmlogo').filemanager("image");
-    $('#lfmpan').filemanager("image");
-    $('#lfmcompanyRegistration').filemanager("file");
-    $('#lfmtaxClearance').filemanager("file");
 </script>
 
 @endpush

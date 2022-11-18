@@ -62,7 +62,14 @@
 
                                 <div class="form-group">
                                     <label class="control-label">Value</label>
-                                    <input type="text" name="value" class="form-control" placeholder="Eg: unfurnish, semi-furnish, fully-furnish" >
+                                    @php
+                                        $all_values = [];
+                                        foreach($feature->value as $val){
+                                            array_push($all_values,$val->value);
+                                        }
+                                        $all_values = join(',',$all_values);
+                                    @endphp
+                                    <input type="text" name="value" value="{{isset($all_values)? $all_values:''}}" class="form-control" placeholder="Eg: unfurnish, semi-furnish, fully-furnish" >
                                     @error('value')
                                         <span class="error-message">
                                             *{{ $message }}

@@ -690,7 +690,6 @@
                     data: {
                         property_id: property,
                     },
-                    // dataType: 'JSON',
                     success: function(response) {
                         console.log(response);
                         if(response.success){
