@@ -58,7 +58,21 @@
                     <div class="col-lg-4">
                         <div class="property_verified_ text-end">
                             <ul>
-                                <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                @if(auth()->user())
+                                    @if(!$property->favorite->isEmpty())
+                                        @foreach($property->favorite as $favorite)
+                                            @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
+                                                <li><a href="#" id="favourite"><i class="las la-heart"></i></a></li>
+                                            @else
+                                                <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                    @endif
+                                @else
+                                    <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                @endif
                                 <li><a href="#"><i class="las la-share-alt-square"></i></a></li>
                             </ul>
                             @if ($property->user->is_active == 1)
@@ -214,6 +228,10 @@
                                                     <div class="specification_sc_content">
                                                         <h3>Project specifications</h3>
                                                         <div class="specification_sf_flex">
+                                                                <div class="specification_box">
+                                                                    <span>Face Direction</span>
+                                                                    <span>{{@$property->property_facing}}</span>
+                                                                </div>
                                                             @foreach ($property->features as $item)
                                                                 <div class="specification_box">
                                                                     <span>{{ $item->title }}</span>
@@ -221,6 +239,27 @@
                                                                 </div>
                                                             @endforeach
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="Amenities" class="section">
+                                    <div class="containerWrapper">
+                                        <div class="content-wrapper">
+                                            <div class="content">
+                                                <div class="amenites_aw_wrapper">
+                                                    <div class="spy_common_title">
+                                                        <h1>Facilities</h1>
+                                                    </div>
+                                                    <div class="amenites_ac_content">
+                                                        @foreach ($property->facility as $facility)
+                                                            <div class="amenites_item">
+                                                                <span>{{ $facility->title }}</span>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>

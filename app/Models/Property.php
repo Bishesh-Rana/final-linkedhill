@@ -91,7 +91,7 @@ class Property extends Model
 
     public function favorite()
     {
-        return $this->hasMany(FavoriteProperty::class, 'property_id');
+        return $this->hasMany(FavouriteList::class, 'property_id');
     }
 
     public function faqs()

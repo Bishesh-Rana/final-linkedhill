@@ -164,8 +164,8 @@ class PropertyController extends CommonController
             DB::commit();
 
             if(!empty($request->facility)){
-                foreach($request->facility as $fac){
-                    PropertyFacility::where('property_id','=',$property->id)->delete();
+                PropertyFacility::where('property_id','=',$property->id)->delete();
+                foreach($request->facility as $fac){                  
                     PropertyFacility::create(['property_id'=>$property->id,'title'=>$fac]);
                 }
             }
