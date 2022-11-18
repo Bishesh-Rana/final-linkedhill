@@ -89,16 +89,16 @@ function isFavouriteProperty($id)
 }
 
 function image($url){
-    if(env('APP_URL') == 'http://127.0.0.1:8000/'){
-        // $url = (string) $url;
-        // $urn = str_replace("linkedhill.com.np","127.0.0.1:8000",$url);
-        $url = str_replace('https','http',$url);
-        $url = str_replace('www.','',$url);
-        return str_replace("linkedhill.com.np","127.0.0.1:8000",$url);
-    } else{
+    // if(env('APP_URL') == 'http://127.0.0.1:8000/'){
+    //     // $url = (string) $url;
+    //     // $urn = str_replace("linkedhill.com.np","127.0.0.1:8000",$url);
+    //     $url = str_replace('https','http',$url);
+    //     $url = str_replace('www.','',$url);
+    //     return str_replace("linkedhill.com.np","127.0.0.1:8000",$url);
+    // } else{
         return $url;
         // return str_replace("http://127.0.0.1:8000/","https://linkedhill.com.np/",$url);
-    }
+    // }
 }
 
 
