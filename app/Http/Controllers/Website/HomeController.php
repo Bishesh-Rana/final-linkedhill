@@ -25,6 +25,8 @@ use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Models\PropertyCategory;
 use App\Http\Controllers\Controller;
+use App\Models\FavouriteList;
+use App\Models\PropertyFacility;
 use App\Notifications\PropertyInquery;
 
 class HomeController extends Controller
@@ -164,8 +166,9 @@ class HomeController extends Controller
                         }
                         $feature_values[$feature->id]=$values;
                 }
+                $facilities = PropertyFacility::get();
 
-                    return view('website.pages.propertylist', compact('feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                    return view('website.pages.propertylist', compact('facilities','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');
@@ -264,5 +267,26 @@ class HomeController extends Controller
             'og_site_name' => config('websites.name'),
             'twitter' => config('websites.twitter'),
         ];
+    }
+
+    public function favorite(Request $request){
+        if(!auth()->user()){
+            return response()->json([
+                'error' => "Please Login first",
+            ]);
+        }else{
+            $favorite_property = FavouriteList::where(['user_id'=>auth()->user()->id,'property_id'=>$request->property_id])->first();
+            if(!empty($favorite_property)){
+                $favorite_property->delete();
+                return response()->json([
+                    'success'=>"Property remove from favorite list",
+                ]);
+            }else{
+                FavouriteList::create(['user_id'=>auth()->user()->id,'property_id'=>$request->property_id]);
+                return response()->json([
+                    'success'=>"Property added to favorite list",
+                ]);
+            }
+        }
     }
 }

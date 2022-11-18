@@ -74,6 +74,10 @@ class AgentRegistrationController extends Controller
             'idnumber' => "required",
             'pan' => 'required',
             'password' => 'min:8',
+
+            // 'companyRegistration'=>'required',
+            // 'taxClearance' => 'required',
+            // 'company_reg_no' => 'required',
         ]);
         $otp = $this->getOtp();
         \DB::beginTransaction();
@@ -83,12 +87,14 @@ class AgentRegistrationController extends Controller
                 'email' => $request->email,
                 'mobile' => $request->mobile,
                 'phone' => $request->phone,
+                'profile' => $request->logo,
                 'password' => Hash::make($request->password),
                 'otp' => $otp,
             ]);
             $user->assignRole(['3']);
             $agent = AgencyDetail::create([
                 'status' => 2,
+                'logo' => $request->logo,
                 'type' => $request->type,
                 'user_id' => $user->id,
                 'agency_name' => $request->name,
@@ -98,21 +104,26 @@ class AgentRegistrationController extends Controller
                 'agency_phone' => $request->phone,
                 'agency_mobile' => $request->mobile,
                 'company_reg_no' => $request->company_reg_no,
+                'pan' => $request->pan,
+                'company_registration' => $request->companyRegistration,
+                'tax_clearance' => $request->taxClearance,
+                'comapny_reg_no' => $request->company_reg_no,
+                'national_id' => $request->idnumber,
             ]);
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $name = time() . $file->getClientOriginalName();
-                $file->move(public_path() . '/images/logo/', $name);
-                $agent->logo = $name;
-            }
+            // if ($request->hasFile('image')) {
+            //     $file = $request->file('image');
+            //     $name = time() . $file->getClientOriginalName();
+            //     $file->move(public_path() . '/images/logo/', $name);
+            //     $agent->logo = $name;
+            // }
 
-            if ($request->hasFile('pan')) {
-                $file = $request->file('pan');
-                $name = time() . $file->getClientOriginalName();
-                $file->move(public_path() . '/documents/', $name);
-                $agent->other_document = $name;
-            }
-            $agent->save();
+            // if ($request->hasFile('pan')) {
+            //     $file = $request->file('pan');
+            //     $name = time() . $file->getClientOriginalName();
+            //     $file->move(public_path() . '/documents/', $name);
+            //     $agent->other_document = $name;
+            // }
+            // $agent->save();
             
         \DB::commit();
         $maildata = [

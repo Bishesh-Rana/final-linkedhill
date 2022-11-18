@@ -32,7 +32,6 @@
                                     <div class="form-group label-floating is-empty">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-
                                                 <img src="{{$agency->logo}}" id="image" class="img-thumbnail img-responsive" alt="">
 
                                             </div>
@@ -45,8 +44,8 @@
                                     <div class=" card form-group" style="margin-top:18px; padding: 20px">
                                         <label>Update Agency Status</label>
                                         <select class="form-control select2 select2-hidden-accessible" name="status"  data-placeholder="Select Category" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option value="non-verified" @if($agency->status == "non-verified") selected @endif>Not Verified</option>
-                                            <option value="verified" @if($agency->status == "verified") selected @endif>Verified</option>
+                                            <option value="non-verified" @if($agency->status == "Non-Verified") selected @endif>Not Verified</option>
+                                            <option value="verified" @if($agency->status == "Verified") selected @endif>Verified</option>
                                         </select>
 
 
@@ -123,18 +122,14 @@
 
                             <div class="clearfix"></div>
 
-{{--                            <div class="col-md-12">--}}
-{{--                                <br><br>--}}
-{{--                                <label for="" class="label-style">View  Document  ex License </label>--}}
-{{--                                <br>--}}
-{{--                                <label class="custumFile btn btn-default" type="button">--}}
-{{--                                    <input type="file" class="inputTypeFile" name="other_document" multiple>--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-
                             <div class=" col-md-12 form-group">
                                 <iframe id="myFrame" style="display:none" width="100%" height="500"></iframe>
-                                <input type="button" value="View Document" class="btn btn-primary" onclick = "openPdf()"/>
+                                <input type="button" value="View Company Registration" class="btn btn-primary" onclick = "openPdf()"/>
+                            </div>
+
+                            <div class=" col-md-12 form-group">
+                                <iframe id="myFrame1" style="display:none" width="100%" height="500"></iframe>
+                                <input type="button" value="View Tax Clearance" class="btn btn-primary" onclick = "openTaxPdf()"/>
                             </div>
 
 
@@ -240,7 +235,12 @@
     function openPdf() {
         var omyFrame = document.getElementById("myFrame");
         omyFrame.style.display="block";
-        omyFrame.src = "{{asset('documents/'.$agency->other_document)}}";
+        omyFrame.src = "{{$agency->company_registration}}";
+    }
+    function openTaxPdf() {
+        var omyFrame = document.getElementById("myFrame1");
+        omyFrame.style.display="block";
+        omyFrame.src = "{{$agency->tax_clearance}}";
     }
 </script>
 @endpush

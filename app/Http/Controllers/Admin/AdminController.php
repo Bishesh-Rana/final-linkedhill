@@ -34,7 +34,7 @@ class AdminController extends CommonController
         if($request->password != $request->password_confirmation){
             return redirect()->back()->with('error', 'password do not match');
         }
-        $user->update($request->all());
+        $user->update(array_filter($request->all()));
         return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
 

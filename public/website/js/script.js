@@ -478,10 +478,7 @@ $('.front-category').on('click', function(e){
     })
 });
 
-function favorite(property){
-    $(".favorite"+property+">.la-heart ").toggleClass("lar las");
 
-}
 
 
 $(document).ready(function(){

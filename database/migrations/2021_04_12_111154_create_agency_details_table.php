@@ -26,9 +26,11 @@ class CreateAgencyDetailsTable extends Migration
             $table->string('agency_phone')->nullable();
             $table->string('agency_mobile')->nullable();
             $table->string('agency_email')->nullable();
-            $table->string('other_document')->nullable();
-            $table->string('national_id')->nullable();
             $table->string('company_reg_no')->nullable();
+            $table->string('pan')->nullable();
+            $table->string('company_registration')->nullable();
+            $table->string('tax_clearance')->nullable();
+            $table->string('national_id')->nullable();
             $table->string('vat_pan_no')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->mediumText('short_intro')->nullable();

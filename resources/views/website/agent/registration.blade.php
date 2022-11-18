@@ -108,39 +108,101 @@
                                             @endif
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
+                                            <div class="input-group">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="title">Profile Image</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="logo" value="{{ old('logo') }}"
+                                                            placeholder="Image" id="thumbnaillogo" readonly>
+                                                        <a id="lfmlogo" data-input="thumbnaillogo"
+                                                            data-preview="holderlogo" class="btn btn-primary"
+                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                        @error('logo')
+                                                            <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <label for="exampleFormControlInput1" class="form-label">Profile Image</label>
                                             <input type="file" class="form-control" id="exampleFormControlInput1"
                                                 placeholder="" name="image">
                                             @if ($errors->has('image'))
                                                 <strong class="text-danger">{{ $errors->first('logo') }}</strong>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         
                                         
                                         <div class="mb-3 col-md-6 ">
-                                            <label for="exampleFormControlInput1" class="form-label">PAN Card (scan copy)</label>
+
+                                            <div class="input-group">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="title">PAN Card (scan copy)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="pan" value="{{ old('pan') }}"
+                                                            placeholder="Pan Card" id="thumbnailpan" readonly>
+                                                        <a id="lfmpan" data-input="thumbnailpan"
+                                                            data-preview="holderpan" class="btn btn-primary"
+                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                        @error('pan')
+                                                            <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            {{-- <label for="exampleFormControlInput1" class="form-label">PAN Card (scan copy)</label>
                                             <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="" name="pan">
                                             @if ($errors->has('pan'))
                                                 <strong class="text-danger">{{ $errors->first('pan') }}</strong>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <div class="mb-3 col-md-6 company" style="display: none;">
-                                            <label for="companyregistration" class="form-label">Company Registration (scan
+                                            <div class="input-group">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="title">Company Registration (scan copy)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="companyRegistration" value="{{ old('companyRegistration') }}"
+                                                            placeholder="Company Registration(pdf)" id="thumbnailcompanyRegistration" readonly>
+                                                        <a id="lfmcompanyRegistration" data-input="thumbnailcompanyRegistration"
+                                                            data-preview="holdercompanyRegistration" class="btn btn-primary"
+                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                        @error('companyRegistration')
+                                                            <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <label for="companyregistration" class="form-label">Company Registration (scan
                                                 copy)</label>
                                             <input type="file" class="form-control" id="companyregistration"
                                                 placeholder="" name="companyregistration">
                                             @if ($errors->has('companyregistration'))
                                                 <strong
                                                     class="text-danger">{{ $errors->first('companyregistration') }}</strong>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <div class="mb-3 col-md-6 company" style="display: none;">
-                                            <label for="taxclearance" class="form-label">Tax Clearance (scan copy)</label>
+                                            <div class="input-group">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="title">Tax Clearance (scan copy)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="taxClearance" value="{{ old('taxClearance') }}"
+                                                            placeholder="Tax Clearance(pdf)" id="thumbnailtaxClearnce" readonly>
+                                                        <a id="lfmtaxClearance" data-input="thumbnailtaxClearnce"
+                                                            data-preview="holdertaxClearnce" class="btn btn-primary"
+                                                            class="btn btn-outline-primary waves-effect" type="button">Go</a>
+                                                        @error('taxClearance')
+                                                            <p class="form-control-static text-danger" id="staticInput">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <label for="taxclearance" class="form-label">Tax Clearance (scan copy)</label>
                                             <input type="file" class="form-control" id="taxclearance" placeholder=""
                                                 name="taxclearance">
                                             @if ($errors->has('pan'))
                                                 <strong class="text-danger">{{ $errors->first('pan') }}</strong>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <div class="form_phone_number">
@@ -247,8 +309,11 @@
 </script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
-    $('#filemanager').filemanager("image");
-    $('#panfile').filemanager("image");
+    $('#filemanager').filemanager("image"); 
+    $('#lfmlogo').filemanager("image");
+    $('#lfmpan').filemanager("image");
+    $('#lfmcompanyRegistration').filemanager("file");
+    $('#lfmtaxClearance').filemanager("file");
 </script>
 
 @endpush
