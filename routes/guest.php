@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 /* Routes for web pages */
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::get('/front', [HomeController::class, 'index'])->name('home');
 Route::get('filter', [FilterController::class,'basicFilter'])->name('filter');
 Route::get('advance-filter', [FilterController::class,'advanceFilter'])->name('advanceFilter');

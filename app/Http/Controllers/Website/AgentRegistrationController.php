@@ -8,6 +8,7 @@ use App\Models\AgencyDetail;
 use Illuminate\Http\Request;
 use App\Mail\AgencyActivationMail;
 use Illuminate\Support\Facades\DB;
+use App\Mail\AgentRegistrationMail;
 use App\Http\Controllers\Controller;
 use App\Mail\AgencyRegistrationMail;
 use Illuminate\Support\Facades\Auth;
@@ -65,14 +66,15 @@ class AgentRegistrationController extends Controller
     }
     
     public function postAgentRegistration (Request $request){
+
         $validator = $this->validate(request(), [
             'type' => 'required',
             'name' => 'required',
             'mobile' => 'required|unique:users|max:14',
             'email' => 'required|unique:users|max:255',
             'phone' => 'max:14',
-            'idnumber' => "required",
-            'pan' => 'required',
+            'logo'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'pan' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'password' => 'min:8',
 
             // 'companyRegistration'=>'required',
@@ -87,14 +89,13 @@ class AgentRegistrationController extends Controller
                 'email' => $request->email,
                 'mobile' => $request->mobile,
                 'phone' => $request->phone,
-                'profile' => $request->logo,
                 'password' => Hash::make($request->password),
                 'otp' => $otp,
             ]);
             $user->assignRole(['3']);
+
             $agent = AgencyDetail::create([
                 'status' => 2,
-                'logo' => $request->logo,
                 'type' => $request->type,
                 'user_id' => $user->id,
                 'agency_name' => $request->name,
@@ -104,26 +105,38 @@ class AgentRegistrationController extends Controller
                 'agency_phone' => $request->phone,
                 'agency_mobile' => $request->mobile,
                 'company_reg_no' => $request->company_reg_no,
-                'pan' => $request->pan,
-                'company_registration' => $request->companyRegistration,
-                'tax_clearance' => $request->taxClearance,
-                'comapny_reg_no' => $request->company_reg_no,
                 'national_id' => $request->idnumber,
             ]);
-            // if ($request->hasFile('image')) {
-            //     $file = $request->file('image');
-            //     $name = time() . $file->getClientOriginalName();
-            //     $file->move(public_path() . '/images/logo/', $name);
-            //     $agent->logo = $name;
-            // }
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/images/logo/', $name);
+                $logo = env('APP_URL') . 'images/logo/' . $name;
+                $agent->logo = $logo;
+                $user->profile = $logo;
+            }
 
-            // if ($request->hasFile('pan')) {
-            //     $file = $request->file('pan');
-            //     $name = time() . $file->getClientOriginalName();
-            //     $file->move(public_path() . '/documents/', $name);
-            //     $agent->other_document = $name;
-            // }
-            // $agent->save();
+            if ($request->hasFile('pan')) {
+                $file = $request->file('pan');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/images/pan/', $name);
+                $agent->pan = env('APP_URL') . 'images/pan/' . $name;
+            }
+            if ($request->hasFile('companyRegistration')) {
+                $file = $request->file('companyRegistration');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/documents/', $name);
+                $agent->company_registration = env('APP_URL') . 'documents/' . $name;
+            }
+            if ($request->hasFile('taxClearance')) {
+                $file = $request->file('taxClearance');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/documents/', $name);
+                $agent->tax_clearance = env('APP_URL') . 'documents/' . $name;
+            }
+
+            $agent->save();
+            $user->save();
             
         \DB::commit();
         $maildata = [
@@ -136,6 +149,10 @@ class AgentRegistrationController extends Controller
         //mail goes to admin
         Mail::to('nectardigit@gmail.com')->send(new AgencyActivationMail($user));
         $request->session()->flash('success', "Registration Application Submitted Successfully.");
+
+        //mail to agent
+        Mail::to($request->email)->send(new AgentRegistrationMail());
+
         return redirect()->back();
          } catch (\Exception $e) {
             \DB::rollback();

@@ -61,6 +61,36 @@
                             <label>Password Confirmation</label>
                             <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm your password">
                         </div>
+                        @if(auth()->user()->hasRole('Agent'))
+                            <div ><br>
+                                <label>Company Registration File</label>
+                                <a href="{{@$admin->hasAgency->company_registration}}">Click to View Company Registration file</a><br>
+                                <label>Change registration file</label>
+                                <input type="file" name="companyRegistration">
+                            </div><br>
+                            <div>
+                                <label>Company Tax Clearnce file</label>
+                                <a href="{{@$admin->hasAgency->tax_clearance}}">Click View Tax Clearance file</a><br>
+                                <label>Change file</label>
+                                <input type="file" name="taxClearance">
+                            </div><br>
+                            <div class="form-group">
+                                <label>Government Id number</label> 
+                                <input class="form-control" type="number" name="national_id" placeholder="Enter your Government Id number" value="<?php if (isset($admin->hasAgency->national_id )) {
+                                    echo @$admin->hasAgency->national_id;
+                                } else {
+                                    echo old('national_id');
+                                } ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Company Registration Number</label> 
+                                <input class="form-control" type="number" name="company_reg_no" placeholder="Enter your Company Registration number" value="<?php if (isset($admin->hasAgency->company_reg_no )) {
+                                    echo $admin->hasAgency->company_reg_no;
+                                } else {
+                                    echo old('company_reg_no');
+                                } ?>">
+                            </div>
+                        @endif
                     </div>
 
                     <div class="col-md-6">
@@ -72,7 +102,10 @@
                                 echo old('email');
                             } ?>">
                         </div>
-                        <x-image name="profile" value="{{ @$admin->profile }}" />
+                        <x-image name="image" value="{{ @$admin->profile }}" />
+                        @if(auth()->user()->hasRole('Agent'))
+                            <x-image name="pan" value="{{ @$admin->hasAgency->pan }}" />
+                        @endif
                         <div><br></div>
 
                         <div class="form-group m-form__group">                       

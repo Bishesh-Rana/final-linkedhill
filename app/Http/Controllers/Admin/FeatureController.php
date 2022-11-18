@@ -101,12 +101,21 @@ class FeatureController extends Controller
     {
         $feature = Feature::findorfail($id);
         $data = $request->validated();
-        $data['showOnFilter'] = $request->showOnFilter;
+        $data['showOnFilter'] = $request->showOnFilter;      
         DB::beginTransaction();
         try {
             $feature->update(Arr::except($data, 'category_id'));
             $feature->category()->sync($data['category_id']);
             DB::commit();
+            
+            $values = $request->value;
+            $values = explode(',',$values);
+            if(!empty($values)){
+                FeatureValue::where('feature_id',$feature->id)->delete();
+                foreach($values as $value){
+                    FeatureValue::create(['feature_id'=>$feature->id,'value'=>$value]);
+                }
+            }
             return redirect()->route('feature.index')->with('message', 'Feature Created Successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -122,6 +131,7 @@ class FeatureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $feature = Feature::findOrFail($id);
+        $feature->delete();
     }
 }

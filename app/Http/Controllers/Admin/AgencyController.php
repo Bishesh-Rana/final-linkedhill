@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use Carbon\Carbon;
+use App\Mail\VerifiedMail;
+use App\Models\AgencyDetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Requests\Admin\AgencyRequest;
-use App\Models\AgencyDetail;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 
@@ -155,6 +158,10 @@ class AgencyController extends CommonController
                 DB::table('properties')
                     ->where("user_id", '=',  $agencyData->agent->id)
                     ->update(['hasAgent' => 1]);
+                    $user = User::where('id',$agencyData->user_id)->first();
+                    $time = Carbon::now();
+                    $user->update(['email_verified_at'=>$time]);
+                    Mail::to($user->email)->send(new VerifiedMail());
             } else {
                 DB::table('properties')
                     ->where("user_id", '=',  $agencyData->agent->id)
