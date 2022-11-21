@@ -24,6 +24,9 @@ class AgentRegistrationController extends Controller
         return view('website.agent.registration');
     }
     public function getAgentLogin(){
+        if(auth()->user()){
+            return redirect()->intended(route('admin.dashboard'));
+        }
         return view('website.agent.login');
     }
 
@@ -51,9 +54,7 @@ class AgentRegistrationController extends Controller
             }else{
                 if (\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
                     return redirect()->route('admin.dashboard');
-                    // return redirect()->back();
                 }
-                //if unsuccessful then return back to login
                 return back()->with('error', 'Email and Password do not match')->withInput($request->only('email'));
             }
         }else{
@@ -73,9 +74,11 @@ class AgentRegistrationController extends Controller
             'mobile' => 'required|unique:users|max:14',
             'email' => 'required|unique:users|max:255',
             'phone' => 'max:14',
-            'logo'=> 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'pan' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'logo'=> 'image|mimes:jpeg,png,jpg,gif,svg',
+            'pan' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'password' => 'min:8',
+            'companyRegistration' => 'nullable|mimes:pdf',
+            'taxClearance' => 'nullable|mimes:pdf',
 
             // 'companyRegistration'=>'required',
             // 'taxClearance' => 'required',
@@ -106,6 +109,7 @@ class AgentRegistrationController extends Controller
                 'agency_mobile' => $request->mobile,
                 'company_reg_no' => $request->company_reg_no,
                 'national_id' => $request->idnumber,
+
             ]);
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');

@@ -6,12 +6,14 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Mail\PasswordResetMail;
+use App\Mail\UserRegistrationMail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use App\Actions\Fortify\ResetUserPassword;
-use App\Mail\PasswordResetMail;
 
 class CustomerAuthController extends Controller
 {
@@ -51,7 +53,7 @@ class CustomerAuthController extends Controller
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
-                'mobile' => $request->mobile,
+                'phone' => $request->mobile,
                 'password' => Hash::make($request->password),
                 'otp' => $this->getOtp(),
             ];
@@ -62,13 +64,9 @@ class CustomerAuthController extends Controller
                 'name'              => $customer->name,
                 'otp'              => $customer->otp,
             ];
-            Mail::send('emails/user_registration_mail', $maildata, function ($message) use ($maildata) {
-                $message->to($maildata['email'], $maildata['name'])
-                    ->subject('Activation Email');
-                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-            });
+            Mail::to($request->email)->send(new UserRegistrationMail());
             $message = "Your OTP for ".config('app.name')." Customer Registration is :".$customer->otp;
-            $this->sendSMS($customer->mobile,$customer->name,$message);
+            $this->sendSMS($request->mobile,$customer->name,$message);
             \DB::commit();
             $request->session()->flash('success', "An OTP has been sent to your email.");
             return redirect()->route('getOtp',$customer->id);
@@ -154,17 +152,23 @@ class CustomerAuthController extends Controller
 
         //if email verified or not
         if (isset($check->email_verified_at)) {
-
-            //Attempt to log the customer in
-
             if (\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                if(auth()->user()->hasRole('Agent')){
+                    \Auth::logout();
+                    return redirect()->back()->with('error','Email not Found');
+                }
+                if(auth()->user()->hasRole('Admin')){
+                    \Auth::logout();
+                    return redirect()->back()->with('error','Email not Found');
+                }
+                if(auth()->user()->hasRole('Super Admin')){
+                    \Auth::logout();
+                    return redirect()->back()->with('error','Email not Found');
+                }
                 return redirect()->route('admin.dashboard');
-                // return redirect()->back();
-            }
-            //if unsuccessful then return back to login
+            }            
             return back()->with('error', 'Email and Password do not match')->withInput($request->only('email'));
         } else {
-
             //if the customer have not verified their email
             return redirect()->back()->with('error', 'Please verify your email first');
         }

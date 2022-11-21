@@ -21,6 +21,7 @@ class SocialLoginController extends Controller
     }
 
     public function getFacebookCallback() {
+
         $data = Socialite::driver('facebook')->stateless()->user();
         $user = \App\Models\User::where('email', $data->email)->first();
         if(!is_null($user)) {
@@ -42,6 +43,7 @@ class SocialLoginController extends Controller
 
             }
         }
+        $user->assignRole(['5']);
         Auth::login($user);
         return redirect(url('/'))->with('success_message', 'Successfully logged in!');
     }
@@ -52,9 +54,7 @@ class SocialLoginController extends Controller
 
     public function getGoogleCallback() {
         $data = Socialite::driver('google')->user();
-//        dd($data);
         $user = \App\Models\User::where('email', $data->email)->first();
-
         if(!is_null($user)) {
             $user->name        = $data->user['name'];
             $user->social_id   = $data->user['id'];
@@ -74,15 +74,17 @@ class SocialLoginController extends Controller
 
             }
         }
+
+        $user->assignRole(['5']);
         Auth::login($user);
 
-        return redirect(url('/'))->with('success_message', 'Successfully logged in!');
+        return redirect()->route('admin.dashboard')->with('success', 'Successfully logged in!');
 
     }
 
     public function logout() {
         auth()->logout();
 
-        return back()->with('success_message', 'You are logged out.');
+        return back()->with('success', 'You are logged out.');
     }
 }

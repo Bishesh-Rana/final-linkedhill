@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'a58160bdb6e5d23ed4c192ec80f96b16321b80c5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -521,12 +521,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'a58160bdb6e5d23ed4c192ec80f96b16321b80c5',
     ),
     'laravel/passport' => 
     array (
@@ -554,6 +554,15 @@
       array (
       ),
       'reference' => '47afb7fae28ed29057fdca37e16a84f90cc62fae',
+    ),
+    'laravel/socialite' => 
+    array (
+      'pretty_version' => 'v5.5.6',
+      'version' => '5.5.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1cd1682b709b8808a5b5dbb68179a58d1342aa7b',
     ),
     'laravel/tinker' => 
     array (
@@ -653,6 +662,15 @@
       array (
       ),
       'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
+    ),
+    'league/oauth1-client' => 
+    array (
+      'pretty_version' => 'v1.10.1',
+      'version' => '1.10.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd6365b901b5c287dd41f143033315e2f777e1167',
     ),
     'league/oauth2-server' => 
     array (

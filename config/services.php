@@ -31,9 +31,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id'     => env('FACEBOOK_ID'),
-        'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect'      => env('FACEBOOK_REDIRECT_URL'),
+        'client_id'     => '1310568986345524',
+        'client_secret' => '46c967bdc476acb0046ab5bcefe5ae79',
+        'redirect'      => 'http://127.0.0.1:8000/login/facebook/callback',
         'android'       => [
             'app_id' => env('FACEBOOK_APP_ID_ANDROID'),
         ],
@@ -43,14 +43,9 @@ return [
     ],
 
     'google' => [
-        'client_id'     => env('GOOGLE_ID'),
-        'client_secret' => env('GOOGLE_SECRET'),
-        'redirect'      => env('GOOGLE_REDIRECT_URL'),
-        'android'       => [
-            'client_id' => env('GOOGLE_CLIENT_ID_ANDROID'),
-        ],
-        'ios'           => [
-            'client_id' => env('GOOGLE_CLIENT_ID_IOS'),
-        ],
+        'client_id'     => "913898466331-snd1kpogjmdk41qe1pvdnvnohuvugb0d.apps.googleusercontent.com",
+        'client_secret' => "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",
+        'redirect'      => "http://127.0.0.1:8000/login/google/callback",        
     ],
 ];
+
