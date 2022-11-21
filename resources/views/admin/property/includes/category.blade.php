@@ -39,13 +39,14 @@
                                             {{ $feat->title }}
                                         </p>
                                            <div style="padding:2px 10px;display:flex;">
+                                            {{-- @dd($feat->value); --}}
                                             
                                                @foreach($feat->value as $val)
     
                                                {{-- @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp --}}
                                                <div style="margin-right: 10px" class="">
-                                                   <label for="facilities">{{$val->value}}</label>
-                                                   <input type="radio" value='{{$val->value}}' id="facilities" name="features[{{ $feat->id }}]" 
+                                                   <label for="featureid{{ $feat->id }}{{$val->value}}">{{$val->value}}</label>
+                                                   <input type="radio" value='{{$val->value}}' id="featureid{{ $feat->id }}{{$val->value}}" name="features[{{ $feat->id }}]" 
                                                    @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp/>
                                                    
                                                </div>
