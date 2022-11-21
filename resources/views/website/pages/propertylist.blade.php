@@ -210,12 +210,10 @@
                         <input type="number" name="area" id="area" placeholder="area">
                         <select class="areaunit" name="areaunit" id="areaunit">
                             <option selected disabled>Unit</option>
-                           
-                            $units = App\Models\Unit::get();
-                        
                             @foreach ($units as $unit)
                             <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
+                        </select>
                            
                     </div>
                     <div class="option_a1 moreOption">

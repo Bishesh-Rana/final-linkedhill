@@ -169,8 +169,9 @@ class HomeController extends Controller
                         $feature_values[$feature->id]=$values;
                 }
                 $facilities = PropertyFacility::get();
+                $units = Unit::get();
 
-                    return view('website.pages.propertylist', compact('facilities','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                    return view('website.pages.propertylist', compact('facilities','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');

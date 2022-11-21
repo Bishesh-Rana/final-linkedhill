@@ -78,7 +78,7 @@
             </div>
             {{-- <div class="clearfix"></div> --}}
             {{-- <br> --}}
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group  label-floating">
                     <label class="label-style">
                        Mohoda
