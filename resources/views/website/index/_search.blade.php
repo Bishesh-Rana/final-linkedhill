@@ -104,6 +104,10 @@
                                 <option value="5000000.00">Rs. 5000000.00</option>
                             </select>
                         </div>
+                        <div class="option_a1 landarea" style="display: none">
+                            <input type="number" name="area" id="area" placeholder="area">
+                        </div>
+
                         <?php
                             $name='';
                         ?>

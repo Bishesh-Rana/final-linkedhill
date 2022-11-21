@@ -187,8 +187,9 @@
 
                                     <div class="sign_up_msg">
                                         <p> <input class="me-2" type="checkbox" name="privacypolicy" id="privacypolicy" checked required> By clicking sign up, you agree to 
-                                            <a href="#">the terms and conditions & privacy policy</a> of linkedhill.com.np</p>
+                                            <a href="#">the terms & conditions </a> and  <a href="#">privacy policy</a> of linkedhill.com.np</p>
                                     </div>
+                                   {{-- <a href="{{route('success_details',['slug'  => $story->slug,'locale' => App()->getLocale()]) }}" >Read More</a> --}}
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button>
                                     </div>

@@ -418,9 +418,11 @@ $('.front-category').on('click', function(e){
         });
         if (checkedcat.length == 1 && checkedcat[0]==2){
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+            $('.landarea').show();
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+            $('.landarea').show();
         }
     })
 

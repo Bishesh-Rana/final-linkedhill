@@ -89,7 +89,7 @@
                 @endforeach
                 </ul>
                 <div class="social_link d-flex">
-                    <div class="me-2"> <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
+                    <div class="me-2"> <a href="{{ route('customer.signin') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
                     </div>
                     <div>
                          <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="las la-home"></i>List Property</span>

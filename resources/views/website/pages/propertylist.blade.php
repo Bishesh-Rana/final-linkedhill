@@ -91,13 +91,13 @@
                             @foreach ($propertyCat as $propertyC)
                                 <div class="list_group_category">
                                 @if (array_key_exists('category_id', $filter))
-                                    <input class="form-check-input front-category property" id="property"
+                                    <input class="form-check-input front-category property"
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
                                         value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}" {{ $filter['category_id'] == $propertyC->id ? 'checked' : '' }}>
                                     <label class="form-check-label"
                                         for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                 @else
-                                    <input class="form-check-input front-category property" id="property"
+                                    <input class="form-check-input front-category property" 
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
                                         value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}" selected>
                                     <label class="form-check-label"
