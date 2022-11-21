@@ -81,6 +81,10 @@ class PropertyController extends Controller
             }                        
             });
         })
+        ->when(request('area'),function($query,$var){
+            $unit = request('unit');
+            $query->where('total_area','>=',$var)->where('total_area_unit','=',$unit)
+        })
         ->when(request('listedby'), function($query,$var){
             switch($var){
                 case "owner":
