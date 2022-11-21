@@ -37,7 +37,8 @@ class AdminController extends CommonController
         if($request->password != $request->password_confirmation){
             return redirect()->back()->with('error', 'password do not match');
         }
-        $user->update(array_filter($request->all()));
+        
+        $user->update(array_filter($request->all()));      
         $user->profile = $request->image;
         $user->save();
         if(auth()->user()->hasRole('Agent')){
@@ -49,30 +50,18 @@ class AdminController extends CommonController
             $agent->logo=$request->image;
             $user->profile = $request->image;
             $agent->pan = $request->pan;
-            $agent->company_registration = $request->companyRegistration;
-            $agent->tax_clearance = $request->taxClearance;
 
-
-            if ($request->hasFile('image')) {
-                if(File::exists($agent->logo)){
-                    unlink($agent->logo);
-                }
-            }
-
-            if ($request->hasFile('pan')) {
-                if(File::exists($agent->pan)){
-                    unlink($agent->pan);
-                }
-            }
             if ($request->hasFile('companyRegistration')) {
-                if(File::exists($agent->company_registration)){
-                    unlink($agent->company_registration);
-                }
+                $file = $request->file('companyRegistration');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/documents/', $name);
+                $agent->company_registration = env('APP_URL') . 'documents/' . $name;
             }
             if ($request->hasFile('taxClearance')) {
-                if(File::exists($agent->tax_clearance)){
-                    unlink($agent->tax_clearance);
-                }
+                $file = $request->file('taxClearance');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/documents/', $name);
+                $agent->tax_clearance = env('APP_URL') . 'documents/' . $name;
             }
             $user->save();
             $agent->save();

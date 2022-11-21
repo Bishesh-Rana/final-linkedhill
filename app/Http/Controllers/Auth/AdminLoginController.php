@@ -17,6 +17,9 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
+        if(auth()->user()){
+            return redirect()->intended(route('admin.dashboard'));
+        }
         return view('admin.auth.login');
     }
 
@@ -41,22 +44,19 @@ class AdminLoginController extends Controller
 
 
         $pass =$request->password;
-        if(!Hash::check($pass ,$admin->password))
-        {
-            return redirect()->back()->with('error_message','Password does not match');
-        }
+        // if(!Hash::check($pass ,$admin->password))
+        // {
+        //     return redirect()->back()->with('error_message','Password does not match');
+        // }
 
 
-        if (auth()->attempt(['email'=>$request->email , 'password'=>$request->password],$request->remember))
+        if (\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password]))
         {
             if(auth()->user()->hasRole('Super Admin')){
-                dd('bishesh');
                 return redirect()->intended(route('admin.dashboard'));
             }elseif(auth()->user()->hasRole('Admin')){
-                dd('asafdsf');
                 return redirect()->intended(route('admin.dashboard'));
             }else{
-                dd('asdd');
                 Auth::logout();
                 return back()->with('error','Email Not Found');
             }

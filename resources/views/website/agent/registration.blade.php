@@ -129,18 +129,18 @@
                                             <label for="companyregistration" class="form-label">Company Registration (scan
                                                 copy)</label>
                                             <input type="file" class="form-control" id="companyregistration"
-                                                placeholder="" name="companyregistration">
-                                            @if ($errors->has('companyregistration'))
+                                                placeholder="" name="companyRegistration">
+                                            @if ($errors->has('companyRegistration'))
                                                 <strong
-                                                    class="text-danger">{{ $errors->first('companyregistration') }}</strong>
+                                                    class="text-danger">{{ $errors->first('companyRegistration') }}</strong>
                                             @endif
                                         </div>
                                         <div class="mb-3 col-md-6 company" style="display: none;">
                                             <label for="taxclearance" class="form-label">Tax Clearance (scan copy)</label>
                                             <input type="file" class="form-control" id="taxclearance" placeholder=""
-                                                name="taxclearance">
-                                            @if ($errors->has('pan'))
-                                                <strong class="text-danger">{{ $errors->first('pan') }}</strong>
+                                                name="taxClearance">
+                                            @if ($errors->has('taxClearance'))
+                                                <strong class="text-danger">{{ $errors->first('taxClearance') }}</strong>
                                             @endif
                                         </div>
                                         <div class="mb-3 col-md-6">

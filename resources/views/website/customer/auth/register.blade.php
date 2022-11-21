@@ -63,7 +63,7 @@
                                                 privacy policy</a> of Linkehill.com.np</p>
                                     </div>
                                     <div class="sign_up_button">
-                                        <button type="submit" class="btn btn-danger">Sign Up</button>
+                                        <button type="submit" class="btn btn-danger">Sign Up</button> <a href='{{route('facebookLogin')}}'><i class="lab la-facebook"></i></a><a href="{{route('googleLogin')}}"> <i class="lab la-google"></i></a>
                                     </div>
                                 </form>                              
                                
