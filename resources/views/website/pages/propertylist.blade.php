@@ -206,6 +206,18 @@
 
                         </select>
                     </div>
+                    <div class="option_a1 landarea" style="display: none;">
+                        <input type="number" name="area" id="area" placeholder="area">
+                        <select class="areaunit" name="areaunit" id="areaunit">
+                            <option selected disabled>Unit</option>
+                           
+                            $units = App\Models\Unit::get();
+                        
+                            @foreach ($units as $unit)
+                            <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
+                            @endforeach
+                           
+                    </div>
                     <div class="option_a1 moreOption">
                         <div class="moreOptionsToggler">
                             <p class=" dropdown-toggle" href="#" role="button" id="moreOptions"

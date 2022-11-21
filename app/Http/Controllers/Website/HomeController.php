@@ -23,11 +23,12 @@ use Illuminate\Support\Str;
 use App\Models\AgencyDetail;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
-use App\Models\PropertyCategory;
-use App\Http\Controllers\Controller;
 use App\Models\FavouriteList;
+use App\Models\PropertyCategory;
 use App\Models\PropertyFacility;
+use App\Http\Controllers\Controller;
 use App\Notifications\PropertyInquery;
+use App\Models\Unit;
 
 class HomeController extends Controller
 {
@@ -86,6 +87,7 @@ class HomeController extends Controller
 
         $this->website['property_types'] = Type::all();
         $this->website['pricings'] = Pricing::latest()->get();
+        $this->website['units'] = Unit::all();
         $this->website['advertisement'] = Advertisement::where('page', 'home')->get();
         $this->website['meta'] = $this->getMeta();
         return view('website.index', $this->website);

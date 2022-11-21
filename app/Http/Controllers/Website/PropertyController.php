@@ -15,6 +15,7 @@ use App\Models\PropertyCategory;
 use App\Models\PropertyFacility;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 
@@ -123,6 +124,8 @@ class PropertyController extends Controller
         $property = Property::all();
         $propertyCat = PropertyCategory::orderBy('order')->get();
         $facilities = Facility::get();
+        $units = Unit::get();
+        // dd($units);
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');
@@ -142,7 +145,7 @@ class PropertyController extends Controller
             $feature_values[$feature->id]=$values;
        }
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('facilities','pagedata', 'meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
+        return view('website.pages.propertylist', compact('facilities','pagedata', 'units','meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])

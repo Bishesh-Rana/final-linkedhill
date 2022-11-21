@@ -71,6 +71,8 @@
                                         </select>
                                     </div>                                 
                                 </div>
+                                
+                                
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Common Facilities</h3>
@@ -116,7 +118,6 @@
                                         <label for="West">West</label> 
                                         <input type='radio' name="facing" value="North" id="North"/>
                                         <label for="North">North</label> 
-
                                         <input type='radio' name="facing" value="North-East" id="North-East"/>
                                         <label for="North-East">North-East</label> 
                                         <input type='radio' name="facing" value="North-West" id="North-West"/>

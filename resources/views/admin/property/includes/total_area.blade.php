@@ -53,9 +53,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group" style="margin-top:10px;">
-                    <label class="label-style">Property Facing(Mohada)</label>
+                    <label class="label-style">Property Facing(Mohoda)</label>
                     <select class="form-control select2 select2-hidden-accessible" name="property_facing"
                         data-placeholder="Select City" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
                         <option value="South" @if ($property->property_facing == 'South') selected @endif>South</option>
@@ -70,13 +70,18 @@
                     <x-error name='property_facing' />
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <br>
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="form-group" style="margin-top:10px;">
+                    <input type="number" name="roadwidth" id="roadwidth" placeholder="Road Width">
+                    <x-error name='roadwidth' />
+                </div>
+            </div>
+            {{-- <div class="clearfix"></div> --}}
+            {{-- <br> --}}
+            <div class="col-md-6">
                 <div class="form-group  label-floating">
                     <label class="label-style">
-                        Road Access(Mohada Length)
-
+                       Mohoda
                     </label>
                     <input class="form-control" name="road_access"
                         value="{{ old('road_access', $property->road_access) }}" type="text"
@@ -86,7 +91,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group" style="margin-top:15px;">
-                    <label class="label-style">Mohada Length Unit</label>
+                    <label class="label-style">Mohoda Length Unit</label>
                     <select class="form-control select2 select2-hidden-accessible" name="road_access_unit"
                         data-placeholder="Select Road Length Unit" style="width: 100%;" tabindex="-1" aria-hidden="true"
                         required>

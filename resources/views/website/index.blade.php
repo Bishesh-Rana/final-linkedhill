@@ -1,5 +1,6 @@
     @extends('website.layouts.app')
 
+
     @section('content')
         <section id="linked_hill_carousel">
             <section id="site_banner_slider">
@@ -26,6 +27,7 @@
                     </div>
                     <!-- End arrow down pannel -->
                 </div>
+              
                 @include('website.index._search')
                 @include('website.index.advancesearch')
             </section>

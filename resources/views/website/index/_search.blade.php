@@ -1,4 +1,5 @@
 <div class="linked_hill_search_wrapper">
+    
     <div class="container">
         <form class="searchProperty" method="get" action="{{ route('front.search-properties') }}">
         <div class="row">
@@ -58,7 +59,7 @@
                                 <div class="option_a1">
                                 <select name="properties[{{$key}}]" id="start_prize">
                                     @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
-                                    <option selected disabled>Select {{$name}}</option>
+                                    <option selected disabled> {{$name}}</option>
                                     @foreach($values as $value)
                                         <option value="{{$value}}">{{$value}}</option>
                                     @endforeach
@@ -104,8 +105,14 @@
                                 <option value="5000000.00">Rs. 5000000.00</option>
                             </select>
                         </div>
+                        {{-- @dd($units); --}}
                         <div class="option_a1 landarea" style="display: none">
                             <input type="number" name="area" id="area" placeholder="area">
+                            <select class="areaunit" name="areaunit" id="areaunit">
+                                <option selected disabled>Unit</option>
+                                @foreach ($units as $unit)
+                                <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
+                                @endforeach
                         </div>
 
                         <?php
