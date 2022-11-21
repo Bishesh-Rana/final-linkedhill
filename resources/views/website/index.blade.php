@@ -310,7 +310,7 @@
                 </div>
             </div>
         </section>
-        <section id="price_and_planing_wrapper" class="cs_top_padding">
+        {{-- <section id="price_and_planing_wrapper" class="cs_top_padding">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 m-auto">
@@ -335,7 +335,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <section id="assistance_wrapper" class="cs_bottom_padding">
             <div class="container">
                 <div class="ass_inner_wrapper">

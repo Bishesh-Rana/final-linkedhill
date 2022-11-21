@@ -15,6 +15,11 @@
     <link href="{{ asset('website/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ion.rangeSlider.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/select2/select2.min.css') }}" rel="stylesheet">
+    {{-- gallery jquery --}}
+
+    <link rel="stylesheet" href="{{ asset('website/css/lc_lightbox.css') }}" />
+    <!-- SKINS -->
+    <link rel="stylesheet" href="{{ asset('website/css/minimal.css') }}" />
     @stack('styles')
 </head>
 <body>
@@ -84,10 +89,10 @@
                 @endforeach
                 </ul>
                 <div class="social_link d-flex">
-                    <div class="me-2"> <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
+                    <div class="me-2"> <a href="{{ route('customer.signin') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
                     </div>
                     <div>
-                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="lar la-user"></i>List Property</span>
+                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="las la-home"></i>List Property</span>
                     </a></div>
                     {{-- <ul>
                         <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
@@ -289,6 +294,13 @@
     <script src="{{ asset('website/lobibox/dist/js/notifications.min.js') }}"></script>
     <script src="{{ asset('js/ion.rangeSlider.min.js') }}"></script>
     <script src="{{ asset('frontend/select2/select2.min.js') }}"></script>
+    {{-- jqueryy gallery --}}
+    
+    <script src="{{ asset('website/js/lc_lightbox.lite.js') }}" type="text/javascript"></script>
+   
+    <!-- ASSETS -->
+    <script src="{{ asset('website/js/alloy_finger.min.js') }}" type="text/javascript"></script>
+
     <script>
         $("form[name='newsletter']").submit(function(e) {
             e.preventDefault();

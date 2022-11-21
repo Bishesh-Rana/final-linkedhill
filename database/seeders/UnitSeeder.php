@@ -16,6 +16,19 @@ class UnitSeeder extends Seeder
     {
         DB::table('units')->insert(
             [
+               
+                [
+                    'name' => 'Haath',
+                ],
+                [
+                    'name' => 'Kathha',
+                ], 
+                [
+                    'name' => 'Bigah',
+                ],
+                [
+                    'name' => 'Daam',
+                ],
                 [
                     'name' => 'Aana',
                 ],
@@ -33,10 +46,6 @@ class UnitSeeder extends Seeder
                 ],
                 [
                     'name' => 'Sq. Meter',
-
-                ],
-                [
-                    'name' => 'Ropani',
 
                 ],
                 [

@@ -19,8 +19,10 @@
                 <div class="form-group  label-floating row"> 
                     {{-- @dd($property->facility) --}}
                     @foreach($facilities as $facility)
-                        <div class="col-sm-2"><input type="checkbox"name="facility[]" value="{{$facility->title}}"  @php if($property->facility != null ){foreach($property->facility as $fac){if($fac->title == $facility->title){echo('checked'); }}} @endphp>
-                            <label for="">{{$facility->title}}</label></div>
+                    
+                        <div class="col-sm-2">
+                            <input type="checkbox"name="facility[]" id="facility{{$facility->id}}" value="{{$facility->title}}"  @php if($property->facility != null ){foreach($property->facility as $fac){if($fac->title == $facility->title){echo('checked'); }}} @endphp>
+                            <label for="facility{{$facility->id}}">{{$facility->title}}</label></div>
                     @endforeach
                     <x-error name='facility' />
                 </div>

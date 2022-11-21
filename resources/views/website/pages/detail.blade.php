@@ -35,15 +35,34 @@
 
     <section id="detail_info_wrapper">
         <div class="container">
-            <div class="property_detail_images">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            @foreach ($property->images as $image)
+            <a class="elem" href="{{ image(@$image->name) }}"  data-lcl-thumb="{{ image(@$image->name) }}">
+                <span style="background-image: url({{ image(@$image->name) }});"></span>
+            </a>
+            @endforeach
+
+
+            <div class="">
+                {{-- <div class="owl-carousel owl_button_style  property_detail_images" id="owl_banners" data-wow-delay="0.5s">
+                    @foreach ($property->images as $image)
+                        <div data-dot="<button> <img class= 'img-index' src='{{ image(@$image->name) }}'"></button>
+                            <a href="{{ image(@$image->name) }}"><img src="{{ image(@$image->name) }}" alt="Thumbnail 1"></a>
+                            
+                        </div>
+                    @endforeach
+                </div> --}}
+
+                {{-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="2"></li>
+                      </ol>
                     <div class="carousel-inner">
                         @foreach ($property->images as $image)
                             <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
                                 <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                                {{-- <a href="{{ image(@$image->name) }}" class="lightbox" title="">
-                                
-                                </a> --}}
+                              
                             </div>
                         @endforeach
                         
@@ -58,7 +77,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                </div>
+                </div> --}}
             </div>
             {{-- <div class="property_detail_wrapper">
               
@@ -291,7 +310,7 @@
                                                     <div class="amenites_ac_content">
                                                         @foreach ($property->amenities as $amenity)
                                                             <div class="amenites_item">
-                                                                <img src="{{ image($amenity->image) }}" alt="">
+                                                                {{-- <img src="{{ image($amenity->image) }}" alt=""> --}}
                                                                 <span>{{ $amenity->name }}</span>
                                                             </div>
                                                         @endforeach
@@ -614,7 +633,45 @@
 @endsection
 
 @push('scripts')
+<script type="text/javascript">
+    $(document).ready(function(e) {
+       
+        // live handler
+        lc_lightbox('.elem', {
+            wrap_class: 'lcl_fade_oc',
+            gallery : true,	
+            thumb_attr: 'data-lcl-thumb', 
+            
+            skin: 'minimal',
+            radius: 0,
+            padding	: 0,
+            border_w: 0,
+        });	
+    
+    });
+    </script>
+
     <script>
+        $('#owl_banners').owlCarousel({
+    loop: true,
+    margin: 10,
+    // nav:true,
+    dots:true,
+    dotsData:true,
+    responsiveClass: true,
+    navText: ["<i class='las la-angle-left'></i>", "<i class='las la-angle-right'></i>"],
+    responsive: {
+        0: {
+            items: 1,
+        },
+        600: {
+            items: 1,
+        },
+        1000: {
+            items: 1,
+        }
+    }
+})
         $("form[name='propertyEnquiry']").submit(function(e) {
             e.preventDefault();
 

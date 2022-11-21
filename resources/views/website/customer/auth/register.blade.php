@@ -59,9 +59,8 @@
                                         @endif
                                     </div>
                                     <div class="sign_up_msg">
-                                        <p> <input type="checkbox" name="privacy" id="privacy" required> By clicking sign up, you agree to <a href="">the terms and conditions,
-                                                privacy
-                                                policy</a> of NepalHomes.com</p>
+                                        <p> <input type="checkbox" name="privacy" id="privacy" required> By signing up, you agree to the<a href=""> terms & conditions and
+                                                privacy policy</a> of Linkehill.com.np</p>
                                     </div>
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button> <a href='{{route('facebookLogin')}}'><i class="lab la-facebook"></i></a><a href="{{route('googleLogin')}}"> <i class="lab la-google"></i></a>

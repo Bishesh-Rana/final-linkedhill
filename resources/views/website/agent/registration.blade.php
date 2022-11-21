@@ -35,7 +35,7 @@
                                             </div> --}}
                                            
                                             <div class="fortooltip ">
-                                                <input class="form-check-input" type="radio" name="type" id="type2"
+                                                <input class="form-check-input" type="radio" name="type" data-client="realestate" id="type2"
                                                     value="Real Estate Company" onclick="changeType()">
                                                 <label class="form-check-label" for="type2">Real Estate Company
                                                     <button type="button" class="tooltipinfo" data-toggle="tooltip"
@@ -44,22 +44,22 @@
                                                     </button></label>
                                             </div>
                                             <div class="fortooltip ">
-                                                <input class="form-check-input" type="radio" name="type" id="type3"
+                                                <input class="form-check-input" type="radio" data-client="individualagent" name="type" id="type3"
                                                     value="Individual Agent" onclick="changeType()">
                                                 <label class="form-check-label" for="type3">
                                                     Individual Agent <button type="button" class="tooltipinfo"
-                                                        data-toggle="tooltip" data-placement="top" data-html="true" title="<div style='width:200px;height:fit-content;'>Someone who is licensed under Nepal Government rules & regulations and a single employee or work for himself/herself.</div>">
+                                                        data-toggle="tooltip" data-placement="top" data-html="true" title="Licensed under Nepal Government rules & regulations and a single employee or work for himself/herself.">
                                                         <i class="las la-info"></i>
                                                     </button>
                                                 </label>
                                             </div>
                                             <div class="fortooltip ">
-                                                <input class="form-check-input" type="radio" name="type" id="type4"
+                                                <input class="form-check-input" type="radio" name="type" data-client="builder" id="type4"
                                                     value="Builder/ Developer" onclick="changeType()">
                                                 <label class="form-check-label" for="type4">
                                                     Builder/ Developer <button type="button" class="tooltipinfo"
                                                         data-toggle="tooltip" data-placement="top"
-                                                        data-html="true" title="<div style='width:200px;height:fit-content;'>This account holder are someone’s who are licensed under Nepal Government rules & regulations. This account suits businesses who Build or develops different sites & relating to upcoming projects.</div>">
+                                                        data-html="true" title="Licensed under Nepal Government rules & regulations and who Build or develops different sites & relating to upcoming projects.">
                                                         <i class="las la-info"></i>
                                                     </button>
                                                 </label>
@@ -93,9 +93,10 @@
                                                 <strong class="text-danger">{{ $errors->first('website') }}</strong>
                                             @endif
                                         </div>
-                                        <div class="mb-3 col-md-6 company">
-                                            <input type="text" class="form-control registration" id="exampleFormControlInput1"
+                                        <div class="mb-3 col-md-6 registration">
+                                            <input type="text" class="form-control " id="exampleFormControlInput1"
                                                 placeholder="Government ID Number" name="idnumber">
+
                                             @if ($errors->has('company_reg_no'))
                                                 <strong class="text-danger">{{ $errors->first('company_reg_no') }}</strong>
                                             @endif
@@ -186,8 +187,9 @@
 
                                     <div class="sign_up_msg">
                                         <p> <input class="me-2" type="checkbox" name="privacypolicy" id="privacypolicy" checked required> By clicking sign up, you agree to 
-                                            <a href="#">the terms and conditions & privacy policy</a> of linkedhill.com.np</p>
+                                            <a href="#">the terms & conditions </a> and  <a href="#">privacy policy</a> of linkedhill.com.np</p>
                                     </div>
+                                   {{-- <a href="{{route('success_details',['slug'  => $story->slug,'locale' => App()->getLocale()]) }}" >Read More</a> --}}
                                     <div class="sign_up_button">
                                         <button type="submit" class="btn btn-danger">Sign Up</button>
                                     </div>
@@ -223,19 +225,24 @@
 @push('scripts')
 <script>
     function changeType() {
-        var type = $("input[name='type']:checked").val();
+        var type = $("input[name='type']:checked").data('client');
         console.log(type);
-        if (type== 2 || type == 4) {
+        if (type== 'builder' || type == 'realestate') {
             $("input[name='name']").attr('placeholder','Company Name');
-            $("input[name='idnumber']").attr('placeholder','Company Registration NUmber');
+            // $("input[name='idnumber']").attr('placeholder','Company Registration Number');
+            $(".company").show();
+            $(".registration").hide();
+
 
         } else {
             $("input[name='name']").attr('placeholder','Full Name');
-            $("input[name='idnumber']").attr('placeholder','Government ID Number');
+            $(".registration").show();
+            // $("input[name='idnumber']").attr('placeholder','Government ID Number');
+            $(".company").hide();
             
         }
 
-        $(".company").toggle();
+       
     }
     $(function() {
         $("#toggle_pwd").click(function() {
