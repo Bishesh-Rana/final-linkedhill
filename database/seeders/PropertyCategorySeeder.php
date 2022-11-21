@@ -30,16 +30,8 @@ class PropertyCategorySeeder extends Seeder
                 ],
 
                 [
-                    'name' => 'Apartment',
+                    'name' => 'Apartment/Flat',
                     'slug' => 'apartment',
-                    'image' => 'https://source.unsplash.com/3wylDrjxH-E'
-
-
-
-                ],
-                [
-                    'name' => 'Flat',
-                    'slug' => 'flat',
                     'image' => 'https://source.unsplash.com/3wylDrjxH-E'
 
 
@@ -49,9 +41,6 @@ class PropertyCategorySeeder extends Seeder
                     'name' => 'Business',
                     'slug' => 'business',
                     'image' => 'https://source.unsplash.com/PhYq704ffdA'
-
-
-
                 ],
                 [
                     'name' => 'Shop Space',
