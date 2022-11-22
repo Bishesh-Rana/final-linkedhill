@@ -206,12 +206,12 @@
 
                         </select>
                     </div>
-                    <div class="option_a1 landarea" style="display: none;">
+                    <div class="option_a1 advance-landarea landarea" style="display: none;">
                         <input type="number" name="area" id="area" placeholder="area">
                         <select class="areaunit" name="areaunit" id="areaunit">
-                            <option selected disabled>Unit</option>
+                            <option selected disabled >Unit</option>
                             @foreach ($units as $unit)
-                            <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
+                            <option  value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
                         </select>
                            
@@ -536,10 +536,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                      
                                     </div>
-                                    
-
                                     <div onclick="favorite({{ $property->id }})" class="favicon">
                                         <a href="#" class="favorite{{ $property->id }}"><i
                                                 class=" lar la-heart "></i></a>

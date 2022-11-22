@@ -9,7 +9,7 @@
         </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
+        <div class="panel-body row">
             <div class="col-md-6 row">
                 <div class="col-md-12">
                     <label class="label-style">Total Area <span class="required-error">*</span></label>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group" style="margin-top:10px;">
                     <label class="label-style">Property Facing(Mohoda)</label>
                     <select class="form-control select2 select2-hidden-accessible" name="property_facing"
@@ -70,10 +70,25 @@
                     <x-error name='property_facing' />
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="form-group" style="margin-top:10px;">
-                    <input type="number" name="roadwidth" id="roadwidth" placeholder="Road Width">
+                    <label class="label-style">Road Width</label> <br>
+                    <input style="width: 100%;border: 1px solid #c7bfbf;border-radius: 5px;" type="number" name="roadwidth" id="roadwidth" placeholder="Road Width">
                     <x-error name='roadwidth' />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-top:15px;">
+                    <label class="label-style">Road Width Unit</label>
+                    <select class="form-control select2 select2-hidden-accessible" name="road_access_unit"
+                        data-placeholder="Select Road Length Unit" style="width: 100%;" tabindex="-1" aria-hidden="true"
+                        required>
+                        <option value="1" @if ($property->road_access_unit == 1) selected @endif>Feet</option>
+                        <option value="2" @if ($property->road_access_unit == 2) selected @endif>Meter</option>
+                        <option value="3" @if ($property->road_access_unit == 3) selected @endif>Haath</option>
+                    </select>
+                    <x-error name='road_access_unit' />
                 </div>
             </div>
             {{-- <div class="clearfix"></div> --}}

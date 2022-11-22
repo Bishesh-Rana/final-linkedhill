@@ -5842,3 +5842,7 @@ border: none;
   -moz-appearance: textfield;
 }
 
+.advance-landarea{
+    position: relative;
+    width: 20% !important;
+}

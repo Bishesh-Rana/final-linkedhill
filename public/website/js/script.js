@@ -422,7 +422,7 @@ $('.front-category').on('click', function(e){
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
-            $('.landarea').show();
+            $('.landarea').hide();
         }
     })
 
