@@ -11,63 +11,74 @@
 
                 </div>
                 <div class="col-lg-5">
-                    <div class="row">
-                        <div class="col-lg-10 m-auto">
-                            <div class="sign_up_in_wrapper">
-                                @if (Session::has('error'))
-                                    <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
-                                        {{ Session::get('error') }}</p>
-                                @endif
-                                @if (Session::has('success'))
-                                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
-                                        {{ Session::get('success') }}</p>
-                                @endif
-                                <form action="{{ route('customer.login') }}" method="post">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                       <div class="form_group input_box_zee">
-                                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="name@example.com" name="email" required >
-                                        <i class="las la-envelope"></i>
-                                       </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password_field" class="form-label">Password</label>
-                                        <div class="form_group input_box_zee">
-                                            <input type="password" class="form-control" id="password_field" placeholder=""
-                                                name="password" required>
-                                                <a href="{{route('customer.forgot')}}" class="forgot">Forgot?</a>
-                                            {{-- <i class="lar la-eye"></i> --}}
+                    <div class="second-wrapper">
+                        <div class="row">
+                            <div class="col-lg-10 m-auto">
+                                <div class="sign_up_in_wrapper">
+                                    @if (Session::has('error'))
+                                        <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                                            {{ Session::get('error') }}</p>
+                                    @endif
+                                    @if (Session::has('success'))
+                                        <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                                            {{ Session::get('success') }}</p>
+                                    @endif
+                                    <form action="{{ route('customer.login') }}" method="post">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                           <div class="form_group input_box_zee">
+                                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="name@example.com" name="email" required >
+                                            <i class="las la-envelope"></i>
+                                           </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="password_field" class="form-label">Password</label>
+                                            <div class="form_group input_box_zee">
+                                                <input type="password" class="form-control" id="password_field" placeholder=""
+                                                    name="password" required>
+                                                    <a href="{{route('customer.forgot')}}" class="forgot">Forgot?</a>
+                                                {{-- <i class="lar la-eye"></i> --}}
+                                            </div>
+                                        </div>
+                                        {{-- <div class="forget_psw_Wrapper">
+                                            <a href="#">Forget Password ?</a>
+                                        </div> --}}
+                                        <div class="sign_in_button">
+                                            <button class="btn btn-danger">Login</button>
+                                        </div>
+                                    </form>                             
+                                   
+                                </div>
+                                <div class="social-login mt-3">
+                                    <p class="text-center">Or Sign Up with</p>
+    
+                                    <div class="social-btn-wrapper">
+                                        <a href="{{route('facebookLogin')}}" class="btn facebook"><i class="lab la-facebook-f"></i><span class="ms-2">Facebook</span></a>
+                                    <a href="{{route('googleLogin')}}" class="btn google"> <i class="lab la-google"></i><span class="ms-2">Google</span></a>
                                     </div>
-                                    {{-- <div class="forget_psw_Wrapper">
-                                        <a href="#">Forget Password ?</a>
-                                    </div> --}}
-                                    <div class="sign_in_button">
-                                        <button class="btn btn-danger">Login</button> <a href="{{route('facebookLogin')}}"><i class="lab la-facebook"></i></a> <a href="{{route('googleLogin')}}"> <i class="lab la-google"></i></a> 
-                                    </div>
-                                </form>
-                               
-                               
+                                </div>
+                                <div class="d-flex login_register">
+                                    <p class="">New to Linkedhill??</p>
+                                    <a href="{{route('customer.registerform')}}" class="btn login_registerbtn">Signup</a>
+                                </div>
+                                <div class=" d-flex login_register">
+                                    <p class="">Are you a seller ??</p>
+                                   
+                                        <a href="{{route('agent.getLogin')}}" class="btn login_registerbtn">Seller Login</a>
+                                    
+                                </div>
+                                {{-- <div class="d-flex login_register">
+                                    <h3 class="text-center">OR</h3>
+                                    <p class="">Want to register as a seller ??</p>
+                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Seller Registration</a>
+                                </div> --}}
                             </div>
-                            <div class="d-flex login_register">
-                                <p class="">New to Linkedhill??</p>
-                                <a href="{{route('customer.registerform')}}" class="btn login_registerbtn">Signup</a>
-                            </div>
-                            <div class=" d-flex login_register">
-                                <p class="">Are you a seller ??</p>
-                               
-                                    <a href="{{route('agent.getLogin')}}" class="btn login_registerbtn">Seller Login</a>
-                                
-                            </div>
-                            {{-- <div class="d-flex login_register">
-                                <h3 class="text-center">OR</h3>
-                                <p class="">Want to register as a seller ??</p>
-                                <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Seller Registration</a>
-                            </div> --}}
                         </div>
+
                     </div>
+                  
                 </div>
 
              

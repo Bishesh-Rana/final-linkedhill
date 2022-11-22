@@ -110,7 +110,7 @@
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Property Facing</h3>
-                                        <input type='radio' name="facing" selected disabled id="AnyFacing"/>
+                                        <input type='radio' name="facing" selected value="any" id="AnyFacing"/>
                                         <label for="AnyFacing">Any</label> 
                                         <input type='radio' name="facing" value="East" id="East"/>
                                         <label for="East">East</label> 
@@ -133,7 +133,7 @@
                                     <div class="selector_wrapper">
                                         <h3>Listed By</h3>
                                         <input type='radio' name="listingby" selected disabled id="AnyLister"/>
-                                        <label for="AnyLister">Any</label> 
+                                        <label for="AnyLister">Any</label>  
                                         <input type='radio' name="listingby" value="Owner" id="Owner"/>
                                         <label for="Owner">Owner</label> 
                                         <input type='radio' name="listingby" value="Builder" id="Builder"/>

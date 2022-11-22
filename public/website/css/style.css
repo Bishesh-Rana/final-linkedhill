@@ -386,7 +386,7 @@ div#site_carousel .carousel-item img {
 }
 
 .about_loan_thumbnail h3 {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -2060,7 +2060,7 @@ ul.list_info li {
 }
 
 .sign_up_in_wrapper{
-    border: 1px solid #ebe6e6;
+    /* border: 1px solid #ebe6e6; */
     padding: 8px;
     border-radius: 5px;
 }
@@ -3287,6 +3287,9 @@ div#Share_Feedback .modal-dialog {
     height: 26px;
     overflow: hidden;
     margin-top: 10px;
+}
+.property_text p{
+    text-align: justify;
 }
 
 .show_button_area {
@@ -5845,4 +5848,33 @@ border: none;
 .advance-landarea{
     position: relative;
     width: 20% !important;
+}
+
+.replace{
+    width: 30%;
+}
+.why_us ul{
+    list-style: none;
+
+}
+
+.social-login .facebook{
+    background-color: #3b5998;
+
+}
+.social-login .google{
+    background-color: #3cba54;
+    color: white;
+
+}
+
+.social-btn-wrapper{
+    display: flex;
+    justify-content: center;
+
+}
+
+.second-wrapper{
+    border: 1px solid #ebe6e6;
+    border-radius: 5px;
 }

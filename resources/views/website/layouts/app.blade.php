@@ -275,13 +275,13 @@
         </div>
         <div class="copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <p>Copyright &copy; 2022</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 text-center">
+                        <p>&copy;Linkedhill Nepal. All Rights Reserved.2022</p>
                     </div>
-                    <div class="col-lg-6 col-md-6 text-end">
+                    {{-- <div class="col-lg-6 col-md-6 text-end">
                         <p>Designed By: <a href="https://www.nectardigit.com/">Nectar Digit</a>.</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

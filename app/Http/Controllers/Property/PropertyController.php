@@ -203,8 +203,6 @@ class PropertyController extends CommonController
         return [
 
             'bed' => Property::get(),
-
-
             'purposes' => Purpose::get(),
             'facilities' => Facility::get(),
             'amenties' => Amenity::get(),

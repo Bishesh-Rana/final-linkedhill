@@ -337,9 +337,11 @@
     .footer_top {
         padding: 35px 35px;
         text-align: center;
-        top: -215px;
+        top: -150px;
         border-top-right-radius: 50px;
         border-bottom-right-radius: 0;
+        display: flex;
+        flex-direction: column;
     }
     .subscribe_form {
         margin-left: 0;
@@ -397,6 +399,7 @@
     }
     .linked_hill_search_area {
         width: 100%;
+        border: 1px solid;
     }
     .linked_hill_search_area input {
         width: 100%;
@@ -404,7 +407,9 @@
         border: 1px solid #d7d7d7;
     }
     .linked_hill_search_area .btn {
-        width: 100%;
+        /* width: 100%; */
+        top: 0;
+        border-radius: 0px;
     }
     .property_item_linkedhill {
         position: relative;
@@ -413,19 +418,21 @@
     }
     .option_a1 {
         width: 100%;
+        margin: 4px 0px;
     }
     .option_a1 select {
         width: 100%;
         border-color: #d7d7d7;
     }
     .surround_search {
-        width: 100%;
+        width: 49%;
+        margin-left: 2px;
     }
     .option_a1 select {
         padding-left: 25px;
     }
     .linked_hill_button_wraper {
-        width: 90%;
+        width: 30%;
     }
     /* ******search filter end******* */
     nav#linked_hill_nav .nav-item a {
@@ -440,6 +447,11 @@
     }
     .bg-transparent {
         background-color: rgb(229 229 229) !important;
+    }
+
+    .advance-search{
+        width: 50% !important;
+        margin: 5px 0pX;
     }
 }
 
@@ -594,7 +606,9 @@
         width: 100%;
         top: -38px;
         border-radius: 28px;
-        padding: 2px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
     }
     #site_footer {
         padding-top: 11px;
@@ -681,6 +695,13 @@
     .th_left_link {
         display: none;
     }
+    .advance-search {
+        width: 100% !important;
+        margin-bottom: 2px;
+    }
+    .replace {
+        width: 100%;
+    }
 }
 
 @media(max-width:575px) {
@@ -758,4 +779,15 @@
     .login_door {
         margin-right: 0;
     }
+
+    .propertylistsearch .option_a1 {
+        width: calc(100%/2);
+    }
+    .linked_hill_button_wraper {
+        width: 100%;
+    }
+    .surround_search {
+        width: 100%;
+    }
 }
+

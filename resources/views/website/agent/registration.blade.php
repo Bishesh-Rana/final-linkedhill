@@ -10,6 +10,26 @@
                          
                             <h3>Seller Registration</h3>
                             <p>Register and add Your property for sale or rent.</p>
+                            <div class="why_us">
+                                <h3>Why us :</h3>
+                                <ul>
+                                    <li>
+                                        Reach out to a large audience.
+                                    </li>
+                                    <li>Connecting potential Customers all over Nepal.
+                                    </li>
+                                    <li>
+                                        Get notifications & market trend.
+
+                                    </li>
+                                    <li>
+                                        Online Customer Service. 
+                                    </li>
+                                    <li>
+                                        Email Marketing.
+                                    </li>
+                                </ul>
+                            </div>
                             <img class="img-fluid" src="{{asset('images/logo1.png')}}" alt="" srcset="">
                         
                         </div>
