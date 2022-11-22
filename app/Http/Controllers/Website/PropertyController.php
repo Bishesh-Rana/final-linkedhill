@@ -153,7 +153,6 @@ class PropertyController extends Controller
 
     public function getMeta($meta = [])
     {
-
         return [
             'meta_title' => $meta['title'] ?? config('websites.name'),
             'meta_keyword' => $meta['meta_keyword'] ?? config('websites.meta_keyword'),

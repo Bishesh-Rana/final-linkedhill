@@ -4241,7 +4241,7 @@ div#price_plan .owl-item>div {
 .option_listing_dropDown {
     position: absolute;
     background-color: white;
-    width: 198px;
+    width: 230px;
     padding: 10px;
     top: 100%;
     left: 0;
@@ -5850,9 +5850,9 @@ border: none;
     width: 20% !important;
 }
 
-.replace{
+/* .replace{
     width: 30%;
-}
+} */
 .why_us ul{
     list-style: none;
 

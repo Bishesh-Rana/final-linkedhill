@@ -305,6 +305,9 @@
     #about_loan_info_wrapper {
         padding-top: 35px;
     }
+    .replace {
+        width: 100%;
+    }
 }
 /* My Responsive Code End */
 
