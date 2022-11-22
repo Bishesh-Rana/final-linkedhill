@@ -15,24 +15,20 @@
                         </div>
                         <div class="col-md-7 m-auto">
                             <div class="sign_up_in_wrapper">
+                                @if (Session::has('error'))
+                                    <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                                        {{ Session::get('error') }}</p>
+                                @endif
+                                @if (Session::has('success'))
+                                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+                                        {{ Session::get('success') }}</p>
+                                @endif
                                 <form action="{{ route('agent.postRegistration') }}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Agency Type:- </label> <br>
                                         <div class="agent-type">
-                                            {{-- <div  class="fortooltip ">
-                                                <input class="form-check-input" type="radio" name="type" id="type1"
-                                                    checked value="Property owner" onclick="changeType()">
-                                                <label class="form-check-label" for="type1">
-                                                    Property Owner
-                                                    <button type="button" class="tooltipinfo">
-                                                        <i class="las la-info"></i>
-                                                    </button>
-                                                </label>
-                                                <div class="tooltipdefault">If You are owner of property.
-                                                </div>
-                                            </div> --}}
                                            
                                             <div class="fortooltip ">
                                                 <input class="form-check-input" type="radio" name="type" data-client="realestate" id="type2"
@@ -180,6 +176,16 @@
                                             </div>
                                             @if ($errors->has('password'))
                                                 <strong class="text-danger">{{ $errors->first('password') }}</strong>
+                                            @endif
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <div class="form_group">
+                                                <input type="password" class="form-control" id="txtPassword"
+                                                    placeholder="Confirm Password" name="confirm_password">
+                                                {{-- <i class="lar la-eye toggle_pwd"></i> --}}
+                                            </div>
+                                            @if ($errors->has('confirm_password'))
+                                                <strong class="text-danger">{{ $errors->first('confirm_password') }}</strong>
                                             @endif
                                         </div>
 
