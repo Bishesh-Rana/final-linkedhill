@@ -31,9 +31,9 @@
                 </a>
             </li>
 
-            <li class="">
+            <li class="{{ Request::routeIs('profile') ? 'active' : '' }}">
                 <a href="{{ route('profile',auth()->user()->id) }}">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">Profile</i>
                     <p>Profile</p>
                 </a>
             </li>
@@ -41,7 +41,7 @@
             @foreach ($sidebars as $key => $sidebar)
                 @canany($sidebar['permission'])
                     @if ($sidebar['child'])
-                        <li class="{{ activeMenu($sidebar) }} ">
+                        <li class="{{ activeMenu($sidebar) }} active">
                             <a data-toggle="collapse" href="#{{ $key }}">
                                 <i class="material-icons">{{ $sidebar['icon'] }}</i>
                                 <p>{{ $sidebar['title'] }}

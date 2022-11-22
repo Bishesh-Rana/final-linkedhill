@@ -45,7 +45,7 @@
                                 <div class="option_listing_dropDown child_dropdown">
                                     @foreach ($propertyCat as $propertyC)
                                         <div class="list_group_category"> 
-                                            <input class="form-check-input front-category category" id="category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
+                                            <input class="form-check-input front-category category" id="initial{{ $propertyC->id }}" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
                                             <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                         </div>
                                     @endforeach 
@@ -108,7 +108,7 @@
                         {{-- @dd($units); --}}
                         <div class="option_a1 landarea" style="display: none;">
                             <input type="number" name="area" id="area" placeholder="area">
-                            <select class="areaunit" name="areaunit" id="areaunit">
+                            <select class="areaunit" name="unit" id="areaunit">
                                 <option selected disabled>Unit</option>
                                 @foreach ($units as $unit)
                                 <option value="{{$unit ->id}}">{{$unit ->name}}</option>

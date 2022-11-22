@@ -15,7 +15,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::latest()->get();
+        $units = Unit::orderBy('order')->get();
         return view('admin.unit.index',compact('units'));
     }
 
@@ -101,5 +101,21 @@ class UnitController extends Controller
     {
         $unit = Unit::find($id);
         $unit->delete();
+    }
+
+    public function updateUnit(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['unitItem'])) {
+            foreach ($arr['unitItem'] as $key => $value) {  //id //parent_id
+                Unit::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        // 'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
     }
 }

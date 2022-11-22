@@ -206,12 +206,12 @@
 
                         </select>
                     </div>
-                    <div class="option_a1 advance-landarea landarea" style="display: none;">
+                    <div class="option_a1 advance-landarea" style="display: none;">
                         <input type="number" name="area" id="area" placeholder="area">
                         <select class="areaunit" name="areaunit" id="areaunit">
-                            <option selected disabled >Unit</option>
+                            <option selected disabled>Unit</option>
                             @foreach ($units as $unit)
-                            <option  value="{{$unit ->id}}">{{$unit ->name}}</option>
+                            <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
                         </select>
                            
@@ -367,7 +367,7 @@
                                                                     </div>
                                                                 @endforeach
                                                             </div>
-                                                            <a class="carousel-control-prev"
+                                                            {{-- <a class="carousel-control-prev"
                                                                 href="#carouselExampleIndicators" role="button"
                                                                 data-slide="prev">
                                                                 <span class="carousel-control-prev-icon"
@@ -380,7 +380,7 @@
                                                                 <span class="carousel-control-next-icon"
                                                                     aria-hidden="true"></span>
                                                                 <span class="sr-only">Next</span>
-                                                            </a>
+                                                            </a> --}}
                                                         </div>
                                                         @if(auth()->user())
                                                         <div onclick="favorite({{ $property->id }})" class="favicon">
@@ -536,7 +536,10 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                      
                                     </div>
+                                    
+
                                     <div onclick="favorite({{ $property->id }})" class="favicon">
                                         <a href="#" class="favorite{{ $property->id }}"><i
                                                 class=" lar la-heart "></i></a>
@@ -701,9 +704,9 @@
                         console.log(response);
                         if(response.success){
                             $(".favorite"+property+">.la-heart ").toggleClass("lar las");
-                            alert(response.success);
+                            // alert(response.success);
                         }else{
-                            alert(response.error);
+                            // alert(response.error);
                         }                    
                     },
                     error: function(response) {

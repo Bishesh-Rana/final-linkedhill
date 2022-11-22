@@ -128,7 +128,7 @@ class PropertyController extends Controller
         $property = Property::all();
         $propertyCat = PropertyCategory::orderBy('order')->get();
         $facilities = Facility::get();
-        $units = Unit::get();
+        $units = Unit::orderBy('order')->get();
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');

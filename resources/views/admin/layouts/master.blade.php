@@ -109,6 +109,7 @@
         .catch(error => {
             console.error(error);
         });
+    // $('textarea.summernote').ckeditor();
 </script>
 <script>
     @if (Session::has('message'))

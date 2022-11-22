@@ -44,6 +44,7 @@ class CreatePropertiesTable extends Migration
             $table->decimal('end_price', 11, 2)->default(0);
             $table->string('price_label')->nullable();
             $table->string('owner_name')->nullable();
+            $table->string('owner_email')->nullable();
             $table->string('owner_address')->nullable();
             $table->string('owner_phone')->nullable();
             $table->string('youtube_video_id')->nullable();

@@ -67,7 +67,6 @@ class AgentRegistrationController extends Controller
     }
     
     public function postAgentRegistration (Request $request){
-
         $validator = $this->validate(request(), [
             'type' => 'required',
             'name' => 'required',
@@ -77,13 +76,13 @@ class AgentRegistrationController extends Controller
             'logo'=> 'image|mimes:jpeg,png,jpg,gif,svg',
             'pan' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'password' => 'min:8',
+            'confirm_password' => 'min:8',
             'companyRegistration' => 'nullable|mimes:pdf',
             'taxClearance' => 'nullable|mimes:pdf',
-
-            // 'companyRegistration'=>'required',
-            // 'taxClearance' => 'required',
-            // 'company_reg_no' => 'required',
         ]);
+        if($request->password != $request->confirm_password){
+            return redirect()->back()->with('error','Password do not match');
+        }
         $otp = $this->getOtp();
         \DB::beginTransaction();
         try{
@@ -151,7 +150,7 @@ class AgentRegistrationController extends Controller
         $user = User::where('email',$request->email)->first();
 
         //mail goes to admin
-        Mail::to('nectardigit@gmail.com')->send(new AgencyActivationMail($user));
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new AgencyActivationMail($user));
         $request->session()->flash('success', "Registration Application Submitted Successfully.");
 
         //mail to agent

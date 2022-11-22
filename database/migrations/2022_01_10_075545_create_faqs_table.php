@@ -20,6 +20,7 @@ class CreateFaqsTable extends Migration
             $table->string('meta_keyword')->nullable();
             $table->string('meta_description')->nullable();
             $table->boolean('featured')->default(true);
+            $table->integer('order');
             $table->softDeletes();
             $table->timestamps();
         });
