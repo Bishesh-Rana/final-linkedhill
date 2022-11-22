@@ -409,7 +409,7 @@
                                     <div class="profile"><img src="{{ asset('frontend/gallery/dummyprofile.png') }}" alt=""></div>
                                     <div style="width:50%;padding-left: 10px;">
                                         <p class="builder_name">{{ $property->user->name }}</p>
-                                        <p class="builder_address">{{$property->user->full_address}} Adress</p>
+                                        <p class="builder_address"><span>Adress:</span>{{$property->user->full_address}} </p>
                                     </div>
                                    <div>
                                     <div class="icon_wrapper">

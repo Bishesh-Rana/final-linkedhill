@@ -91,9 +91,9 @@
                 <div class="social_link d-flex">
                     <div class="me-2"> <a href="{{ route('customer.signin') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
                     </div>
-                    <div>
-                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="las la-home"></i>List Property</span>
-                    </a></div>
+                    <div class="position-relative">
+                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="las la-home"></i>List Property </span></a>
+                    <span style="position: absolute;background: #9f9f9fb8;top: -10px;right: -10px;" class="badge badge-light">Free</span></div>
                     {{-- <ul>
                         <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
                         <li><a class="instagram" href="{{ config('websites.instagram_url') }}"><i class="lab la-instagram"></i></a></li>
@@ -275,13 +275,13 @@
         </div>
         <div class="copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <p>Copyright &copy; 2022</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 text-center">
+                        <p>&copy;Linkedhill Nepal. All Rights Reserved.2022</p>
                     </div>
-                    <div class="col-lg-6 col-md-6 text-end">
+                    {{-- <div class="col-lg-6 col-md-6 text-end">
                         <p>Designed By: <a href="https://www.nectardigit.com/">Nectar Digit</a>.</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -106,13 +106,14 @@
                             </select>
                         </div>
                         {{-- @dd($units); --}}
-                        <div class="option_a1 landarea" style="display: none">
+                        <div class="option_a1 landarea" style="display: none;">
                             <input type="number" name="area" id="area" placeholder="area">
                             <select class="areaunit" name="unit" id="areaunit">
                                 <option selected disabled>Unit</option>
                                 @foreach ($units as $unit)
                                     <option value="{{$unit->id}}">{{$unit->name}}</option>
                                 @endforeach
+                            </select>
                         </div>
 
                         <?php

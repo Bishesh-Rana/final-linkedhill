@@ -98,7 +98,8 @@
                             <div class="premium_thumbnail">
                                 <div class="premium_thumb_images">
                                     <div class="premium_images_wrap">
-                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}"><img src="{{ image(optional($property->images->first())->name) }}" alt=""></a>
+                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
+                                            <img src="{{ image(optional($property->images->first())->name) }}" alt=""></a>
                                     </div>
                                     <div class="featured_in_wrapper">
                                         {{ $property->type }}
@@ -116,8 +117,9 @@
                                 </div>
                                 <div class="premium_content_area">
                                     <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                        <h4> {{ @$property->title }}</h4>
                                         <span>Rs. {{ @$property->start_price }}</span>
+                                        <h4> {{ @$property->title }}</h4>
+                                       
                                         <p> {{ getSummary($property->property_detail) }} </p>
                                         <div class="premium_option">
                                             <div>
@@ -349,7 +351,7 @@
                         <div class="col-lg-4">
                             <div class="assistance_flex">
                                 <a href="{{ url('properties') }}" class="btn">View All Property</a>
-                                <span class="help_text">in less than 1 minute</span>
+                                {{-- <span class="help_text">in less than 1 minute</span> --}}
                             </div>
                         </div>
                     </div>

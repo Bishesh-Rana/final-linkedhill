@@ -35,6 +35,8 @@ class CreatePropertiesTable extends Migration
             $table->string('built_up_area')->nullable();
             $table->string('built_up_area_unit')->nullable();
             $table->string('property_facing')->nullable();
+            $table->string('road_width')->nullable();
+            $table->string('road_width_unit')->nullable();
             $table->string('road_access')->nullable();
             $table->string('road_access_unit')->nullable();
             $table->string('road_type')->nullable();

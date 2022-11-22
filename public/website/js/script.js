@@ -422,7 +422,7 @@ $('.front-category').on('click', function(e){
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
-            $('.landarea').show();
+            $('.landarea').hide();
         }
     })
 
@@ -435,11 +435,14 @@ $('.front-category').on('click', function(e){
         // $.each($("input[name='category_id']:unchecked"), function(){
         //     checkedcat.push($(this).val());
         // });
+       
         if (checkedcat.length == 1 && checkedcat[0]==2){
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+            $('.advance_landarea').show();
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+            $('.advance_landarea').hide();
         }
     })
 

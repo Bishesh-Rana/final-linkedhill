@@ -386,7 +386,7 @@ div#site_carousel .carousel-item img {
 }
 
 .about_loan_thumbnail h3 {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -2060,7 +2060,7 @@ ul.list_info li {
 }
 
 .sign_up_in_wrapper{
-    border: 1px solid #ebe6e6;
+    /* border: 1px solid #ebe6e6; */
     padding: 8px;
     border-radius: 5px;
 }
@@ -3289,6 +3289,9 @@ div#Share_Feedback .modal-dialog {
     overflow: hidden;
     margin-top: 10px;
 }
+.property_text p{
+    text-align: justify;
+}
 
 .show_button_area {
     text-align: center;
@@ -3593,6 +3596,9 @@ section#single_page_wrapper {
 .blog_single_content {
     margin-bottom: 50px;
 }
+.blog_single_content p{
+    text-align: justify;
+}
 
 #post_property_wrapper {
     background-color: whitesmoke;
@@ -3828,6 +3834,7 @@ section#single_page_wrapper {
 
 .blog_latestNews_content p {
     color: #505050;
+    text-align: justify;
 }
 
 .small_thumbnail_images_of_blog {
@@ -4239,7 +4246,7 @@ div#price_plan .owl-item>div {
 .option_listing_dropDown {
     position: absolute;
     background-color: white;
-    width: 198px;
+    width: 230px;
     padding: 10px;
     top: 100%;
     left: 0;
@@ -5140,7 +5147,7 @@ section#property_character_list {
 .advance_search_modal select{
     width: 100%;
     margin-bottom: 10px;
-    padding: 8px 4px;
+    padding: 10px 4px;
 }
 
 .advance_search_modal .multi_select_dropdown{
@@ -5856,3 +5863,42 @@ span#st-1 {
     white-space: nowrap;
 }
 
+.advance-landarea{
+    position: relative;
+    width: 20% !important;
+}
+
+/* .replace{
+    width: 30%;
+} */
+.why_us ul{
+    list-style: none;
+
+}
+
+.social-login .facebook{
+    background-color: #3b5998;
+
+}
+.social-login .google{
+    background-color: #3cba54;
+    color: white;
+
+}
+
+.social-btn-wrapper{
+    display: flex;
+    justify-content: center;
+
+}
+
+.second-wrapper{
+    border: 1px solid #ebe6e6;
+    border-radius: 5px;
+}
+
+.advance_landarea .landarea input{
+    border: 1px solid #afa9a9;
+    width: 100%;
+    border-radius: 7px;
+}

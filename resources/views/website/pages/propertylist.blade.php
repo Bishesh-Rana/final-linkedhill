@@ -547,10 +547,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                      
                                     </div>
-                                    
-
                                     <div onclick="favorite({{ $property->id }})" class="favicon">
                                         <a href="#" class="favorite{{ $property->id }}"><i
                                                 class=" lar la-heart "></i></a>
