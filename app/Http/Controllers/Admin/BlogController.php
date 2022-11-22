@@ -18,7 +18,8 @@ class BlogController extends CommonController
      */
     public function index()
     {
-        return view('admin.blog.index');
+        $blogs = Blog::orderBy('order')->get();
+        return view('admin.blog.index',compact('blogs'));
     }
 
     public function getBlogs()
@@ -157,5 +158,21 @@ class BlogController extends CommonController
     public function hardDeleteBlog($id)
     {
         Blog::withTrashed()->find($id)->forceDelete();
+    }
+
+    public function updateBlog(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['blogItem'])) {
+            foreach ($arr['blogItem'] as $key => $value) {  //id //parent_id
+                Blog::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        // 'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
     }
 }

@@ -18,7 +18,7 @@ class FaqController extends CommonController
     public function index()
     {
 
-        $this->data['faqs'] = Faq::latest()->get();
+        $this->data['faqs'] = Faq::orderBy('order')->get();
         return view('admin.faq.index', $this->data);
     }
 
@@ -131,6 +131,22 @@ class FaqController extends CommonController
                     '<button onclick="deleteFaq(' . $p->id . ')" class="btn btn-xs btn-danger remove"><i class="fa fa-trash-o"></i> </button>';
             })->rawColumns(['image', 'action'])
             ->make(true);
+    }
+
+    public function updateFaq(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['faqItem'])) {
+            foreach ($arr['faqItem'] as $key => $value) {  //id //parent_id
+                Faq::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        // 'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
     }
 
     public function restoreFaq($id)

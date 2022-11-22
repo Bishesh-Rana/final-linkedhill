@@ -20,7 +20,7 @@ class NewsController extends Controller
     {
 
 
-        $this->data['blogs'] = Blog::where(['type' => 'news'])->latest()->get();
+        $this->data['blogs'] = Blog::where(['type' => 'news'])->orderBy('order')->get();
         return view('admin.news.index', $this->data);
     }
 

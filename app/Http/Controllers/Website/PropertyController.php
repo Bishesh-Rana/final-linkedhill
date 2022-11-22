@@ -84,7 +84,7 @@ class PropertyController extends Controller
         })
         ->when(request('area'),function($query,$var){
             $unit = request('unit');
-            $query->where('total_area','>=',$var)->where('total_area_unit','=',$unit)
+            $query->where('total_area','>=',$var)->where('total_area_unit','=',$unit);
         })
         ->when(request('listedby'), function($query,$var){
             switch($var){
@@ -128,7 +128,7 @@ class PropertyController extends Controller
         $property = Property::all();
         $propertyCat = PropertyCategory::orderBy('order')->get();
         $facilities = Facility::get();
-        $units = Unit::get();
+        $units = Unit::orderBy('order')->get();
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');

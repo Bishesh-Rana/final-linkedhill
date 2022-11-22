@@ -21,7 +21,8 @@ class Blog extends Model
         'meta_keyword',
         'meta_description',
         'featured',
-        'sub_title'
+        'sub_title',
+        'order',
     ];
 
 

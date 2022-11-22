@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-6">
                                     <div class="property_inner">
                                         <div class="main-price">
                                             <i class="las la-coins"></i><strong>RS. {{ $property->start_price }} </strong>
@@ -165,10 +165,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
+                                    <div class="share-wrap">
                                     <div class="property_verified_ text-end">
                                         <ul>
                                             @if(auth()->user())
+                                            
                                                 @if(!$property->favorite->isEmpty())
                                                     @foreach($property->favorite as $favorite)
                                                         @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
@@ -185,9 +187,9 @@
                                             @endif
                                             {{-- <li><a href="#"><i class="las la-share-alt-square"></i></a></li> --}}
                                         </ul>
-                                      
-            
                                     </div>
+                                    <span class="sharethis-inline-share-buttons"></span>
+                                </div>
                                 </div>
                             </div>
 
@@ -737,4 +739,5 @@
             });
         });
     </script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c810e6fa502001965eddb&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush

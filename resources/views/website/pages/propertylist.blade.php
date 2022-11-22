@@ -207,12 +207,23 @@
                         </select>
                     </div>
                     <div class="option_a1 landarea" style="display: none;">
-                        <input type="number" name="area" id="area" placeholder="area">
-                        <select class="areaunit" name="areaunit" id="areaunit">
+                        @if (array_key_exists('unit', $filter))
+                            <input type="number" name="area" id="area" value="{{$filter['area']}}" placeholder="area">
+                        @else
+                            <input type="number" name="area" id="area" placeholder="area">
+                        @endif
+                       
+                        <select class="areaunit" name="unit" id="areaunit">
                             <option selected disabled>Unit</option>
+                            @if (array_key_exists('unit', $filter))
+                                @foreach ($units as $unit)
+                                    <option value="{{$unit ->id}}" {{ intval($filter['unit']) == $unit->id ? 'selected' : '' }}>{{$unit ->name}}</option>
+                                @endforeach
+                            @else
                             @foreach ($units as $unit)
-                            <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
+                                <option value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
+                            @endif
                         </select>
                            
                     </div>
@@ -787,6 +798,7 @@
 
         });
     </script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c7e261de3a500195a0afd&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush
 
 

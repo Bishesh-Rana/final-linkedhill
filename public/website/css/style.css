@@ -2268,6 +2268,7 @@ section#bread_crumb_wrapper {
 .property_verified_ ul {
     padding-left: 0;
     text-align: right;
+    margin-bottom: 0;
 }
 
 .property_verified_ ul li {
@@ -5840,5 +5841,18 @@ border: none;
 /* Firefox */
 .input[type=number] {
   -moz-appearance: textfield;
+}
+
+.share-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.property_verified_ {
+    margin-right: 10px;
+}
+
+span#st-1 {
+    white-space: nowrap;
 }
 

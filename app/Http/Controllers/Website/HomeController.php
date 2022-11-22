@@ -38,8 +38,8 @@ class HomeController extends Controller
     {
 
 
-        $this->website['blogs'] = Blog::where('type', 'blog')->latest()->limit(4)->get();
-        $this->website['news'] = Blog::where('type', 'news')->latest()->limit(4)->get();
+        $this->website['blogs'] = Blog::where('type', 'blog')->orderBy('order')->limit(4)->get();
+        $this->website['news'] = Blog::where('type', 'news')->orderBy('order')->limit(4)->get();
         $this->website['properties'] = Property::where(['status' => 1, 'feature' => 1])->latest()->limit(6)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
         $this->website['services'] = Service::latest()->limit(8)->get();
         $this->website['provinces'] = Province::all();
-        $this->website['purposes'] = Purpose::all();
+        $this->website['purposes'] = Purpose::orderBy('order')->get();
         $this->website['facilities'] = Facility::all();
 
 

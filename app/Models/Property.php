@@ -19,7 +19,7 @@ class Property extends Model
         'property_address', 'map_location', 'city_id', 'bed_id', 'bath_id', 'area_id', 'zipcode',
         'total_area', 'total_area_unit', 'built_up_area', 'built_up_area_unit', 'property_facing', 'road_access', 'road_access_unit', 'road_type',
         'start_price', 'end_price', 'price_label',
-        'owner_name', 'owner_address', 'owner_phone', 'youtube_video_id',
+        'owner_name', 'owner_address', 'owner_phone', 'owner_email', 'youtube_video_id',
          'bed', 'bath', 'negotiable',
         'feature',
         'meta_keyword',

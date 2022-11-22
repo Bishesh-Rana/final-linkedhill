@@ -47,7 +47,7 @@
                 <div class="col-md-4">
                     <div class="form-group  label-floating">
                         <label class="label-style">
-                            Contact Email <span class='required-error'>*</span>
+                            Contact Email<span class='required-error'>*</span>
                         </label>
                         <input class="form-control" name="owner_email" value="{{ $property->owner_email }}"
                             type="text" data-parsley-trigger="keyup" data-parsley-type="email"

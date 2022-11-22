@@ -24,6 +24,7 @@ class CreateBlogsTable extends Migration
             $table->string('meta_keyword')->nullable();
             $table->string('meta_description')->nullable();
             $table->boolean('featured')->default(0);
+            $table->integer('order')->nullable();
             $table->unsignedBigInteger('viewCount')->default(1);
             $table->softDeletes();
             $table->timestamps();
