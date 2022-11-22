@@ -111,7 +111,7 @@
                             <select class="areaunit" name="areaunit" id="areaunit">
                                 <option selected disabled>Unit</option>
                                 @foreach ($units as $unit)
-                                <option  value="{{$unit ->id}}">{{$unit ->name}}</option>
+                                <option value="{{$unit ->id}}">{{$unit ->name}}</option>
                                 @endforeach
                             </select>
                         </div>

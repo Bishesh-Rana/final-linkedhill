@@ -3595,6 +3595,9 @@ section#single_page_wrapper {
 .blog_single_content {
     margin-bottom: 50px;
 }
+.blog_single_content p{
+    text-align: justify;
+}
 
 #post_property_wrapper {
     background-color: whitesmoke;
@@ -3830,6 +3833,7 @@ section#single_page_wrapper {
 
 .blog_latestNews_content p {
     color: #505050;
+    text-align: justify;
 }
 
 .small_thumbnail_images_of_blog {
@@ -5142,7 +5146,7 @@ section#property_character_list {
 .advance_search_modal select{
     width: 100%;
     margin-bottom: 10px;
-    padding: 8px 4px;
+    padding: 10px 4px;
 }
 
 .advance_search_modal .multi_select_dropdown{
@@ -5877,4 +5881,10 @@ border: none;
 .second-wrapper{
     border: 1px solid #ebe6e6;
     border-radius: 5px;
+}
+
+.advance_landarea .landarea input{
+    border: 1px solid #afa9a9;
+    width: 100%;
+    border-radius: 7px;
 }

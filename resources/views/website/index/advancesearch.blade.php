@@ -71,6 +71,19 @@
                                         </select>
                                     </div>                                 
                                 </div>
+                                <div class="col-md-6 advance_landarea" style="display: none;">
+                                    <div class="selector_wrapper">
+                                        <div class="landarea" >
+                                            <input type="number" name="area" id="area" placeholder="area" style="visibility: visible;">
+                                            <select class="areaunit" name="areaunit" id="areaunit">
+                                                <option selected disabled>Unit</option>
+                                                @foreach ($units as $unit)
+                                                <option value="{{$unit ->id}}">{{$unit ->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 
                                 <div class="col-md-12">
