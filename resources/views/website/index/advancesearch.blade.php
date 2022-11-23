@@ -76,16 +76,14 @@
                                         <div class="landarea" >
                                             <input type="number" name="area" id="area" placeholder="area" style="visibility: visible;">
                                             <select class="areaunit" name="areaunit" id="areaunit">
-                                                <option selected disabled>Unit</option>
+                                                <option selected value="">Unit</option>
                                                 @foreach ($units as $unit)
                                                 <option value="{{$unit ->id}}">{{$unit ->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                
+                                </div>                               
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Common Facilities</h3>
@@ -123,7 +121,7 @@
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Property Facing</h3>
-                                        <input type='radio' name="facing" selected disabled id="AnyFacing"/>
+                                        <input type='radio' name="facing" selected value="" id="AnyFacing"/>
                                         <label for="AnyFacing">Any</label> 
                                         <input type='radio' name="facing" value="East" id="East"/>
                                         <label for="East">East</label> 
@@ -145,7 +143,7 @@
                                 <div class="col-md-12">
                                     <div class="selector_wrapper listedby">
                                         <h3>Listed By</h3>
-                                        <input type='radio' name="listingby" selected disabled id="AnyLister"/>
+                                        <input type='radio' name="listingby" selected value="" id="AnyLister"/>
                                         <label for="AnyLister">Any</label> 
                                         <input type='radio' name="listingby" value="Owner" id="Owner"/>
                                         <label for="Owner">Owner</label> 
@@ -174,8 +172,7 @@
 </div>
 
 @push('scripts')
-<script>
-   
+<script>  
 
      $(document).ready(function() {
         var category_ids = [];

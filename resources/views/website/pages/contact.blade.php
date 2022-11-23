@@ -118,7 +118,7 @@
     </section>
 @endsection
 @push('scripts')
-    <script>
+    {{-- <script>
         $("form[name='contact']").submit(function(e) {
             e.preventDefault();
 
@@ -142,5 +142,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endpush

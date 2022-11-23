@@ -432,7 +432,7 @@
         margin-left: 2px;
     }
     .option_a1 select {
-        padding-left: 25px;
+        padding-left: 1px;
     }
     .linked_hill_button_wraper {
         width: 30%;
@@ -455,6 +455,17 @@
     .advance-search{
         width: 50% !important;
         margin: 5px 0pX;
+    }
+    .full-view-ad{
+        display: none;
+    }
+    .mobile-footer-ad{
+        display: none;
+    }
+  
+   
+    .propertylistsearch .option_a1 {
+        width: calc(100%/5);
     }
 }
 
@@ -784,12 +795,22 @@
     }
 
     .propertylistsearch .option_a1 {
-        width: calc(100%/2);
+        width: 48%;
     }
     .linked_hill_button_wraper {
         width: 100%;
     }
     .surround_search {
+        width: 100%;
+    }
+    .propertylistsearch .moreOptions {
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    .multi_select_dropdown{
+        width: 48%;
+    }
+    .more-multi_select_dropdown{
         width: 100%;
     }
 }
