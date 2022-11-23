@@ -83,9 +83,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                
+                                </div>                               
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Common Facilities</h3>
@@ -174,8 +172,7 @@
 </div>
 
 @push('scripts')
-<script>
-   
+<script>  
 
      $(document).ready(function() {
         var category_ids = [];

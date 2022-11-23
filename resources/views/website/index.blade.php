@@ -346,7 +346,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <p>Need Assistance? Your wish is our command.</p>
-                            <h1>We'll help you <span>find your right property</span></h1>
+                            <h1>We'll help you <span>find the right property</span></h1>
                         </div>
                         <div class="col-lg-4">
                             <div class="assistance_flex">

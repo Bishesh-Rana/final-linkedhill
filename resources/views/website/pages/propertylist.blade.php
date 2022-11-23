@@ -3,7 +3,7 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-    <section class="ads_inside_subpage">
+    <section class="ads_inside_subpage full-view-ad">
         <div class="container">
             <div class="ads_section_cover">
                 <div class="row">
@@ -19,7 +19,7 @@
         </div>
     </section>
     {{-- filter --}}
-    <section class="container ">
+    <section class="container mt-3">
         <form method="get" action="{{ route('front.search-properties') }}">
             <div class="propertylistsearch">
                 <div class="first-row">
@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6 col-md-5">
                             <div class="search-input d-flex">
                                 <?php $name = '';
                                 ?>
@@ -59,10 +59,10 @@
                             </div>
 
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2 col-md-3 col-6">
                             <div class="filter"><span>Show Filters</span><i class="las la-sliders-h"></i></div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-6">
                             <select name="sorting" class="sorting" id="sorting">
                                 @if (array_key_exists('sorting', $filter))
                                     <option value="">Sort By </option>
@@ -94,8 +94,7 @@
                                     <input class="form-check-input front-category property"
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
                                         value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}" {{ $filter['category_id'] == $propertyC->id ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
+                                    <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                 @else
                                     <input class="form-check-input front-category property" 
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
@@ -108,8 +107,6 @@
                             @endforeach
                         </div>
                     </div>
-
-
                     <div class="option_a1" id="bed">
                         @php
                             $id = App\Models\Feature::where('title', '=', 'Bedroom')->value('id');
@@ -223,7 +220,6 @@
                             @foreach ($units as $unit)
                                 <option value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
-                            @endif
                         </select>
                            
                     </div>
@@ -329,6 +325,45 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="replace">
+                        @php $i=1 @endphp
+                        @foreach ($feature_values as $key => $values)
+                            @if ($i > 3)
+                                @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                                <label for="buildingtype"> {{ $name }}:-</label>
+                                <select name="properties[{{ $key }}]" id="buildingtype">
+                                    <option selected disabled> Select {{ $name }}</option>
+                                    @foreach ($values as $value)
+                                        @if (array_key_exists('properties', $filter))
+                                            <option value="{{ $value }}" @php foreach($filter['properties'] as $k=>$val){if($k==$key){if($val == $value){echo 'selected';} }} @endphp>{{ $value }}</option>
+                                        @else
+                                        <option value="{{ $value }}" >{{ $value }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            @endif
+                            @php $i += 1  @endphp
+                        @endforeach
+                    </div>
+
+                   <div class="col-md-12">
+                    {{-- <label for="listedby">Listed By</label>
+                    <br> --}}
+                    <select class="listedby" name="listedby" id="listedby">
+                    @if (array_key_exists('listedby', $filter))
+                        <option selected disabled>Listed By</option>
+                        <option value="owner" {{ $filter['listedby'] == 'owner' ? 'selected' : '' }}>Owner</option>
+                        <option value="builder" {{ $filter['listedby'] == 'builder' ? 'selected' : '' }}>Builder</option>
+                        <option value="agent" {{ $filter['listedby'] == 'agent' ? 'selected' : '' }}>Agent</option>
+                    @else
+                        <option selected disabled>Listed By</option>
+                        <option value="owner">Owner</option>
+                        <option value="builder">Builder</option>
+                        <option value="agent">Agent</option>
+                    @endif
+                    </select>
+                   </div>
                 </div>
         
             </div>
@@ -338,7 +373,7 @@
 
     <section id="propertyListing_wrapper">
         <div class="container">
-            <div class="row">
+            <div class="row gy-3">
                 <div class="col-lg-8">
                     <div class="property_list_content">
                         <div class="row">
@@ -378,7 +413,7 @@
                                                                     </div>
                                                                 @endforeach
                                                             </div>
-                                                            <a class="carousel-control-prev"
+                                                            {{-- <a class="carousel-control-prev"
                                                                 href="#carouselExampleIndicators" role="button"
                                                                 data-slide="prev">
                                                                 <span class="carousel-control-prev-icon"
@@ -391,7 +426,7 @@
                                                                 <span class="carousel-control-next-icon"
                                                                     aria-hidden="true"></span>
                                                                 <span class="sr-only">Next</span>
-                                                            </a>
+                                                            </a> --}}
                                                         </div>
                                                         @if(auth()->user())
                                                         <div onclick="favorite({{ $property->id }})" class="favicon">
@@ -547,7 +582,10 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                      
                                     </div>
+                                    
+
                                     <div onclick="favorite({{ $property->id }})" class="favicon">
                                         <a href="#" class="favorite{{ $property->id }}"><i
                                                 class=" lar la-heart "></i></a>
@@ -647,6 +685,21 @@
             </div>
         </div>
     </section>
+    <section class="ads_inside_subpage mobile-footer-ad">
+        <div class="container">
+            <div class="ads_section_cover">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @foreach ($advertisements as $ad)
+                            <div class="ads_wrap">
+                                <img src="{{ image($ad->image) }}" alt="{{ $ad->title }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Modal -->
     <div class="modal fade share_feedback" id="send_message_model" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -712,9 +765,9 @@
                         console.log(response);
                         if(response.success){
                             $(".favorite"+property+">.la-heart ").toggleClass("lar las");
-                            alert(response.success);
+                            // alert(response.success);
                         }else{
-                            alert(response.error);
+                            // alert(response.error);
                         }                    
                     },
                     error: function(response) {
@@ -795,7 +848,6 @@
 
         });
     </script>
-<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c7e261de3a500195a0afd&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush
 
 

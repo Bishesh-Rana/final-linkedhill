@@ -5,7 +5,7 @@
         @endphp
         <div class="col-md-12">
             <div id="parking" class="selector_wrapper" >
-                <h3>{{$name}}</h3>
+                {{-- <h3>{{$name}}</h3> --}}
                
 
                 <div class="dynamic ">
