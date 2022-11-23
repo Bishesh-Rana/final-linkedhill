@@ -219,9 +219,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 More Options
                             </p>
-
                         </div>
-
                     </div>
                 </div>
                 <div aria-labelledby="moreOptions" class="moreOptions">

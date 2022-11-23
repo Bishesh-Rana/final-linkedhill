@@ -29,12 +29,11 @@
                                     <div class="selector_wrapper">
                                         <h3>Property Type</h3>
                                        <div class="d-flex">
-                                        
                                         {{-- <div class="list_group_category "> --}}
                                         <div class="categoryselector">
                                             @foreach ($propertyCat as $key=>$propertyC)
-                                            <input  class="form-check-input ad_category filter" data-ele="filter" id="{{$propertyC}}{{$key}}" type="checkbox" name="category_id" value="{{$propertyC->id}}" >
-                                            <label class="form-check-label" for="{{$propertyC}}{{$key}}">{{ $propertyC->name }}</label>
+                                            <input  class="form-check-input ad_category filter" data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{$propertyC->id}}" >
+                                            <label class="form-check-label" for="advance{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                             {{-- @if ($propertyC->id == 3)
                                             @break
                                             @endif --}}
@@ -71,9 +70,9 @@
                                         </select>
                                     </div>                                 
                                 </div>
-                                <div class="col-md-6 advance_landarea" style="display: none;">
+                                <div class="col-md-6 landarea" style="display: none;">
                                     <div class="selector_wrapper">
-                                        <div class="landarea" >
+                                        <div class="landarea">
                                             <input type="number" name="area" id="area" placeholder="area" style="visibility: visible;">
                                             <select class="areaunit" name="areaunit" id="areaunit">
                                                 <option selected value="">Unit</option>

@@ -54,7 +54,8 @@
                                 @foreach($feature_values as $key=>$values)
                                 @if($i<=3)
                                 <div class="option_a1">
-                                <select name="properties[{{$key}}]" id="start_prize">
+                                    {{-- <select name="properties[{{$key}}]" id="start_prize"> --}}
+                                <select name="properties[{{$key}}]" id="">
                                     @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
                                     <option selected disabled> {{$name}}</option>
                                     @foreach($values as $value)

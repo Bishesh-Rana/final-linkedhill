@@ -5832,12 +5832,12 @@ object-position: center;
 
 .areaunit{
     position: absolute;
-    right: 1px;
+    right: 0px;
     width: 50% !important;
     background: #dbdbdb;
     top: 0;
-    border-bottom-right-radius: 7px;
     border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 .landarea  input::-webkit-outer-spin-button,
