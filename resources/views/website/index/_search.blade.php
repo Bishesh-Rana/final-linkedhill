@@ -88,7 +88,7 @@
                         </div>
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
-                                <option selected disabled>Min Price</option>
+                                <option selected value=''>Min Price</option>
                                 <option value="5000.00">Rs. 5000.00</option>
                                 <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="option_a1">
                             <select name="end_prize" id="end_prize">
-                                <option selected disabled>Max Price</option>
+                                <option selected value="">Max Price</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>
@@ -109,7 +109,7 @@
                         <div class="option_a1 landarea" style="display: none;">
                             <input type="number" name="area" id="area" placeholder="area">
                             <select class="areaunit" name="unit" id="areaunit">
-                                <option selected disabled>Unit</option>
+                                <option selected value=''>Unit</option>
                                 @foreach ($units as $unit)
                                     <option value="{{$unit->id}}">{{$unit->name}}</option>
                                 @endforeach

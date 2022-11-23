@@ -41,29 +41,13 @@ class PropertyController extends Controller
 
     public function search(Request $request)
     {
-        // dd($request->all());
         $filter = $request->all();
-        // $property = Property::with('features')->latest()->first();
-        // dd($property);
-        // $properties = Property::with('features')->where('category_id', $request->category_id)->get();
-        // dd(collect($properties)->toArray());
-        // $collections = collect($properties)->map(function($row, $index){
-        //       if(count($row->features) <= 0){
-        //         return null;
-        //       }else{
-        //         return $row;
-
-        //       }
-        // });
-
-        // dd(collect($collections)->whereNotNull()->toArray());
-        // Arr::get($filter, 'properties')
         $properties =  Property::filter() 
         ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                     $query->whereHas('features', function ($que) use ($key,$value){  
                         if((int) $value == 0){
-                            $que->where('feature_id',$key)->where('value','=',$value);
+                                $que->where('feature_id',$key)->where('value','=',$value);
                         }else{
                             $value = (int) $value;
                             $que->where('feature_id',$key)->where('value','>=',$value);

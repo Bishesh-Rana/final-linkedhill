@@ -65,7 +65,7 @@
                         <div class="col-md-2">
                             <select name="sorting" class="sorting" id="sorting">
                                 @if (array_key_exists('sorting', $filter))
-                                    <option disabled>Sort By </option>
+                                    <option value="">Sort By </option>
                                     <option value="low" {{ $filter['sorting'] == 'low' ? 'selected' : '' }}> Price(low to
                                         high)</option>
                                     <option value="high" {{ $filter['sorting'] == 'high' ? 'selected' : '' }}> Price(high
@@ -73,7 +73,7 @@
                                     <option value="latest" {{ $filter['sorting'] == 'latest' ? 'selected' : '' }}>Latest</option>
                                     <option value="oldest" {{ $filter['sorting'] == 'oldest' ? 'selected' : '' }}>Oldest</option>
                                 @else
-                                    <option selected disabled>Sort By </option>
+                                    <option selected value="">Sort By </option>
                                     <option value="low"> Price(low to high)</option>
                                     <option value="high"> Price(high to low)</option>
                                     <option value="latest">Latest</option>
@@ -161,7 +161,7 @@
                     <div class="option_a1">
                         <select name="start_prize" id="start_prize">
                             @if (array_key_exists('start_prize', $filter))
-                                <option disabled>Min Price</option>
+                                <option value="">Min Price</option>
                                 <option value="5000.00" {{ intval($filter['start_prize'] == 5000.0) ? 'selected' : '' }}>Rs.
                                     5000.00</option>
                                 <option value="10000.00" {{ intval($filter['start_prize'] == 10000.0) ? 'selected' : '' }}>Rs.
@@ -174,7 +174,7 @@
                                     {{ intval($filter['start_prize'] == 1000000.0) ? 'selected' : '' }}>Rs. 1000000.00
                                 </option>
                             @else
-                                <option selected disabled>Min Price</option>
+                                <option selected value="">Min Price</option>
                                 <option value="5000.00">Rs. 5000.00</option>
                                 <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
@@ -187,7 +187,7 @@
                     <div class="option_a1">
                         <select name="end_prize" id="end_prize">
                             @if (array_key_exists('end_prize', $filter))
-                                <option disabled>Max Price</option>
+                                <option value="">Max Price</option>
                                 <option value="1100000.00" {{ intval($filter['end_prize']) == 1100000 ? 'selected' : '' }}>Rs.
                                     1100000.00</option>
                                 <option value="1500000.00" {{ intval($filter['end_prize']) == 1500000 ? 'selected' : '' }}>Rs.
@@ -197,7 +197,7 @@
                                 <option value="5000000.00" {{ intval($filter['end_prize']) == 5000000 ? 'selected' : '' }}>Rs.
                                     5000000.00</option>
                             @else
-                                <option selected disabled>Max Price</option>
+                                <option selected value="">Max Price</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>
@@ -214,7 +214,7 @@
                         @endif
                        
                         <select class="areaunit" name="unit" id="areaunit">
-                            <option selected disabled>Unit</option>
+                            <option selected value="">Unit</option>
                             @if (array_key_exists('unit', $filter))
                                 @foreach ($units as $unit)
                                     <option value="{{$unit ->id}}" {{ intval($filter['unit']) == $unit->id ? 'selected' : '' }}>{{$unit ->name}}</option>
@@ -268,7 +268,7 @@
                                 <div class="selector_wrapper">
                                     <select name="facing">
                                     @if (array_key_exists('facility', $filter))
-                                        <option selected disabled> Property Facing </option>
+                                        <option selected value=""> Property Facing </option>
                                         <option value="East" {{ $filter['facing'] == 'East' ? 'selected' : '' }}> East </option>
                                         <option value="West" {{ $filter['facing'] == 'West' ? 'selected' : '' }}> West </option>
                                         <option value="North" {{ $filter['facing'] == 'North' ? 'selected' : '' }}> North </option>
@@ -278,7 +278,7 @@
                                         <option value="North-East" {{ $filter['facing'] == 'North-East' ? 'selected' : '' }}> North-East </option>
                                         <option value="North-West" {{ $filter['facing'] == 'North-West' ? 'selected' : '' }}> North-West </option>
                                     @else
-                                        <option selected disabled> Property Facing </option>
+                                        <option selected value=""> Property Facing </option>
                                         <option value="East"> East </option>
                                         <option value="West"> West </option>
                                         <option value="North"> North </option>
@@ -316,12 +316,12 @@
                             <label for="listedby">listed By</label>
                             <select name="listedby" id="listedby">
                             @if (array_key_exists('listedby', $filter))
-                                <option selected disabled>Any</option>
+                                <option selected value="">Any</option>
                                 <option value="owner" {{ $filter['listedby'] == 'owner' ? 'selected' : '' }}>Owner</option>
                                 <option value="builder" {{ $filter['listedby'] == 'builder' ? 'selected' : '' }}>Builder</option>
                                 <option value="agent" {{ $filter['listedby'] == 'agent' ? 'selected' : '' }}>Agent</option>
                             @else
-                                <option selected disabled>Any</option>
+                                <option selected value="">Any</option>
                                 <option value="owner">Owner</option>
                                 <option value="builder">Builder</option>
                                 <option value="agent">Agent</option>
