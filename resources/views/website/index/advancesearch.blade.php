@@ -22,9 +22,6 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
-                                <div id="feature">
-
-                                </div>
                                 <div class="col-md-12">
                                     <div class="selector_wrapper">
                                         <h3>Property Type</h3>
@@ -72,7 +69,7 @@
                                 </div>
                                 <div class="col-md-6 landarea" style="display: none;">
                                     <div class="selector_wrapper">
-                                        <div class="landarea">
+                                        <div class="">
                                             <input type="number" name="area" id="area" placeholder="area" style="visibility: visible;">
                                             <select class="areaunit" name="areaunit" id="areaunit">
                                                 <option selected value="">Unit</option>

@@ -3,7 +3,7 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-    <section class="ads_inside_subpage full-view-ad">
+    <section class="ads_inside_subpage">
         <div class="container">
             <div class="ads_section_cover">
                 <div class="row">
@@ -19,7 +19,7 @@
         </div>
     </section>
     {{-- filter --}}
-    <section class="container mt-3">
+    <section class="container ">
         <form method="get" action="{{ route('front.search-properties') }}">
             <div class="propertylistsearch">
                 <div class="first-row">
@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-5">
+                        <div class="col-md-6">
                             <div class="search-input d-flex">
                                 <?php $name = '';
                                 ?>
@@ -59,13 +59,13 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-2 col-md-3 col-6">
+                        <div class="col-md-2">
                             <div class="filter"><span>Show Filters</span><i class="las la-sliders-h"></i></div>
                         </div>
-                        <div class="col-md-2 col-6">
+                        <div class="col-md-2">
                             <select name="sorting" class="sorting" id="sorting">
                                 @if (array_key_exists('sorting', $filter))
-                                    <option disabled>Sort By </option>
+                                    <option value="">Sort By </option>
                                     <option value="low" {{ $filter['sorting'] == 'low' ? 'selected' : '' }}> Price(low to
                                         high)</option>
                                     <option value="high" {{ $filter['sorting'] == 'high' ? 'selected' : '' }}> Price(high
@@ -73,7 +73,7 @@
                                     <option value="latest" {{ $filter['sorting'] == 'latest' ? 'selected' : '' }}>Latest</option>
                                     <option value="oldest" {{ $filter['sorting'] == 'oldest' ? 'selected' : '' }}>Oldest</option>
                                 @else
-                                    <option selected disabled>Sort By </option>
+                                    <option selected value="">Sort By </option>
                                     <option value="low"> Price(low to high)</option>
                                     <option value="high"> Price(high to low)</option>
                                     <option value="latest">Latest</option>
@@ -94,7 +94,8 @@
                                     <input class="form-check-input front-category property"
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
                                         value="{{ $propertyC->id }}" id="initial{{ $propertyC->id }}" {{ $filter['category_id'] == $propertyC->id ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
+                                    <label class="form-check-label"
+                                        for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                 @else
                                     <input class="form-check-input front-category property" 
                                         data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id"
@@ -107,6 +108,8 @@
                             @endforeach
                         </div>
                     </div>
+
+
                     <div class="option_a1" id="bed">
                         @php
                             $id = App\Models\Feature::where('title', '=', 'Bedroom')->value('id');
@@ -158,7 +161,7 @@
                     <div class="option_a1">
                         <select name="start_prize" id="start_prize">
                             @if (array_key_exists('start_prize', $filter))
-                                <option disabled>Min Price</option>
+                                <option value="">Min Price</option>
                                 <option value="5000.00" {{ intval($filter['start_prize'] == 5000.0) ? 'selected' : '' }}>Rs.
                                     5000.00</option>
                                 <option value="10000.00" {{ intval($filter['start_prize'] == 10000.0) ? 'selected' : '' }}>Rs.
@@ -171,7 +174,7 @@
                                     {{ intval($filter['start_prize'] == 1000000.0) ? 'selected' : '' }}>Rs. 1000000.00
                                 </option>
                             @else
-                                <option selected disabled>Min Price</option>
+                                <option selected value="">Min Price</option>
                                 <option value="5000.00">Rs. 5000.00</option>
                                 <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
@@ -184,7 +187,7 @@
                     <div class="option_a1">
                         <select name="end_prize" id="end_prize">
                             @if (array_key_exists('end_prize', $filter))
-                                <option disabled>Max Price</option>
+                                <option value="">Max Price</option>
                                 <option value="1100000.00" {{ intval($filter['end_prize']) == 1100000 ? 'selected' : '' }}>Rs.
                                     1100000.00</option>
                                 <option value="1500000.00" {{ intval($filter['end_prize']) == 1500000 ? 'selected' : '' }}>Rs.
@@ -194,7 +197,7 @@
                                 <option value="5000000.00" {{ intval($filter['end_prize']) == 5000000 ? 'selected' : '' }}>Rs.
                                     5000000.00</option>
                             @else
-                                <option selected disabled>Max Price</option>
+                                <option selected value="">Max Price</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>
@@ -203,13 +206,24 @@
 
                         </select>
                     </div>
-                    <div class="option_a1 advance-landarea" style="display: none;">
-                        <input type="number" name="area" id="area" placeholder="area">
-                        <select class="areaunit" name="areaunit" id="areaunit">
-                            <option selected disabled>Unit</option>
+                    <div class="option_a1 landarea" style="display: none;">
+                        @if (array_key_exists('unit', $filter))
+                            <input type="number" name="area" id="area" value="{{$filter['area']}}" placeholder="area">
+                        @else
+                            <input type="number" name="area" id="area" placeholder="area">
+                        @endif
+                       
+                        <select class="areaunit" name="unit" id="areaunit">
+                            <option selected value="">Unit</option>
+                            @if (array_key_exists('unit', $filter))
+                                @foreach ($units as $unit)
+                                    <option value="{{$unit ->id}}" {{ intval($filter['unit']) == $unit->id ? 'selected' : '' }}>{{$unit ->name}}</option>
+                                @endforeach
+                            @else
                             @foreach ($units as $unit)
-                            <option selected value="{{$unit ->id}}">{{$unit ->name}}</option>
+                                <option value="{{$unit ->id}}">{{$unit ->name}}</option>
                             @endforeach
+                            @endif
                         </select>
                            
                     </div>
@@ -219,104 +233,102 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 More Options
                             </p>
+
                         </div>
-                    </div>
-                </div>
-                <div aria-labelledby="moreOptions" class="moreOptions">
-                    <div class="option_1 more-multi_select_dropdown multi_select_dropdown">
-                        <p>Common Facilities<i class="las la-angle-down"></i></p>
-                        <div class="option_listing_dropDown child_dropdown">
-                           
-                            @foreach ($facilities as $facility)
-                            
-                                @if (array_key_exists('facility', $filter))
-                                <div class="list_group_category">
-                                    <input class="form-check-input front-category"
-                                        data-element="#advance{{ $facility->id }}" type="checkbox"
-                                        name="facility[]" value="{{ $facility->title }}"
-                                        id="initial{{ $facility->id }}" @php foreach($filter['facility'] as $value){if($value == $facility->title){ echo 'checked';}} @endphp>
-                                    <label class="form-check-label"
-                                        for="initial{{ $facility->id }}">{{ $facility->title }}</label>
+                        <div aria-labelledby="moreOptions" class="moreOptions">
+                            <div class="option_1 multi_select_dropdown">
+                                <p>Common Facilities<i class="las la-angle-down"></i></p>
+                                <div class="option_listing_dropDown child_dropdown">
+                                   
+                                    @foreach ($facilities as $facility)
+                                    
+                                        @if (array_key_exists('facility', $filter))
+                                        <div class="list_group_category">
+                                            <input class="form-check-input front-category"
+                                                data-element="#advance{{ $facility->id }}" type="checkbox"
+                                                name="facility[]" value="{{ $facility->title }}"
+                                                id="initial{{ $facility->id }}" @php foreach($filter['facility'] as $value){if($value == $facility->title){ echo 'checked';}} @endphp>
+                                            <label class="form-check-label"
+                                                for="initial{{ $facility->id }}">{{ $facility->title }}</label>
+                                        </div>
+                                        @else
+                                            <div class="list_group_category">
+                                                <input class="form-check-input front-category"
+                                                    data-element="#advance{{ $facility->id }}" type="checkbox"
+                                                    name="facility[]" value="{{ $facility->title }}"
+                                                    id="initial{{ $facility->id }}">
+                                                <label class="form-check-label"
+                                                    for="initial{{ $facility->id }}">{{ $facility->title }}</label>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
-                                @else
-                                    <div class="list_group_category">
-                                        <input class="form-check-input front-category"
-                                            data-element="#advance{{ $facility->id }}" type="checkbox"
-                                            name="facility[]" value="{{ $facility->title }}"
-                                            id="initial{{ $facility->id }}">
-                                        <label class="form-check-label"
-                                            for="initial{{ $facility->id }}">{{ $facility->title }}</label>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="selector_wrapper">
-                            <select class="facing" name="facing">
-                            @if (array_key_exists('facility', $filter))
-                                <option selected disabled> Property Facing </option>
-                                <option value="East" {{ $filter['facing'] == 'East' ? 'selected' : '' }}> East </option>
-                                <option value="West" {{ $filter['facing'] == 'West' ? 'selected' : '' }}> West </option>
-                                <option value="North" {{ $filter['facing'] == 'North' ? 'selected' : '' }}> North </option>
-                                <option value="South" {{ $filter['facing'] == 'South' ? 'selected' : '' }}> South </option>
-                                <option value="South-East" {{ $filter['facing'] == 'South-East' ? 'selected' : '' }}> South-East </option>
-                                <option value="South-West" {{ $filter['facing'] == 'South-West' ? 'selected' : '' }}> South-West </option>
-                                <option value="North-East" {{ $filter['facing'] == 'North-East' ? 'selected' : '' }}> North-East </option>
-                                <option value="North-West" {{ $filter['facing'] == 'North-West' ? 'selected' : '' }}> North-West </option>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="selector_wrapper">
+                                    <select name="facing">
+                                    @if (array_key_exists('facility', $filter))
+                                        <option selected value=""> Property Facing </option>
+                                        <option value="East" {{ $filter['facing'] == 'East' ? 'selected' : '' }}> East </option>
+                                        <option value="West" {{ $filter['facing'] == 'West' ? 'selected' : '' }}> West </option>
+                                        <option value="North" {{ $filter['facing'] == 'North' ? 'selected' : '' }}> North </option>
+                                        <option value="South" {{ $filter['facing'] == 'South' ? 'selected' : '' }}> South </option>
+                                        <option value="South-East" {{ $filter['facing'] == 'South-East' ? 'selected' : '' }}> South-East </option>
+                                        <option value="South-West" {{ $filter['facing'] == 'South-West' ? 'selected' : '' }}> South-West </option>
+                                        <option value="North-East" {{ $filter['facing'] == 'North-East' ? 'selected' : '' }}> North-East </option>
+                                        <option value="North-West" {{ $filter['facing'] == 'North-West' ? 'selected' : '' }}> North-West </option>
+                                    @else
+                                        <option selected value=""> Property Facing </option>
+                                        <option value="East"> East </option>
+                                        <option value="West"> West </option>
+                                        <option value="North"> North </option>
+                                        <option value="South"> South </option>
+                                        <option value="South-East"> South-East </option>
+                                        <option value="South-West"> South-West </option>
+                                        <option value="North-East"> North-East </option>
+                                        <option value="North-West"> North-West </option>
+                                    @endif
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="replace">
+                                @php $i=1 @endphp
+                                @foreach ($feature_values as $key => $values)
+                                    @if ($i > 3)
+                                        @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
+                                        <label for="buildingtype"> {{ $name }}:-</label>
+                                        <select name="properties[{{ $key }}]" id="buildingtype">
+                                            <option selected disabled> Select {{ $name }}</option>
+                                            @foreach ($values as $value)
+                                                @if (array_key_exists('properties', $filter))
+                                                    <option value="{{ $value }}" @php foreach($filter['properties'] as $k=>$val){if($k==$key){if($val == $value){echo 'selected';} }} @endphp>{{ $value }}</option>
+                                                @else
+                                                <option value="{{ $value }}" >{{ $value }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    @endif
+                                    @php $i += 1  @endphp
+                                @endforeach
+                            </div>
+
+                            <label for="listedby">listed By</label>
+                            <select name="listedby" id="listedby">
+                            @if (array_key_exists('listedby', $filter))
+                                <option selected value="">Any</option>
+                                <option value="owner" {{ $filter['listedby'] == 'owner' ? 'selected' : '' }}>Owner</option>
+                                <option value="builder" {{ $filter['listedby'] == 'builder' ? 'selected' : '' }}>Builder</option>
+                                <option value="agent" {{ $filter['listedby'] == 'agent' ? 'selected' : '' }}>Agent</option>
                             @else
-                                <option selected disabled> Property Facing </option>
-                                <option value="East"> East </option>
-                                <option value="West"> West </option>
-                                <option value="North"> North </option>
-                                <option value="South"> South </option>
-                                <option value="South-East"> South-East </option>
-                                <option value="South-West"> South-West </option>
-                                <option value="North-East"> North-East </option>
-                                <option value="North-West"> North-West </option>
+                                <option selected value="">Any</option>
+                                <option value="owner">Owner</option>
+                                <option value="builder">Builder</option>
+                                <option value="agent">Agent</option>
                             @endif
                             </select>
                         </div>
                     </div>
-
-                    <div class="replace">
-                        @php $i=1 @endphp
-                        @foreach ($feature_values as $key => $values)
-                            @if ($i > 3)
-                                @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
-                                <label for="buildingtype"> {{ $name }}:-</label>
-                                <select name="properties[{{ $key }}]" id="buildingtype">
-                                    <option selected disabled> Select {{ $name }}</option>
-                                    @foreach ($values as $value)
-                                        @if (array_key_exists('properties', $filter))
-                                            <option value="{{ $value }}" @php foreach($filter['properties'] as $k=>$val){if($k==$key){if($val == $value){echo 'selected';} }} @endphp>{{ $value }}</option>
-                                        @else
-                                        <option value="{{ $value }}" >{{ $value }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            @endif
-                            @php $i += 1  @endphp
-                        @endforeach
-                    </div>
-
-                   <div class="col-md-12">
-                    {{-- <label for="listedby">Listed By</label>
-                    <br> --}}
-                    <select class="listedby" name="listedby" id="listedby">
-                    @if (array_key_exists('listedby', $filter))
-                        <option selected disabled>Listed By</option>
-                        <option value="owner" {{ $filter['listedby'] == 'owner' ? 'selected' : '' }}>Owner</option>
-                        <option value="builder" {{ $filter['listedby'] == 'builder' ? 'selected' : '' }}>Builder</option>
-                        <option value="agent" {{ $filter['listedby'] == 'agent' ? 'selected' : '' }}>Agent</option>
-                    @else
-                        <option selected disabled>Listed By</option>
-                        <option value="owner">Owner</option>
-                        <option value="builder">Builder</option>
-                        <option value="agent">Agent</option>
-                    @endif
-                    </select>
-                   </div>
                 </div>
         
             </div>
@@ -326,7 +338,7 @@
 
     <section id="propertyListing_wrapper">
         <div class="container">
-            <div class="row gy-3">
+            <div class="row">
                 <div class="col-lg-8">
                     <div class="property_list_content">
                         <div class="row">
@@ -366,7 +378,7 @@
                                                                     </div>
                                                                 @endforeach
                                                             </div>
-                                                            {{-- <a class="carousel-control-prev"
+                                                            <a class="carousel-control-prev"
                                                                 href="#carouselExampleIndicators" role="button"
                                                                 data-slide="prev">
                                                                 <span class="carousel-control-prev-icon"
@@ -379,7 +391,7 @@
                                                                 <span class="carousel-control-next-icon"
                                                                     aria-hidden="true"></span>
                                                                 <span class="sr-only">Next</span>
-                                                            </a> --}}
+                                                            </a>
                                                         </div>
                                                         @if(auth()->user())
                                                         <div onclick="favorite({{ $property->id }})" class="favicon">
@@ -535,10 +547,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                      
                                     </div>
-                                    
-
                                     <div onclick="favorite({{ $property->id }})" class="favicon">
                                         <a href="#" class="favorite{{ $property->id }}"><i
                                                 class=" lar la-heart "></i></a>
@@ -638,21 +647,6 @@
             </div>
         </div>
     </section>
-    <section class="ads_inside_subpage mobile-footer-ad">
-        <div class="container">
-            <div class="ads_section_cover">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @foreach ($advertisements as $ad)
-                            <div class="ads_wrap">
-                                <img src="{{ image($ad->image) }}" alt="{{ $ad->title }}">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Modal -->
     <div class="modal fade share_feedback" id="send_message_model" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -718,9 +712,9 @@
                         console.log(response);
                         if(response.success){
                             $(".favorite"+property+">.la-heart ").toggleClass("lar las");
-                            // alert(response.success);
+                            alert(response.success);
                         }else{
-                            // alert(response.error);
+                            alert(response.error);
                         }                    
                     },
                     error: function(response) {
@@ -801,6 +795,7 @@
 
         });
     </script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c7e261de3a500195a0afd&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush
 
 
