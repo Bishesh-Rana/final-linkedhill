@@ -16,6 +16,10 @@
     }
 }
 
+
+
+
+
 @media screen and (max-width: 1024px) {
     .multi_select_option p {
         font-size: 12px;
@@ -47,8 +51,14 @@
     .follow_us ul {
         margin-left: 9px;
     }
+
 }
 /* My Responsive Code */
+
+
+
+
+
 
 @media(max-width:991px) {
     #site_navigation .navbar-toggler-icon {
@@ -310,6 +320,13 @@
     }
 }
 /* My Responsive Code End */
+
+
+
+
+
+
+
 
 @media screen and (max-width: 768px) {
     .prop_thumbnail_ {

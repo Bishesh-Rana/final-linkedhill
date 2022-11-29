@@ -4775,8 +4775,6 @@ nav#linked_hill_nav {
 }
 
 .linked_hill_flex_wrap {
-    /* display: flex; */
-    width: 90%;
     margin: 0 auto;
     padding: 1%;
     background-color: rgba(255, 255, 255, 0.603);
@@ -4896,11 +4894,9 @@ nav#linked_hill_nav {
     position: absolute;
     top: 30%;
     width: 100%;
-    /* overflow-x: visible; */
 }
 
 .linked_hill_button_wraper {
-    width: 19.6%;
     margin: 0 auto;
     background-color: rgb(0 0 0 / 53%);
     display: flex;
@@ -4961,7 +4957,7 @@ nav#linked_hill_nav {
 
 .link_hill_flex_bottom_wrapper {
     display: flex;
-    width: 90%;
+    width: 93%;
     margin: 2px auto;
     justify-content: center;
     flex-grow: 1;
@@ -4980,6 +4976,7 @@ nav#linked_hill_nav {
 .option_1 p {
     margin-bottom: 0;
     position: relative;
+    font-size: 14px;
 }
 
 .option_1 p i {
@@ -4994,6 +4991,7 @@ nav#linked_hill_nav {
     margin-right: 2px;
     height: 45px;
     position: relative;
+    padding-left: 10px;
 }
 
 .surround_search {
@@ -5009,6 +5007,7 @@ nav#linked_hill_nav {
 .option_a1 select {
     width: 100%;
     border-color: white;
+    font-size: 14px;
 }
 
 .surround_search label {
