@@ -4784,15 +4784,18 @@ nav#linked_hill_nav {
 .linked_hill_search_top  ul {
     list-style: none;
     display: flex;
+    padding-left:0;
+    margin-bottom: 10px;
 }
 
    
 .linked_hill_search_top li {
         display: inline-block;
-        margin-right: 15px;
+        margin-right: 10px;
     }
     .linked_hill_search_top input {
         visibility:hidden;
+        display: none;
     }
     .linked_hill_search_top label {
         cursor: pointer;
@@ -4801,8 +4804,9 @@ nav#linked_hill_nav {
         border-radius: 5px;
     }
     .linked_hill_search_top input:checked + label {
-        background: rgb(143 134 134);
-        color: white;
+        background: rgb(255 45 55);
+    color: #fff;
+    border-color: rgb(255 45 55);
     }
     .linked_hill_search_top input:checked + .selector {
         background: rgb(143 134 134);
@@ -4841,11 +4845,15 @@ nav#linked_hill_nav {
 .multiple_select2option {
     width: 100%;
     position: relative;
-    /* margin-left: 2px; */
     margin-right: 2px;
     background-color: white;
     display: flex;
     align-items: center;
+    border-radius: 3px;
+    padding:5px 10px;
+}
+.select2-container--default .select2-search--inline .select2-search__field{
+    margin-top:0 !important;
 }
 .multiple_select2option .select2 {
     width: 100% !important;
