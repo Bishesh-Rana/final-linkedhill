@@ -1,0 +1,1471 @@
+@import './component_css/header';
+@import './component';
+
+
+// screen
+.screen{
+	background-size: cover !important;
+	position: relative;
+	@include responsivesm{
+		height: 260px;
+		// background-attachment: fixed;
+		background-color: rgba(0, 0, 0, 0.3) !important;
+		background-blend-mode: overlay;
+		// display: none;
+	}
+	.section-rule{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		height: 100%;
+		padding-bottom: 20px;
+	}
+	.screen__title{
+		color: #fff;
+		font-weight: 700;
+		font-size: 3.3em;
+		margin-bottom: 1em;
+		line-height: 1.5;
+		@include responsive(1280px){
+			font-size: 40px;
+			margin-bottom: 10px;
+		}
+	}
+
+	button{
+		@include button;
+		border-radius: 0 10px 10px 0;
+		height: 100%;
+		@include responsivesm{
+			border-radius: 0 5px 5px 0;
+			background-color: #fff;
+		}
+
+		svg{
+			margin-right: 1em;
+			@include responsivemd{
+				margin: 0;
+				overflow: visible;
+			}
+			path{
+				@include responsivemd{
+					stroke:$dark;
+				}
+			}
+		}
+		text {
+			@include responsivemd{
+				display: none;
+			}
+		}
+	}
+
+	.main-form{
+		justify-content: space-between;
+		align-items: center;
+		@include border-radius;
+		color: #fff;
+		text-align: center;
+		position: relative;
+		@include responsivesm{
+			// margin-top: 2em;
+		}
+		aside{
+			background-color: rgba(0,0,0, 0.83);
+			padding: 1.5em;
+			flex-grow: 2;
+			border-radius: 10px 0 0 10px;
+			width: 80%;
+			position: relative;
+			@include responsivemd{
+				padding: 0;
+				width: 75%;
+				border-radius: 5px 0 0 5px;
+				position:static;
+				background-color:transparent;
+			}
+		}
+
+		.form-row{
+			margin: 4px 0;
+			flex-wrap: nowrap;
+			position:relative;
+			z-index: 5;
+			@include responsivemd{
+				margin: 0;
+			}
+			&:first-child{
+				@include responsivemd{
+					@include scrollbar;
+				}
+				@include responsivemd{
+					display: none;
+				}
+				.form-group{
+					@include responsivemd{
+						width: auto;
+					}
+				}
+			}
+		}
+		.form-check{
+			&:not(:last-child){
+				margin-right: 4px;
+			}
+			label{
+				margin-bottom: 0;
+				background-color: rgba(116,116,116,0.25);
+				padding: 7px 35.6px;
+				font-size: 16px;
+				cursor:pointer;
+				@include responsive(1230px){
+					padding: 7px 34.1px;
+
+				}
+				@include responsivelg{
+					padding: 7px 21.7px;
+					font-size: 14px;
+
+				}
+				
+			}
+			.form-check-input{
+				position: fixed;
+				opacity: 0;
+				z-index: -1;
+				margin: 0;
+			}
+			.form-check-input:checked + label{
+				background-color: $primary-color;
+				color: #fff;
+			}
+			
+			&:last-child{
+				@include responsivesm{
+					min-width: 140px;
+				}
+				label{
+					@include responsivesm{
+						width: 100%;
+					}
+				}
+			}
+			&.only__two{
+				// width: 50%;
+				label{
+					width: 118px;
+					@include responsivesm{
+						width: 80px;
+					}
+				}
+			}
+		}
+		
+		.form-group{
+			position: relative;
+			@include responsivemd{
+				margin: 0 !important;
+				width: 100%;
+			}
+		}
+		button{
+			// height: 158px;
+			width: 20%;
+			height: auto !important;
+			align-self: stretch;
+			@include responsivemd{
+				height: 100% !important;	
+				width: 40px;
+				padding: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 5;
+				pointer-events: none;
+				background-color: transparent;
+			}
+		}
+		input::placeholder{
+			color: #bbb;
+			opacity: 1;
+		}
+
+		.second{
+			.form-group:first-child{
+				@include responsivemd{
+					display: none;	
+				}
+			}
+			.form-control, .multiselect-wrapper {
+				// height: 55px;
+				height: 100%;
+				width: 100%;
+				background-color: rgba(116,116,116,0.25);
+				border: 0;
+				color: $lite;
+				border-radius: 0px;
+				padding: 0 22px;
+				outline: 0;
+				box-shadow: none;
+
+				&:focus, &:focus-within{
+					border: 2px solid $primary-color;
+				}
+			}
+			.material-icons-outlined{
+				position: absolute;
+				top: 50%;
+				left:12px;
+				pointer-events: none;
+				transform: translateY(-50%);
+			}
+			.arrow {
+				position: absolute;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				width: 50px;
+				padding: 0 12px;
+				right: 0;
+				pointer-events: none;
+				top:0;
+				&.active{
+					background-color: #fff;
+					color: $dark;
+					pointer-events: auto;
+					cursor: pointer;
+
+				}
+			}
+			.multiselect-list{
+				color: $dark;
+				&> span{
+					&:before, &:after{
+						content: none;
+					}
+				}
+			}
+			.multiselect-input-div{
+				height: 100%;
+				input {
+					height: 100%;
+					padding: 0;
+					width: 100%;
+					background-color: transparent;
+					border: 0;
+					color: #fff;
+					margin: 0;
+					font-weight: 600;
+					font-size: 17px;
+					padding: 0 42px;
+
+				}
+				.multiselect-dropdown-arrow{
+					border:0;
+				}
+			}
+			.multiselect-wrapper {
+				padding: 0px;
+				width: 240px;
+				border-radius: 0;
+				@include responsivemd{
+					width: 100%;
+					border-bottom: 1px solid $primary-color;
+				}
+			}
+			.multiselect-count{
+				display: none !important;
+			}
+
+			.multiselect-list{
+				width: 100%;
+				text-align: left;
+				line-height: 2;
+				padding: 6px 0;
+				border:0;
+				left: 0;
+				hr{
+					display: none !important;
+				}
+				& > span,  li {
+					cursor: default;
+					padding: 6px 1.5em;
+				}
+				li.active, li:hover{
+					background-color: $white;
+					color: $primary-color;
+				}
+				label{
+					font-size: 14px;
+					margin-right: 8px;
+				}
+			}
+
+			.form-group:last-child{
+				flex-grow: 2;
+				margin-left: 4px;
+				justify-content: space-between;
+			}
+			#testSelect1_multiSelect{
+				@include responsivemd{
+					display: none;
+				}
+			}
+		}
+	}
+
+	.custom-control{
+		cursor:pointer ;
+	}
+
+	.city{
+		position: absolute;
+		background-color: #fff;
+		padding: 1.2em 2em;
+		color: $dark;
+		border-radius: 0 4px 4px 0;
+		top: calc(100% - 6px);
+		left: 50%;
+		font-size: 14px;
+		@include transition-out;
+		opacity: 0;
+		pointer-events: none;
+		min-height: 251px;
+		@include responsivesm{
+			display: none !important;
+		}
+		&.active, &:hover{
+			opacity: 1;
+			left: calc(100% - 16px);
+			pointer-events: auto;
+			z-index: 9;
+			@include responsivesm{
+				// left: 150px;
+				// top:100%;
+				display: none !important;
+			}
+
+		}
+		ul{
+			@include ul;
+			text-align: left;
+			li{
+				margin: 6px 0;
+				input{
+					// display: none;
+				}
+				.custom-control{
+					justify-content: flex-start;
+
+				}
+			}
+		}
+	}
+	.scrolldown{
+		display: inline-block;
+		margin: 0 auto;
+		margin-top: 3em;
+		@include responsivesm{
+			height: 50px;
+			width: auto;
+			display: none;
+		}
+		circle{
+			@include animation(opacity);
+			animation-duration: 2s;
+			animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 1.0);
+			animation-iteration-count: infinite;
+			&:nth-child(2){
+				animation-delay: .3s;
+			}
+			&:nth-child(3){
+				animation-delay: .6s;
+			}
+		}
+		svg{
+			animation: transform 2s ease-out 0s infinite forwards ;
+		}
+	}
+	.carousel{
+		img{
+			@include image;
+		}
+		@include slicknav;
+		.item{
+			height: 720px;
+			@include responsive(1280px){
+				height: 540px;
+			}
+			@include responsivesm{
+				height: 260px;
+			}
+		}
+
+		.slick-arrow{
+			position: absolute;
+			transform: none !important ;
+			&.slick-prev {
+				left: 0px;
+			}
+			&.slick-next {
+				right: 0px;
+			}
+		}
+	} 
+	.absolute__wrapper{
+		position: absolute;
+		left: 0;
+		height: auto;
+		width: 100%;
+		bottom: 0px;
+	}
+}
+
+.feature{
+	@include card;
+	background-color: $white;
+	@include slicknav;
+	@include item;
+	.card{
+		img{
+			@include image;
+		}
+		.card__img{
+			height: 200px;
+			overflow: hidden;
+			@include responsivesm{
+				height: 170px;
+			}
+		}
+		&:hover{
+			img{
+				transform: scale(1.1) rotate(3deg);
+				@include transition-out;
+			}
+		}
+	}
+	.small__title{
+		@include responsivesm{
+			display: none;
+		}
+	}
+}
+
+.property{
+	background-color: #fff;
+	@include card;
+	@include article__padding;
+	.card__img{
+		height: 360px;
+		position: relative;
+		border-radius: 4px;
+		@include responsivelg{
+			height: 320px;
+		}
+		@include responsivemd{
+			height: 280px;
+		}
+		@include responsivesm{
+			height: 220px;
+		}
+
+		img{
+			@include transition-in;
+		}
+		&:before{
+			position: absolute;
+			top:0;
+			left: 0;
+			content: '';
+			height: 100%;
+			width: 100%;
+			background-image: linear-gradient(0deg, #000 -20% , transparent);
+			z-index: 1;
+		}
+	}
+	.card__body {
+		padding: 2.4em;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		left: 0;
+		z-index: 1;
+		@include transition-in;
+		@include responsivemd{
+			padding: 1.5em;
+		}
+		@include responsivesm{
+			padding: 1.2em;
+		}
+
+		&.hover{
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			opacity: 0;
+			button{
+				@include button;
+				border:2px solid #fff;
+				background-color: transparent;
+				margin-top: 1em;
+				&:hover{
+					border-color: $red;
+					background-color: $red;
+				}
+			}
+			&::before {
+				content: '';
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background-color:rgba($primary-color, .8);
+				z-index: -1;
+				@include transition-in;
+			}
+		}
+
+		.card__title{
+			color:#fff;
+			font-size: 28px;
+			text-transform: uppercase;
+			@include responsivemd{
+				font-size: 24px;
+			}
+			@include responsivesm{
+				font-size: 18px;
+			}
+		}
+		.small__title{
+			color: #fff;
+			font-weight: 600;
+			font-size: 16px;
+			margin-bottom: 0;
+			@include responsivesm{
+				font-size: 14px;
+			}
+		}
+		.card__action{
+			justify-content: space-between;
+		}
+	}
+
+	.card:hover{
+		.card__body::before{
+			@include transition-out;
+			top:0%;
+		}
+		.card__body{
+			@include transition-out;
+			opacity: 0;
+			&.hover{
+				opacity: 1;
+			}
+		}
+	}
+
+	.row{
+		margin: 0 -12px;
+		@include responsivesm{
+			@include scrollbar;
+			margin: 0 -6px;
+		}
+		article{
+			@include responsivesm{
+				max-width: 100%;
+				scroll-snap-align: start;
+			}
+			.card{
+				@include responsivesm{
+					width: 290px;
+				}
+			}
+
+		}
+	}
+
+}
+
+.loan{
+	@include card;
+	@include article;
+	.section__title--wrapper.plus .small__title{
+		width: 65%;
+	}
+	.card{
+		padding:3rem 2em;
+		text-align: center;
+		@include responsivelg{
+			padding: 2rem 1.6em;
+		}
+		@include responsivemd{
+			width: 290px;
+			white-space: normal;
+		}
+		@include responsivesm{
+			width: 250px;
+		}
+		.card__title{
+			@include lineclamp(2);
+			height: 50px !important;
+			margin-bottom: 0;
+		}
+		button{
+			@include button;
+		}
+		.small__title {
+			text-transform: none;
+			margin: 1.4em 0;
+			line-height: 1.5;
+			font-weight: 600;
+			color: #555;
+		}
+	}
+	article{
+		@include responsivelg{
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+		@include responsivesm{
+			padding-right: 4px;
+			padding-left: 4px;
+		}
+		@include responsivemd{
+			max-width: 100%;
+			scroll-snap-align: start;
+		}
+	}
+	.section-rule > .row{
+		@include responsivemd{
+			@include scrollbar;
+		}
+	}
+}
+
+
+.trade{
+	@include card;
+	@include article;
+	article{
+		margin-bottom: 32px;
+		&:nth-child(4n){
+			padding-right: 0;
+		}
+		&:nth-child(4n+1){
+			padding-left: 0;
+		}
+
+	}
+
+	article{
+		@include responsivelg{
+			margin-bottom: 22px;
+			padding-right:10px;
+			padding-left:10px;
+		}
+		@include responsivemd{
+			padding: 8px !important;
+			margin-bottom: 6px;
+
+		}
+		@include responsivesm{
+			padding: 0 !important;
+			padding-right: 4px !important;
+			padding-left: 4px !important;
+		}
+		&:first-child{
+			@include responsivesm{
+				padding-left: 0px !important;
+			}
+		}
+		&:last-child{
+			@include responsivesm{
+				padding-right: 0px !important;
+			}
+		}
+
+	}
+
+	.card{
+		padding: 2em;
+		text-align: center;
+		@include responsivemd{
+			padding: 1.2em;
+		}
+		.card__img{
+			height: 100px;
+			width: 100px;
+			border-radius: 50%;
+			background-color: rgba($primary-color, 0.4);
+			margin: auto;
+			margin-bottom: 2em;
+			svg{
+				width: 60px;
+				height: auto;
+			}
+		}
+		&:hover{
+			background-color: $primary-color;
+			.card__title{
+				color: $white;
+			}
+		}
+	}
+	.row{
+		@include responsivesm{
+			@include scrollbar;
+		}
+		article{
+			@include responsivesm{
+				max-width: 100%;
+				scroll-snap-align: start;
+			}
+			.card{
+				@include responsivesm{
+					width: 250px;
+				}
+			}
+
+		}
+	}
+}
+
+.nepal{
+	@include slicknav;
+	@include card;
+	@include item;
+	.card__img{
+		height: 275px;
+		@include responsivesm{
+			height: 220px;
+		}
+	}
+	.card__body{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		@include transition-out;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(64, 64, 64, 0.4);
+		padding: 2.2em;
+		@include responsivesm{
+			padding: 1em;
+		}
+		.card__title{
+			font-size: 1.5em;
+			color: $white;
+			width: 100%;
+			text-align: center;
+			border: 3px solid #fff;
+			border-radius: 10px;
+			padding: 1.5em 1em;
+			margin: 0 !important;
+			@include responsivesm{
+				font-size: 20px;
+				padding: 1em;
+			}
+		}
+	}
+	.card:hover{
+		.card__body{
+			background-color: rgba($primary-color, 0.7);
+		}
+	}
+}
+
+.blog{
+	@include card;
+	@include article;
+	background-image: linear-gradient(180deg,#fff, #fff);
+	background-size: 100% 50%;
+	background-repeat: no-repeat;
+	.card{
+		@include box-shadow;
+		padding: 1.2em;
+		@include responsivelg{
+			padding: 1em;
+		}
+		@include responsivemd{
+			width: 330px;
+			white-space: normal;
+		}
+
+		@include responsivesm{
+			padding: 1em 12px;
+		}
+		&:hover{
+			img{
+				transform: scale(1.1);
+				@include transition-out;
+			}
+		}
+
+	}
+
+	article{
+		@include responsivelg{
+			padding-right:10px;
+			padding-left:10px;
+		}
+		@include responsivemd{
+			max-width: 100%;
+			scroll-snap-align: start;
+		}
+		@include responsivesm{
+			padding-right: 4px;
+			padding-left: 4px;
+		}
+	}
+
+	.card__img{
+		@include border-radius; 
+		height: 200px;
+		overflow: hidden;
+
+		@include responsivesm{
+			height: 170px;
+		}
+	}
+	.card__body{
+		padding: 1.5em 0 0 0;
+
+		@include responsivesm{
+			padding-top: 1em;
+		}
+	}
+	.small__title{
+		color: $lite;
+	}
+	.card__title{
+		&, a{
+			@include lineclamp(2);
+			height: 60px;
+			line-height: 1.5;
+		}
+	}
+	.para{
+		line-height: 1.7;
+		margin: 1.5em 0;
+		@include lineclamp(4);
+		@include responsivemd{
+			-webkit-line-clamp: 2;
+			margin: 1em 0;
+		}
+		@include responsivesm{
+			display: none;
+		}
+	}
+	.card__link{
+		font-style: italic;
+		color: $para;
+		display: flex;
+		align-items: center;
+		font-size: 16px;
+		svg{
+			margin-right: 6px;
+		}
+		&:hover{
+			color: $primary-color;
+			path{
+				fill: $primary-color;
+			}
+		}
+
+	}
+	.section-rule > .row{
+		@include responsivemd{
+			@include scrollbar;
+		}
+	}
+}
+
+.estate{
+	.card {
+		background-color: #fff !important;
+		@include box-shadow;
+		@include responsivemd{
+			width: 180px !important;
+			white-space: normal;
+		}
+		@include responsivesm{
+			width: 150px;
+			padding: 14px;
+		}
+
+		.card__img{
+			height: 100px;
+			width: auto;
+			border-radius: 0;
+			background-color: transparent;
+			margin: 0em;
+			@include responsivemd{
+				height: 80px;
+			}
+			@include responsivesm{
+				height: 40px;
+			}
+
+			img{
+				height: 100%;
+				width: 100%;
+				object-fit: contain;
+			}
+		}
+
+	}
+	d-flex{
+		justify-content: space-around;
+	}
+
+	article {
+		margin-bottom: 0;
+		&:nth-child(4n){
+			padding-right: 15px;
+		}
+		&:nth-child(4n+1){
+			padding-left: 15px;
+		}
+		@include responsivemd{
+			max-width: 100%;
+			scroll-snap-align: start;
+		}
+	}
+	.section-rule > .row{
+		@include responsivemd{
+			@include scrollbar;
+		}
+	}
+}
+
+#appendtag{
+	display: flex;
+	// @include scrollbar;
+	min-height: 55px;
+	// width: 100%;
+	background-color: #fff;
+	border: 0;
+	color: #A7A7A7;
+	border-radius: 0px;
+	padding: 3px;
+	@include responsivemd{
+		border-radius:5px;
+	}
+	@include responsivelg{
+		width: calc(100% - 226px);
+		flex-wrap: nowrap;
+	}
+	.tag__container {
+		// @include scrollbar;
+		display: flex;
+		flex-wrap:wrap;
+		max-width: 480px;
+		transition:.3s ease;
+		scroll-behavior: smooth;
+		@include responsivelg{
+			max-width: 350px;
+		}
+		@include responsivemd{
+			display: none;
+		}
+	}
+	.tag {
+		display: flex;
+		padding: 6px 10px;
+		margin: 2px;
+		justify-content: space-between;
+		background-color: rgba($dark,0.9);
+		color: #fff;
+		align-items:center;
+		margin: 3px;
+		width: 110px;
+		@include responsivelg{
+			font-size: 14px;
+			padding: 4px 6px;
+			width: 84px;
+		}
+		small{
+			@include lineclamp(1);	
+		}
+		i{
+			color: #fff;
+			font-size: 14px;
+			transform: translateY(-2px);
+		}
+		.close{
+			border-left: 1px solid #9f9f9f;
+			margin-left: 6px;
+			padding-left: 2px;
+		}
+	}
+	input.form-control{
+		flex-grow: 2;
+		width: 100% !important;
+		padding: 0 6px !important;
+		background-color: transparent;
+		border: 0 !important;
+		color: $dark;
+		min-height: 48px;
+		&::placeholder{
+			color: $dark;
+		}
+		@include responsivemd{
+			padding-left: 36px !important;
+			cursor: pointer;
+		}
+	}
+
+	.dropdown-menu{
+		width: 100%;
+		border: 0;
+		border-radius: 0;
+		font-size: 13px;
+		.dropdown-item{
+			padding: 0.4rem 1rem;
+			cursor: pointer;
+		}
+	}
+
+}
+
+// advance search
+.advance{
+	position: absolute !important;
+	background-color: rgb(25, 25, 25);
+	padding:1em 1.5em;
+	// padding-bottom: 1em;
+	width: 100%;
+	left: 0;
+	z-index: 0;
+	// top:30px;
+	top: calc(100% - 1.5em);
+
+	border-radius: 0 0 10px 10px;
+	margin: 0;
+	@include transition-in;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1 !important;
+	// transform:scaleX(0);
+	transform-origin:left top;
+	@include responsive(1035px){
+		display: none;
+	}
+	&.active{
+		pointer-events: auto;
+		opacity: 1;
+		top: calc(100% - 1.5em);
+		transform: scale(1);
+
+	}
+
+	.nav{
+		@include ul;
+		margin-left: 6px;
+
+		.card__title{
+			font-size: 14px;
+			color: #fff;
+			text-align: left;
+			margin-bottom: 10px;
+			margin-top: -15px;
+		}
+		.flex__parent {
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+		}
+		.form-group {
+			-webkit-box-flex: 2;
+			-ms-flex-positive: 2;
+			flex-grow: 2;
+			// margin-right: 1em;
+		}
+		select {
+			height: 40px;
+			border-radius: 0px;
+			border: none;
+			width: 125px;
+			padding: 0 4px;
+			font-size: 14px;
+			color: #ddd;
+			font-weight: 400;
+			background-color: #333434;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			& + i {
+				position: absolute;
+				right: 0;
+				position: absolute;
+				right: 8px;
+				pointer-events: none;
+				top: 50%;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+				opacity: .5;
+			}
+		}
+	}
+	#testSelect2_multiSelect{
+		@include responsive(1281px){
+			width: 200px ;
+		}
+	}
+	#testSelect2_input{
+		padding-left: 20px !important;
+	}
+}
+
+.home-page{
+	.category-page{
+
+		@include responsivemin(840px){
+			display: none;
+		}
+		.sticky{
+			background-color: #fff !important;
+			padding:1em 16px;
+			@include border-radius;
+			@include responsivemd{
+				padding: 2em;
+				border-radius: 20px 20px 0 0 ;
+			}
+			.section-title{
+				margin-bottom: 0 !important;
+			}
+
+			p{
+				color: #606060;
+				@include responsivelg{
+					margin-left: 0px;
+					vertical-align: bottom;
+					font-size: 15px;
+				}
+				span{
+					color: $primary-color;
+					vertical-align: middle;
+				}
+			}
+			.para{
+				font-size: 16px;
+				margin: 2em 0;
+				a{
+					display: flex;
+					justify-content: space-between;
+					span{
+						color:$dark;
+					}
+					&:hover{
+						span{
+							color: $primary-color;
+						}
+					}
+				}
+			}
+		}
+		.filter{
+			position:fixed !important;
+			width: 100%;
+			height: 100vh;
+			top: 110vh;
+			left: 0;
+			background-color: rgba($dark, 0.3);
+			overflow-y: scroll;
+			z-index: 999;
+			transition: .4s ease-in;
+			&.active{
+				top: 0vh;
+				transition: .4s ease-out;
+
+			}
+			.noUi-target{
+				box-shadow: none;
+				@include border-radius;
+				height: 3px;
+				border:0;
+				background-color: #efefef;
+				margin:.5em 0 2em;
+				.noUi-connect{
+					background-color: $primary-color;
+				}
+				.noUi-handle {
+					width: 12px;
+					height: 12px;
+					right: -12px;
+					top: -5px;
+					border-radius: 50%;
+					background-color: #fff;
+					box-shadow: none;
+					border: 3px solid #3f8809;
+					&:before{
+						content: none;
+					}
+					&:after{
+						content: none;
+
+					}
+				}
+			}
+			.card__title{
+				font-size: 18px;
+				margin-bottom: 12px;
+				font-weight: 700;
+				margin-top: 1em;
+				&.title1{
+					margin-top: 0;
+				}
+				&.title2{
+					font-size: 16px;
+
+				}
+			}
+			.form-group{
+				position: relative;
+			}
+			.form-control{
+				height: 50px;
+				border: 0;
+				outline: none;
+				box-shadow: none;
+				background-color: rgba($white, .8);
+				color: $dark;
+				font-weight: 600;
+				border-radius: 6px;
+				&:focus, &:focus-within{
+					border: 1px solid $primary-color;
+				}
+				&::placeholder {
+					color: #b2b2b2;
+					opacity: 1;
+					font-weight: normal;
+				}
+				&[type=number]{
+					background-color: #fff;
+					border: 2px solid #f5f5f5;
+				}
+			}
+
+			.lev2{
+				padding-left: 2em;
+			}
+
+			// brand
+			.brand{
+				margin: 0;
+				padding: 0;
+				.form-row{
+					@include scrollbar;
+					&::-webkit-scrollbar-thumb  {
+						background-color: #bbb;
+					}
+					&:hover{
+						scrollbar-width: thin;
+						&::-webkit-scrollbar{
+							background-color: $white;
+							height: 9px;
+							width: 100%;
+						}
+					}
+				}
+				.form-check{
+					width: calc(50% - 6px ) !important;
+					@include responsivemd{
+						width: auto !important;
+						min-width: auto !important;
+					}
+					@include responsivesm{
+
+					}
+
+					.small__title{
+						margin-bottom: 0;
+					}
+					label{
+						width: 100% !important;
+						min-width: 0 !important;
+						padding: 1em !important;
+					}
+					img{
+						height: 80px;
+						width: 80px;
+						object-fit: contain;
+						margin-bottom: 10px;
+						display: inline-block;
+
+					}
+					svg{
+						height: 80px;
+						width: auto;
+						margin-bottom: 10px;
+					}
+					.form-check-input:checked + label{
+						background-color: #096A88;
+						.small__title{
+							color: #fff;
+						}
+					}
+
+				}
+			}
+			.close{
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		.flex__parent{
+			justify-content: space-between;
+			.form-group{
+				flex-grow: 2;
+				margin-right: 1em;
+			}
+			select{
+				height: 50px;
+				border-radius: 4px;
+				border: 1px solid $lite;
+				width: 100%;
+				padding: 0 8px;
+				font-size: 16px;
+				color: $para;
+				font-weight: 500;
+			}
+		}
+		.submit{
+			@include button;
+			width: 100%;
+			margin-top: 1em;
+		}
+
+		.form-row{
+			margin: 4px 0;
+			flex-wrap: wrap;
+			margin-bottom: 1.5em;
+		}
+		.top-check{
+			margin-right: -3px;
+			margin-left: -3px;
+			label{
+				height: 45px;
+				padding: 0 15px;
+				display: flex;
+				align-items: center;
+			}
+			@include responsivemd{
+				@include scrollbar;
+			}
+			&> .form-check{
+				@include responsivemmd{
+					scroll-snap-align:start;
+				}
+			}
+
+		}
+		.form-check{
+			padding: 0;
+			margin: 3px;
+			text-align: center;
+
+			label{
+				margin-bottom: 0;
+				background-color: $white;
+				font-size: 14px;
+				cursor:pointer;
+				font-weight: 400;
+				border-radius:4px;
+			}
+			.form-check-input{
+				position: absolute;
+				opacity: 0;
+				z-index: -1;
+				height: 100%;
+				width: 100%;
+			}
+			.form-check-input:checked + label{
+				background-color: #096A88;
+				color: #fff;
+			}
+		}
+	}
+}
+
+.commig-soon{
+	background-color: #fff;
+
+	.screen{	
+		&> .d-flex{
+			height: 100vh;
+			@include responsivesm{
+				flex-wrap: wrap;
+				background-color: #fff;	
+			}
+		}
+		.img__wrapper{
+			height: 100%;
+			width: 100%;
+			background-color: #f6e63e;
+			
+			img{
+				@include image;
+			}
+		}
+	}
+	aside{
+		@include responsivesm{
+
+			width: 100%;
+		}
+	}
+	.aside__left{
+		padding: 60px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		@include responsivesm{
+			padding: 15px;
+			order: 2;
+			height: calc(100vh - 200px);
+		}
+		.screen__title{
+			color: $dark;
+			font-size: 30px;
+		}
+
+		.screen__title--lg{
+			font-size: 6.5vw;
+			margin-bottom: 10px;
+			white-space: nowrap;
+			margin-top: 40px;
+			position: relative;
+			z-index: 10;
+			background-image: url("../gallery/interior.png");
+			background-size: contain;
+			background-clip: text;
+			color: transparent;
+			@include transition-out;
+			@include responsivesm{
+				font-size: 40px;
+			}
+		}
+
+
+		&:hover{
+			.screen__title--lg{
+				font-size: 9.5vw;
+				@include transition-in;
+			}
+		}
+	}
+	.aside__right{
+		@include responsivesm{
+			height: 200px;	
+		}
+	}
+}
+@import './component_css/footer';
+

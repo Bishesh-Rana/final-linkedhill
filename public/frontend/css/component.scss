@@ -1,0 +1,401 @@
+body {
+  &.overflow {
+    overflow: hidden;
+  }
+  @include responsivesm {
+    background-image: none;
+  }
+}
+label {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+@mixin slicknav {
+  .material-icons {
+    font-size: 2.6rem;
+    @include responsivelg {
+      font-size: 2rem;
+    }
+  }
+  .slick-arrow {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    z-index: 9;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $dark;
+    transition: 0.3s ease;
+    opacity: 1;
+    overflow: hidden;
+    @include responsivelg {
+      height: 40px;
+      width: 40px;
+    }
+    @include responsive(520px) {
+      display: none !important;
+    }
+    &:hover {
+      opacity: 1;
+      background-color: $red;
+      color: #fff;
+    }
+    &:before {
+      content: none;
+    }
+    &.hidden {
+      opacity: 0;
+      pointer-events: none;
+      @include transition-in;
+    }
+  }
+  .slick-prev {
+    left: -15px;
+    @include responsiveboth(1300px, 1260px) {
+      left: 4px !important;
+    }
+  }
+  .slick-next {
+    right: -15px;
+    @include responsiveboth(1300px, 1260px) {
+      right: 4px !important;
+    }
+  }
+}
+
+@mixin active {
+  &.active {
+    color: $primary-color;
+    @include transition-in;
+  }
+}
+.card--lg {
+  box-shadow: rgba(192, 192, 192, 0.38) 0px 5px 12px;
+  padding: 1.5em;
+  border-radius: 8px;
+  background-color: #fff;
+  .card--top {
+    display: flex;
+    @include responsivemd {
+      flex-direction: column;
+    }
+    .card--text {
+      width: 100%;
+      max-width: 475px;
+      margin-left: 2em;
+      @include responsivemd {
+        margin-left: 0;
+      }
+    }
+    .card--img {
+      height: auto;
+      width: 100%;
+      flex-grow: 2;
+      @include responsivemd {
+        max-height: 360px;
+        margin-bottom: 1em;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .para {
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+}
+
+@mixin card {
+  .card {
+    padding: 0;
+    border: 0;
+    // border-radius:4px;
+    box-shadow: 0;
+    overflow: hidden;
+    @include border-radius;
+    img {
+      @include image;
+      @include transition-in;
+    }
+    &:hover {
+      @include box-shadow;
+    }
+  }
+  .card__img {
+    position: relative;
+  }
+  .save {
+    svg {
+      @include responsivesm {
+        width: 20px;
+      }
+    }
+    &.active {
+      path {
+        fill: #ed4956;
+      }
+    }
+  }
+  .card__title {
+    @include card-title;
+    font-weight: bold;
+  }
+
+  .card__body {
+    padding: 1.2em;
+    @include responsivelg {
+      padding: 1em;
+    }
+    @include responsivesm {
+      padding: 14px;
+    }
+  }
+  .card__action {
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8em;
+    color: $para;
+    flex-wrap: wrap;
+    & > div:not(:last-child) {
+      padding-right: 2.5em;
+      position: relative;
+      @include responsivesm {
+        padding-right: 1.5em;
+      }
+    }
+    label {
+      svg {
+        margin-right: 6px;
+        height: 14px;
+        width: auto;
+        path {
+          fill: $primary-color;
+        }
+      }
+    }
+    .count {
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+  }
+  .para {
+    color: $para;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+}
+.small__title {
+  color: $para;
+  font-size: 14px;
+  font-weight: 600;
+}
+@mixin article {
+  article:first-child {
+    padding-left: 0;
+  }
+  article:last-child {
+    padding-right: 0;
+  }
+}
+@mixin article__padding {
+  article {
+    padding: 12px;
+    @include responsivemd {
+      padding: 6px;
+    }
+    @include responsivesm {
+      padding: 4px;
+    }
+  }
+}
+@mixin nolineclamp {
+  -webkit-line-clamp: none !important;
+  height: auto !important;
+}
+
+@mixin item {
+  .item {
+    padding: 0 15px;
+    @include responsivelg {
+      padding: 0 8px;
+    }
+    @include responsivesm {
+      padding: 0 4px;
+    }
+  }
+  .carousel {
+    margin: 0 -15px;
+    @include responsive(1280px) {
+      margin: 0 -12px;
+    }
+    @include responsivelg {
+      margin: 0 -8px;
+    }
+    @include responsivesm {
+      margin: 0 -4px;
+    }
+  }
+}
+@mixin slick-dot {
+  .slick-dots {
+    bottom: 1em;
+    li {
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background-color: #fff;
+      @include transition-out;
+      &.slick-active {
+        background-color: transparent;
+        border: 2px solid $primary-color;
+      }
+      button {
+        display: none;
+      }
+    }
+  }
+}
+
+.section__title {
+  color: $dark;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 1.5em;
+  @include responsivelg {
+    margin-bottom: 1em;
+  }
+  @include responsivesm {
+    font-size: 20px;
+  }
+}
+
+.section__title--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+  @include responsivesm {
+    margin-bottom: 1em;
+  }
+  .section__link {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    @include responsivesm {
+      font-size: 14px;
+    }
+    svg {
+      margin-right: 6px;
+      path {
+        fill: $primary-color;
+      }
+    }
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .section__title {
+    margin-bottom: 0;
+  }
+  &.plus {
+    flex-direction: column;
+    .small__title {
+      color: #545454;
+      width: 340px;
+      text-align: center;
+      margin-top: 1em;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+  }
+}
+.price {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: $dark;
+  @include responsivelg {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  @include responsivesm {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: none;
+  border-bottom: 2px solid $primary-color;
+  border-right: 2px solid $primary-color;
+  height: 10px;
+  width: 5px;
+  transform: rotate(55deg);
+  left: -17px;
+  top: 7px;
+  @include responsivesm {
+    left: -12px;
+    top: 5px;
+  }
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: $primary-color;
+  background-color: transparent;
+  @include responsivesm {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.dropdown {
+  .drop_arrow {
+    vertical-align: middle;
+    margin-left: 0px;
+  }
+  .dropdown-toggle::after {
+    content: none;
+  }
+  .dropdown-toggle:hover {
+    & + .drop_arrow {
+      color: $primary-color;
+    }
+  }
+  .dropdown-menu {
+    top: 60px;
+    padding: 0.5rem;
+    background-color: $dark;
+    color: #fff;
+    @include responsivemd {
+      color: $dark;
+      background-color: #fff;
+    }
+
+    .dropdown-item {
+      color: inherit;
+      line-height: 1;
+      font-weight: 500 !important;
+      padding: 12px;
+      line-height: 1;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+    @include responsivelg {
+      float: none;
+      position: relative !important;
+      top: 0 !important;
+      padding: 0;
+      transform: none !important;
+    }
+  }
+}
