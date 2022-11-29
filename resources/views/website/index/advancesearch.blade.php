@@ -17,6 +17,26 @@
                             <label for="adpurpose{{$key}}">{{ $type->name }}</label>
                          @endforeach
                     </div>
+                    <div class="linked_hill_search_area d-flex">
+                        <?php $name='';
+                        ?>
+                       <div class="multiple_select2option">
+                        <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple" value= "'nischal','bb'">
+                            @foreach ($property as $type)
+                            @if($name==$type->property_address)
+                            continue;
+                        @else
+                            <option>{{($type->property_address) }}</option>
+                            <?php
+                            $name=$type->property_address;
+                        ?>
+                        @endif
+                    @endforeach
+                          </select>
+                       </div>
+                       <button class="btn btn-dark" type="submit"><i class="las la-search"></i></button>
+                    </div>
+
 
                    
                     <div class="tab-content" id="myTabContent">
@@ -169,8 +189,14 @@
 
 @push('scripts')
 <script>  
+$(document).ready(function(){
+    js-example-basic-multiple
+    $('.js-example-basic-multiple').select2();
+
+})
 
      $(document).ready(function() {
+
         var category_ids = [];
         $('.filter').on('change', function(){
             let{

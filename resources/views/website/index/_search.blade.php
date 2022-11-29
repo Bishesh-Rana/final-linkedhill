@@ -14,25 +14,24 @@
                              @endforeach
                         </ul>
                     </div>
-                    <div class="linked_hill_search_area d-flex">
+                    {{-- <div class="linked_hill_search_area d-flex">
                         <?php $name='';
                         ?>
-                       <div class="multiple_select2option">
-                        <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple" value="{{($type->property_address) }}">
-                            @foreach ($property as $type)
-                            @if($name==$type->property_address)
-                            continue;
-                        @else
-                            <option>{{($type->property_address) }}</option>
-                            <?php
-                            $name=$type->property_address;
-                        ?>
-                        @endif
-                    @endforeach
+                        <div class="multiple_select2option">
+                            <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple" >
+                                @foreach ($property as $type)
+                                @if($name==$type->property_address)
+                                continue;
+                                @else
+                                <option>{{($type->property_address) }}</option>
+                                <?php $name=$type->property_address;
+                                ?>
+                                @endif
+                                @endforeach
                           </select>
                        </div>
                        <button class="btn btn-dark" type="submit"><i class="las la-search"></i></button>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="for_toggle_view">
                     <div class="link_hill_flex_bottom_wrapper">

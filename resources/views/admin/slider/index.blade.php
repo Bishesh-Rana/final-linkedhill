@@ -11,8 +11,6 @@
 
     <div class="row">
         <div class="col-md-12">
-
-
             <div class="card">
                 <div class="card-header card-header-tabs" data-background-color="red">
                     <div class="nav-tabs-navigation">
