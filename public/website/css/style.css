@@ -4800,6 +4800,10 @@ nav#linked_hill_nav {
         padding: 3px 10px;
         border-radius: 5px;
     }
+    .linked_hill_search_top input:checked + label {
+        background: rgb(143 134 134);
+        color: white;
+    }
     .linked_hill_search_top input:checked + .selector {
         background: rgb(143 134 134);
         color: white;

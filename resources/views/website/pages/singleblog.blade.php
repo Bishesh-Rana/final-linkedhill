@@ -13,10 +13,10 @@
                                 <div class="follow_us">
                                     <p>Follow Us:</p>
                                     <ul>
-                                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#"><i class="lab la-youtube"></i></a></li>
+                                        <li><a href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="{{ config('websites.twitter_url') }}"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="{{ config('websites.instagram_url') }}"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="{{ config('websites.youtube_url') }}"><i class="lab la-youtube"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="posted_date"><span>{{ $blog->created_at->format('F,m ,Y') }}</span></div>

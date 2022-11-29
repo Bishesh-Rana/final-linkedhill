@@ -21,7 +21,7 @@ class Property extends Model
         'total_area', 'total_area_unit', 'built_up_area', 'built_up_area_unit', 'property_facing', 'road_access', 'road_access_unit', 'road_type',
         'start_price', 'end_price', 'price_label',
         'road_width','road_width_unit',
-        'owner_name', 'owner_address', 'owner_phone', 'youtube_video_id',
+        'owner_name','owner_email' ,'owner_address', 'owner_phone', 'youtube_video_id',
          'bed', 'bath', 'negotiable',
         'feature',
         'meta_keyword',
