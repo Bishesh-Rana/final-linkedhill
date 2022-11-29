@@ -16,6 +16,10 @@
     }
 }
 
+
+
+
+
 @media screen and (max-width: 1024px) {
     .multi_select_option p {
         font-size: 12px;
@@ -47,8 +51,14 @@
     .follow_us ul {
         margin-left: 9px;
     }
+
 }
 /* My Responsive Code */
+
+
+
+
+
 
 @media(max-width:991px) {
     #site_navigation .navbar-toggler-icon {
@@ -303,13 +313,44 @@
         margin-top: 40px;
     }
     #about_loan_info_wrapper {
-        padding-top: 35px;
+        padding-top: 20px;
     }
     .replace {
         width: 100%;
     }
+    .linked_hill_search_wrapper{
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 0 5px 10px 0 rgb(7 25 57 / 10%), 0 1px 5px 0 rgb(7 25 57 / 20%);
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: -80px;
+        position: relative;
+        background: #fff;
+        z-index: 1020;
+        padding: 20px;
+        border-radius: 4px;
+    }
+    .multiple_select2option {
+        border: 1px solid #e3e3e3;
+    }
+    #about_loan_info_wrapper{
+        background: transparent;
+    }
+    .linked_hill_flex_wrap{
+        padding:0;
+    }
+    .option_1{
+        border:1px solid #e3e3e3;
+    }
 }
 /* My Responsive Code End */
+
+
+
+
+
+
+
 
 @media screen and (max-width: 768px) {
     .prop_thumbnail_ {
