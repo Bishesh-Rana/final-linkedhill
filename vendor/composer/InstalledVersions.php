@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '7af0c4f50f6b21318e878b3329bae719a0e73c84',
+    'reference' => 'd5e0e4938f02177d3d3c5dee3c69431718e1b64b',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -550,7 +550,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '7af0c4f50f6b21318e878b3329bae719a0e73c84',
+      'reference' => 'd5e0e4938f02177d3d3c5dee3c69431718e1b64b',
     ),
     'laravel/passport' => 
     array (
@@ -563,12 +563,12 @@ private static $installed = array (
     ),
     'laravel/sail' => 
     array (
-      'pretty_version' => 'v1.16.2',
-      'version' => '1.16.2.0',
+      'pretty_version' => 'v1.16.3',
+      'version' => '1.16.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7d1ed5f856ec8b9708712e3fc0708fcabe114659',
+      'reference' => '0dbee8802e17911afbe29a8506316343829b056e',
     ),
     'laravel/serializable-closure' => 
     array (
@@ -1116,8 +1116,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0.0 || 2.0.0 || 3.0.0',
-        1 => '1.0|2.0',
+        0 => '1.0|2.0',
+        1 => '1.0.0 || 2.0.0 || 3.0.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1325,12 +1325,12 @@ private static $installed = array (
     ),
     'spatie/laravel-permission' => 
     array (
-      'pretty_version' => '5.6.0',
-      'version' => '5.6.0.0',
+      'pretty_version' => '5.7.0',
+      'version' => '5.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '76dd1533294e6a48877f17fdc2b499cff16d4661',
+      'reference' => '3a9bc00e6d338a9c61f830af654aa5c326407632',
     ),
     'stella-maris/clock' => 
     array (

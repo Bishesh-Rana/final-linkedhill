@@ -50,7 +50,8 @@
                                     <div class="selector_wrapper">
                                         <h3>Min Price</h3>
                                         <select name="start_prize" id="min_price">
-                                            <option value="" selected>Min Price</option>
+                                            <option  selected disabled>Min Price</option>
+                                            <option value="">Any</option>
                                             <option value="5000.00">Rs. 5000.00</option>
                                             <option value="10000.00">Rs. 10000.00</option>
                                             <option value="50000.00">Rs. 50000.00</option>
@@ -63,7 +64,8 @@
                                     <div class="selector_wrapper">
                                         <h3>Max Price</h3>
                                         <select name="end_prize" id="max_price">
-                                            <option value="" selected>Max Price</option>
+                                            <option selected disabled>Max Price</option>
+                                            <option value="">Any</option>
                                             <option value="1100000.00">Rs. 1100000.00</option>
                                             <option value="1500000.00">Rs. 1500000.00</option>
                                             <option value="2000000.00">Rs. 2000000.00</option>
@@ -99,23 +101,49 @@
                                 </div>
                                 <div class="advance">
                                     {{-- feature comes here --}}
+                                    @php $i = 0; @endphp
                                     @foreach($feature_values as $key=>$values)
                                         @php
                                             $name = App\Models\Feature::where('id',$key)->value('title');
                                         @endphp
+                                        @if($i < 3)
                                         <div class="col-md-12">
                                             <div id="parking" class="selector_wrapper" >
                                                 <h3>{{$name}}</h3>                                  
                                                 <div class="dynamic ">
+                                                    <div  class="selector">
+                                                        <input type='radio' name="properties[{{$key}}]" value="any" id="{{$name}}"/>
+                                                        <label for="{{$name}}"> Any</label>
+                                                    </div>
                                                 @foreach($values as $key1=>$value)
                                                 <div  class="selector">
                                                     <input type='radio' name="properties[{{$key}}]" value="{{$value}}" id="{{$name}}{{$key1}}"/>
-                                                    <label for="{{$name}}{{$key1}}"> {{$value}}</label>
+                                                    <label for="{{$name}}{{$key1}}"> {{$value}}+</label>
                                                 </div>
                                                 @endforeach 
                                                 </div> 
                                             </div>                                  
                                         </div>
+                                        @else
+                                            <div class="col-md-12">
+                                                <div id="parking" class="selector_wrapper" >
+                                                    <h3>{{$name}}</h3>                                  
+                                                    <div class="dynamic ">
+                                                        <div  class="selector">
+                                                            <input type='radio' name="properties[{{$key}}]" value="any" id="{{$name}}"/>
+                                                            <label for="{{$name}}">Any</label>
+                                                        </div>
+                                                    @foreach($values as $key1=>$value)
+                                                    <div  class="selector">
+                                                        <input type='radio' name="properties[{{$key}}]" value="{{$value}}" id="{{$name}}{{$key1}}"/>
+                                                        <label for="{{$name}}{{$key1}}"> {{$value}}</label>
+                                                    </div>
+                                                    @endforeach 
+                                                    </div> 
+                                                </div>                                  
+                                            </div>
+                                        @endif
+                                        @php $i += 1; @endphp
                                     @endforeach
                                 </div>
                                 <div class="col-md-12">

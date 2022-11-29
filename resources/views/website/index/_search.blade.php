@@ -1,7 +1,9 @@
 <div class="linked_hill_search_wrapper">
+    
     <div class="container">
         <form class="searchProperty" method="get" action="{{ route('front.search-properties') }}">
         <div class="row">
+          
             <div class="col-lg-12">
                 <div class="linked_hill_flex_wrap">
                     <div class="linked_hill_search_top ">
@@ -12,6 +14,7 @@
                                 <label for="purpose{{$key}}">{{ $type->name }}</label>
                             </li>
                              @endforeach
+                           
                         </ul>
                     </div>
                     <div class="linked_hill_search_area d-flex">
@@ -41,11 +44,11 @@
                             <p>Property Type<i class="las la-angle-down"></i></p>
                                 <div class="option_listing_dropDown child_dropdown">
                                     @foreach ($propertyCat as $propertyC)
-                                        <div class="list_group_category">
+                                        <div class="list_group_category"> 
                                             <input class="form-check-input front-category category" id="category" data-element="#advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
                                             <label class="form-check-label" for="initial{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                         </div>
-                                    @endforeach
+                                    @endforeach 
                                 </div>
                             </div>
                         </div>
@@ -57,14 +60,17 @@
                                 <select name="properties[{{$key}}]" id="start_prize">
                                     @php $name = App\Models\Feature::where('id',$key)->value('title'); @endphp
                                     <option selected disabled> {{$name}}</option>
+                                    <option value="any">Any</option>
                                     @foreach($values as $value)
-                                        <option value="{{$value}}">{{$value}}</option>
+                                        <option value="{{$value}}">{{$value}}+</option>
                                     @endforeach
                                     @php $i = $i + 1; @endphp
                                 </select>
                                 </div>
                                 @endif
                                 @endforeach
+                                
+                            
                             {{-- @php $i=1 @endphp
                             @foreach($feature_values as $key=>$values)
                                 @if($i<=3)
@@ -83,7 +89,8 @@
                         </div>
                         <div class="option_a1">
                             <select name="start_prize" id="start_prize">
-                                <option selected value=''>Min Price</option>
+                                <option selected disabled>Min Price</option>
+                                <option value="">Any</option>
                                 <option value="5000.00">Rs. 5000.00</option>
                                 <option value="10000.00">Rs. 10000.00</option>
                                 <option value="50000.00">Rs. 50000.00</option>
@@ -93,7 +100,8 @@
                         </div>
                         <div class="option_a1">
                             <select name="end_prize" id="end_prize">
-                                <option selected value="">Max Price</option>
+                                <option selected disabled>Max Price</option>
+                                <option value="">Any</option>
                                 <option value="1100000.00">Rs. 1100000.00</option>
                                 <option value="1500000.00">Rs. 1500000.00</option>
                                 <option value="2000000.00">Rs. 2000000.00</option>
@@ -110,12 +118,15 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <?php
                             $name='';
                         ?>
+                       
                         <div class="option_a1  advance-search">
                             <p data-bs-toggle="modal" data-bs-target="#advanceSearch">Advance Search</p>
                         </div>
+                        
                         <div class="surround_search">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
@@ -129,11 +140,13 @@
                 <div class="linked_hill_button_wraper">
                     <p class="click" id="click">More Search </p>
                 </div>
+                
             </div>
         </div>
     </form>
     </div>
 </div>
+
 @push('scripts')
 <script>
      $(document).ready(function() {
@@ -169,7 +182,11 @@
                     error: function(response) {
                     }
                 });
+               
         });
+        
      });
+
+    
 </script>
 @endpush

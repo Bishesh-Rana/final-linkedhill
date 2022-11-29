@@ -1,6 +1,6 @@
 <div class="replace d-flex">
     @php
-        $i = 1;
+        $i = 0;
     @endphp
     @foreach($feature_values as $key=>$values)
         @php
@@ -9,6 +9,7 @@
         <div class="option_a1">
             <select name="properties[{{$key}}]">
                 <option data-element="0bed" selected disabled>{{$name}}</option>
+                <option value="any">Any</option>
                     @foreach($values as $value)
                         <option data-element="1bed" value="{{$value}}">{{$value}}+</option>
                     @endforeach
