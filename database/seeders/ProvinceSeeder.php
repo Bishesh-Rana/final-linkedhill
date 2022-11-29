@@ -21,7 +21,7 @@ class ProvinceSeeder extends Seeder
                 'np_name' => 'रदेश नं १',
             ],
             [
-                'eng_name' => 'Province No. 2',
+                'eng_name' => 'Madhesh',
                 'np_name' => ' प्रदेश नं २',
             ],
             [
@@ -33,7 +33,7 @@ class ProvinceSeeder extends Seeder
                 'np_name' => 'गण्डकी प्रदेश',
             ],
             [
-                'eng_name' => 'Province No. 5',
+                'eng_name' => 'Lumbini',
                 'np_name' => ' प्रदेश नं ५',
             ],
             [

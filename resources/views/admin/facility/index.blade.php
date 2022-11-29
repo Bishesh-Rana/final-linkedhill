@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-md-5">
 
-
                 <div class="card">
                     <div class="card-header card-header-tabs" data-background-color="red">
                         <div class="nav-tabs-navigation">
@@ -80,36 +79,31 @@
                     </div>
 
                     <div class="card-content">
-
                         <div class="tab-content">
-
                             <div class="tab-pane active" id="panel1">
 
                                 <div class="material-datatables">
-                                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                        <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Facility</th>
+                                    <ol class="sortable">
+                                        @foreach ($facilities as $key => $value)
+                                            <li id="facilityItem_{{ $value->id }}">
+                                                <div>
+                                                    <td>{{ $value->title }}</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$value->id}}" data-placement="top" title="Edit Facility"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
+                                                    </td>
 
-                                            <th class="disabled-sorting text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        @foreach($facilities as $facility)
-                                            <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$facility->title}}</td>
-                                                <td class="text-right">
-                                                    <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$facility->id}}" data-placement="top" title="Edit Facility"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    <button onclick="deleteCity({{$facility->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
-                                                </td>
-                                            </tr>
+                                                </div>
+                                            </li>
                                         @endforeach
-
-                                        </tbody>
-                                    </table>
+                                    </ol>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
+                                            class="fa fa-save"></i>
+                                        Update Facility
+                                    </button>
+                                </div>
                                 </div>
 
                             </div>
@@ -229,5 +223,47 @@
     }
 
 </script>
+<script src="{{ asset('dashboard/plugins/sortablejs/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('dashboard/plugins/sortablejs/jquery.mjs.nestedSortable.js') }}"></script>
+<script src="{{ asset('dashboard/plugins/toastrjs/toastr.min.js') }}"></script>
+    <script>
+        $('.sortable').nestedSortable({
+            handle: 'div',
+            items: 'li',
+            toleranceElement: '> div',
+            maxLevels: 2,
+        });
+        $("#serialize").click(function(e) {
+            e.preventDefault();
+            $(this).prop("disabled", true);
+            $(this).html(
+                `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Updating...`
+            );
+            var serialized = $('ol.sortable').nestedSortable('serialize');
+            //console.log(serialized);
+            $.ajax({
+                url: "{{ route('update.facility') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    sort: serialized
+                },
+                success: function(res) {
+                    //location.reload();
+                    toastr.options.closeButton = true
+                    toastr.success('Purpose Order Successfuly', "Success !");
+                    $('#serialize').prop("disabled", false);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                }
+            });
+        });
+
+        function show_alert() {
+            if (!confirm("Do you really want to do this?")) {
+                return false;
+            }
+            this.form.submit();
+        }
+    </script>
 
 @endpush

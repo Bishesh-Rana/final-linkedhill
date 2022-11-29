@@ -3,7 +3,6 @@
 @section('content')
 <div class="container-fluid">
 
-    {{-- @if (auth()->user()->isSuperAdmin()) --}}
     @can('property-list')
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">

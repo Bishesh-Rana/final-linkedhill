@@ -76,6 +76,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('property-image/delete/{id}', [PropertyController::class, 'delete_image']);
     Route::post('update-menu/property', [MenuController::class, 'updateMenuOrder'])->name('update.menu');
     Route::post('update-purpose/property', [PurposeController::class, 'updatePurposeOrder'])->name('update.purpose');
+    Route::post('update-feature/property', [FeatureController::class, 'updateFeatureOrder'])->name('update.feature');
+    Route::post('update-facility/property', [FacilityController::class, 'updateFacilityOrder'])->name('update.facility');
     Route::post('update-faq', [FaqController::class, 'updateFaq'])->name('update.faq');
     Route::post('update-blog', [BlogController::class, 'updateBlog'])->name('update.blog');
     Route::post('update-unit', [UnitController::class, 'updateUnit'])->name('update.unit');

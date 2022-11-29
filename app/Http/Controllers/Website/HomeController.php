@@ -43,6 +43,7 @@ class HomeController extends Controller
         $this->website['properties'] = Property::where(['status' => 1, 'feature' => 1])->latest()->limit(6)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
+        $this->website['all_cities'] = City::get();
         $this->website['trending_properties'] = Property::where(['status' => 1, 'feature' => 1, 'hasAgent' => 1])->orderBy('view_count', 'desc')->limit(6)->get();
         $this->website['premium_properties'] =  Property::where(['status' => 1, 'feature' => 1, 'premium_property' => 1, 'hasAgent' => 1])->latest()->limit(6)->get();
         $this->website['sliders'] = Slider::orderBy('order', 'asc')->where('hide', 1)->get();
@@ -54,22 +55,20 @@ class HomeController extends Controller
         $this->website['services'] = Service::latest()->limit(8)->get();
         $this->website['provinces'] = Province::all();
         $this->website['purposes'] = Purpose::orderBy('order')->get();
-        $this->website['facilities'] = Facility::all();
+        $this->website['facilities'] = Facility::orderBy('order')->get();
 
 
         $this->website['property'] = Property::all();
-        // $this->website['features'] = Property::all();
-
 
         $this->website['propertyCat'] = PropertyCategory::orderBy('order')->get();
-
-        // $this->website['Website'] = Website::all();
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');
         $category = PropertyCategory::findOrFail($id);
         $all_feature = $category->features->where('showOnFilter',1);
-        foreach($all_feature as $key=> $feature){
+        $all_feature = collect($all_feature);
+        $all_feature = $all_feature->sortBy('position');
+         foreach($all_feature as $key=> $feature){
             array_push($features,$feature);
         }
 

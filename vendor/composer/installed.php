@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd5e0e4938f02177d3d3c5dee3c69431718e1b64b',
+    'reference' => '2e0fe2dc7b4e051348047b6ec0cb1b20e55bcce5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -501,6 +501,15 @@
         0 => '*',
       ),
     ),
+    'kyslik/column-sortable' => 
+    array (
+      'pretty_version' => '6.4.2',
+      'version' => '6.4.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '91792a166dd02aaaeb7928417bb49d808b0c58ea',
+    ),
     'laravel/fortify' => 
     array (
       'pretty_version' => 'v1.13.7',
@@ -526,7 +535,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd5e0e4938f02177d3d3c5dee3c69431718e1b64b',
+      'reference' => '2e0fe2dc7b4e051348047b6ec0cb1b20e55bcce5',
     ),
     'laravel/passport' => 
     array (
@@ -1092,8 +1101,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 
