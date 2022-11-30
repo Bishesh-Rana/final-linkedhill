@@ -10,7 +10,6 @@
                             <label for="purpose{{ $key }}">{{ $type->name }}</label>
                         </li>
                     @endforeach
-
                 </ul>
             </div>
             <div class="linked_hill_search_area d-flex">
