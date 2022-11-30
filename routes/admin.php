@@ -40,6 +40,7 @@ use App\Http\Controllers\Property\PropertyController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\AdvertisementController;
+use App\Http\Controllers\Admin\FavoritePropertyController;
 use App\Http\Controllers\Property\PropertyFaqController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\PropertyCategoryController;
@@ -68,6 +69,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('purchased-property', [AdminController::class, 'purchasedProperty'])->name('purchasedPrroperty');
     Route::get('profile/{id}', [AdminController::class, 'profile'])->name('profile');
+    Route::get('favorite-property', [FavoritePropertyController::class, 'index'])->name('favorite.index');
+    
     Route::post('update-profile/{id}', [AdminController::class, 'updateProfile'])->name('update');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::delete('/deletePropertyImage/{id}', [PropertyController::class, 'deletePropertyImage'])->name('delete-property-image');

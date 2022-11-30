@@ -33,10 +33,18 @@
 
             <li class="{{ Request::routeIs('profile') ? 'active' : '' }}">
                 <a href="{{ route('profile',auth()->user()->id) }}">
-                    <i class="material-icons">Profile</i>
+                    <i class="material-icons">profile</i>
                     <p>Profile</p>
                 </a>
             </li>
+            @if(auth()->user()->hasRole('Customer'))
+            <li class="{{ Request::routeIs('favorite.index') ? 'active' : '' }}">
+                <a href="{{ route('favorite.index') }}">
+                    <i class="material-icons">property</i>
+                    <p>Favorite Property</p>
+                </a>
+            </li>
+            @endif
 
             @foreach ($sidebars as $key => $sidebar)
                 @canany($sidebar['permission'])
