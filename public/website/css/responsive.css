@@ -510,6 +510,10 @@
     }
 }
 
+
+
+
+
 @media screen and (max-width: 767px) {
     .ribbon_menu>a {
         padding: 0;
@@ -757,7 +761,51 @@
     .replace {
         width: 100%;
     }
+    .modal-dialog-centered{
+        align-items: flex-start;
+    }
+    .purpose_wrapper{
+        margin-top:0;
+        padding-top:0;
+        border-top:none;
+    }
+    .linked_hill_search_wrapper{
+        margin-left:20px;
+        margin-right:20px;
+    }
+    .categoryselector {
+        display: flex;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    .selector_wrapper .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .selector_wrapper .col-md-6 {
+        width: 50%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #advanceSearch .modal-body{
+        padding:20px;
+    }
+    #advanceSearch .modal-header{
+        padding:10px 20px;
+    }
+    .list_group_facilities {
+        display: flex;
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
 }
+
+
+
+
 
 @media(max-width:575px) {
     .header_ribbon {

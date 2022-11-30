@@ -5207,7 +5207,7 @@ section#property_character_list {
     padding: 10px 4px;
     border: 1px solid #dddddd;
     border-radius: 3px;
-    height: 44px;
+    height: 40px;
     font-size: 13px;
 }
 
@@ -5874,12 +5874,19 @@ object-position: center;
 	transition-delay: .15s !important;
 }
 
-.landarea input{padding: 10px;border: none;width: 100%;border: 1px solid #e3dede;border-radius: 3px;}
+.landarea input{
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border: 1px solid #e3dede;
+    border-radius: 3px;
+    height:40px;
+}
 .landarea {
     position: relative;
 }
 
-.areaunit{
+/* .areaunit{
     position: absolute;
     right: 1px;
     width: 50% !important;
@@ -5887,7 +5894,7 @@ object-position: center;
     top: 21px;
     border-bottom-right-radius: 7px;
     border-top-right-radius: 7px;
-}
+} */
 
 .landarea  input::-webkit-outer-spin-button,
 .landarea  input::-webkit-inner-spin-button {
