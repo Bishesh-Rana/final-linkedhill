@@ -43,6 +43,11 @@ class HomeController extends Controller
         $this->website['properties'] = Property::where(['status' => 1, 'feature' => 1])->latest()->limit(6)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
+
+        $this->website['addresses'] = City::join('properties','properties.city_id','=','cities.id')
+        ->select('cities.name','properties.property_address')
+        ->get();
+        dd($this->website);
         $this->website['all_cities'] = City::get();
         $this->website['trending_properties'] = Property::where(['status' => 1, 'feature' => 1, 'hasAgent' => 1])->orderBy('view_count', 'desc')->limit(6)->get();
         $this->website['premium_properties'] =  Property::where(['status' => 1, 'feature' => 1, 'premium_property' => 1, 'hasAgent' => 1])->latest()->limit(6)->get();

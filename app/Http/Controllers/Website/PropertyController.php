@@ -42,7 +42,7 @@ class PropertyController extends Controller
     public function search(Request $request)
     {
         $filter = $request->all();
-        $properties =  Property::filter() 
+        $properties =  Property::filter()->where('status',1) 
         ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                     if($value == 'any'){
