@@ -16,9 +16,10 @@ class UserRegistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    protected $otp;
+    public function __construct($otp)
     {
-        //
+        $this->otp = $otp;
     }
 
     /**
@@ -28,6 +29,7 @@ class UserRegistrationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user_registration_mail');
+        $otp = $this->otp;
+        return $this->markdown('emails.user_registration_mail',compact('otp'));
     }
 }

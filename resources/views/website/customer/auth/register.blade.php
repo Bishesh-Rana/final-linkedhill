@@ -108,21 +108,6 @@
                    
                 </div>
 
-             
-
-                {{-- <div class="col-lg-4">
-                    <div class="user_notice_wrapper">
-                        <h3>{{ $website->login_title }}</h3>
-                        <p>{{ $website->login_sub_title }}</p>
-
-                        <ul class="list_info">
-                            <li><i class="las la-home"></i><span>{{ $website->second_login_sub_title }}</span></li>
-                            <li><i class="las la-user-friends"></i><span>{{ $website->third_login_sub_title }}</span></li>
-                            <li><i class="las la-city"></i><span>{{ $website->four_login_sub_title }}</span></li>
-                        </ul>
-                    </div>
-                </div> --}}
-
             </div>
         </div>
     </section>

@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Models\City;
 use App\Models\Menu;
+use App\Models\Unit;
 use App\Models\User;
 use App\Models\Feature;
 use App\Models\Purpose;
 use App\Models\Facility;
 use App\Models\Property;
 use App\Traits\CommonTrait;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
 use App\Models\PropertyCategory;
 use App\Models\PropertyFacility;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
 
 class PropertyController extends Controller
 {
@@ -42,7 +43,7 @@ class PropertyController extends Controller
     public function search(Request $request)
     {
         $filter = $request->all();
-        $properties =  Property::filter() 
+        $properties =  Property::filter()->where('status',1) 
         ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                     if($value == 'any'){
@@ -61,7 +62,23 @@ class PropertyController extends Controller
                     
             }                     
         })
-        ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address'))) 
+        // ->when(request('property_address'), fn ($query) => $query->where('property_address', '=', request('property_address')))
+        ->when(request('property_address'), function($query,$var){
+            $cities = City::get();
+            $cities_name = [];
+            foreach($cities as $city){
+                array_push($cities_name,$city->name);
+            }
+            foreach($var as $v){
+                if(in_array($v,$cities_name)){
+                    $city_id = City::where('name',$v)->value('id');
+                    $query->where('city_id','=',$city_id);
+                }else{
+                    $query->where('property_address','=',$v);
+                }
+            }
+            
+        }) 
         ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
         ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
         ->when(request('facing'), fn ($query) => $query->where('property_facing', '=', request('facing')))
@@ -126,6 +143,18 @@ class PropertyController extends Controller
         $all_feature = $category->features->where('showOnFilter',1);
         $all_feature = collect($all_feature);
         $all_feature = $all_feature->sortBy('position');
+
+        $addresses = [];
+        
+        $all_cities = City::get();
+        foreach($all_cities as $city){
+            array_push($addresses,$city->name);
+        }
+        $all_properties = Property::get();
+        foreach($all_properties as $property){
+            array_push($addresses,$property->property_address);
+        }
+        $addresses = array_unique($addresses);
         // dd($all_feature);
         foreach($all_feature as $key=> $feature){
             array_push($features,$feature);
@@ -140,7 +169,7 @@ class PropertyController extends Controller
             $feature_values[$feature->id]=$values;
        }
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('facilities','pagedata', 'units','meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
+        return view('website.pages.propertylist', compact('addresses','facilities','pagedata', 'units','meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])
