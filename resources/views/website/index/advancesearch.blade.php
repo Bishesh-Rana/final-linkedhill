@@ -89,7 +89,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @php $i = 0; @endphp
+                                        <div class="advance">
+                                            @php $i = 0; @endphp
                                         @foreach ($feature_values as $key => $values)
                                             @php
                                                 $name = App\Models\Feature::where('id', $key)->value('title');
@@ -100,9 +101,7 @@
                                                     <div id="parking">
                                                         <div class="dynamic ">
                                                             <div class="selector">
-                                                                <input type='radio'
-                                                                    name="properties[{{ $key }}]"
-                                                                    value="any" id="{{ $name }}" />
+                                                                <input type='radio' name="properties[{{ $key }}]" value="any" id="{{ $name }}" />
                                                                 <label for="{{ $name }}"> Any</label>
                                                             </div>
                                                             @foreach ($values as $key1 => $value)
@@ -135,6 +134,7 @@
                                             @endif
                                             @php $i += 1; @endphp
                                         @endforeach
+                                        </div>
                                         <div class="selector_wrapper">
                                             <h3>Common Facilities</h3>
                                             <div class="d-flex">
@@ -225,9 +225,12 @@
                         })
                     }
                 }
-                $.ajax({
+                if(category_ids.length == 0){
+                    category_ids[0] = 9;
+                    $.ajax({
                     url: "{{ route('advanceFilter') }}",
                     type: 'get',
+
                     data: {
                         category_ids: category_ids,
                     },
@@ -237,6 +240,27 @@
                     },
                     error: function(response) {}
                 });
+                category_ids = [;]
+
+                }
+                else{
+                    $.ajax({
+                    url: "{{ route('advanceFilter') }}",
+                    type: 'get',
+
+                    data: {
+                        category_ids: category_ids,
+                    },
+                    success: function(response) {
+                        $(".advance").replaceWith(response);
+
+                    },
+                    error: function(response) {}
+                });
+
+                }
+
+
             });
         });
     </script>

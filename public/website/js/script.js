@@ -511,12 +511,12 @@ $(document).ready(function(){
     $('.sorting').on('change', function(){
         var sort = this.value;
         var $wrapper = $('.property_pc_cover');
-        if( sort == 'pricelth'){
+        if( sort == 'low'){
             $('.property_detail_').sort(function(a, b) {
                 // $wrapper.find('.property_detail_').sort(function(a, b) {
                     return +a.dataset.orderprice - +b.dataset.orderprice;
                 }).appendTo($wrapper);
-        } else if(sort == 'pricehtl'){
+        } else if(sort == 'high'){
             $('.property_detail_').sort(function(a, b) {
                     return +b.dataset.orderprice - +a.dataset.orderprice  ;
                 }).appendTo($wrapper);
