@@ -32,7 +32,7 @@ class PropertyController extends CommonController
      */
     public function index()
     {
-        $properties = Property::sortable()->paginate(15);
+        $properties = Property::get();
         return view('admin.property.index',compact('properties'));
     }
 

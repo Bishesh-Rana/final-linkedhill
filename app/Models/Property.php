@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kyslik\ColumnSortable\Sortable;
 
 
 class Property extends Model
@@ -13,7 +12,6 @@ class Property extends Model
     use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    use Sortable;
     
 
 
@@ -32,7 +30,6 @@ class Property extends Model
         'verified_by', 'verified_at', 'hasAgent'
 
     ];
-    public $sortable = ['id', 'title', 'created_at', 'updated_at'];
 
     protected $casts = [
         'feature' => 'boolean',
