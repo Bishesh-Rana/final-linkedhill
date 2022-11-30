@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2e0fe2dc7b4e051348047b6ec0cb1b20e55bcce5',
+    'reference' => '1c735b2b728f254f554bb5effb788c882005800c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -525,15 +525,6 @@ private static $installed = array (
         0 => '*',
       ),
     ),
-    'kyslik/column-sortable' => 
-    array (
-      'pretty_version' => '6.4.2',
-      'version' => '6.4.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '91792a166dd02aaaeb7928417bb49d808b0c58ea',
-    ),
     'laravel/fortify' => 
     array (
       'pretty_version' => 'v1.13.7',
@@ -559,7 +550,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2e0fe2dc7b4e051348047b6ec0cb1b20e55bcce5',
+      'reference' => '1c735b2b728f254f554bb5effb788c882005800c',
     ),
     'laravel/passport' => 
     array (

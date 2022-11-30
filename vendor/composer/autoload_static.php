@@ -167,10 +167,6 @@ class ComposerStaticInit8e6b8965ede10a49f37c0449a18e16c0
             'Laravel\\Passport\\' => 17,
             'Laravel\\Fortify\\' => 16,
         ),
-        'K' => 
-        array (
-            'Kyslik\\ColumnSortable\\' => 22,
-        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
@@ -561,10 +557,6 @@ class ComposerStaticInit8e6b8965ede10a49f37c0449a18e16c0
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
         ),
-        'Kyslik\\ColumnSortable\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable',
-        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -760,6 +752,7 @@ class ComposerStaticInit8e6b8965ede10a49f37c0449a18e16c0
         'App\\Http\\Controllers\\Admin\\CommonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CommonController.php',
         'App\\Http\\Controllers\\Admin\\FacilityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FacilityController.php',
         'App\\Http\\Controllers\\Admin\\FaqController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FaqController.php',
+        'App\\Http\\Controllers\\Admin\\FavoritePropertyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FavoritePropertyController.php',
         'App\\Http\\Controllers\\Admin\\FeatureController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FeatureController.php',
         'App\\Http\\Controllers\\Admin\\MenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MenuController.php',
         'App\\Http\\Controllers\\Admin\\NewsCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewsCategoryController.php',
@@ -3760,10 +3753,6 @@ class ComposerStaticInit8e6b8965ede10a49f37c0449a18e16c0
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'Kyslik\\ColumnSortable\\ColumnSortableServiceProvider' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/ColumnSortableServiceProvider.php',
-        'Kyslik\\ColumnSortable\\Exceptions\\ColumnSortableException' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/Exceptions/ColumnSortableException.php',
-        'Kyslik\\ColumnSortable\\Sortable' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/Sortable.php',
-        'Kyslik\\ColumnSortable\\SortableLink' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/SortableLink.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',
         'Laravel\\Fortify\\Actions\\ConfirmPassword' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/ConfirmPassword.php',
