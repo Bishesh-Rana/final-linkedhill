@@ -75,7 +75,7 @@
                                                         <option value="1500000.00">Rs. 1500000.00</option>
                                                         <option value="2000000.00">Rs. 2000000.00</option>
                                                         <option value="5000000.00">Rs. 5000000.00</option>
-                                                        </select>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,16 +100,12 @@
                                                     <h3>{{ $name }}</h3>
                                                     <div id="parking">
                                                         <div class="dynamic ">
-                                                            <div class="selector">
-                                                                <input type='radio' name="properties[{{ $key }}]" value="any" id="{{ $name }}" />
-                                                                <label for="{{ $name }}"> Any</label>
-                                                            </div>
-                                                            @foreach ($values as $key1 => $value)
-                                                                <div class="selector">
-                                                                    <input type='radio' name="properties[{{ $key }}]" value="{{ $value }}" id="{{ $name }}{{ $key1 }}" />
-                                                                    <label for="{{ $name }}{{ $key1 }}"> {{ $value }}+</label>
-                                                                </div>
-                                                            @endforeach
+                                                            <select name="properties[{{ $key }}]">
+                                                                <option value="any">Any</option>
+                                                                @foreach ($values as $key1 => $value)
+                                                                <option value="{{ $value }}">{{ $value }}+ </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -118,16 +114,12 @@
                                                     <div id="parking">
                                                         <h3>{{ $name }}</h3>
                                                         <div class="dynamic ">
-                                                            <div class="selector">
-                                                                <input type='radio' name="properties[{{ $key }}]" value="any" id="{{ $name }}" />
-                                                                <label for="{{ $name }}">Any</label>
-                                                            </div>
-                                                            @foreach ($values as $key1 => $value)
-                                                                <div class="selector">
-                                                                    <input type='radio' name="properties[{{ $key }}]" value="{{ $value }}" id="{{ $name }}{{ $key1 }}" />
-                                                                    <label for="{{ $name }}{{ $key1 }}">{{ $value }}</label>
-                                                                </div>
-                                                            @endforeach
+                                                            <select name="properties[{{ $key }}]">
+                                                                <option value="any">Any</option>
+                                                                @foreach ($values as $key1 => $value)
+                                                                <option value="{{ $value }}">{{ $value }}+ </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -137,57 +129,38 @@
                                         </div>
                                         <div class="selector_wrapper">
                                             <h3>Common Facilities</h3>
-                                            <div class="d-flex">
-                                                <div class="list_group_facilities">
-                                                    @foreach ($facilities as $key => $facility)
-                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
-                                                        <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
-                                                    @endforeach
-                                                </div>
-                                            </div>
+                                            <select class="multiple-facility" name="facility[]" multiple="multiple">
+                                                @foreach ($facilities as $key => $facility)
+                                                <option value="{{ $facility->title }}">{{ $facility->title }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="selector_wrapper">
-                                            <h3>Property Facing</h3>
-                                            <input type='radio' name="facing" selected value=""
-                                                id="AnyFacing" />
-                                            <label for="AnyFacing">Any</label>
-                                            <input type='radio' name="facing" value="East"
-                                                id="East" />
-                                            <label for="East">East</label>
-                                            <input type='radio' name="facing" value="West"
-                                                id="West" />
-                                            <label for="West">West</label>
-                                            <input type='radio' name="facing" value="North"
-                                                id="North" />
-                                            <label for="North">North</label>
-                                            <input type='radio' name="facing" value="North-East"
-                                                id="North-East" />
-                                            <label for="North-East">North-East</label>
-                                            <input type='radio' name="facing" value="North-West"
-                                                id="North-West" />
-                                            <label for="North-West">North-West</label>
-                                            <input type='radio' name="facing" value="South-East"
-                                                id="South-East" />
-                                            <label for="South-East">South-East</label>
-                                            <input type='radio' name="facing" value="South-West"
-                                                id="South-West" />
-                                            <label for="South-West">South-West</label>
-
-                                        </div>
-                                        <div class="selector_wrapper listedby">
-                                            <h3>Listed By</h3>
-                                            <input type='radio' name="listingby" selected value=""
-                                                id="AnyLister" />
-                                            <label for="AnyLister">Any</label>
-                                            <input type='radio' name="listingby" value="Owner"
-                                                id="Owner" />
-                                            <label for="Owner">Owner</label>
-                                            <input type='radio' name="listingby" value="Builder"
-                                                id="Builder" />
-                                            <label for="Builder">Builder</label>
-                                            <input type='radio' name="listingby" value="Agent"
-                                                id="Agent" />
-                                            <label for="Agent">Agent</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h3>Property Facing</h3>
+                                                    <select name="facing">
+                                                        <option value="">Any</option>
+                                                        <option value="East">East</option>
+                                                        <option value="South">South</option>
+                                                        <option value="West">West</option>
+                                                        <option value="North">North</option>
+                                                        <option value="North-East">North-East</option>
+                                                        <option value="North-West">North-West</option>
+                                                        <option value="South-East">South-East</option>
+                                                        <option value="South-West">South-West</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h3>Listed By</h3>
+                                                    <select name="listingby" id="">
+                                                        <option value="">Any</option>
+                                                        <option value="Owner">Owner</option>
+                                                        <option value="Builder">Builder</option>
+                                                        <option value="Agent">Agent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,6 +181,11 @@
 
 @push('scripts')
     <script>
+        
+        $(document).ready(function() {
+            $('.multiple-facility').select2();
+        });
+
         $(document).ready(function() {
             var category_ids = [];
             $('.filter').on('change', function() {

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="tab-content text-center property-description">
+                    <div class="tab-content property-description">
                         @foreach ($property_categories as $key => $property_category)
                             <div class="tab-pane {{ $property->category_id == $property_category->id ? 'active' : null }}"id="{{ $property_category->id . 'home' }}">
                                <div class="row g-3">
@@ -35,23 +35,19 @@
                                 <div class="col-md-12"> 
                                     <div style="border: 1px solid black">
                                         @if(!$feat->value->isEmpty())
-                                        <p class="label-style text-capitalize">
+                                        <p style="padding:3px 3px 0px 10px;" class="label-style text-capitalize">
                                             {{ $feat->title }}
                                         </p>
-                                           <div style="padding:2px 10px;display:flex;">
-                                            {{-- @dd($feat->value); --}}
-                                            
-                                               @foreach($feat->value as $val)
-    
-                                               {{-- @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp --}}
-                                               <div style="margin-right: 10px" class="">
-                                                   <label for="featureid{{ $feat->id }}{{$val->value}}">{{$val->value}}</label>
-                                                   <input type="radio" value='{{$val->value}}' id="featureid{{ $feat->id }}{{$val->value}}" name="features[{{ $feat->id }}]" 
-                                                   @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp/>
-                                                   
-                                               </div>
+                                        <div style="padding:2px 10px;display:flex;">                                            
+                                            @foreach($feat->value as $val)
+                                            <div style="margin-right: 10px" class="">
+                                                
+                                                <label for="featureid{{ $feat->id }}{{$val->value}}">{{$val->value}}</label>
+                                                <input type="radio" value='{{$val->value}}' id="featureid{{ $feat->id }}{{$val->value}}" name="features[{{ $feat->id }}]" 
+                                                @php foreach($property->features as $feature){ if($feature->pivot->feature_id == $feat->id ){if($feature->pivot->value == $val->value){echo "checked";}}}  @endphp/>
+                                            </div>
                                            @endforeach
-                                           </div>
+                                        </div>
                                         @else
                                             <x-property label="{{ $feat->title }}" type="{{ $feat->parsed_type }}"
                                                 id="{{ $feat->id }}"

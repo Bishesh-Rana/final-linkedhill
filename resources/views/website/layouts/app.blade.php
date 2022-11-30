@@ -361,6 +361,13 @@
         });
     </script>
     <script>
+        $(document).ready(function() {
+            $('.multiple-facility').select2({
+                placeholder: "Facilities",
+            });
+        });
+    </script>
+    <script>
     </script>
 
 

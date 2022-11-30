@@ -5281,6 +5281,11 @@ section#property_character_list {
         padding-top: 20px;
         border-top: 1px solid #e5e5e5;
     }
+    .selector_wrapper {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e5e5;
+    }
     .linked_hill_search_area .multiple_select2option {
         border: 1px solid #e5e5e5;
     }

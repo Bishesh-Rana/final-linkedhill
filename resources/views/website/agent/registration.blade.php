@@ -222,7 +222,7 @@
                                 </form>
                             </div>
                             <div class="mt-3 text-center">
-                                <p>Already Registred?? <a class="btn btn-success ms-2" href="{{route('agent.getLogin')}}">Login</a></p>
+                                <p>Already Registered?? <a class="btn btn-success ms-2" href="{{route('agent.getLogin')}}">Login</a></p>
                             </div>
                         </div>
 

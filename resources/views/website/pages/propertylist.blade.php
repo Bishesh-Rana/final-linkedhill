@@ -82,7 +82,6 @@
                             </select>
                         </div>
                     </div>
-
                 </div>
                 <div class="second-row">
                     <div class="option_1 multi_select_dropdown">
