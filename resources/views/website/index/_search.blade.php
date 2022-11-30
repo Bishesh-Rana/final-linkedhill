@@ -18,13 +18,13 @@
                 <div class="multiple_select2option">
                     <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple"
                         value="{{ $type->property_address }}">
-                        @foreach ($property as $type)
-                            @if ($name == $type->property_address)
+                        @foreach ($addresses as $type)
+                            @if ($name == $type)
                                 continue;
                             @else
-                                <option>{{ $type->property_address }}</option>
+                                <option>{{ $type }}</option>
                                 <?php
-                                $name = $type->property_address;
+                                $name = $type;
                                 ?>
                             @endif
                         @endforeach
