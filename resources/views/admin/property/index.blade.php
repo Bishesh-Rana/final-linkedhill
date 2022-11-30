@@ -74,14 +74,14 @@
                                         @foreach ($properties as $key => $value)
                                             <li id="propertyItem_{{ $value->id }}">
                                                 <div>
-                                                    <td>{{ $value->title }}</td>
-                                                    <td><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></td>
-                                                    <td><a href="{{route('property-faqs', $value->id)}}">FAQ</a></td>
-                                                    <td>
-                                                        <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
-                                                    </td>
-
+                                                        <td>{{ $value->title }}</td>
+                                                        <td><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></td>                                                    @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
+                                                        @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))<td><a href="{{route('toggleStatus', $value->id)}}">{{$a}}</a></td>@endif
+                                                        <td><a href="{{route('property-faqs', $value->id)}}">FAQ</a></td>
+                                                        <td>
+                                                            <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                            <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
+                                                        </td>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -133,7 +133,7 @@
         }).then(function () {
 
             $.ajax({
-                url:'{!!URL::to('admin/purpose/')!!}' + '/' + id,
+                url:'{!!URL::to('admin/properties/')!!}' + '/' + id,
                 type : "POST",
                 data : {'_method' : 'DELETE', '_token' : csrf_token},
 

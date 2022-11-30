@@ -64,7 +64,8 @@ class CustomerAuthController extends Controller
                 'name'              => $customer->name,
                 'otp'              => $customer->otp,
             ];
-            Mail::to($request->email)->send(new UserRegistrationMail());
+            $otp = $customer->otp;
+            Mail::to($request->email)->send(new UserRegistrationMail($otp));
             $message = "Your OTP for ".config('app.name')." Customer Registration is :".$customer->otp;
             $this->sendSMS($request->mobile,$customer->name,$message);
             \DB::commit();
@@ -103,6 +104,7 @@ class CustomerAuthController extends Controller
         ]);
         $message = "Your OTP for ".config('app.name')." Customer Registration is :".$otp;
         $this->sendSMS($customer->mobile,$customer->name,$message);
+        Mail::to($customer->email)->send(new UserRegistrationMail($otp));
         return view('website.customer.auth.verifyOtp',compact('customer'));
     }
 

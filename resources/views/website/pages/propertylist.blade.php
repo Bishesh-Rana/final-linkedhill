@@ -42,14 +42,14 @@
                                 <?php $name = '';
                                 ?>
                                 <div class="multiple_select2option">
-                                    <select class="js-example-basic-multiple" name="property_address" multiple="multiple">
-                                        @foreach ($property as $type)
-                                            @if ($name == $type->property_address)
+                                    <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple">
+                                        @foreach ($addresses as $type)
+                                            @if ($name == $type)
                                                 continue;
                                             @else
-                                                <option>{{ $type->property_address }}</option>
+                                                <option>{{ $type }}</option>
                                                 <?php
-                                                $name = $type->property_address;
+                                                $name = $type;
                                                 ?>
                                             @endif
                                         @endforeach

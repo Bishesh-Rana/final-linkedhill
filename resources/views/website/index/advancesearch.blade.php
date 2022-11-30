@@ -80,14 +80,26 @@
                                             </div>
                                         </div>
                                         <div class="selector_wrapper landarea"  style="display: none;">
-                                            <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;">
-                                            <select class="areaunit" name="areaunit" id="areaunit">
-                                                <option selected value="">Unit</option>
-                                                @foreach ($units as $unit)
-                                                    <option value="{{ $unit->id }}">{{ $unit->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Area</h3>
+                                                        <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Unit</h3>
+                                                        <select class="areaunit" name="areaunit" id="areaunit">
+                                                            <option selected value="">Unit</option>
+                                                            @foreach ($units as $unit)
+                                                                <option value="{{ $unit->id }}">{{ $unit->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="advance">
                                             @php $i = 0; @endphp
@@ -97,32 +109,25 @@
                                             @endphp
                                             @if ($i < 3)
                                                 <div class="selector_wrapper">
-                                                    <h3>{{ $name }}</h3>
-                                                    <div id="parking">
-                                                        <div class="dynamic ">
-                                                            <select name="properties[{{ $key }}]">
-                                                                <option value="any">Any</option>
-                                                                @foreach ($values as $key1 => $value)
-                                                                <option value="{{ $value }}">{{ $value }}+ </option>
-                                                                @endforeach
-                                                            </select>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h3>{{ $name }}</h3>
+                                                                <div id="parking">
+                                                                    <div class="dynamic ">
+                                                                        <select name="properties[{{ $key }}]">
+                                                                            <option value="any">Any</option>
+                                                                            @foreach ($values as $key1 => $value)
+                                                                            <option value="{{ $value }}">{{ $value }}+ </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div> 
                                             @else
-                                                <div class="selector_wrapper">
-                                                    <div id="parking">
-                                                        <h3>{{ $name }}</h3>
-                                                        <div class="dynamic ">
-                                                            <select name="properties[{{ $key }}]">
-                                                                <option value="any">Any</option>
-                                                                @foreach ($values as $key1 => $value)
-                                                                <option value="{{ $value }}">{{ $value }}+ </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endif
                                             @php $i += 1; @endphp
                                         @endforeach

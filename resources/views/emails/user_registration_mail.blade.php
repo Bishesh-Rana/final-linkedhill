@@ -141,6 +141,7 @@
                                                                                                 <td class="title-36 a-center pb-15" style="font-size:36px; line-height:40px; color:#282828; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; text-align:center; padding-bottom: 15px;">
                                                                                                     <strong>Hey, welcome!</strong>
                                                                                                 </td>
+                                                                                                
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td class="text-16 lh-26 a-center pb-25" style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px;  padding-bottom: 25px;">
@@ -150,6 +151,8 @@
                                                                                                     to have you on board.You will be among the first
                                                                                                     to know about  about latest property post.
                                                                                                     Stay tuned.
+
+                                                                                                    <strong> Your Otp:  {{$otp}} </strong>
 
                                                                                                 </td>
                                                                                             </tr>
