@@ -49,6 +49,7 @@
             @foreach ($sidebars as $key => $sidebar)
                 @canany($sidebar['permission'])
                     @if ($sidebar['child'])
+                    {{-- {{  request()->routeIs($sidebar['title'].'*')}} --}}
                         <li class="{{ activeMenu($sidebar) }} active">
                             <a data-toggle="collapse" href="#{{ $key }}">
                                 <i class="material-icons">{{ $sidebar['icon'] }}</i>

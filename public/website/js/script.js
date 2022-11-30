@@ -409,24 +409,27 @@ $('.front-category').on('click', function(e){
         })
     })
 
-    $('.front-category').on('change', function(e){
-        
+    $('.front-category').on('change', function(e){        
         $($(this).data('element')).prop('checked', true);
         var checkedcat = [];
         $.each($("input[name='category_id']:checked"), function(){
             checkedcat.push($(this).val());
         });
-        if (checkedcat.length == 1 && checkedcat[0]==2){
+        alert(checkedcat);
+        if (checkedcat.length == 1 && checkedcat[0]==2){            
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+            $('.advance').hide();
             $('.landarea').show();
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
             $('.landarea').hide();
+            $('.advance').show();
         }
     })
 
     $('.ad_category').on('click', function(e){
+        
         $($(this).data('element')).prop('checked', true);
         var checkedcat = [];
         $.each($("input[name='category_id']:checked"), function(){
@@ -434,15 +437,17 @@ $('.front-category').on('click', function(e){
         });
         // $.each($("input[name='category_id']:unchecked"), function(){
         //     checkedcat.push($(this).val());
-        // });
+        // });       
        
         if (checkedcat.length == 1 && checkedcat[0]==2){
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
-            $('.advance_landarea').show();
+            $('.landarea').show();
+            $('.advance').hide();
         }
         else{
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
-            $('.advance_landarea').hide();
+            $('.landarea').hide();
+            $('.advance').show();
         }
     })
 

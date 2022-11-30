@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kyslik\ColumnSortable\Sortable;
 
 
 class Property extends Model
@@ -17,21 +16,6 @@ class Property extends Model
 
 
     protected $fillable = [
-        'user_id', 'category_id', 'property_status', 'type', 'title', 'slug', 'property_detail',
-        'property_address', 'map_location', 'city_id', 'bed_id', 'bath_id', 'area_id', 'zipcode',
-        'total_area', 'total_area_unit', 'built_up_area', 'built_up_area_unit', 'property_facing', 'road_access', 'road_access_unit', 'road_type',
-        'start_price', 'end_price', 'price_label',
-        'road_width','road_width_unit',
-        'owner_name','owner_email' ,'owner_address', 'owner_phone', 'youtube_video_id',
-         'bed', 'bath', 'negotiable',
-        'feature',
-        'meta_keyword',
-        'meta_description',
-        'insurance',
-        'verified_by', 'verified_at', 'hasAgent'
-
-    ];
-    public $sortable = [
         'user_id', 'category_id', 'property_status', 'type', 'title', 'slug', 'property_detail',
         'property_address', 'map_location', 'city_id', 'bed_id', 'bath_id', 'area_id', 'zipcode',
         'total_area', 'total_area_unit', 'built_up_area', 'built_up_area_unit', 'property_facing', 'road_access', 'road_access_unit', 'road_type',
