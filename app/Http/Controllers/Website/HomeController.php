@@ -44,10 +44,17 @@ class HomeController extends Controller
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
 
-        $this->website['addresses'] = City::join('properties','properties.city_id','=','cities.id')
-        ->select('cities.name','properties.property_address')
-        ->get();
+        $addresses = [];
+        
         $this->website['all_cities'] = City::get();
+        foreach($this->website['all_cities'] as $city){
+            array_push($addresses,$city->name);
+        }
+        foreach($this->website['properties'] as $property){
+            array_push($addresses,$property->property_address);
+        }
+        $addresses = array_unique($addresses);
+        $this->website['addresses'] = $addresses;
         $this->website['trending_properties'] = Property::where(['status' => 1, 'feature' => 1, 'hasAgent' => 1])->orderBy('view_count', 'desc')->limit(6)->get();
         $this->website['premium_properties'] =  Property::where(['status' => 1, 'feature' => 1, 'premium_property' => 1, 'hasAgent' => 1])->latest()->limit(6)->get();
         $this->website['sliders'] = Slider::orderBy('order', 'asc')->where('hide', 1)->get();
