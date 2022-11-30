@@ -129,11 +129,14 @@
                                         </div>
                                         <div class="selector_wrapper">
                                             <h3>Common Facilities</h3>
-                                            <select class="multiple-facility" name="facility[]" multiple="multiple">
-                                                @foreach ($facilities as $key => $facility)
-                                                <option value="{{ $facility->title }}">{{ $facility->title }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="d-flex">
+                                                <div class="list_group_facilities">
+                                                    @foreach ($facilities as $key => $facility)
+                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
+                                                        <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="selector_wrapper">
                                             <div class="row">

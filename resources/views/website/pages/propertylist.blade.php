@@ -249,9 +249,7 @@
                                     @foreach ($facilities as $facility)
                                         @if (array_key_exists('facility', $filter))
                                         <div class="list_group_category">
-                                            <input class="form-check-input front-category"
-                                                data-element="#advance{{ $facility->id }}" type="checkbox"
-                                                name="facility[]" value="{{ $facility->title }}"
+                                            <input class="form-check-input front-category" data-element="#advance{{ $facility->id }}" type="checkbox" name="facility[]" value="{{ $facility->title }}"
                                                 id="initial{{ $facility->id }}" @php foreach($filter['facility'] as $value){if($value == $facility->title){ echo 'checked';}} @endphp>
                                             <label class="form-check-label"
                                                 for="initial{{ $facility->id }}">{{ $facility->title }}</label>
