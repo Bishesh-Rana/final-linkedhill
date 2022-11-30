@@ -79,29 +79,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="selector_wrapper landarea" style="display: none;">
-                                            <div class="">
-                                                <input type="number" name="area" id="area"
-                                                    placeholder="area" style="visibility: visible;">
-                                                <select class="areaunit" name="areaunit" id="areaunit">
-                                                    <option selected value="">Unit</option>
-                                                    @foreach ($units as $unit)
-                                                        <option value="{{ $unit->id }}">{{ $unit->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="selector_wrapper">
-                                            <h3>Common Facilities</h3>
-                                            <div class="d-flex">
-                                                <div class="list_group_facilities">
-                                                    @foreach ($facilities as $key => $facility)
-                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
-                                                        <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
-                                                    @endforeach
-                                                </div>
-                                            </div>
+                                        <div class="selector_wrapper landarea"  style="display: none;">
+                                            <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;">
+                                            <select class="areaunit" name="areaunit" id="areaunit">
+                                                <option selected value="">Unit</option>
+                                                @foreach ($units as $unit)
+                                                    <option value="{{ $unit->id }}">{{ $unit->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         @php $i = 0; @endphp
                                         @foreach ($feature_values as $key => $values)
@@ -149,6 +135,17 @@
                                             @endif
                                             @php $i += 1; @endphp
                                         @endforeach
+                                        <div class="selector_wrapper">
+                                            <h3>Common Facilities</h3>
+                                            <div class="d-flex">
+                                                <div class="list_group_facilities">
+                                                    @foreach ($facilities as $key => $facility)
+                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
+                                                        <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="selector_wrapper">
                                             <h3>Property Facing</h3>
                                             <input type='radio' name="facing" selected value=""
@@ -240,9 +237,7 @@
                     },
                     error: function(response) {}
                 });
-
             });
-
         });
     </script>
 @endpush

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div id="parking" class="selector_wrapper" >
                 <h3>{{$name}}</h3>
-                <div class="dynamic ">
+                <div class="dynamic">
                     <div  class="selector">
                         <input type='radio' name="properties[{{$key}}]" value="any" id="{{$name}}"/>
                         <label for="{{$name}}">Any</label>
