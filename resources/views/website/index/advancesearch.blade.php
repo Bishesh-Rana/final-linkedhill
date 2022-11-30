@@ -229,26 +229,11 @@
 </div>
 
 @push('scripts')
-<<<<<<< HEAD
-<script>  
-$(document).ready(function(){
-    js-example-basic-multiple
-    $('.js-example-basic-multiple').select2();
-
-})
-
-     $(document).ready(function() {
-
-        var category_ids = [];
-        $('.filter').on('change', function(){
-            let{
-=======
     <script>
         $(document).ready(function() {
             var category_ids = [];
             $('.filter').on('change', function() {
                 let {
->>>>>>> 250833c074c5e8bd597119e1cf6c7dcfb7e90f96
                     value,
                     dataset,
                     checked
