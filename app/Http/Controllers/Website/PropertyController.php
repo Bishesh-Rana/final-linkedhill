@@ -93,25 +93,25 @@ class PropertyController extends Controller
 
             }
         }) 
-        ->when(request('sorting'),function($query, $var){
-            switch($var){
-                case "low":
-                    $query->orderBy('start_price');
-                    break;
-                case "hign":
-                    $query->orderBy('start_price',"DESC");
-                    break;
-                case 'latest':
-                    $query->orderBy('created_at','DESC');
-                    break;
-                case 'oldest':
-                    $query->orderBy('created_at');
-                    break;
-                default:
-                    $query->orderBy('created_at');
-            }
-        }) 
-        ->paginate(5);
+        // ->when(request('sorting'),function($query, $var){
+        //     switch($var){
+        //         case "low":
+        //             $query->orderBy('start_price');
+        //             break;
+        //         case "hign":
+        //             $query->orderBy('start_price',"DESC");
+        //             break;
+        //         case 'latest':
+        //             $query->orderBy('created_at','DESC');
+        //             break;
+        //         case 'oldest':
+        //             $query->orderBy('created_at');
+        //             break;
+        //         default:
+        //             $query->orderBy('created_at');
+        //     }
+        // }) 
+        ->orderBy('order')->paginate(5);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();

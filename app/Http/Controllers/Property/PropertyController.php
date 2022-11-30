@@ -32,7 +32,8 @@ class PropertyController extends CommonController
      */
     public function index()
     {
-        return view('admin.property.index');
+        $properties = Property::get();
+        return view('admin.property.index',compact('properties'));
     }
 
     /**
@@ -327,5 +328,22 @@ class PropertyController extends CommonController
         $property->save();
         request()->session()->flash('message', 'property status changed successfully');
         return redirect()->back();
+    }
+
+    public function updatePropertyOrder(Request $request)
+    {
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['propertyItem'])) {
+            foreach ($arr['propertyItem'] as $key => $value) {  //id //parent_id
+                Property::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        // 'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
     }
 }

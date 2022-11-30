@@ -80,8 +80,8 @@
                                                 <div>
                                                     <td>{{ $value->name }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$purpose->id}}" data-placement="top" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                        <button onclick="deleteCity({{$purpose->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
+                                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$value->id}}" data-placement="top" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
                                                     </td>
 
                                                 </div>
