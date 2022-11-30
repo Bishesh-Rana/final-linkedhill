@@ -43,7 +43,6 @@ class PropertyController extends CommonController
     public function create()
     {
         $data = $this->requiredData();
-
         return view('admin.property.form', $data);
     }
 
@@ -204,7 +203,7 @@ class PropertyController extends CommonController
 
             'bed' => Property::get(),
             'purposes' => Purpose::get(),
-            'facilities' => Facility::get(),
+            'facilities' => Facility::orderBy('order')->get(),
             'amenties' => Amenity::get(),
             'property_types' => Type::get(),
             'property_categories' => PropertyCategory::with('features')->get(),

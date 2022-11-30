@@ -21,8 +21,8 @@ class FeatureController extends Controller
      */
     public function index()
     {
-
-        return view('admin.feature.index');
+        $features = Feature::orderBy('position')->get();
+        return view('admin.feature.index',compact('features'));
     }
 
     public function getFeatures()
@@ -133,5 +133,21 @@ class FeatureController extends Controller
     {
         $feature = Feature::findOrFail($id);
         $feature->delete();
+    }
+
+    public function updateFeatureOrder(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['purposeItem'])) {
+            foreach ($arr['purposeItem'] as $key => $value) {  //id //parent_id
+                Feature::where('id', $key)
+                    ->update([
+                        'position' => $order,
+                        'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
     }
 }

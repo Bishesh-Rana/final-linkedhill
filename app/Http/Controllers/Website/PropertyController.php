@@ -117,17 +117,19 @@ class PropertyController extends Controller
         $purposes = Purpose::all();
         $property = Property::all();
         $propertyCat = PropertyCategory::orderBy('order')->get();
-        $facilities = Facility::get();
+        $facilities = Facility::orderBy('order')->get();
         $units = Unit::orderBy('order')->get();
         $feature_values = [];
         $features = [];
         $id = PropertyCategory::where('name',"=","House")->value('id');
         $category = PropertyCategory::findOrFail($id);
         $all_feature = $category->features->where('showOnFilter',1);
+        $all_feature = collect($all_feature);
+        $all_feature = $all_feature->sortBy('position');
+        // dd($all_feature);
         foreach($all_feature as $key=> $feature){
             array_push($features,$feature);
         }
-
        foreach($features as $feature){
             $values = [];
             if($feature->value){

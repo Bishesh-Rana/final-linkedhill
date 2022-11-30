@@ -92,7 +92,7 @@ class CustomerAuthController extends Controller
 
     public function verityOtp($id){
         $customer = User::where('id',$id)->first();
-        return view('Website.customer\auth.verifyOtp',compact('customer'));
+        return view('website.customer.auth.verifyOtp',compact('customer'));
     }
 
     public function Otp($id){
@@ -103,7 +103,7 @@ class CustomerAuthController extends Controller
         ]);
         $message = "Your OTP for ".config('app.name')." Customer Registration is :".$otp;
         $this->sendSMS($customer->mobile,$customer->name,$message);
-        return view('Website.customer\auth.verifyOtp',compact('customer'));
+        return view('website.customer.auth.verifyOtp',compact('customer'));
     }
 
     public function sendSMS($phone,$user,$message)

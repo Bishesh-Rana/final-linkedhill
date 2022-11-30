@@ -46,12 +46,8 @@
                                             <div class="d-flex">
                                                 <div class="categoryselector">
                                                     @foreach ($propertyCat as $key => $propertyC)
-                                                        <input class="form-check-input ad_category filter"
-                                                            data-ele="filter" id="advance{{ $propertyC->id }}"
-                                                            type="checkbox" name="category_id"
-                                                            value="{{ $propertyC->id }}">
-                                                        <label class="form-check-label"
-                                                            for="advance{{ $propertyC->id }}">{{ $propertyC->name }}</label>
+                                                        <input class="form-check-input ad_category filter" data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
+                                                        <label class="form-check-label" for="advance{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -101,11 +97,8 @@
                                             <div class="d-flex">
                                                 <div class="list_group_facilities">
                                                     @foreach ($facilities as $key => $facility)
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="facility[]" value="{{ $facility->title }}"
-                                                            id="facility{{ $key + 1 }}">
-                                                        <label class="form-check-label"
-                                                            for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
+                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
+                                                        <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -128,13 +121,8 @@
                                                             </div>
                                                             @foreach ($values as $key1 => $value)
                                                                 <div class="selector">
-                                                                    <input type='radio'
-                                                                        name="properties[{{ $key }}]"
-                                                                        value="{{ $value }}"
-                                                                        id="{{ $name }}{{ $key1 }}" />
-                                                                    <label
-                                                                        for="{{ $name }}{{ $key1 }}">
-                                                                        {{ $value }}+</label>
+                                                                    <input type='radio' name="properties[{{ $key }}]" value="{{ $value }}" id="{{ $name }}{{ $key1 }}" />
+                                                                    <label for="{{ $name }}{{ $key1 }}"> {{ $value }}+</label>
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -146,20 +134,13 @@
                                                         <h3>{{ $name }}</h3>
                                                         <div class="dynamic ">
                                                             <div class="selector">
-                                                                <input type='radio'
-                                                                    name="properties[{{ $key }}]"
-                                                                    value="any" id="{{ $name }}" />
+                                                                <input type='radio' name="properties[{{ $key }}]" value="any" id="{{ $name }}" />
                                                                 <label for="{{ $name }}">Any</label>
                                                             </div>
                                                             @foreach ($values as $key1 => $value)
                                                                 <div class="selector">
-                                                                    <input type='radio'
-                                                                        name="properties[{{ $key }}]"
-                                                                        value="{{ $value }}"
-                                                                        id="{{ $name }}{{ $key1 }}" />
-                                                                    <label
-                                                                        for="{{ $name }}{{ $key1 }}">
-                                                                        {{ $value }}</label>
+                                                                    <input type='radio' name="properties[{{ $key }}]" value="{{ $value }}" id="{{ $name }}{{ $key1 }}" />
+                                                                    <label for="{{ $name }}{{ $key1 }}">{{ $value }}</label>
                                                                 </div>
                                                             @endforeach
                                                         </div>

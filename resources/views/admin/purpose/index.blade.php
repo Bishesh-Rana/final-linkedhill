@@ -74,29 +74,6 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel1">
                                 <div class="material-datatables">
-                                    <!-- <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                        <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Purpose</th>
-                                            <th class="disabled-sorting text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <ol class="sortable">
-                                            @foreach($purposes as $purpose)
-                                                <li>
-                                                    <div>
-                                                        <td>{{$loop->index+1}}</td>
-                                                        <td>{{$purpose->name}}</td>
-                                                        <td class="text-right">
-                                                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal-{{$purpose->id}}" data-placement="top" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                            <button onclick="deleteCity({{$purpose->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
-                                                        </td>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ol>
-                                    </table> -->
                                     <ol class="sortable">
                                         @foreach ($purposes as $key => $value)
                                             <li id="purposeItem_{{ $value->id }}">

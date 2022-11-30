@@ -109,4 +109,20 @@ class FacilityController extends Controller
     {
         $facility->delete();
     }
+
+    public function updateFacilityOrder(Request $request){
+        parse_str($request->sort, $arr);
+        $order = 1;
+        if (isset($arr['facilityItem'])) {
+            foreach ($arr['facilityItem'] as $key => $value) {  //id //parent_id
+                Facility::where('id', $key)
+                    ->update([
+                        'order' => $order,
+                        // 'parent_id' => ($value == 'null') ? NULL : $value
+                    ]);
+                $order++;
+            }
+        }
+        return true;
+    }
 }
