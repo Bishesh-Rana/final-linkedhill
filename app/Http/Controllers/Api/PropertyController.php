@@ -21,7 +21,6 @@ use App\Models\Purpose;
 use App\Models\RoadType;
 use App\Models\Type;
 use App\Models\Unit;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +33,6 @@ class PropertyController extends Controller
     public $limit = 5;
     public function test(Request $request)
     {
-
-        return dd($request->image);
     }
     public function featuredProperties()
     {
