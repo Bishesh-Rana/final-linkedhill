@@ -5869,7 +5869,7 @@ object-position: center;
 	transition-delay: .15s !important;
 }
 
-.landarea input{padding: 10px;border: none;width: 100%;/* border: 1px solid black; */}
+.landarea input{padding: 10px;border: none;width: 100%;border: 1px solid #e3dede;border-radius: 3px;}
 .landarea {
     position: relative;
 }
@@ -5879,7 +5879,7 @@ object-position: center;
     right: 1px;
     width: 50% !important;
     background: #dbdbdb;
-    top: 0;
+    top: 21px;
     border-bottom-right-radius: 7px;
     border-top-right-radius: 7px;
 }
