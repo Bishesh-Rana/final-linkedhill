@@ -96,12 +96,24 @@ class WebsiteController extends CommonController
 
     public function properties()
     {
+        $addresses = [];
+         
+        $all_cities = City::get();
+        foreach($all_cities as $city){
+            array_push($addresses,$city->name);
+        }
+        $all_properties = Property::get();
+        foreach($all_properties as $property){
+            array_push($addresses,$property->property_address);
+        }
         $this->website['properties'] = Property::all();
         $this->website['provinces'] = Province::all();
         $this->website['purposes'] = Purpose::all();
         $this->website['property_types'] = Type::all();
         $this->website['recommended_properties'] = [];
         $this->website['title'] = "All Properties";
+       
+        $this->website['addresses']= array_unique($addresses) ;
         return view('frontend.properties', $this->website);
     }
 

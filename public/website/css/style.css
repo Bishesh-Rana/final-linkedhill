@@ -5994,3 +5994,6 @@ span#st-1 {
     padding: 4%;
     
 }
+.modal{
+    z-index: 1051;
+}

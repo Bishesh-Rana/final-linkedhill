@@ -18,6 +18,8 @@
                 <div class="multiple_select2option">
                     <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple"
                         value="{{ $type->property_address }}">
+                        @isset($addresses)                         
+                                                
                         @foreach ($addresses as $type)
                             @if ($name == $type)
                                 continue;
@@ -28,6 +30,7 @@
                                 ?>
                             @endif
                         @endforeach
+                        @endisset
                     </select>
                 </div>
                 <button class="btn btn-dark" type="submit"><i class="las la-search"></i></button>

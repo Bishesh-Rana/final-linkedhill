@@ -9,8 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="searchProperty" id="searchform" method="get"
-                        action="{{ route('front.search-properties') }}">
+                    <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
                         <div class="selector_wrapper purpose_wrapper">
                             @foreach ($purposes as $key => $type)
                                 <input type='radio' name="purpose" value="{{ $type->name }}"
@@ -19,7 +18,6 @@
                             @endforeach
                         </div>
                         <div class="linked_hill_search_area d-flex">
-                            {{-- @dd($property) --}}
                             <?php $name = '';
                             ?>
                           <div class="multiple_select2option">
@@ -183,7 +181,7 @@
                             <button type="reset" value="reset" form="searchform"
                                 class="">Clear Filter</button>
                             <button type="submit" form="searchform" class="advance_submit"
-                                data-bs-dismiss="modal">Search</button>
+                                data-bs-dismiss="modal">Update</button>
                         </div>
                     </form>
                 </div>

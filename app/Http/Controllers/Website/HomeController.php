@@ -158,6 +158,20 @@ class HomeController extends Controller
                     return view('website.pages.about', compact('pagedata', 'meta'));
                 case 'property':
 
+                    $addresses = [];
+                    
+                    $all_cities = City::get();
+                    foreach($all_cities as $city){
+                        array_push($addresses,$city->name);
+                    }
+                    $all_properties = Property::get();
+                    
+                    foreach($all_properties as $property){
+                        array_push($addresses,$property->property_address);
+                    }
+                    $addresses = array_unique($addresses);
+                        
+
                     $properties = Property::where(['status' => 1])->with(['faqs', 'images'])->latest()->paginate(3);
                     $advertisements = $this->getAd('property');
                     $feature_values = [];
@@ -181,7 +195,7 @@ class HomeController extends Controller
                 $facilities = PropertyFacility::get();
                 $units = Unit::get();
 
-                    return view('website.pages.propertylist', compact('facilities','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                    return view('website.pages.propertylist', compact('facilities','addresses','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');

@@ -155,7 +155,7 @@ class PropertyController extends Controller
             array_push($addresses,$property->property_address);
         }
         $addresses = array_unique($addresses);
-        // dd($all_feature);
+
         foreach($all_feature as $key=> $feature){
             array_push($features,$feature);
         }

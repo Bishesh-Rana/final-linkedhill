@@ -508,10 +508,13 @@
     .propertylistsearch .option_a1 {
         width: calc(100%/5);
     }
+    .elem {
+        width: 33%;
+        /* border: 20px solid transparent; */
+        padding: 3px;
+        height: auto;
+    }
 }
-
-
-
 
 
 @media screen and (max-width: 767px) {
