@@ -119,6 +119,7 @@
                                     <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
                                         <span>Rs. {{ @$property->start_price }}</span>
                                         <h4> {{ @$property->title }}</h4>
+                                        <div class="sharethis-inline-share-buttons"></div>
                                        
                                         <p> {{ getSummary($property->property_detail) }} </p>
                                         <div class="premium_option">
@@ -444,6 +445,7 @@
         </style>
     @endpush
     @push('scripts')
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63888bce65735e001232d53a&product=inline-share-buttons&source=platform" async="async"></script>
         <script>
             var categoryProperty = function(category_id) {
                 var uri = "{{ route('front.search-properties') }}";

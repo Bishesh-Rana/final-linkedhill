@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
                 'name' => 'nectardigit',
                 'email' => 'nectardigit@gmail.com',
                 'password' => Hash::make('admin123'),
-                'phone' => '98022',
+                'phone' => '9846803262',
             ]
         );
 
@@ -30,7 +30,7 @@ class AdminSeeder extends Seeder
             'name' => 'nectardigit',
             'email' => 'nectardigit@gmail.com',
             'password' => Hash::make('admin123'),
-            'mobile' => '98022',
+            'mobile' => '9846803262',
         ]);
 
         $user->assignRole(['1']); //Super Admin
