@@ -135,28 +135,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="selector_wrapper">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <h3>Road Width</h3>
-                                                        <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <h3>Unit</h3>
-                                                        <select class="areaunit" name="areaunit" id="areaunit">
-                                                            <option selected value="">Unit</option>
-                                                            @foreach ($units as $unit)
-                                                                <option value="{{ $unit->id }}">{{ $unit->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="advance">
                                         @foreach ($feature_values as $key => $values)
                                             @php
@@ -182,6 +160,23 @@
                                                 </div>
                                             </div> 
                                         @endforeach
+                                        </div>
+                                        <div class="selector_wrapper">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Road Type</h3>
+                                                        <select name="roadtype">
+                                                            <option value="">Any</option>
+                                                            @isset($roadtypes)
+                                                            @foreach ($roadtypes as $key1 => $value)
+                                                            <option value="{{ $value->id }}">{{ $value->name }} </option>
+                                                            @endforeach                                                                
+                                                            @endisset
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="selector_wrapper">
                                             <h3>Common Facilities</h3>  
