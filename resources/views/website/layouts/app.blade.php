@@ -232,7 +232,7 @@
                                 alt="">
                                 <span class="footer-brandname-front">Linked</span><span class="footer-brandname-back">hill</span>
                         </a>
-                        <p>{!! @$website->short_description !!}</p>
+                        {{-- <p>{!! @$website->short_description !!}</p> --}}
                         <div class="follow_us">
                             <p>Follow Us:</p>
                             <ul>
@@ -249,14 +249,21 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="footer_list">
                                 <h3><span>Get</span> in touch</h3>
-                                <ul>
-                                    <li><i class="las la-map-marker-alt"></i>{{ config('websites.address') }}</li>
+                                <span class="text-white footer_span">For general enquiries : </span>
+                                <ul>                                   
+                                    {{-- <li><i class="las la-map-marker-alt"></i>{{ config('websites.address') }}</li> --}}
                                     <li><a href="mailto:{{ config('websites.email') }}"><i class="las la-envelope"></i>{{ config('websites.email') }}</a>
                                     </li>
-                                    <li><a href="tel:{{ config('websites.phone') }}"><i class="las la-mobile"></i>{{ config('websites.phone') }}</a>
+                                    <li><a href="mailto:marketing@linkedhill.com.np"><i class="las la-envelope"></i>marketing@linkedhill.com.np</a>
                                     </li>
-                                    <li></li>
+                                    <li><a href="mailto:agents@linkedhill.com.np"><i class="las la-envelope"></i>agents@linkedhill.com.np</a>
+                                    </li>
+                                    <li><a href="mailto:careers@linkedhill.com.np"><i class="las la-envelope"></i>careers@linkedhill.com.np</a>
+                                    </li>
+                                    {{-- <li><a href="tel:{{ config('websites.phone') }}"><i class="las la-mobile"></i>{{ config('websites.phone') }}</a> </li> --}}
                                 </ul>
+                              
+
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -356,7 +363,7 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2({
-                placeholder: "Search Suburb, postcode or state",
+                placeholder: "Search Suburb, Postcode or State",
             });
         });
     </script>

@@ -32,7 +32,7 @@
                 @include('website.index.advancesearch')
             </section>
         </section>
-        <section id="site_banner_slider" style="display: none;">
+        {{-- <section id="site_banner_slider" style="display: none;">
             <div id="site_carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($sliders as $slider)
@@ -49,15 +49,12 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-                <!-- start serch pannel -->
-                <!-- Start arrow down pannel -->
                 <div class="show_down_arrow">
                     <a href="#about_loan_info_wrapper"><i class="las la-angle-double-down"></i></a>
                 </div>
-                <!-- End arrow down pannel -->
             </div>
             @include('website.index._search')
-        </section>
+        </section> --}}
         <section id="about_loan_info_wrapper" class="cs_padding">
             <div class="container">
                 <div class="row">
@@ -71,8 +68,7 @@
                                 <p>{{ Str::limit(strip_tags($category->description), 150, '...') }}</p>
 
                                 <a href="{{ route('front.search-properties', ['category_id' => $category->id]) }}"
-                                    class="btn btn-danger mb-2">Find a
-                                    {{ $category->name }}</a>
+                                    class="btn btn-danger mb-2">View More</a>
                             </div>
                         </div>
                     @endforeach
@@ -116,25 +112,65 @@
                                     </div>
                                 </div>
                                 <div class="premium_content_area">
-                                    <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                        <span>Rs. {{ @$property->start_price }}</span>
-                                        <h4> {{ @$property->title }}</h4>
-                                        <div class="sharethis-inline-share-buttons"></div>
-                                       
-                                        <p> {{ getSummary($property->property_detail) }} </p>
+                                        <div class="position-relative">
+                                            <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
+                                                <span style="font-width:700;">Rs. {{ @$property->start_price }}</span>
+                                            </a>
+                                            @if(auth()->user())
+                                            <div class="favicon">
+                                            @if(!$property->favorite->isEmpty())
+                                                @foreach($property->favorite as $favorite)
+                                                    @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
+                                                        <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                            class="las la-heart "></i></a>
+                                                    @else
+                                                        <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                            class="lar la-heart "></i></a>
+                                                    @endif
+                                                @endforeach
+                                            @else
+
+                                                <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                            class="lar la-heart "></i></a>
+                                            @endif
+                                            </div>
+                                            @else
+                                                <div onclick="favorite({{ $property->id }})" class="favicon">
+                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                            class="lar la-heart "></i></a>
+                                                </div>
+                                            @endif
+                                            <div class="sharethis-inline-share-buttons"></div>
+
+                                        </div>
+                                        
+                                        <div class="property_address">
+                                            <div class="text_tx_property">
+                                                <span><i class="las la-map-marker-alt"></i></span>
+                                                <span>{{ @$property->property_address }}</span>
+                                            </div>
+                                        </div>
                                         <div class="premium_option">
                                             <div>
                                                 @if($property->bed !==0)
-                                                <span><span class="badge_count">{{ $property->bed }}</span><i class="las la-bed" title="Bed"></i></span>@endif
+                                                <span><i class="las la-bed" title="Bed"></i><span>{{ $property->bed }}</span></span>@endif
                                                 @if($property->bath !==0)
-                                                <span><span class="badge_count">{{ $property->bath }}</span><i class="las la-bath" title="Bathroom"></i></span>@endif
+                                                <span><i class="las la-bath" title="Bathroom"></i><span>{{ $property->bath }}</span></span>@endif
+                                                @isset($property->park)
+                                                @if ($property->park !==0)
+                                                <span><i class="las la-car" title="Parking"></i><span>{{ $property->park }}</span></span>
+                                                @endif
+                                                @endisset
+                                                <span><i class="las la-car" title="Parking"></i><span>0</span></span>
                                                 <span>
                                                     <i class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
                                                 </span>
                                             </div>
-                                            <span class="small_btn">full info</span>
                                         </div>
-                                    </a>
+                                        <h4> {{ @$property->title }}</h4>
+                                        <div class="premium_option">
+                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}" class="small_btn" style="margin-left: auto;">full info</a>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +219,7 @@
                     <div class="col-lg-12">
                         <div class="site_title text-center">
                             <h2>Latest Property News</h2>
-                            <p><i>We offers a wide variety of properties in Kathmandu and in Nepal.</i></p>
+                            <p><i>We offers a wide variety of properties in Nepal.</i></p>
                         </div>
                     </div>
                 </div>
@@ -472,7 +508,35 @@
                 nxtiframe.addClass('test');
             })
         </script>
-    @endpush
+         <script>
+            $(document).ready(function(){
+                $(".fav").on('click',function(){
+                    var property = $(this).data('id');
+                    $.ajax({
+                        url: "{{ route('favorite') }}",
+                        type: 'get',
+                        data: {
+                            property_id: property,
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if(response.success){
+                                $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+                                alert(response.success);
+                            }else{
+                                alert(response.error);
+                            }                    
+                        },
+                        error: function(response) {
+    
+                        }
+                    });
+                });
+            });
+        </script>
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=638886b465735e001232d533&product=inline-share-buttons&source=platform" async="async"></script>
+        @endpush
+
     @section('meta')
         @include('website.shared.meta', ['meta' => $meta])
     @endsection
