@@ -8,13 +8,14 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Advance Search</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
                     <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
                         <div class="purpose_wrapper">
                             {{-- @dd( $purpose->name == $filter['purpose']) --}}
                             @foreach ($purposes as $key => $type)
                                 <input class="rentbuy" type='radio' name="purpose" value="{{ $type->name }}"
-                                    id="adpurpose{{ $key }}" @if(array_key_exists('purpose',$filter)) {{ $purpose->name == $filter['purpose'] ? 'checked' : '' }} @endif/>
+                                    id="adpurpose{{ $key }}" @if(array_key_exists('purpose',$filter)) {{ $type->name == $filter['purpose'] ? 'checked' : '' }} @endif/>
                                 <label for="adpurpose{{ $key }}">{{ $type->name }}</label>
                             @endforeach
                         </div>
@@ -48,7 +49,7 @@
                                             <div class="d-flex">
                                                 <div class="categoryselector">
                                                     @foreach ($propertyCat as $key => $propertyC)
-                                                        <input class="form-check-input ad_category filter" data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
+                                                        <input class="form-check-input ad_category filter"  data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
                                                         <label class="form-check-label" for="advance{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                                     @endforeach
                                                 </div>
@@ -83,10 +84,18 @@
                                                     <select name="end_prize" id="max_price">
                                                         <option selected disabled>Max Price</option>
                                                         <option value="">Any</option>
+                                                        @if(array_key_exists('start_prize',$filter))
+                                                        <option value="1100000.00" {{$filter['end_prize'] == '1100000.00'}}>Rs. 1100000.00</option>
+                                                        <option value="1500000.00" {{$filter['end_prize'] == '1500000.00'}}>Rs. 1500000.00</option>
+                                                        <option value="2000000.00" {{$filter['end_prize'] == '2000000.00'}}>Rs. 2000000.00</option>
+                                                        <option value="5000000.00" {{$filter['end_prize'] == '5000000.00'}}>Rs. 5000000.00</option>
+                                                        @else
                                                         <option value="1100000.00">Rs. 1100000.00</option>
                                                         <option value="1500000.00">Rs. 1500000.00</option>
                                                         <option value="2000000.00">Rs. 2000000.00</option>
                                                         <option value="5000000.00">Rs. 5000000.00</option>
+                                                        @endif
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -145,7 +154,7 @@
                                                     <div class="form-group">
                                                         <h3>Road Type</h3>
                                                         <select name="roadtype">
-                                                            <option value="any">Any</option>
+                                                            <option value="">Any</option>
                                                             @isset($roadtypes)
                                                             @foreach ($roadtypes as $key1 => $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }} </option>

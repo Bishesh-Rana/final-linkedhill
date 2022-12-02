@@ -167,7 +167,7 @@
                                                     <div class="form-group">
                                                         <h3>Road Type</h3>
                                                         <select name="roadtype">
-                                                            <option value="any">Any</option>
+                                                            <option value="">Any</option>
                                                             @isset($roadtypes)
                                                             @foreach ($roadtypes as $key1 => $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }} </option>
