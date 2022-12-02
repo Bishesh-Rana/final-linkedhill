@@ -52,12 +52,12 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div>
+                                <div> 
                                     <label class="control-label">Show On Filter</label>
-                                    <input type='radio' name="showOnFilter" value='1' {{$feature->showOnFilter=='1'?'checked':''}} >
-                                    <label>yes</label> 
-                                    <input type='radio' name="showOnFilter" value="0" {{$feature->showOnFilter=='0'?'checked':''}}>
-                                    <label>No</label>
+                                    <input type='radio' name="showOnFilter" value='1' @isset($feature->showOnFilter){{$feature->showOnFilter=='1'?'checked':''}}@endisset id="showonfilter">
+                                    <label for="showonfilter">yes</label> 
+                                    <input type='radio' name="showOnFilter" value="0" @isset($feature->showOnFilter){{$feature->showOnFilter=='0'?'checked':''}}@endisset  id="showonfilterno">
+                                    <label for="showonfilterno">No</label>
                                 </div>
 
                                 <div class="form-group">
