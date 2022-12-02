@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\City;
 use App\Models\Menu;
 use App\Models\Type;
+use App\Models\Unit;
 use App\Models\User;
 use App\Models\Slider;
 use App\Models\Enquiry;
@@ -17,6 +18,7 @@ use App\Models\Website;
 use App\Models\Facility;
 use App\Models\Property;
 use App\Models\Province;
+use App\Models\RoadType;
 use App\Models\Subscriber;
 use App\Traits\CommonTrait;
 use Illuminate\Support\Str;
@@ -28,7 +30,6 @@ use App\Models\PropertyCategory;
 use App\Models\PropertyFacility;
 use App\Http\Controllers\Controller;
 use App\Notifications\PropertyInquery;
-use App\Models\Unit;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $this->website['properties'] = Property::where(['status' => 1, 'feature' => 1])->latest()->limit(6)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
+        $this->website['roadtypes'] = RoadType::get();
 
         $addresses = [];
         
@@ -111,6 +113,7 @@ class HomeController extends Controller
 
         $pagedata = Menu::where('slug', $slug)->where('active', true)->first();
         $purposes = Purpose::all();
+        $roadtypes = RoadType::get();
         $property = Property::all();
         $filter = [];
         $propertyCat = PropertyCategory::orderBy('order')->get();
@@ -195,7 +198,7 @@ class HomeController extends Controller
                 $facilities = PropertyFacility::get();
                 $units = Unit::get();
 
-                    return view('website.pages.propertylist', compact('facilities','addresses','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                    return view('website.pages.propertylist', compact('roadtypes','facilities','addresses','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');

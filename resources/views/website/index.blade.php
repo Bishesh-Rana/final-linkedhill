@@ -481,6 +481,7 @@
         </style>
     @endpush
     @push('scripts')
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63888bce65735e001232d53a&product=inline-share-buttons&source=platform" async="async"></script>
         <script>
             var categoryProperty = function(category_id) {
                 var uri = "{{ route('front.search-properties') }}";
