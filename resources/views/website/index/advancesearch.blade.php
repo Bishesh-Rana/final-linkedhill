@@ -257,6 +257,7 @@
                         })
                     }
                 }
+
                 if(category_ids.length == 0){
                     category_ids[0] = 9;
                     $.ajax({
