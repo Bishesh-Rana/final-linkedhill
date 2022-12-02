@@ -87,15 +87,16 @@
                                         @endforeach
                                     </ol>
                                 </div>
+                                @if(count($properties)>0)
                                 <div class="form-group mt-4">
                                     <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
                                             class="fa fa-save"></i>
-                                        Update Purpose
+                                        Update Properties
                                     </button>
                                     {{-- <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
                                             class="fas fa-sync-alt"></i> Reset Order</a> --}}
                                 </div>
-
+                                @endif
                             </div>
 
                         </div>
@@ -183,7 +184,7 @@
                     toastr.options.closeButton = true
                     toastr.success('Property Order Successfuly', "Success !");
                     $('#serialize').prop("disabled", false);
-                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Properties`);
                 }
             });
         });

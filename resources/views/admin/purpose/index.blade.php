@@ -177,7 +177,7 @@
                     toastr.options.closeButton = true
                     toastr.success('Purpose Order Successfuly', "Success !");
                     $('#serialize').prop("disabled", false);
-                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Purpose`);
                 }
             });
         });
