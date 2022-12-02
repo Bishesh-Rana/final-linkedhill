@@ -405,7 +405,7 @@ div#site_carousel .carousel-item img {
     height: auto;
     width: 100%;
     margin: auto;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .site_title h2 {
@@ -532,16 +532,16 @@ div#property .owl-dots {
 }
 
 .premium_content_area h4 {
-    font-size: 18px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 500;
     color: black;
     text-transform: capitalize;
 }
 
 .premium_content_area span {
-    font-size: 17px;
-    font-weight: 600;
-    color: #ff2d37;
+    font-size: 16px;
+    font-weight: 500;
+    color: #7e7e7e;
     margin-bottom: 10px;
     display: block;
 }
@@ -576,7 +576,7 @@ div#property .owl-dots {
 }
 
 .premium_option div:first-of-type span {
-    margin-right: 14px;
+    margin-right: 5px;
 }
 
 .premium_option div:first-of-type span i {
@@ -1520,6 +1520,7 @@ div#property .owl-dots {
 .footer_list ul li a {
     color: white;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .footer_list ul li i,
@@ -5524,15 +5525,12 @@ section#property_character_list {
 
 
 .brandname-back{
-    /* font-family: 'Josefin Sans', sans-serif; */
-    /* font-family: 'Lobster', cursive; */
-    font-family: 'Open Sans', sans-serif;
     font-size: 30px;
     color: white;
-    font-weight: 400;
+    font-weight: 800;
 }
 .footer-brandname-front{
-    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Josefin Sans', sans-serif; */
     /* font-family: 'Lobster', cursive; */
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 30px;
@@ -5540,7 +5538,7 @@ section#property_character_list {
     font-weight: 800;
 }
 .footer-brandname-back{
-    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Josefin Sans', sans-serif; */
     /* font-family: 'Lobster', cursive; */
     /* font-family: 'Open Sans', sans-serif; */
     font-size: 30px;
@@ -5550,9 +5548,9 @@ section#property_character_list {
 
 .about_loan_thumbnail{
         /* border: 1px solid; */
-        padding: 10px;
-        border-radius: 15px;
-        box-shadow: #acaaaa 0px 0px 1px 3px;
+        padding: 1px;
+        border-radius: 5px;
+        box-shadow: #acaaaa 0px 0px 1px 1px;
 }
 
 
@@ -5848,10 +5846,10 @@ object-position: center;
 	display: inline-block;
 	font-size: 0;
 	width: 33%;
-	border: 20px solid transparent;
+	/* border: 20px solid transparent; */
 	border-bottom: none;
 	background: #fff;
-	padding: 10px;
+	/* padding: 10px; */
 	height: auto;
 	background-clip: padding-box;
 }
@@ -5996,4 +5994,8 @@ span#st-1 {
 }
 .modal{
     z-index: 1051;
+}
+
+.footer_span{
+    font-size: 14px;
 }

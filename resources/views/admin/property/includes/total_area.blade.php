@@ -146,7 +146,6 @@
                             <option value="1" @if ($property->road_access_unit == 1) selected @endif>Ft</option>
                             <option value="2" @if ($property->road_access_unit == 2) selected @endif>M</option>
                             <option value="4" @if ($property->road_access_unit == 2) selected @endif>Km</option>
-
                             <option value="3" @if ($property->road_access_unit == 3) selected @endif>Haath</option>
                         </select>
                         <x-error name='road_access_unit' />

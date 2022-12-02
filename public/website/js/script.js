@@ -416,7 +416,9 @@ $('.front-category').on('click', function(e){
             checkedcat.push($(this).val());
         });
         alert(checkedcat);
-        if (checkedcat.length == 1 && checkedcat[0]==2){            
+        
+        // if (checkedcat.length == 1 && checkedcat[0]==2){            
+        if (checkedcat.includes(2)){ 
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
             $('.advance').hide();
             $('.landarea').show();
@@ -437,9 +439,9 @@ $('.front-category').on('click', function(e){
         });
         // $.each($("input[name='category_id']:unchecked"), function(){
         //     checkedcat.push($(this).val());
-        // });       
+        // });   
        
-        if (checkedcat.length == 1 && checkedcat[0]==2){
+        if (checkedcat.includes('2')){ 
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
             $('.landarea').show();
             $('.advance').hide();
@@ -488,9 +490,6 @@ $('.front-category').on('click', function(e){
     })
 });
 
-
-
-
 $(document).ready(function(){
     $(document).find('.second-row').css("display", "none");
     $('.filter').on('click', function(){
@@ -503,6 +502,18 @@ $(document).ready(function(){
         $(document).find('.moreOptions').toggle();
         
     })
+})
+$(document).ready(function(){
+    $('.rentbuy').on('click', function(){
+        if(this.value == 'Rent'){
+            $(document).find('.buy').hide();
+            $(document).find('.rent').show();
+        }
+        if(this.value == 'Buy'){
+            $(document).find('.buy').show();
+            $(document).find('.rent').hide();
+        }
+        })       
 })
 
 // sorting

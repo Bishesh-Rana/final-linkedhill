@@ -3,7 +3,21 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
+<section id="bread_crumb_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul>
+                    <li><a href="{{ url('/') }}">Home</a>/</li>
+                    <li><a href="{{ url('/properties') }}">Properties</a>/</li>
+                    <li><a href="#">{{ $property->title }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
     @if ($advertisement->count())
+       <div class="container">
         <div class="ads_section_cover">
             <div class="row">
                 <div class="col-lg-12">
@@ -15,73 +29,19 @@
                 </div>
             </div>
         </div>
+       </div>
     @endif
-    <section id="bread_crumb_wrapper">
+      <section id="detail_info_wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <ul>
-                        <li><a href="{{ url('/') }}">Home</a>/</li>
-                        <li><a href="{{ url('/properties') }}">Properties</a>/</li>
-                        <li><a href="#">{{ $property->title }}</a></li>
-                    </ul>
+                @foreach ($property->images as $image)
+                <div class="col-md-4">
+                 <a class="elem" href="{{ image(@$image->name) }}"  data-lcl-thumb="{{ image(@$image->name) }}">
+                     <span style="background-image: url({{ image(@$image->name) }});"></span>
+                 </a>
                 </div>
+                 @endforeach
             </div>
-        </div>
-    </section>
-
-
-
-
-    <section id="detail_info_wrapper">
-        <div class="container">
-            @foreach ($property->images as $image)
-            <a class="elem" href="{{ image(@$image->name) }}"  data-lcl-thumb="{{ image(@$image->name) }}">
-                <span style="background-image: url({{ image(@$image->name) }});"></span>
-            </a>
-            @endforeach
-
-
-            <div class="">
-                {{-- <div class="owl-carousel owl_button_style  property_detail_images" id="owl_banners" data-wow-delay="0.5s">
-                    @foreach ($property->images as $image)
-                        <div data-dot="<button> <img class= 'img-index' src='{{ image(@$image->name) }}'"></button>
-                            <a href="{{ image(@$image->name) }}"><img src="{{ image(@$image->name) }}" alt="Thumbnail 1"></a>
-                            
-                        </div>
-                    @endforeach
-                </div> --}}
-
-                {{-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleControls" style="    background: black;height: 5px;width: 5px;margin-right:10px;" data-slide-to="2"></li>
-                      </ol>
-                    <div class="carousel-inner">
-                        @foreach ($property->images as $image)
-                            <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                              
-                            </div>
-                        @endforeach
-                        
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div> --}}
-            </div>
-            {{-- <div class="property_detail_wrapper">
-              
-            </div> --}}
         </div>
     </section>
 
@@ -105,12 +65,6 @@
                                                 <span><i class="las la-map-marker-alt"></i></span>
                                                 <span>{{ @$property->property_address }}</span>
                                             </div>
-            
-                                            {{-- <div class="button_tx_property">
-                                                <a href="http://maps.google.com/?q={{ @$property->property_address }}"
-                                                    class="btn" target="_blank"><i class="las la-street-view"></i>Get
-                                                    Direction</a>
-                                            </div> --}}
                                         </div>
                                         <div class="detail_property_owner">
                                             @if ($property->bed !== 0)

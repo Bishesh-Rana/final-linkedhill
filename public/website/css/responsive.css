@@ -51,6 +51,9 @@
     .follow_us ul {
         margin-left: 9px;
     }
+    .linked_hill_search_wrapper{
+        max-width: 900px;
+    }
 
 }
 /* My Responsive Code */
@@ -321,11 +324,11 @@
     .linked_hill_search_wrapper{
         border: 1px solid rgba(255,255,255,0.3);
         box-shadow: 0 5px 10px 0 rgb(7 25 57 / 10%), 0 1px 5px 0 rgb(7 25 57 / 20%);
-        margin-left: 50px;
-        margin-right: 50px;
+        /* margin-left: 50px; */
+        /* margin-right: 50px; */
         margin-top: -80px;
         position: relative;
-        background: #fff;
+        background-color: rgba(255, 255, 255, 0.603);
         z-index: 1020;
         padding: 20px;
         border-radius: 4px;
@@ -426,13 +429,19 @@
     }
     /* ******search filter start******* */
     .linked_hill_search_wrapper {
-        position: relative;
-        top: unset;
-        margin-top: 30px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -60%);
     }
     .link_hill_flex_bottom_wrapper,
     .linked_hill_flex_wrap {
         flex-wrap: wrap;
+    }
+    .linked_hill_flex_wrap{
+        background-color: none;
+    }
+    .linked_hill_search_wrapper{
+        max-width: 600px;
     }
     .linked_hill_select_area {
         width: 100%;
@@ -508,13 +517,16 @@
     .propertylistsearch .option_a1 {
         width: calc(100%/5);
     }
-    .elem {
-        width: 33%;
-        /* border: 20px solid transparent; */
-        padding: 3px;
-        height: auto;
+    .cs_padding {
+        padding: 10px 0;
     }
+    /* .about_loan_thumbnail{
+        height: 350px;
+    } */
 }
+
+
+
 
 
 @media screen and (max-width: 767px) {
@@ -904,6 +916,13 @@
     }
     .more-multi_select_dropdown{
         width: 100%;
+    }
+    .linked_hill_search_wrapper{
+        max-width: 330px;
+    }
+    .linked_hill_search_wrapper {
+        margin-left: auto; 
+        margin-right: auto;
     }
 }
 

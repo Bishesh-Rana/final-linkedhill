@@ -10,9 +10,9 @@
                 </div>
                 <div class="modal-body">
                     <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
-                        <div class="selector_wrapper purpose_wrapper">
+                        <div class="purpose_wrapper">
                             @foreach ($purposes as $key => $type)
-                                <input type='radio' name="purpose" value="{{ $type->name }}"
+                                <input class="rentbuy" type='radio' name="purpose" value="{{ $type->name }}"
                                     id="adpurpose{{ $key }}" />
                                 <label for="adpurpose{{ $key }}">{{ $type->name }}</label>
                             @endforeach
@@ -20,7 +20,6 @@
                         <div class="linked_hill_search_area d-flex">
                             <?php $name = '';
                             ?>
-                          <div class="multiple_select2option">
                             <div class="multiple_select2option">
                                 <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple">
                                     @isset($addresses)
@@ -37,7 +36,6 @@
                                     @endisset
                                 </select>
                             </div>
-                        </div>
                             <button class="btn btn-dark" type="submit"><i class="las la-search"></i></button>
                         </div>
                         <div class="advance_search_modal">
@@ -105,34 +103,29 @@
                                             </div>
                                         </div>
                                         <div class="advance">
-                                            @php $i = 0; @endphp
                                         @foreach ($feature_values as $key => $values)
                                             @php
                                                 $name = App\Models\Feature::where('id', $key)->value('title');
                                             @endphp
-                                            @if ($i < 3)
-                                                <div class="selector_wrapper">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <h3>{{ $name }}</h3>
-                                                                <div id="parking">
-                                                                    <div class="dynamic ">
-                                                                        <select name="properties[{{ $key }}]">
-                                                                            <option value="any">Any</option>
-                                                                            @foreach ($values as $key1 => $value)
-                                                                            <option value="{{ $value }}">{{ $value }}+ </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
+                                            <div class="selector_wrapper">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <h3>{{ $name }}</h3>
+                                                            <div id="parking">
+                                                                <div class="dynamic ">
+                                                                    <select name="properties[{{ $key }}]">
+                                                                        <option value="any">Any</option>
+                                                                        @foreach ($values as $key1 => $value)
+                                                                        <option value="{{ $value }}">{{ $value }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div> 
-                                            @else
-                                            @endif
-                                            @php $i += 1; @endphp
+                                                </div>
+                                            </div> 
                                         @endforeach
                                         </div>
                                         <div class="selector_wrapper">
@@ -229,7 +222,7 @@
                     },
                     error: function(response) {}
                 });
-                category_ids = [;]
+                category_ids = [];
 
                 }
                 else{

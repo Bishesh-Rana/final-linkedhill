@@ -5,7 +5,7 @@
                 <ul>
                     @foreach ($purposes as $key => $type)
                         <li>
-                            <input type='radio' data-element="adpurpose{{ $key }}" name="purpose"
+                            <input type='radio' class="rentbuy" data-element="adpurpose{{ $key }}" name="purpose"
                                 value="{{ $type->name }}" id="purpose{{ $key }}" />
                             <label for="purpose{{ $key }}">{{ $type->name }}</label>
                         </li>
