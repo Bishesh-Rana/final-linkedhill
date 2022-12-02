@@ -18,7 +18,6 @@
             </div>
         </div>
     </section>
-    {{-- filter --}}
     <section class="container ">
         <form method="get" action="{{ route('front.search-properties') }}">
             <div class="propertylistsearch">

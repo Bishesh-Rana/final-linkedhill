@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 @foreach ($property->images as $image)
-                <div class="col-md-4">
+                <div class="col-md-3">
                  <a class="elem" href="{{ image(@$image->name) }}"  data-lcl-thumb="{{ image(@$image->name) }}">
                      <span style="background-image: url({{ image(@$image->name) }});"></span>
                  </a>

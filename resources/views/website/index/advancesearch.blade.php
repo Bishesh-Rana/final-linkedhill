@@ -166,11 +166,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h3>Road Type</h3>
-                                                        <select name="properties[{{ $key }}]">
+                                                        <select name="roadtype">
                                                             <option value="any">Any</option>
-                                                            @foreach ($values as $key1 => $value)
-                                                            <option value="{{ $value }}">{{ $value }} </option>
-                                                            @endforeach
+                                                            @isset($roadtypes)
+                                                            @foreach ($roadtypes as $key1 => $value)
+                                                            <option value="{{ $value->id }}">{{ $value->name }} </option>
+                                                            @endforeach                                                                
+                                                            @endisset
                                                         </select>
                                                     </div>
                                                 </div>

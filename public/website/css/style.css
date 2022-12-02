@@ -5845,7 +5845,7 @@ object-position: center;
 .elem {
 	display: inline-block;
 	font-size: 0;
-	width: 33%;
+	width: 100%;
 	/* border: 20px solid transparent; */
 	border-bottom: none;
 	background: #fff;
@@ -5998,4 +5998,8 @@ span#st-1 {
 
 .footer_span{
     font-size: 14px;
+}
+
+section#property_container {
+    margin-top: 10px;
 }

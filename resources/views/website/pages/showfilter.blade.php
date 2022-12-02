@@ -137,7 +137,7 @@
                                                             <option value="any">Any</option>
                                                             @isset($roadtypes)
                                                             @foreach ($roadtypes as $key1 => $value)
-                                                            <option value="{{ $value->id }}">{{ $value }} </option>
+                                                            <option value="{{ $value->id }}">{{ $value->name }} </option>
                                                             @endforeach                                                                
                                                             @endisset
                                                         </select>
