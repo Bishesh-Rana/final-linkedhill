@@ -11,9 +11,10 @@
                 <div class="modal-body">
                     <form class="searchProperty" id="searchform" method="get" action="{{ route('front.search-properties') }}">
                         <div class="purpose_wrapper">
+                            {{-- @dd( $purpose->name == $filter['purpose']) --}}
                             @foreach ($purposes as $key => $type)
                                 <input class="rentbuy" type='radio' name="purpose" value="{{ $type->name }}"
-                                    id="adpurpose{{ $key }}" />
+                                    id="adpurpose{{ $key }}" @if(array_key_exists('purpose',$filter)) {{ $purpose->name == $filter['purpose'] ? 'checked' : '' }} @endif/>
                                 <label for="adpurpose{{ $key }}">{{ $type->name }}</label>
                             @endforeach
                         </div>
@@ -56,15 +57,25 @@
                                         <div class="selector_wrapper">
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    {{-- @dd($filter['start_prize']) --}}
                                                     <h3>Min Price</h3>
                                                     <select name="start_prize" id="min_price">
                                                         <option selected disabled>Min Price</option>
                                                         <option value="">Any</option>
+                                                        @if(array_key_exists('start_prize',$filter))
+                                                        <option value="5000.00" {{$filter['start_prize'] == "5000.00"?'selected':''}}>Rs. 5000.00</option>
+                                                        <option value="10000.00" {{$filter['start_prize'] == '10000.00'?'selected':''}}>Rs. 10000.00</option>
+                                                        <option value="50000.00" {{$filter['start_prize'] == '50000.00'?'selected':''}}>Rs. 50000.00</option>
+                                                        <option value="100000.00" {{$filter['start_prize'] == '100000.00'?'selected':''}}>Rs. 100000.00</option>
+                                                        <option value="1000000.00" {{$filter['start_prize'] == '1000000.00'?'selected':''}}>Rs. 1000000.00</option>
+                                                        @else
                                                         <option value="5000.00">Rs. 5000.00</option>
                                                         <option value="10000.00">Rs. 10000.00</option>
                                                         <option value="50000.00">Rs. 50000.00</option>
                                                         <option value="100000.00">Rs. 100000.00</option>
                                                         <option value="1000000.00">Rs. 1000000.00</option>
+                                                        @endif
+                                                        
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
