@@ -110,11 +110,11 @@
                 </div>
             </div>
         </div>
-        <div class="google_map">
+        {{-- <div class="google_map">
             <div class="embed-responsive embed-responsive-21by9">
                 {!! config('websites.map_url') !!}
             </div>
-        </div>
+        </div> --}}
     </section>
 @endsection
 @push('scripts')

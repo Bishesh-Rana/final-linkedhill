@@ -353,6 +353,10 @@
                 <div class="col-lg-4 relative_position">
                     <div class="detail_right_bar">
                         <div class="row">
+                            {{-- @dd($property) --}}
+                            <div class="col-12">
+                                <iframe style="width: 100%;height:auto;" src="https://www.youtube.com/embed/{{$property->youtube_video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
                             <div class="col-lg-12">
                                <div class="right_bar">
                                 <div class="map_container">
@@ -379,6 +383,7 @@
                                 </div>
                                </div>
                             </div>
+
                            
                         </div>
                     </div>
