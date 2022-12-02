@@ -84,7 +84,7 @@
                                                     <select name="end_prize" id="max_price">
                                                         <option selected disabled>Max Price</option>
                                                         <option value="">Any</option>
-                                                        @if(array_key_exists('start_prize',$filter))
+                                                        @if(array_key_exists('end_prize',$filter))
                                                         <option value="1100000.00" {{$filter['end_prize'] == '1100000.00'}}>Rs. 1100000.00</option>
                                                         <option value="1500000.00" {{$filter['end_prize'] == '1500000.00'}}>Rs. 1500000.00</option>
                                                         <option value="2000000.00" {{$filter['end_prize'] == '2000000.00'}}>Rs. 2000000.00</option>
@@ -105,7 +105,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h3>Area</h3>
-                                                        <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;">
+                                                        <input type="number" name="area" id="area" placeholder="Area" style="visibility: visible;display:block;"
+                                                        @if(array_key_exists('area',$filter)) value="{{$filter['area']}}" @endif>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -114,8 +115,7 @@
                                                         <select class="areaunit" name="areaunit" id="areaunit">
                                                             <option selected value="">Unit</option>
                                                             @foreach ($units as $unit)
-                                                                <option value="{{ $unit->id }}">{{ $unit->name }}
-                                                                </option>
+                                                                <option value="{{ $unit->id }}" @if(array_key_exists('areaunit',$filter)) {{ $unit->id == $filter['areaunit'] ? 'checked' : '' }} @endif>{{ $unit->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -134,10 +134,15 @@
                                                             <h3>{{ $name }}</h3>
                                                             <div id="parking">
                                                                 <div class="dynamic ">
-                                                                    <select name="properties[{{ $key }}]">
+                                                                    <select name="properties[{{$key}}]">
                                                                         <option value="any">Any</option>
                                                                         @foreach ($values as $key1 => $value)
-                                                                        <option value="{{ $value }}">{{ $value }}</option>
+                                                                        @if(array_key_exists( 'properties' , $filter))                                                                        
+                                                                            <option value="{{ $value }}" @foreach($filter['properties'] as $keys=>$data){{($data == $value)?'selected':''}} @endforeach>{{ $value }}</option>
+                                                                        @else
+                                                                        <option value="{{ $value }}" >{{ $value }}</option>
+                                                                        @endif
+                                                                        
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -170,7 +175,8 @@
                                             <div class="d-flex">
                                                 <div class="list_group_facilities">
                                                     @foreach ($facilities as $key => $facility)
-                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}">
+                                                        <input class="form-check-input" type="checkbox" name="facility[]" value="{{ $facility->title }}" id="facility{{ $key + 1 }}"
+                                                        @if(array_key_exists('facility',$filter)) {{ in_array($facility->title, $filter) ? 'checked' : '' }} @endif>
                                                         <label class="form-check-label" for="facility{{ $key + 1 }}">{{ $facility->title }}</label>
                                                     @endforeach
                                                 </div>
