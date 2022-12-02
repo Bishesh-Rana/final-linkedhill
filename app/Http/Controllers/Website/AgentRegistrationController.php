@@ -25,7 +25,8 @@ class AgentRegistrationController extends Controller
     }
     public function getAgentLogin(){
         if(auth()->user()){
-            return redirect()->intended(route('admin.dashboard'));
+            // return redirect()->intended(route('admin.dashboard'));
+            return redirect()->intended(route('properties.create'));
         }
         return view('website.agent.login');
     }
