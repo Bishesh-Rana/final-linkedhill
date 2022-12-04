@@ -82,6 +82,8 @@ class PropertyController extends Controller
         }) 
         ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
         ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
+        ->when(request('road_width'), fn ($query) => $query->where('road_width', '>=', request('road_width')))
+        ->when(request('roadunit'), fn ($query) => $query->where('road_width_unit', '=', request('roadunit')))
         ->when(request('roadtype'), fn ($query) => $query->where('road_type', '=', request('roadtype')))
         ->when(request('facing'), fn ($query) => $query->where('property_facing', '=', request('facing')))
         ->when(request('facility'), function($query, $var) {
