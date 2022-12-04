@@ -94,8 +94,8 @@
                                             class="fa fa-save"></i>
                                         Update Purpose
                                     </button>
-                                    <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
-                                            class="fas fa-sync-alt"></i> Reset Order</a>
+                                    {{-- <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
+                                            class="fas fa-sync-alt"></i> Reset Order</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                     toastr.options.closeButton = true
                     toastr.success('Purpose Order Successfuly', "Success !");
                     $('#serialize').prop("disabled", false);
-                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Purpose`);
                 }
             });
         });

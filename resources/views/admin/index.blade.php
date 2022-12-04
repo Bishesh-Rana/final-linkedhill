@@ -57,6 +57,8 @@
         </div>
     </div>
     @endcan
+
+
     @can('agency-list')
 
     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -212,6 +214,40 @@
         </div>
     </div>
     @endcan
+
+       {{--  --}}
+
+       @can('staffrole-list')
+
+       <div class="col-lg-4 col-md-6 col-sm-6">
+           <div class="card card-stats">
+               <div class="card-header" data-background-color="rose">
+                   <i class="material-icons">groups</i>
+               </div>
+               <div class="card-content">
+                   <p class="category title__card">Role</p>
+                   {{-- <h6 class="card-title">{{count(\App\Models\Admin::where('id','!=',1)->get())}}</h6> --}}
+               </div>
+               <div class="clearfix"></div>
+               <div class="card-footer">
+                   <div class="stats">
+                       <i class="material-icons text-success">add_box</i>
+                       @can('staff-create')
+                           <a href="{{route('roles.index')}}">View Role</a>
+                       @endcan
+   
+                   </div>
+                   <div class="spacer"></div>
+                   <div class="stats pull-right">
+                       <i class="material-icons text-success">settings_applications</i>
+                       <a href="{{route('permissions.index')}}">View Permission </a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       @endcan
+   
+       {{--  --}}
 
 
     {{-- @endif --}}

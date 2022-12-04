@@ -32,8 +32,14 @@ class PropertyController extends CommonController
      */
     public function index()
     {
-        $properties = Property::get();
-        return view('admin.property.index',compact('properties'));
+        if(auth()->user()->hasRole('Super Admin')){
+            $properties = Property::get();
+            return view('admin.property.index',compact('properties'));
+        }else{
+            $properties = Property::where('user_id','=',auth()->user()->id)->get();
+            return view('admin.property.index',compact('properties'));
+        }
+        
     }
 
     /**
@@ -133,7 +139,7 @@ class PropertyController extends CommonController
      */
     public function update(PropertyRequest $request, $id)
     {
-        // dd($request->all);
+        // dd($request->all());
         $property = Property::findorfail($id);
         $data = $request->all();
         $sync = collect($data['features'])
@@ -144,6 +150,7 @@ class PropertyController extends CommonController
                     'value' => $item == "1" ? "true" : $item,
                 ];
             })->toArray();
+        // dd($sync);
         try {
             DB::beginTransaction();
             $property->update(Arr::except($data, 'features', 'property_images', 'amenities'));
