@@ -152,9 +152,9 @@
                                             <span class='required-error'>*</span>
                                         </label> <br>  
                                         <div class="radio-wrapper">
-                                            <input  type="radio" name="feature" value="1" id="notfeature" >
-                                            <label for="notfeature" class="me-2">Not Featured</label>
-                                            <input type="radio" name="feature" value="2" id="feature" class="me-2">
+                                            <input  type="radio" name="feature" value="0" id="notfeature" @if ($property->feature == 0) checked @endif>
+                                            <label for="notfeature" class="me-2" >Not Featured</label>
+                                            <input type="radio" name="feature" value="1" id="feature" class="me-2" @if ($property->feature == 1) checked @endif>
                                             <label for="feature">Featured</label>
                                         </div>
                                         {{-- <div class="togglebutton">
@@ -172,9 +172,9 @@
                                         </label>
                                         <br> 
                                         <div class="radio-wrapper"> 
-                                        <input  type="radio" name="insurance" value="1" id="non-insurance" >
+                                        <input  type="radio" name="insurance" value="0" id="non-insurance" @if ($property->insurance == 0) checked @endif>
                                         <label for="non-insurance" class="me-2">Not Availabe</label>
-                                        <input type="radio" name="insurance" value="2" id="insurance" class="me-2">
+                                        <input type="radio" name="insurance" value="1" id="insurance" class="me-2" @if ($property->insurance == 1) checked @endif>
                                         <label for="insurance">Availabe</label>
                                         </div>
                                         {{-- <div class="togglebutton">
@@ -193,9 +193,9 @@
                                         </label>
                                         <br>
                                         <div class="radio-wrapper">
-                                            <input  type="radio" name="negotiable" value="1" id="non-negotiable" >
+                                            <input  type="radio" name="negotiable" value="0" id="non-negotiable" @if ($property->negotiable == 0) checked @endif>
                                             <label for="non-negotiable" class="pe-2">Not Negotiable</label>
-                                            <input type="radio" name="negotiable" value="2" id="negotiable" class="me-2">
+                                            <input type="radio" name="negotiable" value="1" id="negotiable" class="me-2" @if ($property->negotiable == 1) checked @endif>
                                             <label for="negotiable">Negotiable</label>
                                         </div>
 

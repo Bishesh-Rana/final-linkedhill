@@ -182,8 +182,8 @@
                                             class="fa fa-save"></i>
                                         Update Category
                                     </button>
-                                    <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
-                                            class="fas fa-sync-alt"></i> Reset Order</a>
+                                    {{-- <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
+                                            class="fas fa-sync-alt"></i> Reset Order</a> --}}
                                 </div>
                             </div>
                         </div>
