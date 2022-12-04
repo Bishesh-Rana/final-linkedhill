@@ -103,10 +103,10 @@
                                     <div class="for_rent_in_wrapper">
                                         {{ $property->property_status }}
                                     </div>
-                                    <div class="for_location_in_wrapper">
+                                    {{-- <div class="for_location_in_wrapper">
                                         <i class="las la-map-marker-alt"></i>
                                         <a href="">{{ @$property->property_address }}</a>
-                                    </div>
+                                    </div> --}}
                                     <div class="view_camera_in_wrapper">
                                         <i class="las la-camera"></i> {{ $property->images->count() }}
                                     </div>
