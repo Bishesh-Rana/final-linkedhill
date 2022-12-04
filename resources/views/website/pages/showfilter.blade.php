@@ -170,6 +170,28 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <div class="selector_wrapper roadfilter" >
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Road Width</h3>
+                                                        <input type="number" name="road_width" id="road_width" placeholder="Road Width" style="visibility: visible;display:block;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h3>Unit</h3>
+                                                        <select class="roadunit" name="roadunit" id="roadunit">
+                                                            <option selected value="">Unit</option>
+                                                            <option value="ft">Ft</option>
+                                                            <option value="m">M</option>
+                                                            <option value="km">Km</option>
+                                                            <option value="Haath">Haath</option>                                                          
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="selector_wrapper">
                                             <h3>Common Facilities</h3>
                                             <div class="d-flex">

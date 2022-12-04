@@ -31,9 +31,6 @@
                         </div>
                     </div>
                     <div class="card-content">
-
-
-
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel1">
 
@@ -73,15 +70,16 @@
                                     <ol class="sortable">
                                         @foreach ($properties as $key => $value)
                                             <li id="propertyItem_{{ $value->id }}">
-                                                <div>
-                                                        <td>{{ $value->title }}</td>
-                                                        <td><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></td>                                                    @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
-                                                        @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))<td><a href="{{route('toggleStatus', $value->id)}}">{{$a}}</a></td>@endif
-                                                        <td><a href="{{route('property-faqs', $value->id)}}">FAQ</a></td>
-                                                        <td>
-                                                            <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit Purpose"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                            <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove"><i class="fa fa-trash-o"></i> </button>
-                                                        </td>
+                                                <div class="property_list">
+                                                    <div>{{ $value->title }}</div>
+                                                    <div><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></div>                                                   @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
+                                                    @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
+                                                    <div><a href="{{route('toggleStatus', $value->id)}}" title="Click to toggle status">{{$a}}</a></div>@endif
+                                                    <div><a href="{{route('property-faqs', $value->id)}}" title="Property FAQ">FAQ</a></div>
+                                                    <div>
+                                                        <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit property"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove" title="Delete property"><i class="fa fa-trash-o"></i> </button>
+                                                    </div>    
                                                 </div>
                                             </li>
                                         @endforeach
@@ -90,7 +88,7 @@
                                 <div class="form-group mt-4">
                                     <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
                                             class="fa fa-save"></i>
-                                        Update Purpose
+                                        Update Property
                                     </button>
                                     {{-- <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
                                             class="fas fa-sync-alt"></i> Reset Order</a> --}}

@@ -223,6 +223,12 @@ nav-tabs {
     font-weight: 500;
 }
 
+.property_list{
+    display: flex;
+    justify-content: space-between;
+
+}
+
 
 
 

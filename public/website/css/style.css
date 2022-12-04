@@ -5880,6 +5880,14 @@ object-position: center;
     border-radius: 3px;
     height:40px;
 }
+.roadfilter input{
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border: 1px solid #e3dede;
+    border-radius: 3px;
+    height:40px;
+}
 .landarea {
     position: relative;
 }
@@ -5896,6 +5904,11 @@ object-position: center;
 
 .landarea  input::-webkit-outer-spin-button,
 .landarea  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.roadfilter  input::-webkit-outer-spin-button,
+.roadfilter  input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
