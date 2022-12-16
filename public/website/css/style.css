@@ -3466,7 +3466,7 @@ span.blog_of {
 
 section#contact_cw_wrapper {
     margin-top: 50px;
-    margin-bottom: -130px;
+    margin-bottom: 0px;
 }
 
 .contact_form_ input[type="email"],
@@ -5258,6 +5258,7 @@ section#property_character_list {
         padding: 5px 15px 3px;
         margin-right: 3px;
         font-size: 13px;
+        margin-bottom: 3px;
     }
     .advance_search_modal input:checked + label {
         background: #dbdbdb;

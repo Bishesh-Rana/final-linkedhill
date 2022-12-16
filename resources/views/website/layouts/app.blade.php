@@ -209,6 +209,16 @@
             </div>
         </nav>
     </header>
+    {{-- @if(session('success') && !empty(session('success')))
+    <div class="alert alert-success text-center" role="alert">
+        {{ session('success')}}
+    </div>
+    @endif
+    @if(session('error') && !empty(session('error')))
+    <div class="alert alert-danger text-center" role="alert">
+        {{ session('error')}}
+    </div>
+    @endif --}}
     @yield('content')
     <footer id="site_footer">
         <div class="container">
@@ -373,6 +383,10 @@
                 placeholder: "Facilities",
             });
         });
+
+        // setTimeout(function(){
+        //     $('.alert').slideUp();
+        // },3000);
     </script>
     <script>
     </script>

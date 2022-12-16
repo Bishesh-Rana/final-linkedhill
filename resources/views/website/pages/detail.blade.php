@@ -485,7 +485,6 @@
     <div class="modal fade share_feedback" id="send_message_model" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -602,7 +601,6 @@
             wrap_class: 'lcl_fade_oc',
             gallery : true,	
             thumb_attr: 'data-lcl-thumb', 
-            
             skin: 'minimal',
             radius: 0,
             padding	: 0,
@@ -614,25 +612,25 @@
 
     <script>
         $('#owl_banners').owlCarousel({
-    loop: true,
-    margin: 10,
-    // nav:true,
-    dots:true,
-    dotsData:true,
-    responsiveClass: true,
-    navText: ["<i class='las la-angle-left'></i>", "<i class='las la-angle-right'></i>"],
-    responsive: {
-        0: {
-            items: 1,
-        },
-        600: {
-            items: 1,
-        },
-        1000: {
-            items: 1,
+            loop: true,
+            margin: 10,
+            // nav:true,
+            dots:true,
+            dotsData:true,
+            responsiveClass: true,
+            navText: ["<i class='las la-angle-left'></i>", "<i class='las la-angle-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1,
+                    },
+                600: {
+                    items: 1,
+                    },
+                1000: {
+                    items: 1,
+                    }
         }
-    }
-})
+    })
         $("form[name='propertyEnquiry']").submit(function(e) {
             e.preventDefault();
 

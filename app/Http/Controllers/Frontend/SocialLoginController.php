@@ -58,7 +58,7 @@ class SocialLoginController extends Controller
         if(!is_null($user)) {
             $user->name        = $data->user['name'];
             $user->social_id   = $data->user['id'];
-            $user->social_from = 'google';
+            $user->social_from = 'facebook';
             $user->save();
         } else {
             $user = \App\Models\User::where('social_id', $data->user['id'])->first();

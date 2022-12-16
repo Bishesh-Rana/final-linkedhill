@@ -74,27 +74,28 @@
                                                     <div>{{ $value->title }}</div>
                                                     <div><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></div>                                                   @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
                                                     @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
-                                                    <div><a href="{{route('toggleStatus', $value->id)}}" title="Click to toggle status">{{$a}}</a></div>@endif
+                                                    <div><a href="{{route('toggleStatus', $value->id)}}" title="click to toggle status">{{$a}}</a></div>
+                                                    @endif
+                                                    <div>Views: {{$value->view_count}}</div>
                                                     <div><a href="{{route('property-faqs', $value->id)}}" title="Property FAQ">FAQ</a></div>
                                                     <div>
                                                         <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit property"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove" title="Delete property"><i class="fa fa-trash-o"></i> </button>
+                                                        <button onclick="deleteCity({{$value->id}})" class="btn btn-sm btn-danger remove" title="elete property"><i class="fa fa-trash-o"></i> </button>
                                                     </div>    
                                                 </div>
                                             </li>
                                         @endforeach
                                     </ol>
                                 </div>
-                                @if(count($properties)>0)
                                 <div class="form-group mt-4">
                                     <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
                                             class="fa fa-save"></i>
-                                        Update Properties
+                                        Update Property
                                     </button>
                                     {{-- <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
                                             class="fas fa-sync-alt"></i> Reset Order</a> --}}
                                 </div>
-                                @endif
+
                             </div>
 
                         </div>
@@ -182,7 +183,7 @@
                     toastr.options.closeButton = true
                     toastr.success('Property Order Successfuly', "Success !");
                     $('#serialize').prop("disabled", false);
-                    $('#serialize').html(`<i class="fa fa-save"></i> Update Properties`);
+                    $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
                 }
             });
         });

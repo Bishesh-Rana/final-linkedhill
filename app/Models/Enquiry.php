@@ -12,4 +12,9 @@ class Enquiry extends Model
     protected $fillable = [
         'name', 'email', 'contact_info', 'message', 'subject', 'property_id'
     ];
+
+    public function getProperty()
+    {
+        return $this->hasOne(Property::class,'id','property_id');
+    }
 }

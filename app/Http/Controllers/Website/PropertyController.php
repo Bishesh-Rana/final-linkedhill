@@ -26,10 +26,10 @@ class PropertyController extends Controller
     public function propertyDetail($id, $slug)
     {
         $user = auth()->user();
-        if (!empty($user) && !$user->access_token) {
-            $user->access_token = $user->createToken('authToken')->accessToken;
-            $user->save();
-        }
+        // if (!empty($user) && !$user->access_token) {
+        //     $user->access_token = $user->createToken('authToken')->accessToken;
+        //     $user->save();
+        // }
         $property = Property::where(['slug' => $slug, 'id' => $id])->with(['images', 'amenities', 'faqs', 'features'])->firstorfail();
         $property->increment('view_count');
         $related = Property::latest()->where('area_id', '=', $property->area_id)->with('city')->limit(3)->get();

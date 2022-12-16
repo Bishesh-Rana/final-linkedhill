@@ -174,6 +174,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('subscribers', [AdminController::class, 'subscribers'])->name('admin.subscriber');
     Route::get('delete-subscriber/{subscriber}', [AdminController::class, 'deleteSubscriber'])->name('delete.subscriber');
 
+    // enquiry
+    Route::get('enquiry', [AdminController::class, 'enquries'])->name('admin.enquiry');
+
     /** Restore  */
 
     Route::group(['prefix' => 'restore'], function () {

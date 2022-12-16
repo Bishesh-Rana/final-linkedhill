@@ -117,7 +117,6 @@
                                       @include('admin.property.includes.price')
                                       <!---  /Price ----->
                                         <!---  OTHER DETAIL ----->
-                                   
 
                                     
                                     @include('admin.property.includes.category')
@@ -268,16 +267,15 @@
         $.fn.fileinput.defaults.theme = 'gly';
     </script>
     <script>
-        $('#categorytype').on('click', function(){
-            let a = $('input[name="category_id"]:checked').data('testval');
-            if(a == "Apartment/Flat"){
-                $('.total_area').hide();
-            }
-            else{
-                $('.total_area').show();
-            }
-        })
-    
+        // $('#categorytype').on('click', function(){
+        //     let a = $('input[name="category_id"]:checked').data('testval');
+        //     if(a == "Apartment/Flat"){
+        //         $('.total_area').hide();
+        //     }
+        //     else{
+        //         $('.total_area').show();
+        //     }
+        // })   
 
     </script>
     <script>

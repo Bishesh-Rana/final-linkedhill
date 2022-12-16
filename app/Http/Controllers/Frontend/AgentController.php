@@ -51,8 +51,6 @@ class AgentController extends Controller
             $message = "You have requested to add your agency. Please wait for Admin approval.";
             return view('frontend.dashboard.agent.create',compact('message','hasAccount','message_verified'));
         }else{
-
-
             return view('frontend.dashboard.agent.create',compact('hasAccount'));
         }
 

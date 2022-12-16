@@ -22,8 +22,6 @@
                     <div class="contact_form_">
                         <h1>Let’s get in touch</h1>
 
-
-
                         <form id="contact" name="contact" action="{{route('store.enquiry')}}" method="POST" >
                             @csrf
                             <div class="row">
@@ -31,14 +29,14 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Your name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="Enter your name" name="name">
+                                            placeholder="Enter your name" name="name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Your email</label>
                                         <input type="email" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="Enter your email" name="email">
+                                            placeholder="Enter your email" name="email" required>
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +45,14 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Your phone</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="Enter your phone" name="contact_info">
+                                            placeholder="Enter your phone" name="contact_info" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Subject</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="Enter your subject" name="subject">
+                                            placeholder="Enter your subject" name="subject" required>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +60,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +75,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6LfRnYQjAAAAADOGXVJxin0KniwdSsXO7zl-63hb"></div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="contact_submit_button">
@@ -97,10 +96,10 @@
                                 <span>Address</span>
                                 <span>{{ @config('websites.address') }}</span>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <span>Phone</span>
                                 <span>{{ @config('websites.phone') }}</span>
-                            </li>
+                            </li> --}}
                             <li>
                                 <span>Email</span>
                                 <span>{{ @config('websites.email') }}</span>
@@ -118,10 +117,18 @@
     </section>
 @endsection
 @push('scripts')
+<script type="text/javascript">
+    var onloadCallback = function() {
+      grecaptcha.render('html_element', {
+        'sitekey' : '6LfRnYQjAAAAADOGXVJxin0KniwdSsXO7zl-63hb'
+      });
+    };
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     {{-- <script>
         $("form[name='contact']").submit(function(e) {
             e.preventDefault();
-
             $.ajax({
                 url: '{{ route('store.enquiry') }}',
                 type: 'post',

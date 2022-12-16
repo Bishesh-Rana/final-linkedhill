@@ -20,17 +20,25 @@ class StaffController extends Controller
 
     public function index()
     { 
+        // if(auth()->user()->roles[0]->name=='Super Admin' || auth()->user()->roles[0]->name=='Admin'){
+        //     // $enquiries = Enquiry::all();
+        //     $users = User::all();
+        //     // dd($users);
+        // }
+        // else{
 
-        if(auth()->user()->can('user-list')){
-            $users = User::whereHas('roles', function (Builder $query) {
-                $query->where('roles.name', '!=', 'Super Admin');
-            })->latest()->get();
-        }else{
-            if(auth()->user()->can('staff-list')){
-                $users = User::where('user_id', auth()->user()->id)->get();
-            }
-        }
+        // }
 
+        // if(auth()->user()->can('user-list')){
+        //     $users = User::whereHas('roles', function (Builder $query) {
+        //         $query->where('roles.name', '!=', 'Super Admin');
+        //     })->latest()->get();
+        // }else{
+        //     if(auth()->user()->can('staff-list')){
+        //         $users = User::where('user_id', auth()->user()->id)->get();
+        //     }
+        // }
+        $users = User::visible()->latest()->get();
         return view('admin.staffs.index', compact('users'));
     }
 
@@ -61,7 +69,6 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -96,7 +103,6 @@ class StaffController extends Controller
             if ($request->roles) {
                 $staff->assignRole($request->roles);
             }
-            
         }
         return redirect(route('staffs.index'))->with('message', 'Staff created successfully.');
     }

@@ -51,7 +51,7 @@ class User extends Authenticatable
         'referral_code',
         'user_id',
         'image',
-        'full_address '
+        'full_address'
     ];
 
     /**
@@ -95,6 +95,23 @@ class User extends Authenticatable
     public function properties()
     {
         return $this->hasMany(Property::class, 'user_id');
+    }
+
+    public function isAdmin()
+    {
+        $role_slug = Str::slug(auth()->user()->roles[0]->name ?? null);
+        if($role_slug == 'super-admin' || $role_slug == 'admin'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function scopeVisible($query)
+    {
+        if(!auth()->user()->isAdmin()){
+            $query->where('user_id', auth()->user()->id);
+        }
     }
 
     public function  agency_property()

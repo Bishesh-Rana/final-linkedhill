@@ -409,6 +409,13 @@ class SidebarComponent extends Component
                 'child' => null
             ],
             [
+                'title' => 'Enquiries',
+                'icon' => 'mail',
+                'href' => route('admin.enquiry'),
+                'permission' => ['enquiry-list'],
+                'child' => null
+            ],
+            [
                 'title' => 'setting',
                 'icon' => 'settings',
                 'href' => route('setting'),

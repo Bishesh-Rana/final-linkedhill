@@ -95,6 +95,10 @@ class Property extends Model
     {
         return $this->hasMany(FavouriteList::class, 'property_id');
     }
+    // public function enquiry()
+    // {
+    //     return $this->hasMany(Enquiry::class, 'property_id');
+    // }
 
     public function faqs()
     {

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\WebsiteRequest;
+use App\Models\Enquiry;
+use App\Models\Property;
 
 class AdminController extends CommonController
 {
@@ -96,6 +98,39 @@ class AdminController extends CommonController
     {
         $subscribers = Subscriber::all();
         return view('admin.subscriber', compact('subscribers'));
+    }
+    public function enquries()
+    {
+        if(auth()->user()->roles[0]->name=='Super Admin' || auth()->user()->roles[0]->name=='Admin'){
+            $enquiries = Enquiry::all();
+        }
+        // if(auth()->user()->hasRole('Agent')){
+        //     $properties = auth()->user()->properties;
+        //     foreach ($properties as $key => $property) {
+        //         $enquiries = Enquiry::where('property_id',$property->id)->get();
+        //         // dd($enquiries);
+        //     }
+        // }
+        else{
+            $user = auth()->user();
+            $properties = auth()->user()->properties;
+            foreach ($properties as $key => $property) {
+                $enquiries = Enquiry::where('property_id',$property->id)->get();
+            }
+        }
+        foreach($enquiries as $data)
+        {
+            $data->setAttribute('muji',null);
+            if($data->getProperty !=null && $data->getProperty->count() >0)
+            {
+                $data['muji']=$data->getProperty->title;
+            }
+        
+        //   $data->setAttribute('muji',$data->getProperty->title);
+        }   
+
+        // dd($enquiries);
+        return view('admin.enquiry', compact('enquiries'));
     }
 
     public function deleteSubscriber(Subscriber $subscriber)

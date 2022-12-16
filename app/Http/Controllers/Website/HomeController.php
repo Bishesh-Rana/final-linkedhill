@@ -237,6 +237,9 @@ class HomeController extends Controller
 
     public function storeEnquiry(Request $request)
     {
+         // $this->validate($request, [
+        //     'g-recaptcha-response' => 'required',
+        // ]);
         $data = Enquiry::create(
             [
                 'email' => $request->email,
@@ -250,9 +253,12 @@ class HomeController extends Controller
         if ($data->property_id) {
             $property = Property::find($data->property_id);
             User::where('id', $property->user_id ?? 1)->first()->notify(new PropertyInquery($data));
+            return response()->json(['message' => 'Enquiry Sent Successfully']);
         }
         if ($data) {
-            return response()->json(['message' => 'Enquiry Sent Successfully']);
+            $request->session()->flash('success','Enquiry Sent Successfully');
+            return redirect()->back();
+            // return response()->json(['message' => 'Enquiry Sent Successfully']);
         }
     }
     public function blogSingle($slug)
@@ -286,7 +292,6 @@ class HomeController extends Controller
 
     public function getMeta($meta = [])
     {
-
         return [
             'meta_title' => $meta['meta_title'] ?? config('websites.name'),
             'meta_keyword' => $meta['meta_keyword'] ?? config('websites.meta_keyword'),
