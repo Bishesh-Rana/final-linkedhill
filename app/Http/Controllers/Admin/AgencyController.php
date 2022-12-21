@@ -27,6 +27,7 @@ class AgencyController extends CommonController
     public function index()
     {
         $agencies = AgencyDetail::with('agent')->get();
+        // dd($agencies);
         $pageHeading = "Verified Agency";
         return view('admin.agency.agency', compact('pageHeading','agencies'));
     }

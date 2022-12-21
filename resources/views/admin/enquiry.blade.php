@@ -42,7 +42,8 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                @foreach($enquiries as $subscriber)
+                                    @isset($enquiries)
+                                    @foreach($enquiries as $subscriber)
                                     <tr>
                                         <td>{{$loop->index +1}}</td>
                                         <td>{{$subscriber->name}}</td>
@@ -57,7 +58,13 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @endforeach    
+                                    @endisset
+                                    <tr>
+                                        <td colspan="8" class="text-center">!! No Enquiry !!</td>
+                                        
+                                    </tr>
+                                
                                 </tbody>
                             </table>
                         </div>

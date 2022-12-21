@@ -46,11 +46,17 @@ class AgentRegistrationController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
+        $users = user::all();
+        // dd($request->email);   
         $check = User::where('email', $request->email)->first();
+       
         if ($check == null) {
             return back()->with('error', 'Email does not exist!');
         }
-        if(!$check->hasAgency == null){
+        // if(!$check->hasAgency == null){
+            //  dd($check->hasAgency);
+        if($check->hasAgency != null){
+            // dd('null');
             if($check->hasAgency->status == 'Not Verified'){
                 return redirect()->back()->with('error', 'You are not verified');
             }elseif($check->hasAgency->status == 'Blocked'){

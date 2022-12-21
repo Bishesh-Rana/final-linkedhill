@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\PropertyRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\Admin\CommonController;
+use App\Models\User;
 
 class PropertyController extends CommonController
 {
@@ -34,6 +35,16 @@ class PropertyController extends CommonController
     {
         if(auth()->user()->hasRole('Super Admin')){
             $properties = Property::get();
+            $user = User::get();
+            // dd($user);
+
+            // dd($properties);
+            foreach($properties as $data)
+            {
+              $data->setAttribute('user',$data->user->name);
+            }
+    
+
             return view('admin.property.index',compact('properties'));
         }else{
             $properties = Property::where('user_id','=',auth()->user()->id)->get();

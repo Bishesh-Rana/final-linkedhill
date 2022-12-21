@@ -28,8 +28,8 @@
         </div>
     </div>
     @endcan
-    @can('staff-list')
 
+    @can('staff-list')
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header" data-background-color="rose">
@@ -37,7 +37,8 @@
             </div>
             <div class="card-content">
                 <p class="category title__card">Staff</p>
-                <h6 class="card-title">{{count(\App\Models\Admin::where('id','!=',1)->get())}}</h6>
+                {{-- <h6 class="card-title">{{count(\App\Models\Admin::where('id','!=',1)->get())}}</h6> --}}
+                <h6 class="card-title">{{count(\App\Models\User::visible()->get())}}</h6>
             </div>
             <div class="clearfix"></div>
             <div class="card-footer">
@@ -111,8 +112,8 @@
         </div>
     </div>
     @endcan
-    @can('user-list')
-
+    {{-- @can('user-list') --}}
+    @can('customer')
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header" data-background-color="red">
@@ -120,7 +121,9 @@
             </div>
             <div class="card-content">
                 <p class="category title__card">Customers</p>
-                <h6 class="card-title">{{count(\App\Models\User::all())}}</h6>
+                {{-- <h6 class="card-title">{{count(\App\Models\User::all())}}</h6> --}}
+                <h6 class="card-title">{{count(\App\Models\User::visible()->get())}}</h6>
+                {{-- $users = User::visible()->latest()->get(); --}}
             </div>
             <div class="clearfix"></div>
             <div class="card-footer">

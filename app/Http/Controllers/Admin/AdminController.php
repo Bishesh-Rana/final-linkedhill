@@ -101,6 +101,7 @@ class AdminController extends CommonController
     }
     public function enquries()
     {
+        $enquiries = [];
         if(auth()->user()->roles[0]->name=='Super Admin' || auth()->user()->roles[0]->name=='Admin'){
             $enquiries = Enquiry::all();
         }
@@ -114,22 +115,25 @@ class AdminController extends CommonController
         else{
             $user = auth()->user();
             $properties = auth()->user()->properties;
+
             foreach ($properties as $key => $property) {
                 $enquiries = Enquiry::where('property_id',$property->id)->get();
             }
         }
-        foreach($enquiries as $data)
-        {
-            $data->setAttribute('muji',null);
-            if($data->getProperty !=null && $data->getProperty->count() >0)
+      
+        if(count($enquiries)>0){
+            foreach($enquiries as $data)
             {
-                $data['muji']=$data->getProperty->title;
-            }
-        
-        //   $data->setAttribute('muji',$data->getProperty->title);
-        }   
+                $data->setAttribute('muji',null);
+                if($data->getProperty !=null && $data->getProperty->count() >0)
+                {
+                    $data['muji']=$data->getProperty->title;
+                }
+            
+            //   $data->setAttribute('muji',$data->getProperty->title);
+            } 
 
-        // dd($enquiries);
+        }
         return view('admin.enquiry', compact('enquiries'));
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role as Role;
 use App\Models\Admin;
+use App\Models\AgencyDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,8 +47,13 @@ class StaffController extends Controller
     {
         $roles = Role::all();
         $latest_roles = [];
-        if(auth()->user()->hasRole('Super Admin')){
+        if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin') ){
             $roles = $roles;
+            $users = User::where( 'user_id',)
+            -> where('is_active','1') -> get();
+            $agents = AgencyDetail:: where( 'status','1')
+            ->orWhere('type', ['Builder/ Developer','Real Estate Company'])
+            -> get();
         }else{
             foreach($roles as $role){
                 if(auth()->user()->hasRole($role)){
@@ -56,8 +62,10 @@ class StaffController extends Controller
             }
             $roles = (object) $latest_roles;
         }
+
+
         
-        return view('admin.staffs.create', compact('roles'));
+        return view('admin.staffs.create', compact('roles','agents'));
     }
 
     /**

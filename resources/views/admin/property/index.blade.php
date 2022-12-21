@@ -66,6 +66,7 @@
                                         </tbody>
                                     </table>
                                 </div> --}}
+                                {{-- @dd($properties) --}}
                                 <div class="material-datatables">
                                     <ol class="sortable">
                                         @foreach ($properties as $key => $value)
@@ -77,6 +78,9 @@
                                                     <div><a href="{{route('toggleStatus', $value->id)}}" title="click to toggle status">{{$a}}</a></div>
                                                     @endif
                                                     <div>Views: {{$value->view_count}}</div>
+                                                    @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
+                                                    <div>Added By:- {{$value->user}}</div>
+                                                    @endif
                                                     <div><a href="{{route('property-faqs', $value->id)}}" title="Property FAQ">FAQ</a></div>
                                                     <div>
                                                         <a href="{{route('properties.edit', $value->id)}}" class="btn btn-sm btn-primary" title="Edit property"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

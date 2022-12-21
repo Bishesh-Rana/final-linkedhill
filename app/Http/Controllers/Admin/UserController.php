@@ -21,8 +21,9 @@ class UserController extends Controller
 
     public function getCustomers()
     {
-        $customers = User::select('id', 'name', 'email', 'is_blocked')->whereHas("roles", function($q){ $q->where("name", "Customer"); })
-            ->latest();
+        // $customers = User::select('id', 'name', 'email', 'is_blocked')->whereHas("roles", function($q){ $q->where("name", "Customer"); })
+        //     ->latest();
+            $customers = User::visible()->whereHas("roles", function($q){ $q->where("name", "Customer"); })->latest()->get();
         return DataTables::of($customers)
             ->addColumn('status', function ($customer) {
                 if ($customer->is_blocked == 1) {

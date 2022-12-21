@@ -921,8 +921,9 @@
         max-width: 330px;
     }
     .linked_hill_search_wrapper {
-        margin-left: auto; 
+        margin-left: auto;
         margin-right: auto;
+        margin-top: 20px;
     }
 }
 

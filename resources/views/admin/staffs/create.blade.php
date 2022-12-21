@@ -30,13 +30,14 @@
                     @endisset
                     <div class="tab-content">
                         <div class="tab-pane active" id="panel1">
-
-
-                            <x-image name="profile" value="{{ @$staff->profile }}" />
-                            <x-image name="Pan Card" value="{{ @$staff->hasAgency->pan }}" />
-
-
                             <div class="row">
+                                <div class="col-md-6">
+                                    <x-image name="profile" value="{{ @$staff->profile }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <x-image name="Pan Card" value="{{ @$staff->hasAgency->pan }}" />
+                                    
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Enter Name<span class="required-error">*</span></label>
                                     <input type="text" name="name" id="name"
@@ -85,6 +86,19 @@
                                 </div>
                                 <div class="clearfix"></div>
 
+                                @if (auth()->user()->isAdmin())
+                                {{-- @dd($agents) --}}
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Company</label> <br>
+                                    <select class="form-control" style="width:100%;appearance:auto;" name="user_id" id="">
+                                        <option disabled selected>Select Company</option>
+                                        @foreach ($agents as $user )
+                                        <option value="{{$user->user_id}}">{{$user->agency_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>                                
+                                @endif
+
                                 @if(!isset($staff))
 
                                 <div class="form-group col-md-6">
@@ -97,7 +111,6 @@
                                     </span>
                                     @endif
                                 </div>
-
 
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Confirm Password<span
