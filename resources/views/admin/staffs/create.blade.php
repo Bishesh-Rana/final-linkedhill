@@ -1,6 +1,11 @@
 @extends('admin.layouts.master')
 @section('title','Staff')
-
+@push('styles')
+<style>
+    .select2-container{
+        width: 100%!important;
+    }
+</style>
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -88,14 +93,18 @@
 
                                 @if (auth()->user()->isAdmin())
                                 {{-- @dd($agents) --}}
+                                @isset($staff)
+                                {{-- @dd($staff ) --}}
+                                    
+                                @endisset
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Company</label> <br>
-                                    <select class="form-control" style="width:100%;appearance:auto;" name="user_id" id="">
+                                    <select class="js-example-basic-single" name="user_id">
                                         <option disabled selected>Select Company</option>
                                         @foreach ($agents as $user )
-                                        <option value="{{$user->user_id}}">{{$user->agency_name}}</option>
+                                        <option value="{{$user->user_id}}" @isset($staff)  {{ ($user->user_id == $staff->user_id) ? 'selected':'' }} @endisset>{{$user->agency_name}}</option>
                                         @endforeach
-                                    </select>
+                                      </select>
                                 </div>                                
                                 @endif
 
@@ -178,8 +187,6 @@
                                         </div>
                                     </div>
 
-
-
                                     {{--
                                 </div> --}}
                             </div>
@@ -200,6 +207,11 @@
 @endsection
 
 @push('script')
+<Script>
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</Script>
 
 
 

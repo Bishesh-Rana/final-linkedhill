@@ -78,7 +78,6 @@
                         </div>
                     </div>
 
-
                     <div class="card-content">
                         @if ($property->id)
                             <form method="post" action="{{ route('properties.update', $property->id) }}"
@@ -95,7 +94,6 @@
                                 <!-- panel-group -->
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-                                    <input type="hidden" name="user_id">
                                     <!--  BASIC DETAILS  ---->
                                     @include('admin.property.includes.basic_details')
                                     <!-- /BASIC DETAILS  ---->

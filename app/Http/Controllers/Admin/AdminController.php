@@ -105,22 +105,13 @@ class AdminController extends CommonController
         if(auth()->user()->roles[0]->name=='Super Admin' || auth()->user()->roles[0]->name=='Admin'){
             $enquiries = Enquiry::all();
         }
-        // if(auth()->user()->hasRole('Agent')){
-        //     $properties = auth()->user()->properties;
-        //     foreach ($properties as $key => $property) {
-        //         $enquiries = Enquiry::where('property_id',$property->id)->get();
-        //         // dd($enquiries);
-        //     }
-        // }
         else{
-            $user = auth()->user();
+            $user = auth()->user();           
             $properties = auth()->user()->properties;
-
             foreach ($properties as $key => $property) {
                 $enquiries = Enquiry::where('property_id',$property->id)->get();
             }
         }
-      
         if(count($enquiries)>0){
             foreach($enquiries as $data)
             {
@@ -130,7 +121,6 @@ class AdminController extends CommonController
                     $data['muji']=$data->getProperty->title;
                 }
             
-            //   $data->setAttribute('muji',$data->getProperty->title);
             } 
 
         }

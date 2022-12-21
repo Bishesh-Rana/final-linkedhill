@@ -11,7 +11,8 @@
             </div>
             <div class="card-content">
                 <p class="category title__card">Property</p>
-                <h6 class="card-title">{{\App\Models\Property::superAdmin()->count()}}</h6>
+                {{-- <h6 class="card-title">{{\App\Models\Property::superAdmin()->count()}}</h6> --}}
+                <h6 class="card-title">{{count(auth()->user()->properties)}} </h6>
             </div>
             <div class="clearfix"></div>
             <div class="card-footer">
@@ -38,7 +39,7 @@
             <div class="card-content">
                 <p class="category title__card">Staff</p>
                 {{-- <h6 class="card-title">{{count(\App\Models\Admin::where('id','!=',1)->get())}}</h6> --}}
-                <h6 class="card-title">{{count(\App\Models\User::visible()->get())}}</h6>
+                <h6 class="card-title">{{count(\App\Models\User::visible()->get())}} </h6>
             </div>
             <div class="clearfix"></div>
             <div class="card-footer">
@@ -58,7 +59,6 @@
         </div>
     </div>
     @endcan
-
 
     @can('agency-list')
 

@@ -10,7 +10,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-
                     <div class="card-header card-header-icon">
                         <h4><b>Enquiries</b></h4>
                     </div>
@@ -42,6 +41,8 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
+
+                                 
                                     @isset($enquiries)
                                     @foreach($enquiries as $subscriber)
                                     <tr>
@@ -60,11 +61,11 @@
                                     </tr>
                                     @endforeach    
                                     @endisset
+                                    @if (count($enquiries)==0)
                                     <tr>
                                         <td colspan="8" class="text-center">!! No Enquiry !!</td>
-                                        
                                     </tr>
-                                
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

@@ -42,21 +42,38 @@ class AgentRegistrationController extends Controller
     }
 
     public function postAgentLogin(Request $request){
+       
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        $users = user::all();
-        // dd($request->email);   
+        $users = user::all(); 
         $check = User::where('email', $request->email)->first();
-       
         if ($check == null) {
             return back()->with('error', 'Email does not exist!');
         }
-        // if(!$check->hasAgency == null){
-            //  dd($check->hasAgency);
-        if($check->hasAgency != null){
-            // dd('null');
+
+        if($check->agentStaff != null){
+            if($check->agentStaff->status == 'Not Verified'){
+                return redirect()->back()->with('error', 'You are not verified');
+            }elseif($check->agentStaff->status == 'Blocked'){
+                return back()->with('error', 'You are blocked. Plz contact to admin');
+            }elseif($check->agentStaff->status == 'Rejected'){
+                return back()->with('error', 'You are Rejected. Plz contact to admin');
+            }
+            elseif($check->agentStaff->is_active == '0'){
+                return redirect()->back()->with('error', 'You are not verified');
+            }elseif($check->agentStaff->is_blocked == '0'){
+                return back()->with('error', 'You are blocked. Plz contact to admin');
+            }
+            else{
+                if (\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                    return redirect()->route('admin.dashboard');
+                }
+                return back()->with('error', 'Email and Password do not match')->withInput($request->only('email'));
+            }       
+        }
+        if($check->hasAgency != null ){
             if($check->hasAgency->status == 'Not Verified'){
                 return redirect()->back()->with('error', 'You are not verified');
             }elseif($check->hasAgency->status == 'Blocked'){
@@ -71,9 +88,7 @@ class AgentRegistrationController extends Controller
             }
         }else{
             return back()->with('error','Email not found');
-        }
-
-       
+        }   
 
        
     }

@@ -37,6 +37,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
+                                            <th>Type</th>
                                             <th>Image</th>
                                             <th>Status</th>
                                             <th>Address</th>
@@ -50,6 +51,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
+                                            <th>Type</th>
                                             <th>Image</th>
                                             <th>Status</th>
                                             <th>Address</th>
@@ -60,9 +62,11 @@
                                         </tfoot>
                                         <tbody>
                                         @foreach($agencies as $key=>$agency)
+                                        {{-- @dd($agency) --}}
                                             <tr>
                                                 <td>{{++$key}}</td>
                                                 <td>{{$agency->agency_name}}</td>
+                                                <td>{{$agency->type}}</td>
                                                 <td>
                                                     <a href="{{$agency->logo}}" data-lightbox="example{{$agency->id}}"><img class="img-style" src="{{$agency->logo}}" /></a>
                                                 </td>

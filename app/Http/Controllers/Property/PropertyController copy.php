@@ -33,7 +33,7 @@ class PropertyController extends CommonController
      */
     public function index()
     {
-        if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin')){
+        if(auth()->user()->hasRole('Super Admin')){
             $properties = Property::get();
             $user = User::get();
             // dd($user);
@@ -42,13 +42,12 @@ class PropertyController extends CommonController
             foreach($properties as $data)
             {
               $data->setAttribute('user',$data->user->name);
-            }   
+            }
+    
 
             return view('admin.property.index',compact('properties'));
         }else{
-            // $properties = Property::where('user_id','=',auth()->user()->id)->get();
-            $properties = auth()->user()->properties;
-
+            $properties = Property::where('user_id','=',auth()->user()->id)->get();
             return view('admin.property.index',compact('properties'));
         }
         
@@ -74,11 +73,6 @@ class PropertyController extends CommonController
     public function store(PropertyRequest $request)
     {
         $data = $request->validated();
-       
-        $user_id = (auth()->user()->isStaff())? auth()->user()->isStaff() : auth()->user()->id;
-        // dd($user_id);
-        //  dd($data);
-        $data['user_id'] = $user_id ;
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
@@ -97,7 +91,7 @@ class PropertyController extends CommonController
             $property->amenities()->sync($data['amenities'] ?? []);
             DB::commit();  
 
-            if(auth()->user()->hasRole('Agent') || auth()->user()->isStaff()){
+            if(auth()->user()->hasRole('Agent')){
                 $property = Property::where('title',$request->title)->first();
                 if(auth()->user()->user_id == null){
                     $agency_id = null;
@@ -156,9 +150,9 @@ class PropertyController extends CommonController
      */
     public function update(PropertyRequest $request, $id)
     {
+        // dd($request->all());
         $property = Property::findorfail($id);
         $data = $request->all();
-        $data['user_id'] = $property->user_id;
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
@@ -174,11 +168,13 @@ class PropertyController extends CommonController
             if (isset($data['property_images'])) {
                 $this->uploadImage($data['property_images'], $property->id);
             }
+
             if($request->category_id==2)
             {
                 $data['bed']='0';
                 $data['bath']='0';
             }
+
             $property->fill($data);
             $property->save();
             $property->features()->sync($sync);

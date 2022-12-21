@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class StaffController extends Controller
 {
@@ -61,8 +62,11 @@ class StaffController extends Controller
                 }
             }
             $roles = (object) $latest_roles;
+            // dd($roles);
         }
-
+        $agents = AgencyDetail:: where( 'status','1')
+        ->orWhere('type', ['Builder/ Developer','Real Estate Company'])
+        -> get();
 
         
         return view('admin.staffs.create', compact('roles','agents'));
@@ -77,6 +81,10 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
+        // dd(time());
+        $currentTime = Carbon::now();
+        // dd( $currentTime->toDateTimeString());
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -86,18 +94,36 @@ class StaffController extends Controller
             'phone' => 'nullable|max:15',
             'roles' => 'required'
         ]);
+        if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin') ){
+            $staff = User::create(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password),
+                    'profile' => $request->profile,
+                    'mobile' => $request->mobile,
+                    'phone' => $request->phone,
+                    'user_id' => $request->user_id,
+                    'is_active' => '1',
+                    'email_verified_at' => $currentTime->toDateTimeString(),
+                ]
+            );
+        }
+        else{
+            $staff = User::create(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password),
+                    'profile' => $request->profile,
+                    'mobile' => $request->mobile,
+                    'phone' => $request->phone,
+                    'user_id' => auth()->user()->id,
+                    'is_active' => '0',
+                ]
+            );
+        }
 
-        $staff = User::create(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'profile' => $request->profile,
-                'mobile' => $request->mobile,
-                'phone' => $request->phone,
-                'user_id' => auth()->user()->id,
-            ]
-        );
         if(auth()->user()->can('staff-create')){
             foreach($request->roles as $role){
                 if($role == 1 || $role == 2){
@@ -148,7 +174,10 @@ class StaffController extends Controller
             }
             $roles = (object) $latest_roles;
         }
-        return view('admin.staffs.create', compact('staff', 'roles'));
+        $agents = AgencyDetail:: where( 'status','1')
+        ->orWhere('type', ['Builder/ Developer','Real Estate Company'])
+        -> get();
+        return view('admin.staffs.create', compact('staff', 'roles', 'agents'));
     }
 
     /**
@@ -161,15 +190,30 @@ class StaffController extends Controller
 
     public function update(Request $request, User $staff)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'profile' => 'nullable',
-            'mobile' => 'required|max:15',
-            'phone' => 'nullable|max:15',
-            'roles' => 'required',
-            'is_active' => 'nullable'
-        ]);
+       
+        if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin') ){
+            $data = $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'profile' => 'nullable',
+                'mobile' => 'required|max:15',
+                'phone' => 'nullable|max:15',
+                'roles' => 'required',
+                'is_active' => 'nullable',
+                'user_id' => 'required'
+            ]);
+        }
+        else{
+            $data = $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'profile' => 'nullable',
+                'mobile' => 'required|max:15',
+                'phone' => 'nullable|max:15',
+                'roles' => 'required',
+                'is_active' => 'nullable'
+            ]);
+        }
         if ($staff->id === auth()->user()->id && $request->is_active === '0') {
             return back()->with('fail', 'Sorry! you cannot deactivate your own account.');
         }

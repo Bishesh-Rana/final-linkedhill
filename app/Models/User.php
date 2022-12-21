@@ -77,11 +77,19 @@ class User extends Authenticatable
         return $this->hasMany(User::class,'user_id');
     }
 
+    // public function hasAgency()
+    // {
+    //     return $this->hasOne(AgencyDetail::class,'user_id','user_id');
+    // }
     public function hasAgency()
     {
         return $this->hasOne(AgencyDetail::class);
     }
 
+    public function agentStaff()
+    {
+        return $this->hasOne(AgencyDetail::class , 'user_id' ,'user_id');
+    }
     public function appliedAgencies()
     {
         return $this->hasMany(UserAgent::class, 'user_id');
@@ -91,10 +99,24 @@ class User extends Authenticatable
     //     $user = auth 
     //     return true;
     // }
+    public function isStaff()
+    {
+        if(auth()->user()->hasAgency()){
+            return auth()->user()->user_id;
+        }
+        else{
+            return auth()->user()->id;
+        }
+    }
 
     public function properties()
     {
-        return $this->hasMany(Property::class, 'user_id');
+        if(auth()->user()->agentStaff() !=null){
+            return $this->hasMany(Property::class, 'user_id','user_id');
+        }
+        else{
+            return $this->hasMany(Property::class, 'user_id');
+        }
     }
 
     public function isAdmin()
@@ -110,7 +132,14 @@ class User extends Authenticatable
     public function scopeVisible($query)
     {
         if(!auth()->user()->isAdmin()){
-            $query->where('user_id', auth()->user()->id);
+            // dd(auth()->user()->agentStaff);
+            if(auth()->user()->agentStaff){
+                $query->where('user_id', auth()->user()->user_id);
+            }
+            else{
+                $query->where('user_id', auth()->user()->id);
+            }
+            
         }
     }
 
