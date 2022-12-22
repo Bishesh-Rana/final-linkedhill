@@ -11,8 +11,11 @@
             </div>
             <div class="card-content">
                 <p class="category title__card">Property</p>
-                {{-- <h6 class="card-title">{{\App\Models\Property::superAdmin()->count()}}</h6> --}}
-                <h6 class="card-title">{{count(auth()->user()->properties)}} </h6>
+                @if(auth()->user()->isAdmin())
+                 <h6 class="card-title">{{\App\Models\Property::superAdmin()->count()}}</h6>
+                @else
+                    <h6 class="card-title">{{count(auth()->user()->properties)}} </h6>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="card-footer">
@@ -37,7 +40,7 @@
                 <i class="material-icons">groups</i>
             </div>
             <div class="card-content">
-                <p class="category title__card">Staff</p>
+                <p class="category title__card">User</p>
                 {{-- <h6 class="card-title">{{count(\App\Models\Admin::where('id','!=',1)->get())}}</h6> --}}
                 <h6 class="card-title">{{count(\App\Models\User::visible()->get())}} </h6>
             </div>
@@ -46,14 +49,14 @@
                 <div class="stats">
                     <i class="material-icons text-success">add_box</i>
                     @can('staff-create')
-                        <a href="{{route('staffs.create')}}">Add Staff</a>
+                        <a href="{{route('staffs.create')}}">Add User</a>
                     @endcan
 
                 </div>
                 <div class="spacer"></div>
                 <div class="stats pull-right">
                     <i class="material-icons text-success">settings_applications</i>
-                    <a href="{{route('staffs.index')}}">Manage Staff </a>
+                    <a href="{{route('staffs.index')}}">Manage User </a>
                 </div>
             </div>
         </div>

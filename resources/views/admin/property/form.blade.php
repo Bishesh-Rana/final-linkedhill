@@ -49,6 +49,11 @@
 }
 
     </style>
+    <style>
+        .select2-container{
+            width: 100%!important;
+        }
+    </style>
 @endpush
 @section('content')
     <div class="container-fluid">
@@ -142,74 +147,91 @@
                                     @include('admin.property.includes.amenities')
                                     <!---  /Amenities DETAIL ----->
                                     <br>
-
-                                    <div class="form-group">
-                                        <label class="label-style">
-                                            Featured
-                                            <span class='required-error'>*</span>
-                                        </label> <br>  
-                                        <div class="radio-wrapper">
-                                            <input  type="radio" name="feature" value="0" id="notfeature" @if ($property->feature == 0) checked @endif>
-                                            <label for="notfeature" class="me-2" >Not Featured</label>
-                                            <input type="radio" name="feature" value="1" id="feature" class="me-2" @if ($property->feature == 1) checked @endif>
-                                            <label for="feature">Featured</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="label-style">
+                                                    Featured
+                                                    <span class='required-error'>*</span>
+                                                </label> <br>  
+                                                <div class="radio-wrapper">
+                                                    <input  type="radio" name="feature" value="0" id="notfeature" @if ($property->feature == 0) checked @endif>
+                                                    <label for="notfeature" class="me-2" >Not Featured</label>
+                                                    <input type="radio" name="feature" value="1" id="feature" class="me-2" @if ($property->feature == 1) checked @endif>
+                                                    <label for="feature">Featured</label>
+                                                </div>
+                                                {{-- <div class="togglebutton">
+                                                    <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
+                                                        Not Featured 
+                                                        <input type="checkbox" value="1" name="feature"
+                                                            @if ($property->feature) checked @endif> Feature
+                                                    </label>
+                                                </div> --}}
+                                            </div>
                                         </div>
-                                        {{-- <div class="togglebutton">
-                                            <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
-                                                Not Featured 
-                                                <input type="checkbox" value="1" name="feature"
-                                                    @if ($property->feature) checked @endif> Feature
-                                            </label>
-                                        </div> --}}
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="label-style">
-                                            Insurance
-                                            <span class='required-error'>*</span>
-                                        </label>
-                                        <br> 
-                                        <div class="radio-wrapper"> 
-                                        <input  type="radio" name="insurance" value="0" id="non-insurance" @if ($property->insurance == 0) checked @endif>
-                                        <label for="non-insurance" class="me-2">Not Availabe</label>
-                                        <input type="radio" name="insurance" value="1" id="insurance" class="me-2" @if ($property->insurance == 1) checked @endif>
-                                        <label for="insurance">Availabe</label>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="label-style">
+                                                    Insurance
+                                                    <span class='required-error'>*</span>
+                                                </label>
+                                                <br> 
+                                                <div class="radio-wrapper"> 
+                                                <input  type="radio" name="insurance" value="0" id="non-insurance" @if ($property->insurance == 0) checked @endif>
+                                                <label for="non-insurance" class="me-2">Not Availabe</label>
+                                                <input type="radio" name="insurance" value="1" id="insurance" class="me-2" @if ($property->insurance == 1) checked @endif>
+                                                <label for="insurance">Availabe</label>
+                                                </div>
+                                                {{-- <div class="togglebutton">
+                                                    <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
+                                                        Not Available <input type="checkbox" value="1" name="insurance"
+                                                            @if ($property->insurance) checked @endif>Available
+                                                    </label>
+                                                </div> --}}
+                                            </div>
                                         </div>
-                                        {{-- <div class="togglebutton">
-                                            <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
-                                                Not Available <input type="checkbox" value="1" name="insurance"
-                                                    @if ($property->insurance) checked @endif>Available
-                                            </label>
-                                        </div> --}}
-                                    </div>
-                                </div>
-
-                                    <div class="form-group">
-                                        <label class="label-style">
-                                            Negotiable
-                                            <span class='required-error'>*</span>
-                                        </label>
-                                        <br>
-                                        <div class="radio-wrapper">
-                                            <input  type="radio" name="negotiable" value="0" id="non-negotiable" @if ($property->negotiable == 0) checked @endif>
-                                            <label for="non-negotiable" class="pe-2">Not Negotiable</label>
-                                            <input type="radio" name="negotiable" value="1" id="negotiable" class="me-2" @if ($property->negotiable == 1) checked @endif>
-                                            <label for="negotiable">Negotiable</label>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="label-style">
+                                                    Negotiable
+                                                    <span class='required-error'>*</span>
+                                                </label>
+                                                <br>
+                                                <div class="radio-wrapper">
+                                                    <input  type="radio" name="negotiable" value="0" id="non-negotiable" @if ($property->negotiable == 0) checked @endif>
+                                                    <label for="non-negotiable" class="pe-2">Not Negotiable</label>
+                                                    <input type="radio" name="negotiable" value="1" id="negotiable" class="me-2" @if ($property->negotiable == 1) checked @endif>
+                                                    <label for="negotiable">Negotiable</label>
+                                                </div>
+        
+                                                {{-- <div class="togglebutton">
+                                                    <label class="lead"
+                                                        style="color:black;font-weight:bold;font-size:11pt;">
+                                                        None Negotiable <input type="checkbox" value="1" name="negotiable"
+                                                            @if ($property->negotiable) checked @endif>Negotiable
+                                                    </label>
+                                                </div> --}}
+                                            </div>
                                         </div>
-
-                                        {{-- <div class="togglebutton">
-                                            <label class="lead"
-                                                style="color:black;font-weight:bold;font-size:11pt;">
-                                                None Negotiable <input type="checkbox" value="1" name="negotiable"
-                                                    @if ($property->negotiable) checked @endif>Negotiable
-                                            </label>
-                                        </div> --}}
+                                        @if (auth()->user()->isAdmin())
+                                        <div class="col-md-6">
+                                            <label class="control-label">Select User</label> <br>
+                                            <select class="js-example-basic-single" name="client">
+                                                <option disabled selected>Select User</option>
+                                                @foreach ($users as $user )
+                                                <option value="{{$user->id}}" @isset($property)  {{ ($property->user_id == $user->id) ? 'selected':'' }} @endisset>{{$user->name}}</option>
+                                                @endforeach
+                                          </select>
+                                        </div>                                
+                                        @endif
                                     </div>
+                                 
+                                </div>                                    
                                 </div>
                                 <!-- /panel -group-->
 
                             </div>
                             <div class="tab-pane" id="panel2">
-
                                 <div class="row seo">
                                     <div class="form-group margin-style col-md-12">
                                         <label>Meta Keywords</label>
@@ -264,6 +286,11 @@
     <script>
         $.fn.fileinput.defaults.theme = 'gly';
     </script>
+    <Script>
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    </Script>
     <script>
         // $('#categorytype').on('click', function(){
         //     let a = $('input[name="category_id"]:checked').data('testval');

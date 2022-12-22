@@ -1,11 +1,7 @@
 @extends('admin.layouts.master')
 @section('title','Staff')
 @push('styles')
-<style>
-    .select2-container{
-        width: 100%!important;
-    }
-</style>
+
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -91,12 +87,7 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-                                @if (auth()->user()->isAdmin())
-                                {{-- @dd($agents) --}}
-                                @isset($staff)
-                                {{-- @dd($staff ) --}}
-                                    
-                                @endisset
+                                {{-- @if (auth()->user()->isAdmin())
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Company</label> <br>
                                     <select class="js-example-basic-single" name="user_id">
@@ -106,7 +97,7 @@
                                         @endforeach
                                       </select>
                                 </div>                                
-                                @endif
+                                @endif --}}
 
                                 @if(!isset($staff))
 

@@ -88,7 +88,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- start thumbnail -->
                     @foreach ($properties as $property)
                         <div class="col-lg-4 col-md-6">
                             <div class="premium_thumbnail">
@@ -103,10 +102,6 @@
                                     <div class="for_rent_in_wrapper">
                                         {{ $property->property_status }}
                                     </div>
-                                    {{-- <div class="for_location_in_wrapper">
-                                        <i class="las la-map-marker-alt"></i>
-                                        <a href="">{{ @$property->property_address }}</a>
-                                    </div> --}}
                                     <div class="view_camera_in_wrapper">
                                         <i class="las la-camera"></i> {{ $property->images->count() }}
                                     </div>
@@ -117,23 +112,31 @@
                                                 <span style="font-width:700;">Rs. {{ @$property->start_price }}</span>
                                             </a>
                                             @if(auth()->user())
-                                            <div class="favicon">
-                                            @if(!$property->favorite->isEmpty())
-                                                @foreach($property->favorite as $favorite)
-                                                    @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
+                                                <div class="favicon">
+                                                    @php
+                                                        $data=auth()->user()->favProperties;
+                                                    @endphp                                                    
+                                                    {{-- @if ( auth()->user()->favProperties->contains($property->id))
+                                                    @dd(auth()->user()->favProperties )
+                                                    @endif --}}
+                                                    @if(!empty($data))
+                                                    @php
+                                                        $count=0;
+                                                    @endphp
+                                                    @foreach ( $data as $fav)
+                                                        @if((int)$fav->property_id===(int) $property->id)
                                                         <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
                                                             class="las la-heart "></i></a>
-                                                    @else
-                                                        <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
-                                                            class="lar la-heart "></i></a>
+                                                            @php
+                                                                $count++;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if($count <=0)
+                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i class="lar la-heart "></i></a> 
                                                     @endif
-                                                @endforeach
-                                            @else
-
-                                                <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
-                                                            class="lar la-heart "></i></a>
-                                            @endif
-                                            </div>
+                                                    @endif
+                                                </div>
                                             @else
                                                 <div onclick="favorite({{ $property->id }})" class="favicon">
                                                     <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i

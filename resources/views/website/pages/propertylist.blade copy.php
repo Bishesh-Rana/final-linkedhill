@@ -43,16 +43,16 @@
                                 <div class="multiple_select2option">
                                     <select class="js-example-basic-multiple" name="property_address[]" multiple="multiple">
                                         @isset($addresses)
-                                            @foreach ($addresses as $type)
-                                                @if ($name == $type)
-                                                    continue;
-                                                @else
-                                                    <option>{{ $type }}</option>
-                                                    <?php
-                                                    $name = $type;
-                                                    ?>
-                                                @endif
-                                            @endforeach
+                                        @foreach ($addresses as $type)
+                                        @if ($name == $type)
+                                            continue;
+                                        @else
+                                            <option>{{ $type }}</option>
+                                            <?php
+                                            $name = $type;
+                                            ?>
+                                        @endif
+                                        @endforeach
                                         @endisset
                                     </select>
                                 </div>
@@ -73,10 +73,8 @@
                                         high)</option>
                                     <option value="high" {{ $filter['sorting'] == 'high' ? 'selected' : '' }}> Price(high
                                         to low)</option>
-                                    <option value="latest" {{ $filter['sorting'] == 'latest' ? 'selected' : '' }}>Latest
-                                    </option>
-                                    <option value="oldest" {{ $filter['sorting'] == 'oldest' ? 'selected' : '' }}>Oldest
-                                    </option>
+                                    <option value="latest" {{ $filter['sorting'] == 'latest' ? 'selected' : '' }}>Latest</option>
+                                    <option value="oldest" {{ $filter['sorting'] == 'oldest' ? 'selected' : '' }}>Oldest</option>
                                 @else
                                     <option selected value="">Sort By </option>
                                     <option value="low"> Price(low to high)</option>
@@ -88,11 +86,11 @@
                         </div>
                     </div>
                 </div>
-
-
+                
+        
             </div>
         </form>
-
+        
     </section>
 
     <section id="propertyListing_wrapper">
@@ -116,7 +114,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="property_thumbnail_">
-                                                        {{-- <div id="carouselExampleIndicators" class="carousel slide"
+                                                        <div id="carouselExampleIndicators" class="carousel slide"
                                                             data-ride="carousel">
                                                             <ol class="carousel-indicators">
                                                                 <li data-target="#carouselExampleIndicators"
@@ -151,59 +149,32 @@
                                                                     aria-hidden="true"></span>
                                                                 <span class="sr-only">Next</span>
                                                             </a>
-                                                        </div> --}}
-                                                        <div id="carouselExampleControls" class="carousel slide"
-                                                        data-bs-ride="carousel">
-                                                        <div class="carousel-inner">
-                                                            @foreach ($property->images as $image)
-                                                                <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                                                    <a href="{{ image(@$image->name) }}" class="lightbox"
-                                                                        title="">
-                                                                        <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                                                                    </a>
-                                                                </div>
-                                                            @endforeach
                                                         </div>
-                                                    </div>
-                                                        @if (auth()->user())
-                                                            <div class="favicon">
-                                                                @php
-                                                                    $data = auth()->user()->favProperties;
-                                                                @endphp
-                                                                {{-- @if (auth()->user()->favProperties->contains($property->id))
-                                                                    @dd(auth()->user()->favProperties)
-                                                                @endif --}}
-                                                                @if (!empty($data))
-                                                                    @php
-                                                                        $count = 0;
-                                                                    @endphp
-                                                                    @foreach ($data as $fav)
-                                                                        @if ((int) $fav->property_id === (int) $property->id)
-                                                                            <a href="javascript:;"
-                                                                                class="favorite{{ $property->id }}  fav"
-                                                                                data-id="{{ $property->id }}"><i
-                                                                                    class="las la-heart "></i></a>
-                                                                            @php
-                                                                                $count++;
-                                                                            @endphp
-                                                                        @endif
-                                                                    @endforeach
-                                                                    @if ($count <= 0)
-                                                                        <a href="javascript:;"
-                                                                            class="favorite{{ $property->id }}  fav"
-                                                                            data-id="{{ $property->id }}"><i
-                                                                                class="lar la-heart "></i></a>
-                                                                    @endif
+                                                        @if(auth()->user())
+                                                        <div onclick="favorite({{ $property->id }})" class="favicon">
+                                                        @if(!$property->favorite->isEmpty())
+                                                            @foreach($property->favorite as $favorite)
+                                                                @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
+                                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                                        class="las la-heart "></i></a>
+                                                                @else
+                                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                                        class="lar la-heart "></i></a>
                                                                 @endif
-                                                            </div>
+                                                            @endforeach
+                                                        @else
+
+                                                            <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
+                                                                        class="lar la-heart "></i></a>
+                                                        @endif
+                                                        </div>
                                                         @else
                                                             <div onclick="favorite({{ $property->id }})" class="favicon">
-                                                                <a href="javascript:;"
-                                                                    class="favorite{{ $property->id }}  fav"
-                                                                    data-id="{{ $property->id }}"><i
+                                                                <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
                                                                         class="lar la-heart "></i></a>
                                                             </div>
                                                         @endif
+                                                        
                                                         <div class="property_owner">
                                                             @if ($property->bed !== 0)
                                                                 <span title="bedroom"><i class="las la-bed"></i><span
@@ -213,8 +184,8 @@
                                                                 <span title="bathroom"><i class="las la-bath"></i><span
                                                                         class="type_badge">{{ $property->bath }}</span></span>
                                                             @endif
-
-
+    
+    
                                                             <span
                                                                 title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
                                                                 <i class="las la-crop-alt"></i>
@@ -222,7 +193,7 @@
                                                                     class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
                                                         </div>
                                                     </div>
-
+                                                    
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="property-block">
@@ -301,7 +272,6 @@
                                     @endforelse
                                     <!-- .End form here -->
                                 </div>
-                                {{-- {!! $data->appends(['sort' => 'votes'])->links() !!} --}}
                             </div>
                             <div class="col-lg-12">
                                 <div class="overFlow_pagination">
@@ -318,146 +288,108 @@
                     <div>
                         <h5>Featured Properties</h5>
                     </div>
-
+                    
                     @forelse ($properties as $property)
-                        @if ($property['feature'])
-                            <div class="featuredProducts mb-2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="property_thumbnail_">
-                                            <div id="carouselExampleControls" class="carousel slide"
-                                                data-bs-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    @foreach ($property->images as $image)
-                                                        <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                                            <a href="{{ image(@$image->name) }}" class="lightbox"
-                                                                title="">
-                                                                <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
+                    @if ($property['feature'])
+                    <div class="featuredProducts mb-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="property_thumbnail_">
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($property->images as $image)
+                                                <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
+                                                    <a href="{{ image(@$image->name) }}" class="lightbox" title="">
+                                                        <img src="{{ image(@$image->name) }}" alt="Thumbnail 1">
+                                                    </a>
                                                 </div>
-                                            </div>
-                                            {{-- <div onclick="favorite({{ $property->id }})" class="favicon">
-                                                <a href="#" class="favorite{{ $property->id }}"><i
-                                                        class=" lar la-heart "></i></a>
-                                            </div> --}}
-                                            @if (auth()->user())
-                                            <div class="favicon">
-                                                @php
-                                                    $data = auth()->user()->favProperties;
-                                                @endphp
-                                              
-                                                @if (!empty($data))
-                                                    @php
-                                                        $count = 0;
-                                                    @endphp
-                                                    @foreach ($data as $fav)
-                                                        @if ((int) $fav->property_id === (int) $property->id)
-                                                            <a href="javascript:;"
-                                                                class="favorite{{ $property->id }}  fav"
-                                                                data-id="{{ $property->id }}"><i
-                                                                    class="las la-heart "></i></a>
-                                                            @php
-                                                                $count++;
-                                                            @endphp
-                                                        @endif
-                                                    @endforeach
-                                                    @if ($count <= 0)
-                                                        <a href="javascript:;"
-                                                            class="favorite{{ $property->id }}  fav"
-                                                            data-id="{{ $property->id }}"><i
-                                                                class="lar la-heart "></i></a>
-                                                    @endif
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div onclick="favorite({{ $property->id }})" class="favicon">
-                                                <a href="javascript:;"
-                                                    class="favorite{{ $property->id }}  fav"
-                                                    data-id="{{ $property->id }}"><i
-                                                        class="lar la-heart "></i></a>
-                                            </div>
-                                        @endif
-                                            <div class="property_owner">
-                                                @if ($property->bed !== 0)
-                                                    <span title="bedroom"><i class="las la-bed"></i><span
-                                                            class="type_badge">{{ $property->bed }}</span></span>
-                                                @endif
-
-                                                @if ($property->bath !== 0)
-                                                    <span title="bathroom"><i class="las la-bath"></i><span
-                                                            class="type_badge">{{ $property->bath }}</span></span>
-                                                @endif
-                                                <span
-                                                    title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
-                                                    <i class="las la-crop-alt"></i>
-                                                    <span
-                                                        class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                            </div>
+                                            @endforeach
                                         </div>
-
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="top_tv_verified">
-                                            <span><i class="las la-check"></i>{{ @$property->property_facing }} </span>
-
-                                            @isset($property->type)
-                                                <span><i class="las la-check"></i>{{ $property->type }}</span>
-                                            @endisset
-                                            @if ($property->negotiable == false)
-                                                @isset($property->negotiable)
-                                                @endisset
-                                            @else
-                                                @if ($property->negotiable == true)
-                                                    @isset($property->negotiable)
-                                                        <span><i class="las la-check"></i>NEGOTIABLE</span>
-                                                    @endisset
-                                                @endif
-                                            @endif
-                                            @if ($property->insurance !== false)
-                                                @isset($property->insurance)
-                                                    <span><i class="las la-check"></i>Insurance</span>
-                                                @endisset
-                                            @endif
-
-                                        </div>
-                                        <div class="top_tt_title">
-                                            <a class=""
-                                                href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
-                                                <span> {{ @$property->title }}</span></a>
-                                        </div>
-                                        <div class="owner ">
-                                            <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
-                                            <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
-                                                class=" "><i class="las la-phone-volume"></i></a>
-                                            <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
-                                                data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
-                                            <div class="show_button_area">
-                                                <span class="button_show"><i class="las la-angle-down"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        @if ($property->amenities->count() > 0)
-                                            <div class="property_type_ptd_detail">
-                                                <ul>
-                                                    @foreach ($property->amenities as $amenity)
-                                                        <li><img src="" alt="">{{ $amenity->name }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+                                    <div onclick="favorite({{ $property->id }})" class="favicon">
+                                        <a href="#" class="favorite{{ $property->id }}"><i
+                                                class=" lar la-heart "></i></a>
+                                    </div>
+                                    <div class="property_owner">
+                                        @if ($property->bed !== 0)
+                                            <span title="bedroom"><i class="las la-bed"></i><span
+                                                    class="type_badge">{{ $property->bed }}</span></span>
                                         @endif
 
-                                        <div class="property_text">
-                                            {!! @$property->property_detail !!}
-                                        </div>
+                                        @if ($property->bath !== 0)
+                                            <span title="bathroom"><i class="las la-bath"></i><span
+                                                    class="type_badge">{{ $property->bath }}</span></span>
+                                        @endif
+                                        <span title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
+                                            <i class="las la-crop-alt"></i>
+                                            <span
+                                                class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
                                     </div>
 
                                 </div>
-                            </div>
-                        @endif
 
+                            </div>
+                            <div class="col-md-12">
+                                <div class="top_tv_verified">
+                                    <span><i class="las la-check"></i>{{ @$property->property_facing }} </span>
+
+                                    @isset($property->type)
+                                        <span><i class="las la-check"></i>{{ $property->type }}</span>
+                                    @endisset
+                                    @if ($property->negotiable == false)
+                                        @isset($property->negotiable)
+                                        @endisset
+                                    @else
+                                        @if ($property->negotiable == true)
+                                            @isset($property->negotiable)
+                                                <span><i class="las la-check"></i>NEGOTIABLE</span>
+                                            @endisset
+                                        @endif
+                                    @endif
+                                    @if ($property->insurance !== false)
+                                        @isset($property->insurance)
+                                            <span><i class="las la-check"></i>Insurance</span>
+                                        @endisset
+                                    @endif
+
+                                </div>
+                                <div class="top_tt_title">
+                                    <a class=""
+                                        href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
+                                        <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
+                                        <span> {{ @$property->title }}</span></a>
+                                </div>
+                                <div class="owner ">
+                                    <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
+                                    <a class="icon me-2" href="tel:{{ @$property->owner_phone }}" class=" "><i
+                                            class="las la-phone-volume"></i></a>
+                                    <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
+                                        data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
+                                    <div class="show_button_area">
+                                        <span class="button_show"><i class="las la-angle-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                @if ($property->amenities->count() > 0)
+                                    <div class="property_type_ptd_detail">
+                                        <ul>
+                                            @foreach ($property->amenities as $amenity)
+                                                <li><img src="" alt="">{{ $amenity->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <div class="property_text">
+                                    {!! @$property->property_detail !!}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                        
+                    @endif
+                       
                     @empty
                         <div>
                             <div class="no_result_found_wrapper">
@@ -491,8 +423,8 @@
 
     <!-- Modal -->
     @include('website.pages.showfilter')
-
-
+    
+    
 
     <!-- Modal -->
     <div class="modal fade share_feedback" id="send_message_model" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -535,8 +467,7 @@
                                 <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
-                                    aria-label="Close">Send Message</button>
+                                <button class="btn btn-danger"  type="submit" data-bs-dismiss="modal" aria-label="Close">Send Message</button>
                             </div>
                         </div>
                     </form>
@@ -547,8 +478,8 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).ready(function() {
-            $(".fav").on('click', function() {
+        $(document).ready(function(){
+            $(".fav").on('click',function(){
                 var property = $(this).data('id');
                 $.ajax({
                     url: "{{ route('favorite') }}",
@@ -558,12 +489,12 @@
                     },
                     success: function(response) {
                         console.log(response);
-                        if (response.success) {
-                            $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
+                        if(response.success){
+                            $(".favorite"+property+">.la-heart ").toggleClass("lar las");
                             alert(response.success);
-                        } else {
+                        }else{
                             alert(response.error);
-                        }
+                        }                    
                     },
                     error: function(response) {
 
@@ -573,14 +504,17 @@
         });
     </script>
     <script>
-        function favorite(property) {
-            // $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+        function favorite(property){
+        // $(".favorite"+property+">.la-heart ").toggleClass("lar las");
 
-        }
+    }
     </script>
     <script>
         $("form[name='propertyEnquiry']").submit(function(e) {
+
+            // alert();
             e.preventDefault();
+
             $.ajax({
                 url: '{{ route('store.enquiry') }}',
                 type: 'post',
@@ -640,6 +574,5 @@
 
         });
     </script>
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c7e261de3a500195a0afd&product=inline-share-buttons&source=platform"
-        async="async"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c7e261de3a500195a0afd&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush

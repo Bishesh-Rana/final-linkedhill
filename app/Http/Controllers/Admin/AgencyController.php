@@ -135,8 +135,19 @@ class AgencyController extends CommonController
         $agent->save();
 
         $agency = AgencyDetail::where('user_id', $request->user_id)->first();
-        $agency->is_blocked = $request->is_blocked;
-        $agency->block_remark = $request->block_remark;
+       
+        // $agency->block_remark = $request->block_remark;
+        if( $request->is_blocked == '0'){
+            $agency->status = 1;
+            $agency->status_remarks = $request->block_remark;
+        }
+        else{
+            $agency->status = 3;
+            $agency->status_remarks = $request->block_remark;
+
+        }
+
+        
         $agency->save();
 
         return back()->with('message', 'Action Performed Successfully');

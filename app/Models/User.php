@@ -111,7 +111,7 @@ class User extends Authenticatable
 
     public function properties()
     {
-        if(auth()->user()->agentStaff() !=null){
+        if(auth()->user()->agentStaff != null){
             return $this->hasMany(Property::class, 'user_id','user_id');
         }
         else{
@@ -150,7 +150,7 @@ class User extends Authenticatable
 
     public function favProperties()
     {
-        return $this->hasMany(FavouriteList::class, 'user_id');
+        return $this->hasMany(FavouriteList::class, 'user_id')->whereNotNull('property_id');
     }
 
     public function favouriteProperties()

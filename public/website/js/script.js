@@ -383,20 +383,22 @@ $('.advance-search').click(function() {
 
 
 
-$(document).ready(function(){
-    $('.ad_category').on('change',function(){
-        var checkedcat =[];
-        $.each($("input[name='ad_category_id']:checked"), function(){
-            checkedcat.push($(this).val());
-        });
-        if (checkedcat.length == 1 && checkedcat[0]=='2'){
-            $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
-        }
-        else{
-            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
-        }
-    })
-});
+// $(document).ready(function(){
+//     $('.ad_category').on('change',function(){
+//         var checkedcat =[];
+//         $.each($("input[name='category_id']:checked"), function(){
+//             checkedcat.push($(this).val());
+//         });
+//         alert(checkedcat)
+//         if (checkedcat.length == 1 && checkedcat[0]=='2'){
+//             alert('if')
+//             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+//         }
+//         else{
+//             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+//         }
+//     })
+// });
 
 $('.front-category').on('click', function(e){
     $($(this).data('element')).prop('checked', true);
@@ -409,29 +411,29 @@ $('.front-category').on('click', function(e){
         })
     })
 
-    $('.front-category').on('change', function(e){        
-        $($(this).data('element')).prop('checked', true);
-        var checkedcat = [];
-        $.each($("input[name='category_id']:checked"), function(){
-            checkedcat.push($(this).val());
-        });
-        alert(checkedcat);
+    // $('.front-category').on('change', function(e){      
+    //     $($(this).data('element')).prop('checked', true);
+    //     var checkedcat = [];
+    //     $.each($("input[name='category_id']:checked"), function(){
+    //         checkedcat.push($(this).val());
+    //     });
+    //     alert(checkedcat);
         
-        // if (checkedcat.length == 1 && checkedcat[0]==2){            
-        if (checkedcat.includes(2)){ 
-            $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
-            $('.advance').hide();
-            $('.landarea').show();
-        }
-        else{
-            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
-            $('.landarea').hide();
-            $('.advance').show();
-        }
-    })
+    //     // if (checkedcat.length == 1 && checkedcat[0]==2){            
+    //     if (checkedcat.includes(2)){ 
+    //         $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
+    //         $('.advance').hide();
+    //         $('.landarea').show();
+    //     }
+    //     else{
+    //         $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+    //         $('.landarea').hide();
+    //         $('.advance').show();
+    //     }
+    // })
 
     $('.ad_category').on('click', function(e){
-        
+
         $($(this).data('element')).prop('checked', true);
         var checkedcat = [];
         $.each($("input[name='category_id']:checked"), function(){
@@ -441,12 +443,18 @@ $('.front-category').on('click', function(e){
         //     checkedcat.push($(this).val());
         // });   
        
-        if (checkedcat.includes('2')){ 
+        if ( checkedcat.length == 1 && checkedcat.includes('2')){ 
             $('#bath, #parking, #bed, #buildingType, #buildingAge, #furnishingType').hide();
             $('.landarea').show();
             $('.advance').hide();
         }
-        else{
+        else if (checkedcat.includes('2')) {
+            $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
+            $('.landarea').show();
+            $('.advance').show();
+
+            
+        } else {
             $('#bath, #parking,#bed, #buildingType, #buildingAge, #furnishingType').show();
             $('.landarea').hide();
             $('.advance').show();
@@ -490,13 +498,13 @@ $('.front-category').on('click', function(e){
     })
 });
 
-$(document).ready(function(){
-    $(document).find('.second-row').css("display", "none");
-    $('.filter').on('click', function(){
-        $(document).find('.second-row').toggle();
+// $(document).ready(function(){
+//     $(document).find('.second-row').css("display", "none");
+//     $('.filter').on('click', function(){
+//         $(document).find('.second-row').toggle();
         
-    })
-})
+//     })
+// })
 $(document).ready(function(){
     $('.moreOptionsToggler').on('click', function(){
         $(document).find('.moreOptions').toggle();

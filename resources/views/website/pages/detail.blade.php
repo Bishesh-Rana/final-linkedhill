@@ -57,8 +57,6 @@
                                         <div class="main-price">
                                             <i class="las la-coins"></i><strong>RS. {{ $property->start_price }} </strong>
                                         </div>
-                                        {{-- @dd($property) --}}
-                                        
                                       
                                         <div class="property_address">
                                             <div class="text_tx_property">
@@ -119,28 +117,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 ">
                                     <div class="share-wrap">
                                     <div class="property_verified_ text-end">
-                                        <ul>
-                                            @if(auth()->user())
-                                            
-                                                @if(!$property->favorite->isEmpty())
-                                                    @foreach($property->favorite as $favorite)
-                                                        @if($property->id == $favorite->property_id && auth()->user()->id == $favorite->user_id)
-                                                            <li><a href="#" id="favourite"><i class="las la-heart"></i></a></li>
-                                                        @else
-                                                            <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                                        @endif
-                                                    @endforeach
-                                                @else
-                                                    <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
-                                                @endif
-                                            @else
-                                                <li><a href="#" id="favourite"><i class="lar la-heart"></i></a></li>
+                                        @if (auth()->user())
+                                        <div class="favicon_detail ">
+                                            @php
+                                                $data = auth()->user()->favProperties;
+                                            @endphp
+                                            @if (auth()->user()->favProperties->contains($property->id))
+                                                @dd(auth()->user()->favProperties)
                                             @endif
-                                            {{-- <li><a href="#"><i class="las la-share-alt-square"></i></a></li> --}}
-                                        </ul>
+                                            @if (!empty($data))
+                                                @php
+                                                    $count = 0;
+                                                @endphp
+                                                @foreach ($data as $fav)
+                                                    @if ((int) $fav->property_id === (int) $property->id)
+                                                        <a style="color: black" href="javascript:;"
+                                                            class="favorite{{ $property->id }}  fav"
+                                                            data-id="{{ $property->id }}"><i
+                                                                class="las la-heart "></i></a>
+                                                        @php
+                                                            $count++;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                @if ($count <= 0)
+                                                    <a href="javascript:;"
+                                                        class="favorite{{ $property->id }}  fav"
+                                                        data-id="{{ $property->id }}"><i
+                                                            class="lar la-heart "></i></a>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    @else
+                                        <div onclick="favorite({{ $property->id }})" class="favicon_detail">
+                                            <a href="javascript:;"
+                                                class="favorite{{ $property->id }}  fav"
+                                                data-id="{{ $property->id }}"><i
+                                                    class="lar la-heart "></i></a>
+                                        </div>
+                                    @endif
+                                       
                                     </div>
                                     <span class="sharethis-inline-share-buttons"></span>
                                 </div>
@@ -593,6 +612,32 @@
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        $(".fav").on('click', function() {
+            var property = $(this).data('id');
+            $.ajax({
+                url: "{{ route('favorite') }}",
+                type: 'get',
+                data: {
+                    property_id: property,
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
+                        alert(response.success);
+                    } else {
+                        alert(response.error);
+                    }
+                },
+                error: function(response) {
+
+                }
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function(e) {
        
@@ -629,8 +674,8 @@
                 1000: {
                     items: 1,
                     }
-        }
-    })
+            }
+        })
         $("form[name='propertyEnquiry']").submit(function(e) {
             e.preventDefault();
 
@@ -663,38 +708,38 @@
                 "&amp;output=embed'></iframe>`;
             $('#hello').append(embed);
         })
-        $("#favourite").on("click", function(e) {
-            token = "{{ optional(auth()->user())->access_token }}";
-            if (!token) {
-                alert('log in first');
-                return false;
-            }
-            $.ajax({
-                url: '{{ url('api/toggle-favourites') }}',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    'property_id': '{{ $property->id }}'
-                },
+        // $("#favourite").on("click", function(e) {
+        //     token = "{{ optional(auth()->user())->access_token }}";
+        //     if (!token) {
+        //         alert('log in first');
+        //         return false;
+        //     }
+        //     $.ajax({
+        //         url: '{{ url('api/toggle-favourites') }}',
+        //         type: 'post',
+        //         dataType: 'json',
+        //         data: {
+        //             'property_id': '{{ $property->id }}'
+        //         },
 
-                headers: {
-                    "Authorization": "Bearer " + token
-                },
-                success: function(response) {
-                    console.log(response);
-                    Lobibox.notify('success', {
-                        size: 'mini',
-                        showClass: 'fadeInDown',
-                        hideClass: 'fadeUpDown',
-                        width: 400,
-                        rounded: true,
-                        msg: response.message,
-                        delay: 3000,
-                        delayIndicator: false,
-                    });
-                }
-            });
-        });
+        //         headers: {
+        //             "Authorization": "Bearer " + token
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //             Lobibox.notify('success', {
+        //                 size: 'mini',
+        //                 showClass: 'fadeInDown',
+        //                 hideClass: 'fadeUpDown',
+        //                 width: 400,
+        //                 rounded: true,
+        //                 msg: response.message,
+        //                 delay: 3000,
+        //                 delayIndicator: false,
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c810e6fa502001965eddb&product=inline-share-buttons&source=platform" async="async"></script>
 @endpush

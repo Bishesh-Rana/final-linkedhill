@@ -167,6 +167,14 @@ class CustomerAuthController extends Controller
                     \Auth::logout();
                     return redirect()->back()->with('error','Email not Found');
                 }
+                if($check->is_blocked == '1'){
+                    \Auth::logout();
+                    return redirect()->back()->with('error','You are blocked. Please contact Linkedhill.');
+                }
+                if($check->is_active == '0'){
+                    \Auth::logout();
+                    return redirect()->back()->with('error','Your account is suspended. Please contact Linkedhill.');
+                }
                 return redirect()->route('admin.dashboard');
             }            
             return back()->with('error', 'Email and Password do not match')->withInput($request->only('email'));

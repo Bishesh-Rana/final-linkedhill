@@ -36,14 +36,10 @@ class PropertyController extends CommonController
         if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin')){
             $properties = Property::get();
             $user = User::get();
-            // dd($user);
-
-            // dd($properties);
             foreach($properties as $data)
             {
               $data->setAttribute('user',$data->user->name);
             }   
-
             return view('admin.property.index',compact('properties'));
         }else{
             // $properties = Property::where('user_id','=',auth()->user()->id)->get();
@@ -62,7 +58,8 @@ class PropertyController extends CommonController
     public function create()
     {
         $data = $this->requiredData();
-        return view('admin.property.form', $data);
+        $users = User::where( 'user_id',null)-> where('is_active','1') -> get();
+        return view('admin.property.form', compact('data', 'users'), $data );
     }
 
     /**
@@ -74,10 +71,13 @@ class PropertyController extends CommonController
     public function store(PropertyRequest $request)
     {
         $data = $request->validated();
-       
-        $user_id = (auth()->user()->isStaff())? auth()->user()->isStaff() : auth()->user()->id;
-        // dd($user_id);
-        //  dd($data);
+        if(auth()->user()->isadmin()){
+            $user_id = $request->user_id;
+        }
+        else{
+            $user_id = (auth()->user()->isStaff())? auth()->user()->isStaff() : auth()->user()->id;
+        }     
+        
         $data['user_id'] = $user_id ;
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
@@ -143,8 +143,9 @@ class PropertyController extends CommonController
     public function edit($id)
     {
         $data = $this->requiredData($id);
+        $users = User::where( 'user_id',null)-> where('is_active','1') -> get();
 
-        return view('admin.property.form', $data);
+        return view('admin.property.form', compact('data','users'), $data);
     }
 
     /**
@@ -158,7 +159,12 @@ class PropertyController extends CommonController
     {
         $property = Property::findorfail($id);
         $data = $request->all();
-        $data['user_id'] = $property->user_id;
+        if(auth()->user()->isadmin()){
+            $data['user_id'] = $request->client;
+        }
+        else{
+            $data['user_id'] = $property->user_id;
+        }   
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {

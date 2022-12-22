@@ -58,9 +58,7 @@
                                         </label>
                                         <textarea class="form-control summernote" name="description">{!! old('description') !!}</textarea>
                                         <x-error name='description' />
-
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-6">
                                             <x-image />
@@ -70,12 +68,7 @@
 
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-
                             </div>
 
                             <div class="form-footer text-right">

@@ -3097,6 +3097,14 @@ div#Share_Feedback .modal-dialog {
 .favicon i .las{
     color: red;
 }
+.favicon_detail i{
+    color: red;
+    font-size: 30px;;
+}
+.favicon_detail i .las{
+    color: red;
+    font-size: 30px;;
+}
 .property_owner {
     text-align: center;
     /* margin-top: -30px; */

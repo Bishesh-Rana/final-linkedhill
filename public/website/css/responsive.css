@@ -442,6 +442,7 @@
     }
     .linked_hill_search_wrapper{
         max-width: 600px;
+        margin-top: 16px;
     }
     .linked_hill_select_area {
         width: 100%;

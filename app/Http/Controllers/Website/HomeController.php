@@ -174,8 +174,7 @@ class HomeController extends Controller
                     }
                     $addresses = array_unique($addresses);
                         
-
-                    $properties = Property::where(['status' => 1])->with(['faqs', 'images'])->latest()->paginate(3);
+                    $properties = Property::where(['status' => 1])->with(['faqs', 'images'])->latest()->paginate(10);
                     $advertisements = $this->getAd('property');
                     $feature_values = [];
                     $features = [];

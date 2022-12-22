@@ -36,15 +36,10 @@ class PropertyController extends CommonController
         if(auth()->user()->hasRole('Super Admin')){
             $properties = Property::get();
             $user = User::get();
-            // dd($user);
-
-            // dd($properties);
             foreach($properties as $data)
             {
               $data->setAttribute('user',$data->user->name);
             }
-    
-
             return view('admin.property.index',compact('properties'));
         }else{
             $properties = Property::where('user_id','=',auth()->user()->id)->get();
@@ -60,8 +55,11 @@ class PropertyController extends CommonController
      */
     public function create()
     {
+        @dd('ll');
         $data = $this->requiredData();
-        return view('admin.property.form', $data);
+        $users = User::where( 'user_id','null')-> where('is_active','1') -> get();
+        dd($users);
+        return view('admin.property.form', compact('data', 'users') );
     }
 
     /**

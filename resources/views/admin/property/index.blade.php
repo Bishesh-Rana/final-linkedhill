@@ -66,8 +66,10 @@
                                         </tbody>
                                     </table>
                                 </div> --}}
-                                {{-- @dd($properties) --}}
+                            @if (count($properties)>0)                                   
+                                
                                 <div class="material-datatables">
+
                                     <ol class="sortable">
                                         @foreach ($properties as $key => $value)
                                             <li id="propertyItem_{{ $value->id }}">
@@ -91,6 +93,11 @@
                                         @endforeach
                                     </ol>
                                 </div>
+                                @else
+                                    <div>
+                                        !! No Property found !!
+                                    </div>
+                                @endif
                                 <div class="form-group mt-4">
                                     <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
                                             class="fa fa-save"></i>
