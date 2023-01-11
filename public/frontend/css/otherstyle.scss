@@ -1,0 +1,1744 @@
+@import "./style";
+.breadcrumb-wrapper {
+  @include section-style;
+  padding: 0 !important;
+}
+.breadcrumb {
+  background-color: transparent;
+  color: $dark;
+  margin-bottom: 0;
+  padding: 1.2rem 0rem;
+  font-weight: 600;
+  font-size: 16px;
+  @include responsivesm {
+    font-size: 14px;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+  @include responsive(801px) {
+    padding: 14px 0rem;
+  }
+  .breadcrumb-item.active {
+    color: $lite;
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 4px;
+  &::before {
+    content: "|";
+    color: inherit;
+    padding-right: 4px;
+  }
+}
+
+.sticky {
+  position: sticky;
+  top: 80px;
+  @include responsivemd {
+    position: relative;
+    top: 0;
+  }
+}
+.common-page {
+  .save {
+    path {
+      @include transition-out;
+    }
+    &.active {
+      path {
+        fill: #ed4956;
+      }
+    }
+  }
+  .recommended {
+    .card {
+      .card__img {
+        height: 150px;
+        overflow: hidden;
+      }
+      .card__body {
+        padding: 14px;
+      }
+    }
+    article {
+      padding: 0 8px;
+    }
+    @include slicknav;
+    .price {
+      font-size: 1.2em;
+    }
+    .slick-prev {
+      left: -15px;
+      // top: 70px;
+    }
+  }
+  aside {
+    @include responsivemd {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+.single-page {
+  text-align: left !important;
+  color: $para;
+  @include slick-dot;
+  .single__screen {
+    position: relative;
+    @include card;
+    @include responsivesm {
+      font-size: 14px;
+    }
+    .card {
+      padding: 1.5em;
+      @include responsivemd {
+        padding: 1em;
+      }
+    }
+    .card__body {
+      padding: 0;
+      padding-top: 1.5em;
+      @include responsivemd {
+        padding-top: 0;
+      }
+    }
+    hr {
+      width: 100%;
+      margin: 25px 0;
+      border-width: 1.5px;
+    }
+
+    .slider-for {
+      position: relative;
+      padding-left: 1em;
+      @include responsivemd {
+        padding-left: 0;
+      }
+      .item {
+        position: relative;
+        .image {
+          display: block;
+          height: 430px;
+          @include border-radius;
+          overflow: hidden;
+          @include responsivesm {
+            height: 300px;
+          }
+        }
+      }
+    }
+    .slider-nav {
+      position: absolute;
+      top: 3rem;
+      z-index: 9;
+      left: 1em;
+      @include responsivemd {
+        display: none;
+      }
+      .image {
+        height: 80px;
+        width: 60px;
+        overflow: hidden;
+        border-radius: 6px;
+        border: 2px solid #fff;
+        margin-bottom: 10px;
+        opacity: 0.5;
+        @include transition-in;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .slick-current {
+        .image {
+          opacity: 1;
+        }
+      }
+      .slick-track {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+        -webkit-transform: none !important;
+        transform: none !important;
+      }
+    }
+    .d-flex {
+      font-size: 15px;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 1.2em;
+      @include responsivemmd {
+        flex-wrap: wrap;
+      }
+      @include responsivesm {
+        line-height: 2;
+      }
+
+      p {
+        margin-right: 2em;
+        margin-bottom: 0;
+        @include responsivemd {
+          margin-right: 1em;
+          font-size: 15px;
+        }
+        @include responsivesm {
+          font-size: 14px;
+        }
+      }
+      .material-icons {
+        font-size: 22px;
+        color: $primary-color;
+        vertical-align: sub;
+      }
+      a {
+        margin-left: 1em;
+        span {
+          vertical-align: middle;
+          padding-right: 4px;
+          @include responsivesm {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+    .card__title {
+      @include nolineclamp;
+      float: left;
+      font-size: 1.6em;
+      width: 90%;
+      line-height: 1.6;
+      margin-top: 0;
+      @include responsivemd {
+        font-size: 24px;
+        margin-bottom: 1em;
+      }
+      @include responsivesm {
+        font-size: 18px;
+      }
+      & + a {
+        float: right;
+        margin-top: 1em;
+      }
+    }
+    .star {
+      margin-left: 0;
+      span {
+        color: #ffae21 !important;
+        &:last-child {
+          margin-right: 10px;
+        }
+      }
+    }
+    label {
+      margin-left: 4px;
+      color: $dark;
+    }
+    .price {
+      font-size: 2em;
+      color: $primary-color;
+    }
+    .small__title {
+      font-size: 1.6em;
+    }
+    .card__action {
+      & > div {
+        display: flex;
+        background-color: rgba($white, 0.5);
+        padding: 1em 1.2em;
+        margin-right: 1em;
+        color: $dark;
+        border-radius: 6px;
+        align-items: center;
+        @include responsivelg {
+          padding: 1em 12px !important;
+          margin-bottom: 1em;
+        }
+        @include responsivesm {
+          padding: 8px;
+          margin-bottom: 8px;
+          margin-right: 8px;
+        }
+        label {
+          margin: 0;
+        }
+        svg {
+          margin-right: 8px;
+          height: 32px;
+          @include responsivesm {
+            height: 20px;
+          }
+        }
+        span {
+          color: $para;
+        }
+      }
+    }
+  }
+  aside {
+    @include responsivemd {
+      padding: 0;
+    }
+  }
+  .location {
+    margin-top: 2em;
+    .map {
+      height: 340px;
+      border: 4px solid #fff;
+      @include border-radius;
+      @include responsivesm {
+        height: 280px;
+      }
+    }
+  }
+
+  .nearby {
+    .card__title {
+      @include lineclamp(2);
+    }
+  }
+
+  .profile {
+    margin-bottom: 15px;
+    @include responsivemd {
+      width: calc(50% - 6px);
+    }
+    @include responsivesm {
+      width: 100%;
+    }
+    .card__img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .card__title {
+      font-size: 18px;
+      width: 100%;
+      font-weight: 600;
+      line-height: 1.5;
+      &.name {
+        text-transform: uppercase;
+      }
+    }
+    .tags {
+      color: $primary-color;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background-color: $white;
+      // margin-bottom: 2em;
+      display: inline-block;
+      font-weight: 600;
+      & + img {
+        object-fit: contain;
+        height: 24px;
+        margin: 1em 0;
+      }
+    }
+    .small__title {
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+    .btn {
+      @include button;
+      display: block;
+      padding: 16px 24px;
+      font-size: 15px;
+      border-radius: 8px;
+      &.mail {
+        margin-top: 1em;
+        background-color: transparent;
+        color: $para;
+        border: 2px solid $para;
+        &:hover {
+          background-color: $red;
+          color: #fff;
+          border-color: $red;
+        }
+      }
+    }
+  }
+
+  .search {
+    ul {
+      @include ul;
+    }
+    .card__title {
+      font-weight: 600;
+      border-bottom: 2px solid $white;
+      padding-bottom: 10px;
+    }
+    a {
+      font-weight: 600;
+      padding: 6px 0;
+    }
+  }
+
+  .sticky {
+    @include responsivemd {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2em;
+    }
+    @include responsivesm {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.category-page {
+  .recommended {
+    article {
+      margin-bottom: 16px;
+    }
+  }
+  .sticky {
+    background-color: #fff !important;
+    padding: 1em 16px;
+    @include border-radius;
+    @include responsivemd {
+      padding: 2em;
+      border-radius: 20px 20px 0 0;
+    }
+    .section-title {
+      margin-bottom: 0 !important;
+    }
+    position: relative;
+    top: 0;
+
+    p {
+      color: #606060;
+      @include responsivelg {
+        margin-left: 0px;
+        vertical-align: bottom;
+        font-size: 15px;
+      }
+      span {
+        color: $primary-color;
+        vertical-align: middle;
+      }
+    }
+    .para {
+      font-size: 16px;
+      margin: 2em 0;
+      a {
+        display: flex;
+        justify-content: space-between;
+        span {
+          color: $dark;
+        }
+        &:hover {
+          span {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+  .filter {
+    // position:static !important;
+    // z-index: 1 !important;
+    @include responsivemd {
+      position: fixed !important;
+      width: 100%;
+      height: 100vh;
+      top: 110vh;
+      left: 0;
+      background-color: rgba($dark, 0.3);
+      overflow-y: scroll;
+      z-index: 999;
+      padding-top: 0 !important;
+      transition: 0.4s ease-in;
+    }
+    &.active {
+      top: 0vh;
+      transition: 0.4s ease-out;
+    }
+    .noUi-target {
+      box-shadow: none;
+      @include border-radius;
+      height: 3px;
+      border: 0;
+      background-color: #efefef;
+      margin: 0.5em 0 2em;
+      .noUi-connect {
+        background-color: $primary-color;
+      }
+      .noUi-handle {
+        width: 12px;
+        height: 12px;
+        right: -12px;
+        top: -5px;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: none;
+        border: 3px solid #3f8809;
+        &:before {
+          content: none;
+        }
+        &:after {
+          content: none;
+        }
+      }
+    }
+    .card__title {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      margin-top: 1em;
+      &.title1 {
+        margin-top: 0;
+      }
+      &.title2 {
+        font-size: 16px;
+      }
+    }
+    .form-group {
+      position: relative;
+    }
+    .form-control {
+      height: 50px;
+      border: 0;
+      outline: none;
+      box-shadow: none;
+      background-color: rgba($white, 0.8);
+      color: $dark;
+      font-weight: 600;
+      border-radius: 6px;
+      &:focus,
+      &:focus-within {
+        border: 1px solid $primary-color;
+      }
+      &::placeholder {
+        color: #b2b2b2;
+        opacity: 1;
+        font-weight: normal;
+      }
+      &[type="number"] {
+        background-color: #fff;
+        border: 2px solid #f5f5f5;
+      }
+    }
+
+    .lev2 {
+      padding-left: 2em;
+    }
+    // brand
+    .brand {
+      margin: 0;
+      padding: 0;
+      .form-row {
+        @include scrollbar;
+        &::-webkit-scrollbar-thumb {
+          background-color: #bbb;
+        }
+        &:hover {
+          scrollbar-width: thin;
+          &::-webkit-scrollbar {
+            background-color: $white;
+            height: 9px;
+            width: 100%;
+          }
+        }
+      }
+      .form-check {
+        width: calc(50% - 6px) !important;
+        // min-width: calc(50% - 6px ) !important;
+        @include responsivemd {
+          width: auto !important;
+          min-width: auto !important;
+        }
+        @include responsivesm {
+        }
+
+        .small__title {
+          margin-bottom: 0;
+        }
+        label {
+          width: 100% !important;
+          min-width: 0 !important;
+          padding: 1em !important;
+        }
+        img {
+          height: 80px;
+          width: 80px;
+          margin-bottom: 10px;
+          display: inline-block;
+          object-fit: contain;
+        }
+        svg {
+          height: 80px;
+          width: auto;
+          margin-bottom: 10px;
+        }
+        .form-check-input:checked + label {
+          background-color: #096a88;
+          .small__title {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .flex__parent {
+    justify-content: space-between;
+    .form-group {
+      flex-grow: 2;
+      margin-right: 1em;
+    }
+    select {
+      height: 50px;
+      border-radius: 4px;
+      border: 1px solid $lite;
+      width: 100%;
+      padding: 0 8px;
+      font-size: 16px;
+      color: $para;
+      font-weight: 500;
+    }
+  }
+  .submit {
+    @include button;
+    width: 100%;
+    margin-top: 1em;
+  }
+  .title-wrapper {
+    margin-bottom: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    @include responsivemmd {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .section-title {
+      font-size: 1em;
+      margin-bottom: 8px !important;
+    }
+    .title__part {
+      font-size: 16px;
+      @include responsivemmd {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    p,
+    label {
+      font-weight: normal;
+      margin-bottom: 0;
+      color: #666;
+      @include responsivesm {
+        font-size: 13px;
+      }
+    }
+    .form-group {
+      margin-bottom: 0;
+      background-color: transparent;
+      padding: 0 1em;
+      border-radius: 8px;
+      align-items: center;
+      height: 50px;
+      position: relative;
+      border: 2px solid $lite;
+      @include responsivexsm {
+        height: 43px;
+      }
+      .form-control {
+        background-color: transparent !important;
+        height: 100%;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+        font-weight: bold;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: $para;
+      }
+    }
+    .filter-btn {
+      display: none;
+      @include responsivemd {
+        display: block;
+        @include button;
+        background-color: transparent !important;
+        box-shadow: none;
+        margin-left: 1em;
+      }
+    }
+    label {
+      cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+    option {
+      font-size: 16px;
+    }
+  }
+  .recommended article {
+    @include responsivesm {
+      padding: 0 4px;
+      margin-bottom: 10px;
+    }
+  }
+  .feature.recommended > .row {
+    @include responsivesm {
+      margin: 0 -8px;
+    }
+  }
+  .feature {
+    .card__img {
+      @include responsivesm {
+        height: 130px;
+      }
+    }
+    .card__body {
+      @include responsivesm {
+        padding: 8px !important;
+      }
+      .card__title {
+        @include responsivesm {
+          font-size: 14px;
+        }
+      }
+      .price {
+        @include responsivesm {
+          font-size: 1em;
+        }
+      }
+    }
+    .card__action {
+      @include responsivesm {
+        font-size: 14px;
+        font-weight: normal;
+      }
+      & > div:not(:last-child) {
+        @include responsivesm {
+          padding-right: 8px;
+        }
+      }
+      svg {
+        @include responsivesm {
+          height: 10px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .form-row {
+    margin: 4px 0;
+    flex-wrap: wrap;
+    margin-bottom: 1.5em;
+  }
+  .top-check {
+    margin-right: -3px;
+    margin-left: -3px;
+    label {
+      height: 45px;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+    }
+    @include responsivemd {
+      @include scrollbar;
+    }
+    & > .form-check {
+      @include responsivemmd {
+        scroll-snap-align: start;
+      }
+    }
+  }
+  .form-check {
+    padding: 0;
+    margin: 3px;
+    text-align: center;
+    &.trade {
+      label {
+        min-width: 0;
+      }
+    }
+    label {
+      margin-bottom: 0;
+      background-color: $white;
+      // padding: 7px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 400;
+      // min-width: 110px;
+      border-radius: 4px;
+
+      @include responsive(1275px) {
+        // padding: 7px 9px;
+      }
+      @include responsivelg {
+        // min-width: 0;
+        // min-width: min-content;
+        // padding: 7px 15px;
+      }
+    }
+    .form-check-input {
+      position: fixed;
+      opacity: 0;
+      z-index: -1;
+      margin: 0;
+    }
+    .form-check-input:checked + label {
+      background-color: #096a88;
+      color: #fff;
+    }
+  }
+  & + .join {
+    display: none;
+  }
+}
+
+.pagination {
+  margin-bottom: 0;
+  .page-link {
+    height: 55px;
+    width: 55px;
+    line-height: 55px;
+    padding: 0;
+    text-align: center;
+    border: 0;
+    margin-left: 8px;
+    border-radius: 4px;
+    color: $para;
+    @include responsivesm {
+      font-size: 14px;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+    }
+    &:hover {
+      background-color: $red;
+      color: #fff;
+    }
+  }
+  .page-item.active {
+    .page-link {
+      background-color: $primary-color;
+    }
+  }
+  .page-item.next {
+    .page-link {
+      width: 80px;
+    }
+  }
+}
+
+.tradelink-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+  background-color: transparent;
+  color: $white;
+  font-size: 16px;
+  &.active {
+    height: 80px;
+  }
+  @include responsivesm {
+    position: relative;
+    background-color: $dark;
+    font-size: 14px;
+  }
+  .btn.login {
+    border: 0;
+    color: $white;
+    background-color: rgba($para, 0.6);
+    font-size: 17px;
+    padding: 1.2em;
+    @include responsivemd {
+      padding: 1em;
+      font-size: 16px;
+    }
+  }
+
+  .nav__right,
+  .nav__left {
+    @include responsivemd {
+      width: auto;
+    }
+  }
+
+  .nav__center {
+    @include responsivesm {
+      order: 2;
+      margin-top: 1em;
+    }
+    .nav-list:nth-child(2) {
+      @include responsivesm {
+        display: none;
+      }
+    }
+  }
+}
+
+.trade-home-page {
+  .screen {
+    position: relative;
+    border-radius: 0 0 60px 60px;
+    height: 700px;
+    @include responsivesm {
+      height: 550px;
+    }
+    .section-rule {
+      justify-content: flex-start;
+    }
+    .screen__title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 0 !important;
+      margin-top: 5rem;
+      @include responsivesm {
+        margin-top: 1em;
+        font-size: 2em;
+      }
+    }
+    .card__title {
+      text-align: center;
+      font-size: 1.3rem;
+      margin: 1em auto;
+      color: $lite;
+      width: 500px;
+      @include responsivesm {
+        display: none;
+      }
+    }
+    .form-inline {
+      width: 800px;
+      margin: 1em auto;
+      @include responsivemd {
+        width: 100%;
+      }
+      @include responsivesm {
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      button {
+        @include responsivesm {
+          border-radius: 0;
+          padding: 16px 26px;
+        }
+      }
+    }
+    .form-group {
+      margin: 0;
+      position: relative;
+      color: $lite;
+      margin-right: 12px;
+      @include responsivesm {
+        width: 100%;
+        margin: 0;
+      }
+    }
+    ::placeholder {
+      color: $lite;
+    }
+    .form-control {
+      height: 55px;
+      width: 100%;
+      background-color: rgba(116, 116, 116, 0.25);
+      border: 0;
+      color: $lite;
+      border-radius: 8px;
+      padding: 0 22px;
+      outline: 0;
+      box-shadow: none;
+      @include responsivesm {
+        border-radius: 0;
+      }
+      &:focus,
+      &:focus-within {
+        // border: 2px solid $primary-color;
+      }
+      &[type="search"] {
+        background-color: #fff;
+        &::placeholder,
+        & {
+          color: $dark;
+        }
+      }
+    }
+
+    .material-icons-outlined {
+      position: absolute;
+      top: 14px;
+      left: 12px;
+    }
+    option {
+      color: #fff;
+    }
+    select.form-control {
+      padding: 0 42px;
+      width: 240px;
+      @include responsivesm {
+        width: 100%;
+      }
+      &:focus,
+      &:focus-within {
+        background-color: #fff;
+        color: $dark;
+      }
+    }
+    .search {
+      display: flex;
+      flex-grow: 2;
+      // height: 100%;
+      .form-group {
+        flex-grow: 2;
+        margin-right: 0;
+      }
+      .form-control {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      button {
+        background-color: #fff;
+        color: $para;
+        height: auto;
+        transition: none;
+        &:hover {
+          background-color: $primary-color;
+          color: #fff;
+          svg {
+            path {
+              stroke: #fff;
+            }
+          }
+        }
+        svg {
+          margin-right: 8px;
+          path {
+            stroke: $para;
+          }
+        }
+      }
+    }
+  }
+
+  .tradeN {
+    background-color: #fff;
+    @include card;
+    @include slicknav;
+    @include item;
+    .slick-prev {
+      left: -55px;
+      @include responsivelg {
+        left: -45px;
+      }
+    }
+    .slick-next {
+      right: -55px;
+      @include responsivelg {
+        right: -45px;
+      }
+    }
+    .col-12 {
+      padding: 0;
+      margin-bottom: 30px;
+      @include responsivemd {
+        margin-bottom: 16px;
+      }
+      @include responsivesm {
+        margin-bottom: 8px;
+      }
+    }
+    .section-rule {
+      @include box-shadow;
+      margin-top: -9em;
+      background-color: #fff;
+      position: relative;
+      padding: 2em;
+      padding-bottom: 3em;
+      border-radius: 2.5em;
+      @include responsivemd {
+        padding: 2em;
+      }
+      @include responsivesm {
+        padding: 1em;
+        border-radius: 10px;
+      }
+    }
+
+    .card {
+      background-color: $white;
+      flex-direction: row;
+      border-radius: 1em;
+      box-shadow: none !important;
+      align-items: center;
+      padding: 4rem 2em;
+      justify-content: center;
+      @include responsivemd {
+        padding: 2em 1.5em;
+      }
+      @include responsivesm {
+        border-radius: 10px;
+        padding: 1.5em 2em;
+      }
+      .card__img {
+        margin-right: 1em;
+        height: 60px;
+        @include responsivesm {
+          height: 35px;
+        }
+        img {
+          object-fit: contain;
+        }
+      }
+      .card__title {
+        @include lineclamp(2);
+        font-weight: 600;
+        width: 180px;
+      }
+      &:hover {
+        .card__title {
+          color: $primary-color;
+        }
+      }
+    }
+    button.view {
+      @include button;
+      padding: 22px 40px;
+      background-color: $white;
+      color: $dark;
+      font-size: 1em;
+      margin: 0 auto;
+      display: flex;
+    }
+  }
+
+  .section__title.text-center {
+    font-size: 40px;
+    @include responsivesm {
+      font-size: 25px;
+    }
+  }
+
+  .customer {
+    background-color: #fff;
+    @include card;
+    .item {
+      padding: 12px;
+      @include responsivemd {
+        padding: 8px;
+      }
+    }
+    .card {
+      padding: 1.5em;
+      @include box-shadow;
+      @include responsivemd {
+        padding: 1.2em;
+      }
+      .d-flex {
+        align-items: center;
+      }
+      img {
+        height: 65px;
+        width: 65px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-right: 1em;
+        @include responsive(365px) {
+          height: 45px;
+          width: 45px;
+          border-radius: 10px;
+          margin-right: 6px;
+        }
+      }
+      .para {
+        color: $lite;
+        line-height: 1.5;
+        margin-bottom: 1.5em;
+        @include lineclamp(4);
+      }
+    }
+
+    .slick-dots {
+      li {
+        width: 10px;
+      }
+      button {
+        background-color: $white;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+        &:before,
+        &:after {
+          content: none;
+        }
+      }
+      .slick-active {
+        button {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .recommended {
+    background-color: #fff;
+    @include card;
+    @include slicknav;
+    .item {
+      padding: 6px;
+    }
+    .card {
+      background-color: $white;
+      .card__img {
+        height: 220px;
+        @include responsivemd {
+          height: 180px;
+        }
+        @include responsivesm {
+          height: 150px;
+        }
+      }
+      .card__body {
+        padding: 1.8em;
+        @include responsivemd {
+          padding: 1.4em;
+        }
+        @include responsivesm {
+          padding: 1em;
+        }
+      }
+    }
+  }
+
+  .professionals {
+    @include slicknav;
+    background-color: $white;
+    background-image: linear-gradient(180deg, #fff, #fff);
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+    .card {
+      background-color: #fff;
+      .card__img {
+        height: 180px;
+      }
+      .card__body {
+        padding: 1em !important;
+      }
+      button {
+        @include button;
+        background-color: transparent;
+        color: $primary-color;
+        border: 2px solid $primary-color;
+        &:hover {
+          border-color: $red;
+        }
+      }
+    }
+    .star {
+      color: #ffae21 !important;
+      margin-bottom: 0;
+      span {
+        font-size: 1em !important;
+      }
+      .non-star {
+        color: $white;
+      }
+    }
+    .slick-prev {
+      left: -15px;
+      // top: 70px;
+    }
+  }
+  .trade {
+    .card {
+      padding: 1em;
+    }
+  }
+}
+
+.sub-category {
+  background-color: #fff;
+  .screen {
+    background-color: $dark;
+    height: auto !important;
+    .section-rule {
+      padding-top: 0 !important;
+    }
+    .form-inline {
+      width: 63%;
+      margin: 1em 10% 1em auto;
+      @include responsivemd {
+        width: 100%;
+        margin: 1em auto 4em auto;
+      }
+    }
+  }
+  .cate {
+    padding: 1.5em 0;
+    @include border-radius;
+    background-color: #fff;
+    @include box-shadow;
+    margin-top: -135px;
+    @include responsivemd {
+      margin-top: 20px;
+    }
+    ul {
+      @include ul;
+      li {
+        padding: 0 1.5em;
+        &.active {
+          background-color: rgba($primary-color, 0.1);
+          border-left: 3px solid $primary-color;
+          color: $primary-color;
+        }
+      }
+    }
+    .card__title {
+      font-weight: 600;
+      font-size: 18px;
+      padding-bottom: 0px;
+      margin: 0;
+    }
+    .title-2 {
+      font-size: 14px;
+      .card__title {
+        font-size: 1em;
+        padding-top: 1em;
+        padding-bottom: 8px;
+      }
+    }
+    a {
+      font-weight: 600;
+      padding: 11px 0;
+      display: flex;
+      align-items: center;
+      img {
+        height: 33px;
+        width: 33px;
+        object-fit: contain;
+        margin-right: 6px;
+        background-color: $white;
+        border-radius: 50%;
+        padding: 5px;
+      }
+    }
+    .small__title {
+      font-size: 14px;
+      font-weight: 400;
+      // margin-top: 4px;
+    }
+  }
+
+  .banner {
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+  .sub-cate__cate {
+    .section-rule {
+      padding: 40px 0;
+      padding-bottom: 28px;
+      @include responsivemd {
+        padding-top: 0;
+        margin-top: -60px;
+      }
+    }
+    .recommended {
+      .row {
+        margin-top: 12px;
+        margin-bottom: 0;
+      }
+    }
+    aside:last-child {
+      padding-right: 0;
+      padding-left: 24px;
+      @include responsivemd {
+        order: -1;
+        padding: 0;
+      }
+    }
+  }
+  .recommended {
+    @include item;
+    .card {
+      .card__img {
+        height: 180px;
+        @include responsivesm {
+          height: 150px;
+        }
+      }
+      .card__body {
+        padding: 1.2em;
+        @include responsivesm {
+          padding: 1em;
+        }
+      }
+    }
+    .section-rule {
+      padding-top: 40px;
+      @include responsivesm {
+        padding-top: 20px;
+      }
+    }
+
+    .carousel {
+      margin: 0 -12px;
+      margin-top: 0px;
+      margin-top: 24px;
+      @include responsivesm {
+        margin: 0 -8px;
+        margin-top: 8px;
+      }
+    }
+    .item {
+      padding: 0 12px;
+      @include responsivesm {
+        padding: 0 4px;
+      }
+    }
+  }
+  .other {
+    .item {
+      margin-bottom: 30px;
+      @include responsivesm {
+        margin-bottom: 0;
+      }
+    }
+    .row {
+      @include responsivesm {
+        @include scrollbar;
+      }
+      .item {
+        @include responsivesm {
+          max-width: 100%;
+          scroll-snap-align: start;
+        }
+        .card {
+          @include responsivesm {
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.trade-footer {
+  background-color: #fff;
+  .logo img {
+    height: 3.2rem;
+  }
+  .form-inline .form-control {
+    background-color: $white;
+  }
+}
+
+.search-page {
+  .filter {
+    position: static !important;
+    padding: 0 !important;
+    .sticky {
+      border-radius: 0;
+    }
+    .close {
+      font-size: 14px;
+      span {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+//blog page
+.blog-single {
+  .main-content {
+    .d-flex {
+      font-size: 15px;
+      align-items: center;
+      width: 100%;
+      margin-top: 1.2em;
+      @include responsivemmd {
+        flex-wrap: wrap;
+      }
+      @include responsivesm {
+        line-height: 2;
+      }
+
+      p {
+        margin-right: 2em;
+        margin-bottom: 0;
+        @include responsivemd {
+          margin-right: 1em;
+          font-size: 15px;
+        }
+        @include responsivesm {
+          font-size: 14px;
+        }
+      }
+      .material-icons {
+        font-size: 22px;
+        color: $primary-color;
+        vertical-align: middle;
+      }
+      a {
+        margin-left: 1em;
+        span {
+          vertical-align: middle;
+          padding-right: 4px;
+          @include responsivesm {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+    .card--body {
+      margin-top: 1.2em;
+    }
+    .card__link {
+      font-style: italic;
+      color: #747474;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      svg {
+        margin-right: 6px;
+      }
+    }
+  }
+  .blog {
+    margin-top: 2em;
+    .section__title {
+      margin-bottom: 0;
+    }
+    .item {
+      padding: 1em;
+      @include responsivesm {
+        padding: 7px;
+      }
+    }
+    .card {
+      width: 100% !important;
+    }
+    @include slicknav;
+  }
+}
+
+//about-us page
+.about-us {
+  .screen {
+    position: relative;
+    height: calc(100vh - 150px);
+    @include responsivesm {
+      height: 500px;
+    }
+    .cover {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    .absolute__wrapper {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.4);
+      height: 100%;
+      top: 0;
+      .section-rule {
+        justify-content: center;
+      }
+      img {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+      }
+      .screen__title {
+        color: $dark;
+        margin-top: 0.5em;
+      }
+      .scrolldown {
+        position: absolute;
+        bottom: 20px;
+        left: calc(50% - 20px);
+      }
+    }
+  }
+  .para {
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .card--lg {
+    margin-top: 4em;
+  }
+  .flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    .team--card {
+      max-width: 220px;
+      text-align: center;
+      .card__img {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto;
+        @include responsivesm {
+          height: 90px;
+          width: 90px;
+        }
+        img {
+          @include image;
+        }
+      }
+      .card__body {
+        margin-top: 1em;
+      }
+      .card__title {
+        font-size: 1.2em;
+        margin-bottom: 0;
+        font-weight: 600;
+        @include responsivesm {
+          font-size: 0.9em;
+        }
+      }
+      .para {
+        @include responsivesm {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+}
+
+.button--wrapper {
+  display: flex;
+  margin-top: 2em;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  button {
+    @include button;
+  }
+}
+
+// contact-us
+.contact-us {
+  form {
+    .form-control {
+      height: 50px;
+      outline: none;
+      box-shadow: none;
+      background-color: $white;
+      &:focus,
+      &:focus-within {
+        border-color: $primary-color;
+      }
+    }
+    textarea {
+      height: 150px;
+    }
+    button {
+      @include button;
+      margin-left: auto;
+    }
+  }
+  .card__grid {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    @include responsivesm {
+      grid-template-columns: 1fr;
+    }
+    .card__right {
+      .material-icons {
+        color: $primary-color;
+      }
+      ul {
+        @include ul;
+      }
+      li:empty {
+        margin: 2em 0;
+      }
+    }
+    .card__left {
+      border: 1px solid rgba($dark, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1em;
+      .logo {
+        height: 100px;
+        width: auto;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+//faq
+.faq {
+  .card {
+    border: none;
+    background-color: transparent;
+    .card-header {
+      margin: 1em 0 0 0 !important;
+      border: none;
+      border-radius: 0;
+      position: relative;
+      font-size: 18px;
+      font-weight: 600px;
+      color: #424242;
+      margin-bottom: 0px;
+      -webkit-transition: 0.3s ease-out;
+      transition: 0.3s ease-out;
+      overflow: hidden;
+      font-weight: lighter;
+      background-color: #fff;
+      padding: 1em;
+    }
+    .card-body {
+      padding: 1em;
+      padding-top: 0;
+      background-color: #fff;
+      .para {
+        color: #7e7e7e;
+        font-weight: 400;
+        font-size: 0.9em;
+      }
+    }
+    a {
+      color: #424242;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      text-decoration: none !important;
+      font-weight: 500;
+      .hide {
+        display: none;
+      }
+
+      &.collapsed {
+        .hide {
+          display: block;
+        }
+
+        .minus {
+          display: none;
+        }
+      }
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
