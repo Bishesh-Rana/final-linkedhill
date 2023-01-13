@@ -40,6 +40,7 @@ class PropertyController extends CommonController
             {
               $data->setAttribute('user',$data->user->name);
             }
+            dd($properties);
             return view('admin.property.index',compact('properties'));
         }else{
             $properties = Property::where('user_id','=',auth()->user()->id)->get();
@@ -343,6 +344,8 @@ class PropertyController extends CommonController
         request()->session()->flash('message', 'property status changed successfully');
         return redirect()->back();
     }
+
+    
 
     public function updatePropertyOrder(Request $request)
     {

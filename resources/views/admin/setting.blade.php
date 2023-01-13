@@ -76,7 +76,7 @@
                                         <div class="form-group  margin-style col-md-6">
                                             <label>Phone</label>
                                             <input type="text" class="form-control" name="phone"
-                                                value="{{ $website->phone }}" data-parsley-trigger="keyup" required>
+                                                value="{{ $website->phone }}" data-parsley-trigger="keyup" >
                                             @if ($errors->has('phone'))
                                                 <span class="error-message">
                                                     *{{ $errors->first('phone') }}

@@ -96,6 +96,7 @@ class PropertyController extends Controller
 
     public function getUnits()
     {
+        return 'kk';
         $units = Unit::all();
         return UnitResource::collection($units);
     }
@@ -213,6 +214,8 @@ class PropertyController extends Controller
     {
         $properties = Property::select('properties.*')
             ->when(!in_array($request->category_id, ['0', null]), fn ($query) => $query->where('category_id', $request->category_id))
+            ->where('status','1')
+            ->where('activeStatus','1')
             ->when($request->type == 'featured', fn ($query) => $query->where('feature', 1))
             ->when($request->type == 'listed', fn ($query) => $query->where('feature', 0))
             ->with('area_unit', 'property_category:id,name', 'images')

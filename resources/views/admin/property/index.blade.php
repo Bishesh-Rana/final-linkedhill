@@ -75,10 +75,13 @@
                                             <li id="propertyItem_{{ $value->id }}">
                                                 <div class="property_list">
                                                     <div>{{ $value->title }}</div>
-                                                    <div><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></div>                                                   @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
+                                                    <div><img src='{{ count($value->images) > 0  ? $value->images->first->name->name : asset('images/default/no-property.png')}}'  class="news_img" align="center" /></div>        
+                                                    @php $a = $value->status == "1" ? " Approved " : " Unapproved "; @endphp
                                                     @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
-                                                    <div><a href="{{route('toggleStatus', $value->id)}}" title="click to toggle status">{{$a}}</a></div>
+                                                    <div><a href="{{route('toggleStatus', $value->id)}}" title="click to toggle status">{{$a}} </a></div>
                                                     @endif
+                                                    @php $active = $value->activeStatus == "1" ? " Active " : " Inactive "; @endphp
+                                                    <div><a href="{{route('toggleActiveStatus', $value->id)}}" title="click to toggle active status">{{$active}} </a></div>
                                                     <div>Views: {{$value->view_count}}</div>
                                                     @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
                                                     <div>Added By:- {{$value->user}}</div>

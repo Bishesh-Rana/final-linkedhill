@@ -17,7 +17,7 @@ class UserStaffController extends Controller
     public function index()
     {
         $users = User::visible()->latest()->get();
-        return  compact('users');
+        return  $users;
     }
 
     /**
@@ -129,64 +129,43 @@ class UserStaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd(time());
-        $currentTime = Carbon::now();
-        // dd( $currentTime->toDateTimeString());
-
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'profile' => 'nullable',
-            'mobile' => 'required|max:15',
-            'phone' => 'nullable|max:15',
-            'roles' => 'required'
-        ]);
+        $staff = User::findOrFail($id);
+        return $staff;
+       
         if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin') ){
-            $staff = User::create(
-                [
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'profile' => $request->profile,
-                    'mobile' => $request->mobile,
-                    'phone' => $request->phone,
-                    'user_id' => $request->user_id,
-                    'is_active' => '1',
-                    'email_verified_at' => $currentTime->toDateTimeString(),
-                ]
-            );
+            $data = $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'profile' => 'nullable',
+                'mobile' => 'required|max:15',
+                'phone' => 'nullable|max:15',
+                'roles' => 'required',
+                'is_active' => 'nullable',
+                // 'user_id' => 'required'
+            ]);
         }
         else{
-            $staff = User::create(
-                [
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'profile' => $request->profile,
-                    'mobile' => $request->mobile,
-                    'phone' => $request->phone,
-                    'user_id' => auth()->user()->id,
-                    'is_active' => '0',
-                ]
-            );
+            $data = $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'profile' => 'nullable',
+                'mobile' => 'required|max:15',
+                'phone' => 'nullable|max:15',
+                'roles' => 'required',
+                'is_active' => 'nullable'
+            ]);
+        }
+        if ($staff->id === auth()->user()->id && $request->is_active === '0') {
+            return response(['status'=>'fail','message'=> "Your don't have permission to update"]);
         }
 
-        if(auth()->user()->can('staff-create')){
-            foreach($request->roles as $role){
-                if($role == 1 || $role == 2){
-                    return response(['status'=>'fail','message'=> "Your don't have permission to create"]);
-                }else{
-                    $staff->assignRole($request->roles);
-                } 
-            }
-                                 
-        }else{
-            if ($request->roles) {
-                $staff->assignRole($request->roles);
-            }
+        $staff->update($data);
+        if ($request->roles) {
+            $staff->syncRoles([]);
+            $staff->assignRole($request->roles);
         }
-        return response(['status'=>'true', 'message'=> 'Staff created successfully.']);
+
+        return response(['status'=>'true', 'message'=> 'Staff updated successfully.']);
     }
 
     /**
@@ -197,6 +176,13 @@ class UserStaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staff = User::findOrFail($id);
+        if ($staff->id === auth()->user()->id) {
+            return back()->with('message', 'Sorry! You cannot delete your own account.');
+        }
+        // $staff->deleteImage();
+        $staff->delete();
+        // $staff->roles()->detach();
+        return back()->with('success', 'User deleted successfully.');
     }
 }

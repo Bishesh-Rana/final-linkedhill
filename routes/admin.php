@@ -107,6 +107,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('property-faq/{id}/frequently-asked-questions', [PropertyFaqController::class, 'index'])->name('property-faqs');
     Route::post('property-faq/{id}/frequently-asked-questions', [PropertyFaqController::class, 'frequentlyAskedQuestion'])->name('property-faqs-post');
     Route::get('toggleStatus/{id}', [PropertyController::class, 'toggleStatus'])->name('toggleStatus');
+    Route::get('toggleActiveStatus/{id}', [PropertyController::class, 'toggleActiveStatus'])->name('toggleActiveStatus');
 
     Route::post('staff-active', [StaffController::class, 'isActive'])->name('user.active');
     Route::get('getNews', [NewsController::class, 'getNews'])->name('get.news');

@@ -296,13 +296,28 @@ class PropertyController extends Controller
         }
         return response(['status' => true, 'message' => "Property added successfully"], 200);
     }
+    public function toggleStatus($id)
+    {
+        $property = Property::find($id);
+        $property->status = !$property->status;
+        $property->save();
+        return response(['title'=>'success','message'=>'Property status Changed succesfully'],200);
+    }
+
+    public function toggleActiveStatus($id)
+    {
+        $property = Property::find($id);
+        $property->activeStatus = !$property->activeStatus;
+        $property->save();
+        return response(['title'=>'success','message'=>'Property status Changed succesfully'],200);
+    }
 
     public function deleteProperty(Request $request){
         $property = Property::findOrFail($request->id);
         $property->delete();
         $property->amenities()->delete();
         $property->images()->delete();
-        return response(['status' => true, 'message' => "Property deleted successfully"], 200);
+        return response(['title' => true, 'message' => "Property deleted successfully"], 200);
     }
 
     private function uploadImage(array $images, $propertyId , $user_id)
@@ -351,6 +366,8 @@ class PropertyController extends Controller
     {
         $properties = Property::select('properties.*')
             ->when(!in_array($request->category_id, ['0', null]), fn ($query) => $query->where('category_id', $request->category_id))
+            ->where('status','1')
+            ->where('activeStatus','1') 
             ->when($request->type == 'featured', fn ($query) => $query->where('feature', 1))
             ->when($request->type == 'listed', fn ($query) => $query->where('feature', 0))
             ->with('area_unit', 'property_category:id,name', 'images')

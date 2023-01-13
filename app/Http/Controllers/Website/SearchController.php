@@ -15,7 +15,7 @@ class SearchController extends Controller
     {
         // return $request->all();  
         $filter = $request->all();
-        $properties =  Property::filter()->where('status',1)
+        $properties =  Property::filter()->where(['status'=>1,'active_status'=>1])
         ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                 if($value == 'any'){

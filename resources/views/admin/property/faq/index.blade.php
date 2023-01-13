@@ -13,7 +13,7 @@
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                         <a href="#panel1" data-toggle="tab" aria-expanded="false">
-                                            <i class="material-icons">add</i>Create {{ $property->title }} FAQ
+                                            <i class="material-icons">add</i>Create FAQ for {{ $property->title }} 
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>

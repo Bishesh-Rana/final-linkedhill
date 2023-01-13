@@ -364,6 +364,14 @@ class PropertyController extends CommonController
         return redirect()->back();
     }
 
+    public function toggleActiveStatus($id)
+    {
+        $property = Property::find($id);
+        $property->activeStatus = !$property->activeStatus;
+        $property->save();
+        request()->session()->flash('message', 'property status changed successfully');
+        return redirect()->back();
+    }
     public function updatePropertyOrder(Request $request)
     {
         parse_str($request->sort, $arr);
