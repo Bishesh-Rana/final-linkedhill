@@ -87,17 +87,19 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-                                {{-- @if (auth()->user()->isAdmin())
+                                @if (auth()->user()->isAdmin())
+                                
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Company</label> <br>
                                     <select class="js-example-basic-single" name="user_id">
                                         <option disabled selected>Select Company</option>
+                                        <option value="">Not a staff </option>
                                         @foreach ($agents as $user )
                                         <option value="{{$user->user_id}}" @isset($staff)  {{ ($user->user_id == $staff->user_id) ? 'selected':'' }} @endisset>{{$user->agency_name}}</option>
                                         @endforeach
                                       </select>
                                 </div>                                
-                                @endif --}}
+                                @endif
 
                                 @if(!isset($staff))
 

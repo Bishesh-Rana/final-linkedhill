@@ -111,9 +111,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="togglebutton">
-                                            <label class="lead"
-                                                style="color:black;font-weight:bold;font-size:11pt;">
-                                                Non Featured <input type="checkbox" name="feature" value="1"
+                                            <label class="lead" style="color:black;font-weight:bold;font-size:11pt;">
+                                                Non Featured <input type="checkbox" name="featured" value="1"
                                                     @if ($blog->featured) checked @endif> Featured
                                             </label>
                                         </div>

@@ -61,7 +61,6 @@ class BlogController extends CommonController
      */
     public function store(BlogRequest $request)
     {
-
         $blog = Blog::create($request->validated());
         $blog->categories()->sync($request->category_id);
         return redirect(route('blog.index'))->with('message', 'Blog created successfuly.');
@@ -93,6 +92,7 @@ class BlogController extends CommonController
     {
         $blog = Blog::find($id);
         $categories = Category::where(['type' => 'blog'])->latest()->get();
+        // dd($blog->featured);
 
         return view('admin.blog.form', compact('blog', 'categories'));
     }

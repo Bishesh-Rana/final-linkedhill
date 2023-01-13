@@ -126,6 +126,7 @@ class HomeController extends Controller
                 case 'blog':
                     $blogs = Blog::latest()
                         ->where('type', 'blog')
+                        ->where('featured',true)
                         ->paginate(3)
                         ->appends($request->all());
                     $trending = $this->trending();
@@ -136,6 +137,7 @@ class HomeController extends Controller
                 case 'news':
                     $blogs = Blog::latest()
                         ->where('type', 'news')
+                        ->where('featured', true)
                         ->paginate(3)
                         ->appends($request->all());
                     $trending = $this->trending('news');

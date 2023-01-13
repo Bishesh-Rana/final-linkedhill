@@ -18,8 +18,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-
-
         $this->data['blogs'] = Blog::where(['type' => 'news'])->orderBy('order')->get();
         return view('admin.news.index', $this->data);
     }
@@ -48,7 +46,6 @@ class NewsController extends Controller
      */
     public function create()
     {
-
         $news = new Blog();
         $categories = Category::where(['type' => 'news'])->latest()->get();
         return view('admin.news.form', compact('news', 'categories'));

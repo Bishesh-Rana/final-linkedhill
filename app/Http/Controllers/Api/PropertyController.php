@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\City;
 use App\Models\Type;
 use App\Models\Unit;
+use App\Models\User;
 use App\Models\Amenity;
 use App\Models\Purpose;
 use App\Models\Property;
@@ -109,6 +110,25 @@ class PropertyController extends Controller
         $amenties = Amenity::all();
         return UnitResource::collection($amenties);
     }
+
+    public function index(){
+        if(auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Admin')){
+            $properties = Property::get();
+            $user = User::get();
+            foreach($properties as $data)
+            {
+              $data->setAttribute('user',$data->user->name);
+            }   
+            return $this->returnResponse($properties);
+            // return PropertyResource::collection($properties);
+        }else{
+            // $properties = Property::where('user_id','=',auth()->user()->id)->get();
+            $properties = auth()->user()->properties;
+            return $this->returnResponse($properties);
+        }
+
+    }
+
 
 
     public function postProperty(Request $request)

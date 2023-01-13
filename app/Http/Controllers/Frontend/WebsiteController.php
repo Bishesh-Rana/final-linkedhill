@@ -29,7 +29,7 @@ class WebsiteController extends CommonController
     public function index()
     {
 
-        $this->website['blogs'] = Blog::where('type', 'blog')->latest()->limit(3)->get();
+        $this->website['blogs'] = Blog::where('type', 'blog')->where('featured',true)->latest()->limit(3)->get();
         $this->website['properties'] = Property::where(['status'=>1,'feature'=>"on",'hasAgent'=>1])->latest()->limit(6)->get();
         $this->website['properties'] = Property::where(['status' => 1, 'feature' => 1])->latest()->limit(6)->get();
         $this->website['cities'] = City::limit(4)->where('feature_in_homepage', true)->get();

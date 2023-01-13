@@ -15,7 +15,10 @@
                 <img src="{{ auth()->user()->profile ?? asset('images/profile/default-user.png') }}" />
             </div>
             <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                {{-- <span>
+                    {{ auth()->user()->name }}
+                </span> --}}
+                <a  href="{{ route('profile',auth()->user()->id) }}">
                     <span>
                         {{ auth()->user()->name }}
                     </span>

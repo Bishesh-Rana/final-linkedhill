@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\DeviceCredentialController;
 use App\Http\Controllers\Api\TradelinkBookingController;
 use App\Http\Controllers\Api\Property\FavouriteController;
 use App\Http\Controllers\Api\Property\AreaSearchController;
+use App\Http\Controllers\Api\UserStaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::get('facility',[FacilityController::class,'index']);
+
 
 Route::namespace('Api')->group(function () {
+    Route::get('facility',[FacilityController::class,'index']);
+
     Route::post('get-services', [ServiceController::class, 'getServices']);
     
     Route::post('post-enquiry', [EnquiryController::class, 'store']);
@@ -69,6 +72,7 @@ Route::namespace('Api')->group(function () {
     Route::post('get-sliders', [ApiController::class, 'getSliders']);
     Route::post('get-blogs', [BlogController::class, 'blogs']);
     Route::post('get-news', [BlogController::class, 'news']);
+    
     Route::post('get-blog-detail', [BlogController::class, 'blogDetail']);
     Route::post('get-service-categories', [ServiceController::class, 'getServiceCategories']);
 
@@ -105,6 +109,7 @@ Route::namespace('Api')->group(function () {
 
     Route::post('app-review-list', [AppReviewController::class, 'index']);
     Route::post('get-contacts', [ApiController::class, 'getContacts']);
+    Route::get('jj',[BlogController::class, 'news']);
 });
     
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
@@ -120,6 +125,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('update-property', [PropertyController::class, 'updateProperty']);
     Route::post('delete-property', [PropertyController::class, 'deleteProperty']);
     Route::post('add-property-image', [PropertyController::class, 'addPropertyImage']);
+    Route::get('admin-properties',[PropertyController::class, 'index']);
 
     // property features facilities
     Route::get('property-feature-index', [FeatureController::class, 'index']);
@@ -127,6 +133,17 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('property-feature-update', [FeatureController::class, 'update']);
     Route::get('property-feature-delete/{id}', [FeatureController::class, 'destroy']);
     Route::post('update-feature-position/property', [FeatureController::class, 'updateFeatureOrder']);
+
+    // news/blog
+
+    Route::post('add-blog',[BlogController::class,'store']);
+    Route::post('update-blog/{id}',[BlogController::class,'update']);
+
+    //users
+    Route::get('userStaff', [UserStaffController::class ,'index']);
+    Route::get('updateuserStaff', [UserStaffController::class ,'update']);
+    Route::get('deleteuserStaff', [UserStaffController::class ,'destroy']);
+
 
     Route::get('enquiry-list', [EnquiryController::class, 'index']);
 

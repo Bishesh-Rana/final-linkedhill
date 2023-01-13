@@ -103,7 +103,7 @@ class StaffController extends Controller
                     'profile' => $request->profile,
                     'mobile' => $request->mobile,
                     'phone' => $request->phone,
-                    // 'user_id' => $request->user_id,
+                    'user_id' => $request->user_id,
                     'is_active' => '1',
                     'email_verified_at' => $currentTime->toDateTimeString(),
                 ]
