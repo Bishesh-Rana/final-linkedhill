@@ -19,7 +19,7 @@ class FaqController extends CommonController
     {
 
         $this->data['faqs'] = Faq::orderBy('order')->get();
-        return view('admin.faq.index', $this->data);
+        return view('admin.faq.index',$this->data);
     }
 
     public function getFaq()

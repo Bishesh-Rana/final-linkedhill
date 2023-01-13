@@ -143,7 +143,7 @@ class WebsiteController extends CommonController
 
     public function news()
     {
-        $this->website['blogs'] = Blog::where('type', 'news')->latest()->get();
+        $this->website['blogs'] = Blog::where('type', 'news')->latest()->where('featured',1)->get();
         return view('frontend.news', $this->website);
     }
 

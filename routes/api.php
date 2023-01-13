@@ -3,9 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\FilterController;
+use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\EnquiryController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\ServiceController;
@@ -17,6 +20,7 @@ use App\Http\Controllers\Api\TradelinkController;
 use App\Http\Controllers\Api\UserStaffController;
 use App\Http\Controllers\Website\SearchController;
 use App\Http\Controllers\api\PropertyFaqController;
+use App\Http\Controllers\Api\TestimonialController;
 use App\Http\Controllers\Api\PropertyReviewController;
 use App\Http\Controllers\Api\DeviceCredentialController;
 use App\Http\Controllers\Api\TradelinkBookingController;
@@ -150,11 +154,27 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('add-blog',[BlogController::class,'store']);
     Route::post('update-blog/{id}',[BlogController::class,'update']);
 
-    //users
+    //users / staffs
     Route::get('userStaff', [UserStaffController::class ,'index']);
     Route::post('updateuserStaff/{id}', [UserStaffController::class ,'update']);
     Route::post('deleteuserStaff/{id}', [UserStaffController::class ,'destroy']);
 
+    // sliders
+    Route::get('sliders', [SliderController::class, 'index']);
+    Route::post('create-slider', [SliderController::class, 'store']);
+    Route::post('update-slider/{id}', [SliderController::class, 'update']);
+    Route::post('delete-slider',[SliderController::class, 'destroy']);
+    
+    // Faq
+    Route::get('index-faq', [FaqController ::class, 'index']);
+    Route::post('create-faq', [FaqController::class, 'store']);
+    Route::post('update-faq/{faq}', [FaqController::class, 'update']);
+    Route::post('delete-faq',[FaqController::class, 'destroy']);
+    
+    Route::get('subscriber-list', [AdminController::class,'subscribers']);
+    Route::post('delete-subscriber/{id}',[AdminController::class,'deleteSubscriber']);
+    
+    
 
     Route::get('enquiry-list', [EnquiryController::class, 'index']);
 

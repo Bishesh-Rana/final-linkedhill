@@ -15,7 +15,6 @@ class NotificationController extends Controller
         $data = $admin->notifications()->where('id', $id)->first();
         $data->read_at = Carbon::now();
         $data->save();
-
         return redirect(route('properties.show', $property_id));
     }
 }

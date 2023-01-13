@@ -38,8 +38,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $this->website['blogs'] = Blog::where('type', 'blog')->orderBy('order')->limit(4)->get();
-        $this->website['news'] = Blog::where('type', 'news')->orderBy('order')->limit(4)->get();
+        $this->website['blogs'] = Blog::where('type', 'blog')->orderBy('order')->where('featured',1)->limit(4)->get();
+        $this->website['news'] = Blog::where('type', 'news')->orderBy('order')->where('featured',1)->limit(4)->get();
         $this->website['properties'] = Property::where(['status' => 1,'activeStatus'=>1 ,'feature' => 1])->latest()->limit(6)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
@@ -118,7 +118,7 @@ class HomeController extends Controller
                 case 'home':
                     return redirect()->route('home');
                 case 'faq':
-                    $faqs = Faq::select('id', 'question', 'answer')->latest()->get();
+                    $faqs = Faq::select('id', 'question', 'answer')->latest()->where('featured',1)->get();
                     return view('website.pages.faq', compact('pagedata', 'meta','faqs'));
                 case 'about':
                     return view('website.pages.about', compact('pagedata', 'meta'));
@@ -126,7 +126,7 @@ class HomeController extends Controller
                 case 'blog':
                     $blogs = Blog::latest()
                         ->where('type', 'blog')
-                        ->where('featured',true)
+                        ->where('featured',1)
                         ->paginate(3)
                         ->appends($request->all());
                     $trending = $this->trending();
@@ -137,7 +137,7 @@ class HomeController extends Controller
                 case 'news':
                     $blogs = Blog::latest()
                         ->where('type', 'news')
-                        ->where('featured', true)
+                        ->where('featured', 1)
                         ->paginate(3)
                         ->appends($request->all());
                     $trending = $this->trending('news');
@@ -208,7 +208,7 @@ class HomeController extends Controller
     {
         return Blog::select('*')
             // ->where('created_at', '>', now()->subdays(12))
-            ->where('type', $type)
+            ->where(['type'=>$type, 'featured'=>1])
             ->orderBy('viewCount', 'desc')
             ->limit(3)
             ->get();
