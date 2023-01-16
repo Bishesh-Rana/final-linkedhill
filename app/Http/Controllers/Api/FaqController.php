@@ -17,7 +17,6 @@ class FaqController extends Controller
      */
     public function index()
     {
-        
         $faqs = Faq::orderBy('order')->get();
         return $this->successResponse(FaqResource::collection($faqs));
     }
@@ -43,7 +42,7 @@ class FaqController extends Controller
 
         $data = Faq::create($request->all());
 
-        return response(['title'=>'success',',message'=>'FAQ created successfully.']);
+        return response()->json(['title'=>'success',',message'=>'FAQ created successfully.']);
         
     }
 
@@ -86,7 +85,7 @@ class FaqController extends Controller
 
         $faq->save();
 
-        return response(['title'=>'success','message'=>'FAQ updated successfully.']);
+        return response()->json(['title'=>'success','message'=>'FAQ updated successfully.']);
     }
 
 
@@ -100,6 +99,21 @@ class FaqController extends Controller
     {
         $faq = Faq::find($id);
         $faq->delete();
-        return response(['title'=>'success','message'=>'FAQ deleted successfully.'])
+        return response()->json(['title'=>'success','message'=>'FAQ deleted successfully.']);
+    }
+
+    // restore
+
+    public function getDeletedFaqs(){
+        $faqs = Faq::onlyTrashed()->get();
+        return $this->successResponse($faqs);
+    }
+    public function restoreFaqs($id){
+         Faq::withTrashed()->find($id)->restore();
+         return response()->json(['title'=>'success','message'=>'FAQ restored successfully.']);
+    }
+    public function hardDeleteFaq($id){
+        faq::withTrashed()->find($id)->forceDelete();
+        return response()->json(['title'=>'success','message'=>'FAQ deleted successfully.']);
     }
 }

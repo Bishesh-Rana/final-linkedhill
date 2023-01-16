@@ -46,7 +46,8 @@
                                             <th>Name</th>
                                             <th>Status</th>
                                             <th>Address</th>
-                                            <th style="width: 5%" class="text-center">Action</th>
+                                            {{-- <th style="width: 5%" class="text-center">Action</th> --}}
+                                            <th class="text-center" width="20%">Action</th>
 
 
                                         </tr>
@@ -104,43 +105,25 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-
             var base_url={!! json_encode(url('/')) !!};
-
             $('#datatables').DataTable({
-
                 processing: true,
-
                 serverSide: true,
-
                 ajax: '{{route('getDeletedProperties')}}',
-
                 columns: [
-
                     {title:'SN',
-
                         render: function( data, type, full, meta ) {
                             return meta.row+1;
                         }
-
                     },
                     { data: 'image', name: 'image'},
                     { data: 'title', name: 'title'},
                     { data: 'status', name: 'status'},
                     { data: 'property_address', name: 'property_address'},
-
-
                     {data: 'action', name: 'action', orderable: true, searchable: true, className: 'text-center'}
-
-
 
                 ],
             });
-
-
-
-
-
 
         });
 

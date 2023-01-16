@@ -252,6 +252,8 @@ class PropertyController extends CommonController
     }
     public function deletedProperty(Request $request)
     {
+        $properties = Property::onlyTrashed()->get();
+        // dd($properties['0']->images['0']);
         return view('admin.trash.property.index');
     }
     public function getDeletedProperties()
@@ -260,11 +262,10 @@ class PropertyController extends CommonController
             ->onlyTrashed()
             ->latest();
 
-
         return DataTables::of($properties)
-            ->addColumn('image', function ($properties) {
-                $url = $properties->images->first->name;
-                return '<img src=' . $url->name . '  class="news_img" align="center" />';
+            ->addColumn('image', function ($property) {
+                $url = $property->images->first()->name ?? '';
+                return '<img src=' .$url. '  class="news_img" align="center" />';
             })
             ->addColumn('status', function ($property) {
                 $a = $property->status == "1" ? " Approved " : " Unapproved ";

@@ -460,12 +460,12 @@ class SidebarComponent extends Component
                         'permission' => ['blog-restore'],
                         'href' => route('deletedBlogs'),
                     ],
-                    // [
-                    //     'title' => 'Property',
-                    //     'icon' => 'insert_drive_file',
-                    //     'permission' => ['property-restore'],
-                    //     'href' => route('deletedProperty'),
-                    // ],
+                    [
+                        'title' => 'Property',
+                        'icon' => 'insert_drive_file',
+                        'permission' => ['property-restore'],
+                        'href' => route('deletedProperty'),
+                    ],
                     [
                         'title' => 'News',
                         'icon' => 'insert_drive_file',

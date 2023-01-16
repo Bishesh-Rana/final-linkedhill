@@ -2,7 +2,7 @@
     data-image="{{ asset('assets/img/sidebar-1.jpg') }}">
     <div class="logo">
         <a href="{{ url('/') }}" class="simple-text logo-mini">
-            <img src="{{ config('websites.logo') }}" width="100px" height="30px" />
+            <img src="{{ config('websites.logo') }}" width="30px" height="30px" />
         </a>
         <a href="{{ url('/') }}" class="simple-text logo-normal">
             <b>{{ config('websites.name') }}</b>

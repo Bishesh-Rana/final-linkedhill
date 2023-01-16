@@ -234,6 +234,7 @@ class PropertyController extends CommonController
     }
     public function deletedProperty(Request $request)
     {
+
         return view('admin.trash.property.index');
     }
     public function getDeletedProperties()
@@ -241,6 +242,7 @@ class PropertyController extends CommonController
         $properties = Property::select('id', 'title', 'bed', 'bath', 'status', 'property_address', 'admin_id')
             ->onlyTrashed()
             ->latest();
+
 
 
         return DataTables::of($properties)

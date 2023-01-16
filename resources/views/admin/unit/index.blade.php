@@ -76,7 +76,7 @@
                         <div class="form-group mt-4">
                             <button type="button" class="btn btn-success btn-sm btn-flat" id="serialize"><i
                                     class="fa fa-save"></i>
-                                Update Purpose
+                                Update Units Order
                             </button>
                             <a href="{{ request()->url() }}" type="button" class="btn btn-danger btn-sm btn-flat"><i
                                     class="fas fa-sync-alt"></i> Reset Order</a>
@@ -165,9 +165,9 @@
                     success: function(res) {
                         //location.reload();
                         toastr.options.closeButton = true
-                        toastr.success('Unit Ordered Successfuly', "Success !");
+                        toastr.success('Units Ordered Successfuly', "Success !");
                         $('#serialize').prop("disabled", false);
-                        $('#serialize').html(`<i class="fa fa-save"></i> Update Menu`);
+                        $('#serialize').html(`<i class="fa fa-save"></i> Update Units Order`);
                     }
                 });
             });

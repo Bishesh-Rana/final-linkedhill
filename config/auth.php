@@ -42,7 +42,7 @@ return [
         ],
         'admin' =>[
             'driver'=>'session',
-            'provider' => 'users'
+            'provider' => 'admin'
         ],
         'tradelink_admin' =>[
             'driver'=>'session',
@@ -81,7 +81,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'admins' => [
+        'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],

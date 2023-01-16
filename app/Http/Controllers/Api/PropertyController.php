@@ -66,6 +66,34 @@ class PropertyController extends Controller
 
     }
 
+    public function getDeletedProperties()
+    {
+        $properties = Property::
+            onlyTrashed()
+            ->get();
+        return $this->returnResponse(PropertyResource::collection($properties)) ;
+    }
+
+    public function restoreProperty($id)
+    {
+        Property::withTrashed()->find($id)->restore();
+        return response()->json(['status'=>'success','message'=> 'Property Restored Successfully']);
+    }
+
+    public function hardDeleteProperty($id)
+    {
+        Property::withTrashed()->find($id)->forceDelete();
+        $images = PropertyImage::where('property_id', $id)->get();
+
+        foreach ($images as $image) {
+            $oldfile = public_path() . '/images/property/' . $image->name;
+            if (File::exists($oldfile)) {
+                File::delete($oldfile);
+            }
+        }
+        return response()->json(['status'=>'success','message'=> 'Property Deleted Permanently'], 200);
+    }
+
     /********   Post Property *******/
 
     public function purpose()
@@ -126,6 +154,12 @@ class PropertyController extends Controller
             $properties = auth()->user()->properties;
             return $this->returnResponse($properties);
         }
+
+    }
+    public function updateViewCount($id){
+        $property = Property::findOrFail($id);
+        $property->increment('view_count');
+        return $property;
 
     }
 

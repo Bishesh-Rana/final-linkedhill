@@ -91,7 +91,7 @@
                                 
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Company</label> <br>
-                                    <select class="js-example-basic-single" name="user_id">
+                                    <select class="js-example-basic-single form-control" name="user_id">
                                         <option disabled selected>Select Company</option>
                                         <option value="">Not a staff </option>
                                         @foreach ($agents as $user )

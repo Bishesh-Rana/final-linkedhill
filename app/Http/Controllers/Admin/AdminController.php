@@ -94,11 +94,6 @@ class AdminController extends CommonController
         return back()->with('message', 'Website updated successfully');
     }
 
-    public function subscribers()
-    {
-        $subscribers = Subscriber::all();
-        return view('admin.subscriber', compact('subscribers'));
-    }
     public function enquries()
     {
         $enquiries = [];
@@ -128,6 +123,12 @@ class AdminController extends CommonController
         return view('admin.enquiry', compact('enquiries'));
     }
 
+    public function subscribers()
+    {
+        $subscribers = Subscriber::all();
+        return view('admin.subscriber', compact('subscribers'));
+    }
+    
     public function deleteSubscriber(Subscriber $subscriber)
     {
         $subscriber->delete();

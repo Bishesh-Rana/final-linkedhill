@@ -77,4 +77,23 @@ class BlogController extends Controller
         $blog->categories()->sync($request->category_id);
         return response( ['title'=>'success', 'message'=> $request->type.' updated successfuly.']);
     }
+
+    public function getDeletedBlogs()
+    {
+        $blogs = Blog::onlyTrashed()->get();
+        return $this->returnResponse(BlogResource::collection($blogs));
+    }
+       
+
+    public function restoreBlog($id)
+    {
+        Blog::withTrashed()->find($id)->restore();
+        return response()->json( ['title'=>'success','message'=>'Blog restored successfuly.']);
+    }
+
+    public function hardDeleteBlog($id)
+    {
+        Blog::withTrashed()->find($id)->forceDelete();
+        return response()->json( ['title'=>'success','message'=>'Blog hard deleted successfuly.']);
+    }
 }

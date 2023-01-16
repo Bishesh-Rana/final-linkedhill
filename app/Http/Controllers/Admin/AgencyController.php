@@ -26,13 +26,11 @@ class AgencyController extends CommonController
   
     public function index()
     {
-        $agencies = AgencyDetail::with('agent')->get();
+        $agencies = AgencyDetail::where('status',1)->with('agent')->get();
         // dd($agencies);
         $pageHeading = "Verified Agency";
         return view('admin.agency.agency', compact('pageHeading','agencies'));
     }
-
-
 
 
     /**
@@ -91,7 +89,7 @@ class AgencyController extends CommonController
             }
             $agent->save();
             DB::commit();
-            request()->session()->flash('success', 'agency created successfully');
+            request()->session()->flash('success', 'Agent created successfully');
             return redirect(route('nonVerified'));
         } catch (ValidationException $th) {
             DB::rollBack();

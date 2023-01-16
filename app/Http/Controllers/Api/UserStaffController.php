@@ -4,8 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\UserAgent;
+use App\Models\AgencyDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Actions\Fortify\CreateNewUser;
+use App\Http\Requests\Admin\AgencyRequest;
+use Illuminate\Validation\ValidationException;
 
 class UserStaffController extends Controller
 {
@@ -38,7 +44,7 @@ class UserStaffController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(time());
+
         $currentTime = Carbon::now();
         // dd( $currentTime->toDateTimeString());
 
@@ -167,7 +173,21 @@ class UserStaffController extends Controller
 
         return response(['status'=>'true', 'message'=> 'Staff updated successfully.']);
     }
+    function updateUserStatus(Request $request)
+    {
+        $user = User::find($request->id);
+        if ($user->id === auth()->user()->id) {
+            return back()->with('fail', 'Sorry! you cannot deactivate your own account.');
+        }
 
+        $user->update(['is_active' => $request->is_active]);
+
+        if ($request->is_active === '1') {
+            return back()->with('success', 'User activated successfully.');
+        }
+
+        return response()->json(['statsu'=>'success','message'=> 'User deactivated successfully.']);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -185,4 +205,101 @@ class UserStaffController extends Controller
         // $staff->roles()->detach();
         return back()->with('success', 'User deleted successfully.');
     }
+
+    public function createAgent(AgencyRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user = (new CreateNewUser())->create([
+                'name' => $request->agency_name,
+                'email' => $request->email,
+                'phone' => $request->agency_phone,
+                'password' => $request->email,
+                'password_confirmation' => $request->email,
+            ]);
+            $user->assignRole(['3']);
+
+            $agent = AgencyDetail::create([
+                'status' => 1,
+                'user_id' => $user->id,
+                'agency_name' => $request->agency_name,
+                'agency_email' => $request->email,
+                'website' => $request->website,
+                'address' => $request->address,
+                'agency_phone' => $request->agency_phone,
+                'agency_mobile' => $request->agency_mobile,
+            ]);
+
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/images/logo/', $name);
+                $agent->logo = $name;
+            }
+
+            if ($request->hasFile('other_document')) {
+                $file = $request->file('other_document');
+                $name = time() . $file->getClientOriginalName();
+                $file->move(public_path() . '/documents/', $name);
+                $agent->other_document = $name;
+            }
+            $agent->save();
+            DB::commit();
+            return response()->json(['status'=>'true','message'=> 'Agent created successfully.']);
+        } catch (ValidationException $th) {
+            DB::rollBack();
+            return response()->json(['status'=>'error','message'=> implode(",", collect($th->errors())->flatten()->toArray())]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['status'=>'fail', 'message'=>$th->getMessage()]) ;
+        }
+    }
+    public function updateAgent(Request $request ,$id)
+    {
+        $agencyData = AgencyDetail::find($id);
+        $agencyData->status = $request->status;
+
+        if ($agencyData->save()) {
+            if ($request->status == "verified") {
+                DB::table('properties')
+                    ->where("user_id", '=',  $agencyData->agent->id)
+                    ->update(['hasAgent' => 1]);
+                    $user = User::where('id',$agencyData->user_id)->first();
+                    $time = Carbon::now();
+                    $user->update(['email_verified_at'=>$time]);
+                    Mail::to($user->email)->send(new VerifiedMail());
+            } else {
+                DB::table('properties')
+                    ->where("user_id", '=',  $agencyData->agent->id)
+                    ->update(['hasAgent' => 0]);
+            }
+        }
+        return response()->json(['status'=>'success', 'message'=>'Agency Status Updated Successfully']);
+    }
+
+    public function agents(){
+        $agents = AgencyDetail::where('status', '1')->with('agent')->get();
+        return $this->successResponse($agents);
+    }
+    public function deleteAgent($id){
+        $agent = AgencyDetail::find($id);
+        $agent->delete();
+        $agent->agent->delete();
+        return response()->json(['status'=>'success','message'=>'Agency Deleted Successfully']);
+    }
+    public function getDeletedAgency(){
+        $agents = AgencyDetail::onlyTrashed()->get();
+        return $this->successResponse($agents);
+    }
+    public function restoreAgency($id){
+        AgencyDetail::withTrashed()->find($id)->restore();
+        return response()->json(['status'=>'success', 'message'=>'Agency restored Successfully']);
+    }
+    public function hardDeleteAgency($id)
+    {
+        AgencyDetail::withTrashed()->find($id)->forceDelete();
+        return response()->json(['status'=>'success','message'=>'Agency  deleted Successfully']);
+    }
+       
 }

@@ -243,6 +243,9 @@ class StaffController extends Controller
 
         // $staff->deleteImage();
         $staff->delete();
+        if($staff->hasAgency){
+            $staff->hasAgency->delete();
+         }
         // $staff->roles()->detach();
         return back()->with('success', 'User deleted successfully.');
     }

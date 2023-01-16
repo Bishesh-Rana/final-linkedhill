@@ -44,10 +44,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
-
-
 Route::namespace('Api')->group(function () {
+
+    Route::get('get-setting', [AdminController::class, 'getSetting']);
+
     Route::get('facility',[FacilityController::class,'index']);
 
     Route::post('get-services', [ServiceController::class, 'getServices']);
@@ -115,7 +115,7 @@ Route::namespace('Api')->group(function () {
     Route::post('app-review-list', [AppReviewController::class, 'index']);
     Route::post('get-contacts', [ApiController::class, 'getContacts']);
 });
-    
+
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('property-review', [PropertyReviewController::class, 'index']);
     Route::post('upload-image-profile', [LoginController::class, 'uploadProfileImage']);
@@ -124,14 +124,18 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('update-password', [PasswordController::class, 'changePassword']);
     Route::post('toggle-favourites', [FavouriteController::class, 'toggleFavourite']);
     Route::post('get-favourites', [FavouriteController::class, 'getFavourites']);
+
+    // setting 
+    Route::post('update-setting', [AdminController::class, 'updateSetting']);
+
+
     /************   Post Property  ****************/
     Route::post('post-property', [PropertyController::class, 'postProperty']);
     Route::post('update-property', [PropertyController::class, 'updateProperty']);
     Route::post('delete-property', [PropertyController::class, 'deleteProperty']);
     Route::post('add-property-image', [PropertyController::class, 'addPropertyImage']);
     Route::get('admin-properties',[PropertyController::class, 'index']);
-
-
+    Route::post('update-view-count/{id}', [PropertyController::class, 'updateViewCount']);
 
     // property features facilities
     Route::get('property-feature-index', [FeatureController::class, 'index']);
@@ -141,7 +145,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('update-feature-position/property', [FeatureController::class, 'updateFeatureOrder']);
     Route::post('togglePropertyStatus/{id}', [PropertyController::class, 'toggleStatus']);
     Route::post('togglePropertyActiveStatus/{id}', [PropertyController::class, 'toggleActiveStatus']);
-    
 
     // faq
     Route::get('property-faq/{propertyId}/frequently-asked-questions', [PropertyFaqController::class, 'index']);
@@ -155,9 +158,16 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('update-blog/{id}',[BlogController::class,'update']);
 
     //users / staffs
+
+    Route::get('agents',[UserStaffController::class ,'agents']);
+    Route::post('create-agents',[UserStaffController::class,'createAgent']);
+    Route::post('update-agent-status/{id}',[UserStaffController::class,'updateAgent']);
+    Route::post('delete-agent/{id}',[UserStaffController::class,'deleteAgent']);
+
     Route::get('userStaff', [UserStaffController::class ,'index']);
     Route::post('updateuserStaff/{id}', [UserStaffController::class ,'update']);
     Route::post('deleteuserStaff/{id}', [UserStaffController::class ,'destroy']);
+    Route::post('update-user-status',[UserStaffController::class,'updateUserStatus']);
 
     // sliders
     Route::get('sliders', [SliderController::class, 'index']);
@@ -169,12 +179,18 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::get('index-faq', [FaqController ::class, 'index']);
     Route::post('create-faq', [FaqController::class, 'store']);
     Route::post('update-faq/{faq}', [FaqController::class, 'update']);
-    Route::post('delete-faq',[FaqController::class, 'destroy']);
+    Route::post('delete-faq/{id}',[FaqController::class, 'destroy']);
     
+    // admin subscribers
     Route::get('subscriber-list', [AdminController::class,'subscribers']);
     Route::post('delete-subscriber/{id}',[AdminController::class,'deleteSubscriber']);
     
-    
+    // admin Units
+    Route::get('index-units',[AdminController::class,'unitsList']);
+    Route::post('create-unit',[AdminController::class,'createUnit']);
+    Route::post('update-unit/{id}',[AdminController::class,'updateUnit']);
+    Route::post('delete-unit/{id}',[AdminController::class,'deleteUnit']);
+
 
     Route::get('enquiry-list', [EnquiryController::class, 'index']);
 
@@ -185,6 +201,29 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
 
     Route::post('book-tradelink', [TradelinkBookingController::class, 'store']);
     Route::post('toggle-tradelink-status', [TradelinkBookingController::class, 'toggleStatus']);
+        // restore
+        Route::group(['prefix' => 'restore'], function (){
+            // property
+            Route::get('getDeletedProperties', [PropertyController::class, 'getDeletedProperties']);
+            Route::get('property-restore/{property_id}', [PropertyController::class, 'restoreProperty']);
+            Route::post('hard-delete-property/{property_id}', [PropertyController::class, 'hardDeleteProperty']);
+    
+            // blogs.news
+            Route::get('getDeletedBlogs', [BlogController::class, 'getDeletedBlogs']);
+            Route::get('blog-restore/{blog_id}', [BlogController::class, 'restoreBlog']);
+            Route::post('hard-delete-blog/{blog_id}', [BlogController::class, 'hardDeleteBlog']);
+    
+            // agency 
+            Route::get('getDeletedAgency', [UserStaffController::class, 'getDeletedAgency']);
+            Route::get('agency-restore/{agency_id}', [UserStaffController::class, 'restoreAgency']);
+            Route::post('hard-delete-agency/{agency_id}', [UserStaffController::class, 'hardDeleteAgency']);
+    
+            // Faqs
+            Route::get('getDeletedFaqs', [FaqController::class, 'getDeletedFaqs']);
+            Route::get('faq-restore/{faq_id}', [FaqController::class, 'restoreFaq']);
+            Route::post('hard-delete-faq/{faq_id}', [FaqController::class, 'hardDeleteFaq']);
+    
+        });
 });
 
 Route::fallback(function () {

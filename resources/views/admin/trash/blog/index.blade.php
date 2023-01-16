@@ -97,35 +97,19 @@
         var base_url={!! json_encode(url('/')) !!};
 
         $('#datatables').DataTable({
-
             processing: true,
-
             serverSide: true,
-
             ajax: '{{route('getDeletedBlogs')}}',
-
             columns: [
-
                 {title:'SN',
-
                     render: function( data, type, full, meta ) {
-
                         return meta.row+1;
-
                     }
-
                 },
-
-
                 { data: 'image', name: 'image'},
-
                 {data: 'title', name: 'title'},
                 {data: 'description', name: 'description'},
-
                 {data: 'action', name: 'action', orderable: true, searchable: true}
-
-
-
             ],
         });
 
