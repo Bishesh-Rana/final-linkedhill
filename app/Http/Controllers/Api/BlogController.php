@@ -42,6 +42,12 @@ class BlogController extends Controller
         }
     }
 
+    // admin
+    public function getblogs(Request $request){
+        $blogs = Blog::where('type', $request->type)->get();
+        return $this->returnResponse(BlogResource::collection($blogs));
+    }
+
     public function store(Request $request)
     {
         $data =  Validator::make($request->all(), [
@@ -76,6 +82,12 @@ class BlogController extends Controller
         $blog->update($data);
         $blog->categories()->sync($request->category_id);
         return response( ['title'=>'success', 'message'=> $request->type.' updated successfuly.']);
+    }
+    public function destroy(Request $request, $id)
+    {
+        $blog = Blog::find($id);
+        $blog->delete();
+        return response( ['title'=>'success','message'=> $request->type.' deleted successfuly.']);
     }
 
     public function getDeletedBlogs()

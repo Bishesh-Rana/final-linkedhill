@@ -50,12 +50,14 @@ Route::namespace('Api')->group(function () {
 
     Route::get('facility',[FacilityController::class,'index']);
 
+    // may be in future
     Route::post('get-services', [ServiceController::class, 'getServices']);
     
     Route::post('post-enquiry', [EnquiryController::class, 'store']);
     //Search Area
     Route::get('search-area', [AreaSearchController::class, 'search'])->name('search-area');
     /*   Normal login routes  */
+    
     Route::post('registration', [LoginController::class, 'signup']);
     Route::post('login', [LoginController::class, 'login']);
     Route::post('reset-password', [PasswordController::class, 'resetPassword']);
@@ -118,10 +120,11 @@ Route::namespace('Api')->group(function () {
 
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('property-review', [PropertyReviewController::class, 'index']);
-    Route::post('upload-image-profile', [LoginController::class, 'uploadProfileImage']);
     Route::post('app-review', [AppReviewController::class, 'store']);
     Route::post('update-profile', [LoginController::class, 'update']);
+    Route::post('upload-profile-image', [LoginController::class, 'uploadProfileImage']);
     Route::post('update-password', [PasswordController::class, 'changePassword']);
+    
     Route::post('toggle-favourites', [FavouriteController::class, 'toggleFavourite']);
     Route::post('get-favourites', [FavouriteController::class, 'getFavourites']);
 
@@ -141,30 +144,36 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::get('property-feature-index', [FeatureController::class, 'index']);
     Route::post('property-feature-add', [FeatureController::class, 'store']);
     Route::post('property-feature-update', [FeatureController::class, 'update']);
-    Route::get('property-feature-delete/{id}', [FeatureController::class, 'destroy']);
+    Route::post('property-feature-delete/{id}', [FeatureController::class, 'destroy']);
     Route::post('update-feature-position/property', [FeatureController::class, 'updateFeatureOrder']);
+
     Route::post('togglePropertyStatus/{id}', [PropertyController::class, 'toggleStatus']);
     Route::post('togglePropertyActiveStatus/{id}', [PropertyController::class, 'toggleActiveStatus']);
 
-    // faq
+    // property faq
     Route::get('property-faq/{propertyId}/frequently-asked-questions', [PropertyFaqController::class, 'index']);
     Route::post('property-faq/{propertyId}/addFaq', [PropertyFaqController::class, 'frequentlyAskedQuestion']);
-    Route::post('property-faq/{propertyId}/deleteFaq', [PropertyFaqController::class, 'destroy']);
+    // Route::post('property-faq/{propertyId}/deleteFaq', [PropertyFaqController::class, 'destroy']);
 
 
     // news/blog
 
+    Route::post('blogs', [BlogController::class, 'getblogs']);
     Route::post('add-blog',[BlogController::class,'store']);
     Route::post('update-blog/{id}',[BlogController::class,'update']);
+    Route::post('delete-blog/{id}',[BlogController::class, 'destroy']);
 
-    //users / staffs
+    
+    // agents
 
     Route::get('agents',[UserStaffController::class ,'agents']);
     Route::post('create-agents',[UserStaffController::class,'createAgent']);
     Route::post('update-agent-status/{id}',[UserStaffController::class,'updateAgent']);
     Route::post('delete-agent/{id}',[UserStaffController::class,'deleteAgent']);
 
+    //users / staffs
     Route::get('userStaff', [UserStaffController::class ,'index']);
+    Route::post('create-userstaff', [UserStaffController::class,'store']);
     Route::post('updateuserStaff/{id}', [UserStaffController::class ,'update']);
     Route::post('deleteuserStaff/{id}', [UserStaffController::class ,'destroy']);
     Route::post('update-user-status',[UserStaffController::class,'updateUserStatus']);
@@ -173,7 +182,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::get('sliders', [SliderController::class, 'index']);
     Route::post('create-slider', [SliderController::class, 'store']);
     Route::post('update-slider/{id}', [SliderController::class, 'update']);
-    Route::post('delete-slider',[SliderController::class, 'destroy']);
+    Route::post('delete-slider/{id}',[SliderController::class, 'destroy']);
     
     // Faq
     Route::get('index-faq', [FaqController ::class, 'index']);
@@ -197,33 +206,33 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('profile', [LoginController::class, 'profile']);
     Route::post('device-credential', [DeviceCredentialController::class, 'device']);
-    Route::post('get-tradelink-booking', [TradelinkBookingController::class, 'index']);
 
+    // may be used iun future
+    Route::post('get-tradelink-booking', [TradelinkBookingController::class, 'index']);
     Route::post('book-tradelink', [TradelinkBookingController::class, 'store']);
     Route::post('toggle-tradelink-status', [TradelinkBookingController::class, 'toggleStatus']);
-        // restore
-        Route::group(['prefix' => 'restore'], function (){
-            // property
-            Route::get('getDeletedProperties', [PropertyController::class, 'getDeletedProperties']);
-            Route::get('property-restore/{property_id}', [PropertyController::class, 'restoreProperty']);
-            Route::post('hard-delete-property/{property_id}', [PropertyController::class, 'hardDeleteProperty']);
-    
-            // blogs.news
-            Route::get('getDeletedBlogs', [BlogController::class, 'getDeletedBlogs']);
-            Route::get('blog-restore/{blog_id}', [BlogController::class, 'restoreBlog']);
-            Route::post('hard-delete-blog/{blog_id}', [BlogController::class, 'hardDeleteBlog']);
-    
-            // agency 
-            Route::get('getDeletedAgency', [UserStaffController::class, 'getDeletedAgency']);
-            Route::get('agency-restore/{agency_id}', [UserStaffController::class, 'restoreAgency']);
-            Route::post('hard-delete-agency/{agency_id}', [UserStaffController::class, 'hardDeleteAgency']);
-    
-            // Faqs
-            Route::get('getDeletedFaqs', [FaqController::class, 'getDeletedFaqs']);
-            Route::get('faq-restore/{faq_id}', [FaqController::class, 'restoreFaq']);
-            Route::post('hard-delete-faq/{faq_id}', [FaqController::class, 'hardDeleteFaq']);
-    
-        });
+    // restore
+    Route::group(['prefix' => 'restore'], function (){
+        // property
+        Route::get('getDeletedProperties', [PropertyController::class, 'getDeletedProperties']);
+        Route::post('property-restore/{property_id}', [PropertyController::class, 'restoreProperty']);
+        Route::post('hard-delete-property/{property_id}', [PropertyController::class, 'hardDeleteProperty']);
+        
+        // blogs.news
+        Route::get('getDeletedBlogs', [BlogController::class, 'getDeletedBlogs']);
+        Route::post('blog-restore/{blog_id}', [BlogController::class, 'restoreBlog']);
+        Route::post('hard-delete-blog/{blog_id}', [BlogController::class, 'hardDeleteBlog']);
+        
+        // agency 
+        Route::get('getDeletedAgency', [UserStaffController::class, 'getDeletedAgency']);
+        Route::post('agency-restore/{agency_id}', [UserStaffController::class, 'restoreAgency']);
+        Route::post('hard-delete-agency/{agency_id}', [UserStaffController::class, 'hardDeleteAgency']);
+        
+        // Faqs
+        Route::get('getDeletedFaqs', [FaqController::class, 'getDeletedFaqs']);
+        Route::post('faq-restore/{faq_id}', [FaqController::class, 'restoreFaqs']);
+        Route::post('hard-delete-faq/{faq_id}', [FaqController::class, 'hardDeleteFaq']);
+    });
 });
 
 Route::fallback(function () {

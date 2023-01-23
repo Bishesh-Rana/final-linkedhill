@@ -156,7 +156,7 @@ class PropertyController extends Controller
         $property->latitude = $request->latitude;
         $property->longitude = $request->longitude;
 
-        $property->price = $request->price;
+        $property->start_price = $request->price;
         $property->price_label = $request->price_label;
 
         $property->owner_name = $request->owner_name;

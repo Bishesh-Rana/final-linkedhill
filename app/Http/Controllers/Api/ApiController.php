@@ -41,7 +41,7 @@ class ApiController extends Controller
     public $limit = 6;
     public function getSliders()
     {
-        $sliders = Slider::get();
+        $sliders = Slider::where('hide','1')->get();
         return $this->returnResponse(SliderResource::collection($sliders));
     }
     public function getFaq()

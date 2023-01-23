@@ -169,10 +169,10 @@ class PropertyController extends Controller
     {
         $user = auth()->guard('api')->user();
         // return $user->isadmin();
+        // $user = User::find(request()->user()->id);
         
         if($user->isadmin()){
             $user_id = $request->client;
-           
         }
         else{
             $user_id = (auth()->user()->isStaff())? auth()->user()->isStaff() : auth()->user()->id;
@@ -202,14 +202,13 @@ class PropertyController extends Controller
         $property->road_type = $request->road_type_id;
 
         $sync = collect($request['features'])
-            ->filter(fn ($item) => $item)
-            ->map(function ($item, $key) {
-                return [
-                    'feature_id' => $key,
-                    'value' => $item == "1" ? true : $item,
-                ];
-            })->toArray();
-        
+        ->filter(fn ($item) => $item)
+        ->map(function ($item, $key) {
+            return [
+                'feature_id' => $key,
+                'value' => $item == "1" ? true : $item,
+            ];
+        })->toArray();
         $property->features()->sync($sync);
 
         if(!empty($request->facility)){
@@ -222,7 +221,7 @@ class PropertyController extends Controller
             $this->uploadImage($request['property_images'], $property->id ,$user_id);
         }
 
-        $property->price = $request->price;
+        $property->start_price = $request->start_price;
         $property->price_label = $request->price_label;
 
         $property->owner_name = $request->owner_name;
@@ -253,10 +252,11 @@ class PropertyController extends Controller
     public function updateProperty(Request $request)
     {
         $user = auth()->guard('api')->user();
-        // return $user->isadmin();
+        // $user = User::find(request()->user()->id);
 
         $property = Property::findorfail($request->id);
-        if($user()->isadmin()){
+
+        if($user->isadmin()){
             $user_id = $request->client;
         }
         else{
@@ -306,7 +306,7 @@ class PropertyController extends Controller
             $this->uploadImage($request['property_images'], $property->id ,$user_id);
         }
 
-        $property->price = $request->price;
+        $property->start_price = $request->start_price;
         $property->price_label = $request->price_label;
 
         $property->owner_name = $request->owner_name;
@@ -332,6 +332,7 @@ class PropertyController extends Controller
     }
     public function toggleStatus($id)
     {
+        // verified/unverified
         $property = Property::find($id);
         $property->status = !$property->status;
         $property->save();

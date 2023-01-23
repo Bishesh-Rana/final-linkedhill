@@ -52,12 +52,12 @@
                                     </div>
                                 </form>
                                 <div class="d-flex login_register">
-                                    <p style="margin-top: 20px;" class="">New User </p>
-                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Signup</a>
+                                    <p style="margin-top: 20px;" class="">Customer Registration </p>
+                                    <a href="{{route('customer.registerform')}}" class="btn login_registerbtn">Signup</a>
                                 </div>
                                 <div class="d-flex login_register">
-                                    <p style="margin-top: 20px;" class="">Agent Login</p>
-                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Login/Signup</a>
+                                    <p style="margin-top: 20px;" class="">Agent Registraion</p>
+                                    <a href="{{route('agent.getRegistration')}}" class="btn login_registerbtn">Signup</a>
                                 </div>
                             </div>
                             

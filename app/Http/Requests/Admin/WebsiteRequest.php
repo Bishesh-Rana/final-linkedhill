@@ -44,29 +44,17 @@ class WebsiteRequest extends FormRequest
             'meta_title' => 'nullable',
             'meta_keyword' => 'max:250',
             'meta_description' => 'max:250',
-
-
-
             'pro_title' => 'nullable',
             'pro_sub_title' => 'nullable',
-
             'second_pro_title' => 'nullable',
             'second_pro_sub_title' => 'nullable',
-
             'blog_title' => 'nullable',
             'blog_sub_title' => 'nullable',
-
             'login_title' => 'nullable',
             'login_sub_title' => 'nullable',
             'second_login_sub_title' => 'nullable',
             'third_login_sub_title' => 'nullable',
             'four_login_sub_title' => 'nullable',
-
-
-
-
-
-
 
         ];
     }

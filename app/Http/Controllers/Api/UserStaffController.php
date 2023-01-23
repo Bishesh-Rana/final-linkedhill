@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserAgent;
 use App\Models\AgencyDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Actions\Fortify\CreateNewUser;
@@ -177,13 +178,13 @@ class UserStaffController extends Controller
     {
         $user = User::find($request->id);
         if ($user->id === auth()->user()->id) {
-            return back()->with('fail', 'Sorry! you cannot deactivate your own account.');
+            return response()->json(['fail'=> 'Sorry! you cannot deactivate your own account.']);
         }
 
         $user->update(['is_active' => $request->is_active]);
 
         if ($request->is_active === '1') {
-            return back()->with('success', 'User activated successfully.');
+            return response()->json(['success'=> 'User activated successfully.']);
         }
 
         return response()->json(['statsu'=>'success','message'=> 'User deactivated successfully.']);
@@ -196,21 +197,22 @@ class UserStaffController extends Controller
      */
     public function destroy($id)
     {
+        // return User::all();
         $staff = User::findOrFail($id);
+
         if ($staff->id === auth()->user()->id) {
-            return back()->with('message', 'Sorry! You cannot delete your own account.');
+            return response()->json(['message'=> 'Sorry! You cannot delete your own account.']);
         }
         // $staff->deleteImage();
         $staff->delete();
         // $staff->roles()->detach();
-        return back()->with('success', 'User deleted successfully.');
+        return response()->json(['success' => 'User deleted successfully.']);
     }
 
     public function createAgent(AgencyRequest $request)
     {
         try {
             DB::beginTransaction();
-
             $user = (new CreateNewUser())->create([
                 'name' => $request->agency_name,
                 'email' => $request->email,
@@ -218,6 +220,7 @@ class UserStaffController extends Controller
                 'password' => $request->email,
                 'password_confirmation' => $request->email,
             ]);
+
             $user->assignRole(['3']);
 
             $agent = AgencyDetail::create([
@@ -230,7 +233,7 @@ class UserStaffController extends Controller
                 'agency_phone' => $request->agency_phone,
                 'agency_mobile' => $request->agency_mobile,
             ]);
-
+           
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
                 $name = time() . $file->getClientOriginalName();
@@ -252,7 +255,7 @@ class UserStaffController extends Controller
             return response()->json(['status'=>'error','message'=> implode(",", collect($th->errors())->flatten()->toArray())]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return response()->json(['status'=>'fail', 'message'=>$th->getMessage()]) ;
+            return response()->json(['status'=>'fail', 'message'=>$th->getMessage()]);
         }
     }
     public function updateAgent(Request $request ,$id)

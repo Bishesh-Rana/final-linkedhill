@@ -18,14 +18,12 @@ class PasswordController extends Controller
 {
     public function changePassword(Request $request)
     {
-
         $user = User::find(request()->user()->id);
         DB::beginTransaction();
         try {
             $this->validate($request, [
                 'old_password' => ['required'],
-                'password' => ['required', 'different:old_password'],
-
+                'password' => ['required', 'different:old_password','confirmed'],
             ]);
             if (!Hash::check($request->old_password, $user->password)) {
                 throw ValidationException::withMessages([

@@ -276,6 +276,7 @@ class LoginController extends Controller
 
     public function update(Request $request)
     {
+        // return auth()->user();
         $user = User::find(request()->user()->id);
         try {
             $data =   Validator::make($request->all(), [

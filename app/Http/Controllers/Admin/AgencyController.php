@@ -160,7 +160,11 @@ class AgencyController extends CommonController
      */
     public function update(Request $request, $id)
     {
+
         $agencyData = AgencyDetail::find($id);
+        
+
+        return response()->json($agencyData);
         $agencyData->status = $request->status;
 
         if ($agencyData->save()) {

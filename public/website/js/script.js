@@ -20,6 +20,17 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $(".confirmpassword i").on("click", function() {
+        var passInput = $("#confirm_field_signUp");
+        if (passInput.attr("type") === "password") {
+            passInput.attr("type", "text");
+        } else {
+            passInput.attr("type", "password");
+        }
+    });
+});
+
 // password visible and not visibleENd
 $("#property").owlCarousel({
     loop: true,

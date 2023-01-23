@@ -24,6 +24,7 @@ class PropertyReviewController extends Controller
 
     public function index(Request $request)
     {
+        return $request->all();
         try {
 
             $data =   $this->review->create($request->all());

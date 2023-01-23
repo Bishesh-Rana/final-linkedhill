@@ -87,6 +87,7 @@ class PropertyController extends CommonController
                     'value' => $item == "1" ? true : $item,
                 ];
             })->toArray();
+            
         try {
             DB::beginTransaction();
             $property =  Property::create(Arr::except($data, 'features', 'property_images', 'amenities'));

@@ -187,22 +187,28 @@
                                                 <strong class="text-danger">{{ $errors->first('email') }}</strong>
                                             @endif
                                         </div>
+                                        <div class="col-md-6"></div>
 
                                         <div class="mb-3 col-md-6">
-                                            <div class="form_group">
+                                            {{-- <div class="form_group signUpinput_box_zee">
                                                 <input type="password" class="form-control" id="txtPassword"
                                                     placeholder="Password" name="password">
-                                                {{-- <i class="lar la-eye toggle_pwd"></i> --}}
+                                                <i class="lar la-eye"></i>
+                                            </div> --}}
+                                            <div class="form_group signUpinput_box_zee">
+                                                <input type="password" class="form-control" id="password_field_signUp"
+                                                    placeholder="Password" name="password">
+                                                <i class="lar la-eye"></i>
                                             </div>
                                             @if ($errors->has('password'))
                                                 <strong class="text-danger">{{ $errors->first('password') }}</strong>
                                             @endif
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <div class="form_group">
-                                                <input type="password" class="form-control" id="txtPassword"
+                                            <div class="form_group confirmpassword">
+                                                <input type="password" class="form-control" id="confirm_field_signUp"
                                                     placeholder="Confirm Password" name="confirm_password">
-                                                {{-- <i class="lar la-eye toggle_pwd"></i> --}}
+                                                <i class="lar la-eye"></i>
                                             </div>
                                             @if ($errors->has('confirm_password'))
                                                 <strong class="text-danger">{{ $errors->first('confirm_password') }}</strong>
