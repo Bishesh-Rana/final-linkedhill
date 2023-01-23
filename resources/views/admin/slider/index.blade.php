@@ -72,9 +72,9 @@
                                     </td>
                                     <td>
                                         @if($value->hide == 0)
-                                        <a href="#!" class="btn btn-sm btn-danger">Inactive</a>
+                                        <a href="#" class="btn btn-sm btn-danger">Inactive</a>
                                         @else
-                                        <a href="#!" class="btn btn-sm btn-success">Active</a>
+                                        <a href="#" class="btn btn-sm btn-success">Active</a>
                                         @endif
                                     </td>
 

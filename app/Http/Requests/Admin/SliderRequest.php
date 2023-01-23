@@ -25,6 +25,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'hide' =>'required',
             'order' => 'nullable',
             'image' => 'required',
             'url' => 'nullable',

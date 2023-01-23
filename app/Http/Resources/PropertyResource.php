@@ -37,7 +37,7 @@ class PropertyResource extends JsonResource
             'address' => $this->property_address,
             // 'price_range' => $this->start_price .'-'.$this->end_price,
             'price_range' => $this->start_price,
-            'area' => $this->total_area . ' ' . $this->area_unit->name,
+            'area' => $this->total_area . ' ' . $this->area_unit->name||'',
             'new' => $this->created_at->gt(now()->subDays(7)),
             'is_liked' => in_array($this->id, $favourite),
             'image' => optional($this->images->first())->name,

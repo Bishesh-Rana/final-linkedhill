@@ -81,6 +81,7 @@ class SliderController extends CommonController
 
         try {
             $slider->update($request->validated());
+            
             return back()->with('message', 'Slider data updated successfully');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage())->withInput();

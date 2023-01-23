@@ -2,39 +2,40 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\BlogResource;
-use App\Http\Resources\CategoryResource;
-use App\Http\Resources\CityResource;
-use App\Http\Resources\FaqResource;
-use App\Http\Resources\FavouriteListResource;
-use App\Http\Resources\PageResource;
-use App\Http\Resources\PropertyDetailResource;
-use App\Http\Resources\PropertyResource;
-use App\Http\Resources\ServiceProviderResource;
-use App\Http\Resources\ServiceResource;
-use App\Http\Resources\ServiceVendorResource;
-use App\Http\Resources\SliderResource;
-use App\Http\Resources\TradelinkSliderResource;
-use App\Http\Resources\UserResource;
+use App\Models\Faq;
 use App\Models\Blog;
 use App\Models\City;
-use App\Models\Faq;
-use App\Models\FavouriteList;
+use App\Models\Menu;
 use App\Models\Page;
-use App\Models\Property;
-use App\Models\Service;
-use App\Models\ServiceCategory;
-use App\Models\Slider;
-use App\Models\Testimonial;
-use App\Models\TradelinkAdmin;
-use App\Models\TradelinkSlider;
 use App\Models\User;
+use App\Models\Slider;
+use App\Models\Service;
 use App\Models\Website;
-use Database\Seeders\FaqSeeder;
+use App\Models\Property;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Models\FavouriteList;
+use App\Models\TradelinkAdmin;
+use App\Models\ServiceCategory;
+use App\Models\TradelinkSlider;
+use Database\Seeders\FaqSeeder;
+use App\Http\Resources\FaqResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\BlogResource;
+use App\Http\Resources\CityResource;
+use App\Http\Resources\PageResource;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\SliderResource;
+use App\Http\Resources\ServiceResource;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\PropertyResource;
+use App\Http\Resources\FavouriteListResource;
+use App\Http\Resources\ServiceVendorResource;
+use App\Http\Resources\PropertyDetailResource;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\ServiceProviderResource;
+use App\Http\Resources\TradelinkSliderResource;
 
 class ApiController extends Controller
 {
@@ -100,8 +101,36 @@ class ApiController extends Controller
         $cities = City::select('id', 'name')
             ->where('name', 'like', "%" . $request->name . "%")
             ->orderBy('name', 'ASC')
-            ->limit(15)
+            // ->limit(15)
             ->get();
         return  $this->returnResponse(CategoryResource::collection($cities));
     }
+    public function getMeta($meta = [])
+    {
+        return [
+            'meta_title' => $meta['meta_title'] ?? config('websites.name'),
+            'meta_keyword' => $meta['meta_keyword'] ?? config('websites.meta_keyword'),
+            'meta_description' => $meta['meta_description'] ?? config('websites.meta_description'),
+            'meta_keyphrase' =>  $meta['meta_keyphrase'] ?? config('websites.meta_description'),
+            'og_image' => $meta['image'] ?? config('websites.og_image'),
+            'og_url' => route('home'),
+            'og_site_name' => config('websites.name'),
+            'twitter' => config('websites.twitter'),
+        ];
+    }
+
+    public function ourPolicy()
+    {
+        $pagedata = Menu::where('slug', 'privacy-policy')->where('active', true)->first();
+        $meta = $this->getMeta($pagedata);
+        return response()->json(['pagedata'=> $pagedata, 'meta'=> $meta]);
+    }
+
+    public function termsConditions()
+    {
+        $pagedata = Menu::where('slug', 'terms-and-conditions')->where('active', true)->first();
+        $meta = $this->getMeta($pagedata);
+
+    }
+
 }

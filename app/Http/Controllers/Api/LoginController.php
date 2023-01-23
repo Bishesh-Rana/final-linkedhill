@@ -75,8 +75,10 @@ class LoginController extends Controller
         DB::beginTransaction();
         try {
             Validator::make($request->all(), [
+                // 'password'=>'required|confirmed',
                 'referral_code' => ["nullable", "exists:users,referral_code"],
             ])->validate();
+
             if ($request->referalCode) {
             }
             $user = (new CreateNewUser())->create($request->all());
@@ -96,10 +98,13 @@ class LoginController extends Controller
             return $this->errorResponse($th->getMessage());
         }
     }
+    protected function getOtp()
+    {
+        return rand(100000, 999999);
+    }
 
     public function postAgentRegistration (Request $request){
-        $validated = $request->validate([
-        // $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'type' => 'required',
             'name' => 'required',
             'mobile' => 'required|unique:users|max:14',
@@ -112,6 +117,14 @@ class LoginController extends Controller
             'companyRegistration' => 'nullable|mimes:pdf',
             'taxClearance' => 'nullable|mimes:pdf',
         ]);
+        if ($validator->fails()) {
+            $response = [
+                'error' => true,
+                'data' => null,
+                'message' => $validator->errors()
+            ];
+            return response()->json($response, 200);
+        }
         if($request->password != $request->confirm_password){
             return response()->json(['status'=>'fail','error'=>'Password do not match']);
         }
@@ -185,7 +198,6 @@ class LoginController extends Controller
 
         //mail goes to admin
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new AgencyActivationMail($user));
-        $request->session()->flash('success', "Registration Application Submitted Successfully.");
 
         //mail to agent
         Mail::to($request->email)->send(new AgentRegistrationMail());
@@ -194,19 +206,9 @@ class LoginController extends Controller
 
         } catch (\Exception $e) {
             \DB::rollback();
-            return response(['status' => false, 'message' => "Registration failed !!"], 200);
+            return response()->json(['status' => false, 'message' => "Registration failed !!"], 200);
         }
     }
-
-    public function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-        ]));
-    }
-
   
     public function profile(Request $request)
     {

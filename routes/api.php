@@ -81,22 +81,20 @@ Route::namespace('Api')->group(function () {
     Route::post('get-news', [BlogController::class, 'news']);
     
     Route::post('get-blog-detail', [BlogController::class, 'blogDetail']);
+
     Route::post('get-service-categories', [ServiceController::class, 'getServiceCategories']);
-
     Route::post('get-service-detail', [ServiceController::class, 'serviceDetail']);
-
     Route::post('get-service-by-category', [ApiController::class, 'getServiceByCategory']);
+
     Route::post('vendor-for-service', [ApiController::class, 'vendorForService']);
     Route::post('get-tradelink-category', [TradelinkController::class, 'tradelinkCategory']);
     Route::post('get-tradelink-children-category', [TradelinkController::class, 'tradelinkChildrenCategory']);
-
     Route::post('get-tradelink', [TradelinkController::class, 'tradelinkUser']);
     Route::post('get-tradelink-details', [TradelinkController::class, 'tradelinkUserDetail']);
-
-
     Route::post('get-tradelink-slider', [ApiController::class, 'tradelinkSlider']);
+
     Route::post('service-providers', [ApiController::class, 'serviceProviders']);
-    Route::post('purpose-to-sell-property', [PropertyController::class, 'purpose']);
+    // Route::post('purposes-of-property', [PropertyController::class, 'purpose']);
     Route::post('property-types', [PropertyController::class, 'propertyType']);
     Route::post('property-status', [PropertyController::class, 'propertyStatus']);
 
@@ -108,8 +106,8 @@ Route::namespace('Api')->group(function () {
     Route::post('get-property-feature', [PropertyController::class, 'getPropertyFeatures']);
     Route::post('search', [SearchController::class, 'search']);
     Route::post('category-filter', [FilterController::class, 'filter']);
-    Route::post('test', [PropertyController::class, 'test']);
     Route::post('privacy-policy', [ApiController::class, 'ourPolicy']);
+
     Route::post('terms-and-conditions', [ApiController::class, 'termsConditions']);
     Route::post('get-property-review', [PropertyReviewController::class, 'propertyReview']);
     Route::post('property-statistics', [PropertyReviewController::class, 'propertyStatistics']);
@@ -165,7 +163,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api'], function () {
 
     
     // agents
-
     Route::get('agents',[UserStaffController::class ,'agents']);
     Route::post('create-agents',[UserStaffController::class,'createAgent']);
     Route::post('update-agent-status/{id}',[UserStaffController::class,'updateAgent']);

@@ -33,12 +33,10 @@ use App\Http\Resources\PropertyCategoryResource;
 class PropertyController extends Controller
 {
     public $limit = 5;
-    public function test(Request $request)
-    {
-    }
     public function featuredProperties()
     {
-        $properties = Property::where(['status' => 1, 'feature' => "on"])->latest()->limit(1)->get();
+        $properties = Property::where(['status' => 1, 'feature' => true,'activeStatus' => "1"])->latest()->get();
+        // return $properties;
         return PropertyResource::collection($properties);
     }
 
@@ -414,10 +412,10 @@ class PropertyController extends Controller
 
     public function property(Request $request)
     {
-
         try {
             Validator::make($request->all(), ['id' => ['required', 'exists:properties,id']])->validate();
             $property = Property::with('area_unit', 'property_category:id,name', 'images', 'features:id,title,image')->findorfail($request->id);
+            $property->increment('view_count');
             return $this->successResponse(new PropertyDetailResource($property));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $th) {
             return $this->notFoundResponse();
@@ -430,7 +428,6 @@ class PropertyController extends Controller
 
     public function getPropertyFeatures(request $request){
 
-        // return($request->category_ids[0]);
         $feature_values = [];
         $features = [];
         foreach($request->category_ids as $cat_id){
