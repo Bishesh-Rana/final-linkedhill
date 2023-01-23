@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class LoginController extends Controller
 {
@@ -97,7 +98,8 @@ class LoginController extends Controller
     }
 
     public function postAgentRegistration (Request $request){
-        $validator = $this->validate(request(), [
+        $validated = $request->validate([
+        // $this->validate($request, [
             'type' => 'required',
             'name' => 'required',
             'mobile' => 'required|unique:users|max:14',
@@ -111,7 +113,7 @@ class LoginController extends Controller
             'taxClearance' => 'nullable|mimes:pdf',
         ]);
         if($request->password != $request->confirm_password){
-            return redirect()->back()->with('error','Password do not match');
+            return response()->json(['status'=>'fail','error'=>'Password do not match']);
         }
         $otp = $this->getOtp();
         \DB::beginTransaction();
@@ -141,7 +143,6 @@ class LoginController extends Controller
                 'agency_mobile' => $request->mobile,
                 'company_reg_no' => $request->company_reg_no,
                 'national_id' => $request->idnumber,
-
             ]);
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
@@ -197,64 +198,16 @@ class LoginController extends Controller
         }
     }
 
-    public function postAgentLogin(Request $request)
+    public function failedValidation(Validator $validator)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-        $users = user::all(); 
-        $check = User::where('email', $request->email)->first();
-        if ($check == null) {
-            return response(['status'=> false, 'message'=>'Email does not exist!']);
-        }
-        if($check->agentStaff != null){
-            if($check->agentStaff->status == 'Not Verified'){
-                return response(['status' => false, 'message' => "You are not verified. Please contact admin.]"], 200);
-            }elseif($check->agentStaff->status == 'Blocked'){
-                return response(['status' => false, 'message' => 'You are blocked. Please contact to admin']);
-            }elseif($check->agentStaff->status == 'Rejected'){
-                return response(['status' => false, 'message' => 'You are Rejected. Please contact to admin']);
-            }
-            elseif($check->agentStaff->is_active == '0'){
-                return redirect()->back()->with(['status' => false, 'message' => 'You are not verified']);
-            }elseif($check->agentStaff->is_blocked == '0'){
-                return response(['status' => false, 'message' => 'You are blocked. Please contact to admin']);
-            }
-            else{
-                return response(['status' =>'test', 'message'=> $check->hasAgency->status]);
-                if (\Auth::guard('api')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                }
-                return response(['status' => false, 'message' => 'Email and Password do not match']);
-            }       
-        }
-        if($check->hasAgency != null ){
-            if($check->hasAgency->status == 'Not Verified'){
-                return redirect()->back()->with(['status' => false, 'message' => 'You are not verified']);
-            }elseif($check->hasAgency->status == 'Blocked'){
-                return response(['status' => false, 'message' => 'You are blocked. Please contact to admin']);
-            }elseif($check->hasAgency->status == 'Rejected'){
-                return response(['status' => false, 'message' => 'You are Rejected. Please contact to admin']);
-            }else{
-                if (\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                    $user = User::where('email', $request->email)->first();
-        
-                    $user->access_token = $user->createToken('AuthToken')->accessToken;
-                    
-                    $user->save();
-                    DeviceCredential::storeData($user->id);
-                
-                    return $this->successResponse(new UserResource($user));
-                }
-                return response(['status' => false, 'message' => 'Email and Password do not match']);
-            }
-        }else{
-            return response(['status' => false, 'message' =>'Email not found']);
-        }   
-
-       
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 
+  
     public function profile(Request $request)
     {
         try {

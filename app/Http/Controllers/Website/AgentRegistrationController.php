@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\AgentRegistrationRequest;
 
 class AgentRegistrationController extends Controller
 {
@@ -93,8 +94,9 @@ class AgentRegistrationController extends Controller
        
     }
     
-    public function postAgentRegistration (Request $request){
-        $validator = $this->validate(request(), [
+    public function postAgentRegistration (AgentRegistrationRequest $request)
+    {    
+        $this->validate($request, [
             'type' => 'required',
             'name' => 'required',
             'mobile' => 'required|unique:users|max:14',
@@ -107,6 +109,8 @@ class AgentRegistrationController extends Controller
             'companyRegistration' => 'nullable|mimes:pdf',
             'taxClearance' => 'nullable|mimes:pdf',
         ]);
+        // dd($request->all());
+
         if($request->password != $request->confirm_password){
             return redirect()->back()->with('error','Password do not match');
         }
