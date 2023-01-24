@@ -17,6 +17,10 @@
 }
 
 
+
+
+
+
 @media screen and (max-width: 1024px) {
     .multi_select_option p {
         font-size: 12px;
@@ -51,9 +55,21 @@
     .linked_hill_search_wrapper{
         max-width: 900px;
     }
-
+    #navbarSupportedContent{
+        display: none !important;
+    }
+    .header-wrap{
+        padding:10px 0;
+    }
+    .toggle-btn{
+        display: block;
+    }
+    #mySidenav{
+        display: block;
+    }
 }
-/* My Responsive Code */
+
+
 
 
 
@@ -61,6 +77,16 @@
 
 
 @media(max-width:991px) {
+    .header-btn {
+        display: none;
+    }
+    .header-mobile-btn{
+        display: flex;
+        align-items: center;
+    }
+    .header-mobile-btn ul{
+        display: flex;
+      }
     #site_navigation .navbar-toggler-icon {
         position: relative;
         border-top: 2px solid black;
@@ -310,7 +336,7 @@
         justify-content: flex-end;
     }
     .about_loan_thumbnail {
-        margin-top: 40px;
+        margin-top: 25px;
     }
     #about_loan_info_wrapper {
         padding-top: 20px;
@@ -319,16 +345,19 @@
         width: 100%;
     }
     .linked_hill_search_wrapper{
-        border: 1px solid rgba(255,255,255,0.3);
-        box-shadow: 0 5px 10px 0 rgb(7 25 57 / 10%), 0 1px 5px 0 rgb(7 25 57 / 20%);
-        /* margin-left: 50px; */
-        /* margin-right: 50px; */
         margin-top: -80px;
         position: relative;
-        background-color: rgba(255, 255, 255, 0.603);
-        z-index: 1020;
+        background-color: #fff;
         padding: 20px;
-        border-radius: 4px;
+        border-radius: 5px;
+        box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .advance-search{
+        width: 30% !important;
+        margin-top:10px;
     }
     .multiple_select2option {
         border: 1px solid #e3e3e3;
@@ -424,23 +453,12 @@
     .social_link {
         padding: 10px;
     }
-    /* ******search filter start******* */
-    .linked_hill_search_wrapper {
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -60%);
-    }
     .link_hill_flex_bottom_wrapper,
     .linked_hill_flex_wrap {
         flex-wrap: wrap;
     }
     .linked_hill_flex_wrap{
         background-color: none;
-    }
-    .linked_hill_search_wrapper{
-        max-width: 600px;
-        margin-top: 16px;
-        z-index: 1;
     }
     .linked_hill_select_area {
         width: 100%;
@@ -457,11 +475,6 @@
         width: 100%;
         margin-left: 0;
         border: 1px solid #d7d7d7;
-    }
-    .linked_hill_search_area .btn {
-        /* width: 100%; */
-        top: 0;
-        border-radius: 0px;
     }
     .property_item_linkedhill {
         position: relative;
@@ -498,13 +511,24 @@
         margin-top: 0;
     }
     .bg-transparent {
-        background-color: rgb(229 229 229) !important;
+        background-color: rgb(255 255 255) !important;
     }
-
-    .advance-search{
-        width: 50% !important;
-        margin: 5px 0pX;
+    .logo span{
+        color:#000;
     }
+    .header-mobile-btn ul li a{
+        color: #000;
+    }
+    #linkedHill_header_wrapper{
+        position: sticky;
+        top:0;
+        box-shadow: 0px 4px 10px rgb(0 0 0 / 15%);
+        z-index: 1022;
+    }
+    .toggle-btn span{
+        background: #000;
+    }
+    
     .full-view-ad{
         display: none;
     }
@@ -613,9 +637,6 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-    section#property_detail_wrapper {
-        margin-bottom: 25px;
-    }
     .prop_thumbnail_ {
         margin-bottom: 15px;
     }
@@ -630,7 +651,7 @@
     }
     .news_detail {
         margin-left: 0;
-        margin-top: 15px;
+        padding:30px 15px;
     }
     .news_thumbnail {
         max-width: 100%;
@@ -677,14 +698,18 @@
     .footer_top {
         position: relative;
         width: 100%;
-        top: -38px;
-        border-radius: 28px;
+        top: 10px;
+        border-radius: var(--border-radius);
         padding: 20px;
         display: flex;
         flex-direction: column;
     }
     #site_footer {
         padding-top: 11px;
+        margin-top: 50px;
+    }
+    .footer_ft_left {
+        border-radius: var(--border-radius);
         margin-top: 30px;
     }
     .follow_us ul {
@@ -815,13 +840,30 @@
         overflow-x: auto;
         padding-bottom: 10px;
     }
+    .advance-search p{
+        border-radius: 5px;
+    }
+    .advance-search{
+        border-radius: 5px;
+    }
+    .advance-search p::before{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 }
 
 
 
 
 
+
+
+
+
 @media(max-width:575px) {
+    .logo span{
+        font-size: 22px;
+    }
     .header_ribbon {
         padding: 10px 0;
     }
@@ -868,9 +910,6 @@
     #site_navigation ul li:not(:last-child) {
         margin-right: 0;
     }
-    #about_loan_info_wrapper {
-        padding-top: 0px;
-    }
     .filter_style label {
         font-size: 14px;
         margin-left: 3px;
@@ -885,7 +924,8 @@
         margin-left: 7px;
     }
     .subscribe_form .btn {
-        padding: 10px 24px;
+        padding: 10px 15px;
+        width: 190px;
     }
     .property_Side.text-center {
         margin-top: 10px;
@@ -916,13 +956,166 @@
     .more-multi_select_dropdown{
         width: 100%;
     }
-    .linked_hill_search_wrapper{
-        max-width: 330px;
-    }
     .linked_hill_search_wrapper {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding:15px;
+    }
+    div#site_carousel .carousel-control-prev, 
+    div#site_carousel .carousel-control-next{
+        top: -37%;
+        bottom: 0;
+    }
+    .sidenav.active{
+        width: 100%;
+    }
+    #mySidenav{
+        width: 100%;
+    }
+    .linked_hill_search_area .btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 5px 15px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .linked_hill_search_area .multiple_select2option{
+        font-size: 13px;
+        line-height: 23px;
+    }
+    .select2-container--default .select2-selection--multiple {
+        padding-bottom: 0 !important;
+    }
+    .advance-search{
+        background-color: rgb(235 235 235);
+    }
+    .advance-search p{
+        color: #464646;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .advance-search p::before{
+        background-color: #ff2d37;
+        padding: 11px 19px;
+        color: #fff;
+    }
+    #advanceSearch .modal-body{
+        height: 500px;
+    }
+    .linked_hill_search_top label {
+        font-size: 15px;
+        font-weight: 600;
+        border: 1px solid #e5e5e5;
+    }
+    .linked_hill_search_top input:checked + label{
+        background: #ff2d37;
+        border-color: #ff2d37;
+    }
+    .mt{
+        margin-top:30px;
+    }
+    .mb{
+        margin-bottom:30px;
+    }
+    .pt{
+        padding-top:30px;
+    }
+    .pb{
+        padding-bottom:30px;
+    }
+    #about_loan_info_wrapper .row{
+        margin-left:-7px;
+        margin-right:-7px;
+    }
+    #about_loan_info_wrapper .col-lg-3 {
+        width: 50%;
+        padding-left:7px;
+        padding-right:7px;
+    }
+    .loan_images{
+        height:120px;
+    }
+    .about_loan_thumbnail {
+        margin-top: 14px;
+    }
+    #about_loan_info_wrapper {
+        padding-top: 15px;
+    }
+    .loan-info{
+        padding:15px 10px;
+        min-height: 113px;
+    }
+    .about_loan_thumbnail h3{
+        font-size: 16px;
+        word-break: break-all;
+    }
+    .owl-dots{
+        display: none;
+    }
+    #premium_wrapper.pb {
+        padding-bottom: 15px;
+    }
+    .site_title h2{
+        font-size: 25px;
+    }
+    .category_card{
+        height: 300px;
+    }
+    .ass_inner_wrapper{
+        margin-top:30px;
+        padding:15px;
+    }
+    #site_footer{
+        margin-top:30px;
+    }
+    .ass_inner_wrapper p{
+        font-size: 15px;
+    }
+    .ass_inner_wrapper h1{
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .assistance_flex {
+        margin-top: 10px;
+    }
+    .footer_top h3 {
+        font-size: 18px;
+        margin-bottom:10px;
+    }
+    .footer_top{
+        padding:20px 15px;
+    }
+    .footer_ft_left{
+        padding:0;
+        background: transparent;
+        border: none;
+    }
+    .follow_us p{
+        color: var(--white-color);
+        margin-bottom:0;
+        font-size: 16px;
+    }
+    .footer_ft_left .navbar-brand {
+        display: flex;
+        align-items: center;
+        margin-bottom:10px;
+    }
+    .footer_ft_left a.navbar-brand img{
+        height: 40px;
+    }
+    .footer-brandname-front{
+        font-size: 25px;
+        margin-left:5px;
+        color: var(--white-color);
+    }
+    .footer_list {
+        padding-top: 20px;
+    }
+    .footer_list h3{
+        margin-bottom:15px;
+        font-size: 20px;
     }
 }
 

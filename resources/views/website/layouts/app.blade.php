@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,7 @@
     <link href="{{ asset('website/plugins/owl_carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('website/plugins/simple-lightbox/css/simple-lightbox.css') }}" rel="stylesheet">
     <link href="{{ asset('website/lobibox/dist/css/lobibox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/metisMenu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('website/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('website/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ion.rangeSlider.min.css') }}" rel="stylesheet">
@@ -22,90 +24,77 @@
     <link rel="stylesheet" href="{{ asset('website/css/minimal.css') }}" />
     @stack('styles')
 </head>
+
 <body>
+
     <header id="linkedHill_header_wrapper">
-        {{-- <div class="linkedhill_top_ribbon">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="th_left_link">
-                            <ul>
-                                <li><a class="{{ (Route::getCurrentRoute()->slug=='Residential' || Route::currentRouteName()=='homepage' )? 'active' :'' }}" href="{{ route('propertytype','Residential') }}">Residential</a></li>
-                                <li><a class="{{ (Route::getCurrentRoute()->slug=='Commercial')? 'active' :'' }}" href="{{ route('propertytype','Commercial') }}">Commercial</a></li>
-                                <li><a class="{{ (Route::getCurrentRoute()->slug=='Agriculture')? 'active' :'' }}" href="{{ route('propertytype','Agriculture') }}">Agriculture</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="th_flex_wrap">
-                            <div class="th_right_link">
-                                <ul>
-                                    <li><a href="mailto:{{ $website->alternate_email }}"><i class="las la-envelope"></i>{{ $website->alternate_email }}</a></li>
-                                    <li><a href="tel:{{ $website->phone }}"><i class="las la-tty"></i>{{ $website->phone }}</a></li>
-                                </ul>
-                            </div>
-                            <div class="th_right_other_link">
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('customer.signup') }}"> <span class="login_door"><i class="lar la-user"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="linked_hill_nav">
             <div class="container">
-              <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ image(config('websites.logo')) }}" alt=""><span class="brandname-front">Linked</span><span class="text-white navbar-brand brandname-back">hill</span>
-                </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-                    @foreach ($header_menus as $menu)
-                    @if ($menu->child_menu->count() > 0)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ @$menu->name }} <i class="las la-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @foreach ($menu->child_menu as $child_menu)
-                                    <li><a class="dropdown-item" href="{{ route('menu', @$child_menu->slug) }}">{{ @$child_menu->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link {{ route('menu', @$menu->slug) == request()->url() ? 'active' : '' }}" href="{{ route('menu', @$menu->slug) }}">{{ @$menu->name }}</a>
-                        </li>
-                    @endif
-                @endforeach
-                </ul>
-                <div class="social_link d-flex">
-                    <div class="me-2"> <a href="{{ route('customer.signin') }}"> <span class="login_door"><i class="lar la-user"></i>Login / Register</span></a>
+                <div class="header-wrap">
+                    <div class="logo">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ image(config('websites.logo')) }}" alt=""><span
+                                class="brandname-front">Linkedhill</span>
+                        </a>
                     </div>
-                    <div class="position-relative">
-                         <a href="{{ route('agent.getLogin') }}"> <span class="login_door"><i class="las la-home"></i>List Property </span></a>
-                    <span style="position: absolute;background: #9f9f9fb8;top: -10px;right: -10px;" class="badge badge-light">Free</span></div>
-                    {{-- <ul>
-                        <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
-                        <li><a class="instagram" href="{{ config('websites.instagram_url') }}"><i class="lab la-instagram"></i></a></li>
-                        <li><a class="twitter" href="{{ config('websites.twitter_url') }}"><i class="lab la-twitter"></i></a></li>
-                        <li><a class="youtube" href="{{ config('websites.youtube_url') }}"><i class="lab la-youtube"></i></a></li>
-                    </ul> --}}
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            @foreach ($header_menus as $menu)
+                                @if ($menu->child_menu->count() > 0)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ @$menu->name }} <i class="las la-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            @foreach ($menu->child_menu as $child_menu)
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('menu', @$child_menu->slug) }}">{{ @$child_menu->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ route('menu', @$menu->slug) == request()->url() ? 'active' : '' }}"
+                                            href="{{ route('menu', @$menu->slug) }}">{{ @$menu->name }}</a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="header-btn">
+                        <ul>
+                            <li>
+                                <a href="{{ route('customer.signin') }}">
+                                    <i class="lar la-user"></i>Login / Register
+                                </a>
+                            </li>
+                            <li class="badge-item">
+                                <a href="{{ route('agent.getLogin') }}">
+                                    <i class="las la-home"></i>List Property
+                                </a>
+                                <span class="badge badge-light">Free</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header-mobile-btn">
+                        <ul>
+                            <li><a href="{{ route('customer.signin') }}"><i class="las la-user"></i></a></li>
+                            <li><a href="{{ route('agent.getLogin') }}"><i class="las la-home"></i></a></li>
+                        </ul>
+                        <div class="toggle-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </nav>
+        </nav>
     </header>
-    <header id="site_header" style="display:none;">
+
+    {{-- <header id="site_header" style="display:none;">
         <div class="header_ribbon">
             <div class="container">
                 <div class="row">
@@ -126,7 +115,9 @@
                                         <p>Nearby city</p>
                                         <ul>
                                             @foreach ($cities as $city)
-                                            <li><a href="{{ route('front.search-properties', ['city_id' => $city->id]) }}">{{ $city->name }}</a></li>
+                                                <li><a
+                                                        href="{{ route('front.search-properties', ['city_id' => $city->id]) }}">{{ $city->name }}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -134,7 +125,9 @@
                                         <p>Popular city</p>
                                         <ul>
                                             @foreach ($cities as $city)
-                                                <li><a href="{{ route('front.search-properties', ['city_id' => $city->id]) }}">{{ $city->name }}</a></li>
+                                                <li><a
+                                                        href="{{ route('front.search-properties', ['city_id' => $city->id]) }}">{{ $city->name }}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -146,12 +139,15 @@
                         <div class="ribbon_right">
                             <ul>
                                 @if (Auth::guard('web')->check())
-                                    <li class="login_user_name"><span class="login_door"><i class="lar la-user"></i></span><span>Welcome
+                                    <li class="login_user_name"><span class="login_door"><i
+                                                class="lar la-user"></i></span><span>Welcome
                                         </span><span>{{ Auth::guard('web')->user()->name }}</span></li>
                                 @else
-                                    <li><a href="{{ route('customer.signup') }}"><span class="login_door"><i class="lar la-user"></i></span></a></li>
+                                    <li><a href="{{ route('customer.signup') }}"><span class="login_door"><i
+                                                    class="lar la-user"></i></span></a></li>
                                 @endif
-                                <li><a href="{{ route('login') }}" class="btn btn-light">Post property <span class="badge">Free</span></a></li>
+                                <li><a href="{{ route('login') }}" class="btn btn-light">Post property <span
+                                            class="badge">Free</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -177,13 +173,14 @@
                             @foreach ($header_menus as $menu)
                                 @if ($menu->child_menu->count() > 0)
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             {{ @$menu->name }} <i class="las la-angle-down"></i>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             @foreach ($menu->child_menu as $child_menu)
-                                                <li><a class="dropdown-item" href="{{ route('menu', @$child_menu->slug) }}">{{ @$child_menu->name }}</a>
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('menu', @$child_menu->slug) }}">{{ @$child_menu->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -198,28 +195,59 @@
                         </ul>
                         <div class="social_link">
                             <ul>
-                                <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a class="instagram" href="{{ config('websites.instagram_url') }}"><i class="lab la-instagram"></i></a></li>
-                                <li><a class="twitter" href="{{ config('websites.twitter_url') }}"><i class="lab la-twitter"></i></a></li>
-                                <li><a class="youtube" href="{{ config('websites.youtube_url') }}"><i class="lab la-youtube"></i></a></li>
+                                <li><a class="facebook" href="{{ config('websites.fb_url') }}"><i
+                                            class="lab la-facebook-f"></i></a></li>
+                                <li><a class="instagram" href="{{ config('websites.instagram_url') }}"><i
+                                            class="lab la-instagram"></i></a></li>
+                                <li><a class="twitter" href="{{ config('websites.twitter_url') }}"><i
+                                            class="lab la-twitter"></i></a></li>
+                                <li><a class="youtube" href="{{ config('websites.youtube_url') }}"><i
+                                            class="lab la-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-    </header>
-    {{-- @if(session('success') && !empty(session('success')))
-    <div class="alert alert-success text-center" role="alert">
-        {{ session('success')}}
+    </header> --}}
+
+    <!-- Mobile Menu -->
+    <div id="mySidenav" class="sidenav">
+        <div class="mobile-logo">
+            <a href="{{ url('/') }}"><img src="{{ image(config('websites.logo')) }}" alt="logo"></a>
+            <a href="javascript:void(0)" id="close-btn" class="closebtn">&times;</a>
+        </div>
+        <div class="no-bdr1">
+            <ul id="menu1">
+                @foreach ($header_menus as $menu)
+                    @if ($menu->child_menu->count() > 0)
+                        <li>
+                            <a href="#" class="has-arrow">
+                                {{ @$menu->name }}
+                            </a>
+                            <ul>
+                                @foreach ($menu->child_menu as $child_menu)
+                                    <li>
+                                        <a href="{{ route('menu', @$child_menu->slug) }}">{{ @$child_menu->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('menu', @$menu->slug) }}">{{ @$menu->name }}</a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
     </div>
-    @endif
-    @if(session('error') && !empty(session('error')))
-    <div class="alert alert-danger text-center" role="alert">
-        {{ session('error')}}
-    </div>
-    @endif --}}
+    <!-- Mobile Menu End -->
+
+
     @yield('content')
+
+
     <footer id="site_footer">
         <div class="container">
             <div class="footer_top">
@@ -228,7 +256,8 @@
                     <form id="newsletter" name="newsletter">
                         @csrf
                         <div class="subscribe_form">
-                            <input type="text" placeholder="Your email address" name="email" id="subscribeRmail">
+                            <input type="text" placeholder="Your email address" name="email"
+                                id="subscribeRmail">
                             <button type="submit" class="btn btn-info">Subscribe Now</button>
                         </div>
                     </form>
@@ -238,18 +267,21 @@
                 <div class="col-lg-4">
                     <div class="footer_ft_left">
                         <a class="navbar-brand" href="{{ route('homepage') }}">
-                            <img src="{{ image(config('websites.logo_footer')) }}"
-                                alt="">
-                                <span class="footer-brandname-front">Linked</span><span class="footer-brandname-back">hill</span>
+                            <img src="{{ image(config('websites.logo_footer')) }}" alt="">
+                            <span class="footer-brandname-front">Linkedhill</span>
                         </a>
                         {{-- <p>{!! @$website->short_description !!}</p> --}}
                         <div class="follow_us">
                             <p>Follow Us:</p>
                             <ul>
-                                <li><a href="{{ config('websites.fb_url') }}" target="_blank"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a href="{{ config('websites.twitter_url') }}" target="_blank"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="{{ config('websites.instagram_url') }}" target="_blank"><i class="lab la-twitter"></i></a></li>
-                                <li><a href="{{ config('websites.youtube_url') }}" target="_blank"><i class="lab la-youtube"></i></a></li>
+                                <li><a href="{{ config('websites.fb_url') }}" target="_blank"><i
+                                            class="lab la-facebook-f"></i></a></li>
+                                <li><a href="{{ config('websites.twitter_url') }}" target="_blank"><i
+                                            class="lab la-instagram"></i></a></li>
+                                <li><a href="{{ config('websites.instagram_url') }}" target="_blank"><i
+                                            class="lab la-twitter"></i></a></li>
+                                <li><a href="{{ config('websites.youtube_url') }}" target="_blank"><i
+                                            class="lab la-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -260,19 +292,23 @@
                             <div class="footer_list">
                                 <h3><span>Get</span> in touch</h3>
                                 <span class="text-white footer_span">For general enquiries : </span>
-                                <ul>                                   
+                                <ul>
                                     {{-- <li><i class="las la-map-marker-alt"></i>{{ config('websites.address') }}</li> --}}
-                                    <li><a href="mailto:{{ config('websites.email') }}"><i class="las la-envelope"></i>{{ config('websites.email') }}</a>
+                                    <li><a href="mailto:{{ config('websites.email') }}"><i
+                                                class="las la-envelope"></i>{{ config('websites.email') }}</a>
                                     </li>
-                                    <li><a href="mailto:marketing@linkedhill.com.np"><i class="las la-envelope"></i>marketing@linkedhill.com.np</a>
+                                    <li><a href="mailto:marketing@linkedhill.com.np"><i
+                                                class="las la-envelope"></i>marketing@linkedhill.com.np</a>
                                     </li>
-                                    <li><a href="mailto:agents@linkedhill.com.np"><i class="las la-envelope"></i>agents@linkedhill.com.np</a>
+                                    <li><a href="mailto:agents@linkedhill.com.np"><i
+                                                class="las la-envelope"></i>agents@linkedhill.com.np</a>
                                     </li>
-                                    <li><a href="mailto:careers@linkedhill.com.np"><i class="las la-envelope"></i>careers@linkedhill.com.np</a>
+                                    <li><a href="mailto:careers@linkedhill.com.np"><i
+                                                class="las la-envelope"></i>careers@linkedhill.com.np</a>
                                     </li>
                                     {{-- <li><a href="tel:{{ config('websites.phone') }}"><i class="las la-mobile"></i>{{ config('websites.phone') }}</a> </li> --}}
                                 </ul>
-                              
+
 
                             </div>
                         </div>
@@ -303,18 +339,21 @@
             </div>
         </div>
     </footer>
+
+
     <script src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('website/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('website/plugins/owl_carousel/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('website/plugins/simple-lightbox/js/simple-lightbox.js') }}"></script>
+    <script src="{{ asset('js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('website/js/script.js') }}"></script>
     <script src="{{ asset('website/lobibox/dist/js/notifications.min.js') }}"></script>
     <script src="{{ asset('js/ion.rangeSlider.min.js') }}"></script>
     <script src="{{ asset('frontend/select2/select2.min.js') }}"></script>
     {{-- jqueryy gallery --}}
-    
+
     <script src="{{ asset('website/js/lc_lightbox.lite.js') }}" type="text/javascript"></script>
-   
+
     <!-- ASSETS -->
     <script src="{{ asset('website/js/alloy_finger.min.js') }}" type="text/javascript"></script>
 
@@ -388,12 +427,11 @@
         //     $('.alert').slideUp();
         // },3000);
     </script>
-    <script>
-    </script>
+    <script></script>
 
 
 
-{{-- <script>
+    {{-- <script>
 $(document).on({
     "contextmenu": function (e) {
         console.log("ctx menu button:", e.which);
@@ -412,4 +450,5 @@ $(document).on({
     @stack('scripts')
 
 </body>
+
 </html>

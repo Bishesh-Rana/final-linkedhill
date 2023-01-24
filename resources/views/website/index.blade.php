@@ -2,6 +2,7 @@
 
 
     @section('content')
+
         <section id="linked_hill_carousel">
             <section id="site_banner_slider">
                 <div id="site_carousel" class="carousel slide" data-bs-ride="carousel">
@@ -12,11 +13,13 @@
                             </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#site_carousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#site_carousel"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#site_carousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#site_carousel"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -27,48 +30,32 @@
                     </div>
                     <!-- End arrow down pannel -->
                 </div>
-              
+
                 @include('website.index._search')
                 @include('website.index.advancesearch')
             </section>
         </section>
-        {{-- <section id="site_banner_slider" style="display: none;">
-            <div id="site_carousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @foreach ($sliders as $slider)
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <img src="{{ image($slider->image) }}" class="d-block w-100" alt="...">
-                        </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#site_carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#site_carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="show_down_arrow">
-                    <a href="#about_loan_info_wrapper"><i class="las la-angle-double-down"></i></a>
-                </div>
-            </div>
-            @include('website.index._search')
-        </section> --}}
-        <section id="about_loan_info_wrapper" class="cs_padding">
+
+        <section id="about_loan_info_wrapper" class="pt pb">
             <div class="container">
                 <div class="row">
                     @foreach ($property_categories as $category)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="about_loan_thumbnail text-center">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                            <div class="about_loan_thumbnail">
                                 <div class="loan_images">
-                                    <img src="{{ image(@$category->icon) }}" alt="">
+                                    <a href="{ route('front.search-properties', ['category_id' => $category->id]) }}"
+                                        title="{{ $category->name }}">
+                                        <img src="{{ image(@$category->icon) }}" alt="">
+                                    </a>
                                 </div>
-                                <h3>{{ $category->name }}</h3>
-                                <p>{{ Str::limit(strip_tags($category->description), 150, '...') }}</p>
-
-                                <a href="{{ route('front.search-properties', ['category_id' => $category->id]) }}"
-                                    class="btn btn-danger mb-2">View More</a>
+                                <div class="loan-info">
+                                    <h3><a
+                                            href="{{ route('front.search-properties', ['category_id' => $category->id]) }}">{{ $category->name }}</a>
+                                    </h3>
+                                    <a href="{{ route('front.search-properties', ['category_id' => $category->id]) }}"
+                                        class="btns">View More
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -77,24 +64,23 @@
         </section>
         <x-advertisement-component direction="top" section="home_properties" :advertisement=$advertisement>
         </x-advertisement-component>
-        <section id="premium_wrapper" class="cs_padding">
+
+        <section id="premium_wrapper" class="pt pb">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="site_title text-center">
-                            <h2>{{ $website->pro_title }}</h2>
-                            <p><i>{{ $website->pro_sub_title }}</i></p>
-                        </div>
-                    </div>
+                <div class="site_title text-center">
+                    <h2>{{ $website->pro_title }}</h2>
+                    <p><i>{{ $website->pro_sub_title }}</i></p>
                 </div>
-                <div class="row">
+                <div class="owl-carousel owl-theme feature-property">
                     @foreach ($properties as $property)
-                        <div class="col-lg-4 col-md-6">
+                        <div class="item">
                             <div class="premium_thumbnail">
                                 <div class="premium_thumb_images">
                                     <div class="premium_images_wrap">
-                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                            <img src="{{ image(optional($property->images->first())->name) }}" alt=""></a>
+                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}"
+                                            title="{{ @$property->title }}">
+                                            <img src="{{ image(optional($property->images->first())->name) }}"
+                                                alt=""></a>
                                     </div>
                                     <div class="featured_in_wrapper">
                                         {{ $property->type }}
@@ -107,73 +93,92 @@
                                     </div>
                                 </div>
                                 <div class="premium_content_area">
-                                        <div class="position-relative">
-                                            <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                <span style="font-width:700;">Rs. {{ @$property->start_price }}</span>
-                                            </a>
-                                            @if(auth()->user())
-                                                <div class="favicon">
-                                                    @php
-                                                        $data=auth()->user()->favProperties;
-                                                    @endphp                                                    
-                                                    {{-- @if ( auth()->user()->favProperties->contains($property->id))
+                                    <h4><a
+                                            href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">{{ @$property->title }}</a>
+                                    </h4>
+                                    <div class="position-relative">
+                                        <b>{{ @$property->start_price }}</b>
+                                        @if (auth()->user())
+                                            <div class="favicon">
+                                                @php
+                                                    $data = auth()->user()->favProperties;
+                                                @endphp
+                                                {{-- @if (auth()->user()->favProperties->contains($property->id))
                                                     @dd(auth()->user()->favProperties )
                                                     @endif --}}
-                                                    @if(!empty($data))
+                                                @if (!empty($data))
                                                     @php
-                                                        $count=0;
+                                                        $count = 0;
                                                     @endphp
-                                                    @foreach ( $data as $fav)
-                                                        @if((int)$fav->property_id===(int) $property->id)
-                                                        <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
-                                                            class="las la-heart "></i></a>
+                                                    @foreach ($data as $fav)
+                                                        @if ((int) $fav->property_id === (int) $property->id)
+                                                            <a href="javascript:;" class="favorite{{ $property->id }}  fav"
+                                                                data-id="{{ $property->id }}"><i
+                                                                    class="las la-heart "></i></a>
                                                             @php
                                                                 $count++;
                                                             @endphp
                                                         @endif
                                                     @endforeach
-                                                    @if($count <=0)
-                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i class="lar la-heart "></i></a> 
+                                                    @if ($count <= 0)
+                                                        <a href="javascript:;" class="favorite{{ $property->id }}  fav"
+                                                            data-id="{{ $property->id }}"><i class="lar la-heart "></i></a>
                                                     @endif
-                                                    @endif
-                                                </div>
-                                            @else
-                                                <div onclick="favorite({{ $property->id }})" class="favicon">
-                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav" data-id="{{$property->id}}"><i
-                                                            class="lar la-heart "></i></a>
-                                                </div>
-                                            @endif
-                                            <div class="sharethis-inline-share-buttons"></div>
-
-                                        </div>
-                                        
-                                        <div class="property_address">
-                                            <div class="text_tx_property">
-                                                <span><i class="las la-map-marker-alt"></i></span>
-                                                <span>{{ @$property->property_address }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="premium_option">
-                                            <div>
-                                                @if($property->bed !==0)
-                                                <span><i class="las la-bed" title="Bed"></i><span>{{ $property->bed }}</span></span>@endif
-                                                @if($property->bath !==0)
-                                                <span><i class="las la-bath" title="Bathroom"></i><span>{{ $property->bath }}</span></span>@endif
-                                                @isset($property->park)
-                                                @if ($property->park !==0)
-                                                <span><i class="las la-car" title="Parking"></i><span>{{ $property->park }}</span></span>
                                                 @endif
-                                                @endisset
-                                                <span><i class="las la-car" title="Parking"></i><span>0</span></span>
-                                                <span>
-                                                    <i class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
-                                                </span>
                                             </div>
+                                        @else
+                                            <div onclick="favorite({{ $property->id }})" class="favicon">
+                                                <a href="javascript:;" class="favorite{{ $property->id }}  fav"
+                                                    data-id="{{ $property->id }}"><i class="lar la-heart "></i></a>
+                                            </div>
+                                        @endif
+                                        <div class="sharethis-inline-share-buttons"></div>
+
+                                    </div>
+
+                                    <div class="property_address">
+                                        <div class="text_tx_property">
+                                            <i class="las la-map-marker-alt"></i>
+                                            <span>{{ @$property->property_address }}</span>
                                         </div>
-                                        <h4> {{ @$property->title }}</h4>
-                                        <div class="premium_option">
-                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}" class="small_btn" style="margin-left: auto;">full info</a>
-                                        </div>
+                                    </div>
+                                    <div class="premium_options">
+                                        <ul>
+                                            @if ($property->bed !== 0)
+                                                <li>
+                                                    <i class="las la-bed"
+                                                        title="Bed"></i><span>{{ $property->bed }}</span>
+                                                </li>
+                                            @endif
+                                            @if ($property->bath !== 0)
+                                                <li>
+                                                    <i class="las la-bath"
+                                                        title="Bathroom"></i><span>{{ $property->bath }}</span>
+                                                </li>
+                                            @endif
+                                            @isset($property->park)
+                                                @if ($property->park !== 0)
+                                                    <li>
+                                                        <i class="las la-car"
+                                                            title="Parking"></i><span>{{ $property->park }}</span>
+                                                    </li>
+                                                @endif
+                                            @endisset
+                                            <li>
+                                                <i class="las la-car" title="Parking"></i><span>0</span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i
+                                                        class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="premium_option">
+                                        <a href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}"
+                                            class="small_btn" style="margin-left: auto;">full info</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,46 +190,28 @@
         </x-advertisement-component>
         <x-advertisement-component direction="bottom" section="home_properties_type" :advertisement=$advertisement>
         </x-advertisement-component>
-        <section id="property_detail_wrapper" class="cs_padding">
+
+
+        <section id="property_detail_wrapper" class="pt pb">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="site_title text-center">
-                            <h2>{{ $website->second_pro_title }}</h2>
-                            <p>{{ $website->second_pro_sub_title }}</p>
-                        </div>
-                    </div>
+                <div class="site_title text-center">
+                    <h2>{{ $website->second_pro_title }}</h2>
+                    <p>{{ $website->second_pro_sub_title }}</p>
                 </div>
                 <x-frontend.property-type-component></x-frontend.property-type-component>
-
-                {{-- @if ($advertisement->count())
-                <div class="ads_section_cover">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @foreach ($advertisement as $item)
-                            <div class="ads_wrap" {{ $item->display_size }}>
-                                <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                @endif --}}
             </div>
         </section>
         <x-advertisement-component direction="bottom" section="home_properties_type" :advertisement=$advertisement>
         </x-advertisement-component>
         <x-advertisement-component direction="top" section="home_news" :advertisement=$advertisement>
         </x-advertisement-component>
+
+
         <section id="latest_property_wrapper" style="display:none;">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="site_title text-center">
-                            <h2>Latest Property News</h2>
-                            <p><i>We offers a wide variety of properties in Nepal.</i></p>
-                        </div>
-                    </div>
+                <div class="site_title text-center">
+                    <h2>Latest Property News</h2>
+                    <p><i>We offers a wide variety of properties in Nepal.</i></p>
                 </div>
                 <div class="row">
                     <div class="col-lg-8">
@@ -244,7 +231,8 @@
                                             <span>By Admin
                                             </span>
                                             <p>{{ Str::limit(strip_tags($item->description), 100, '...') }}</p>
-                                            <a href="{{ route('blog.single', $item->slug) }}">Read More <i class="las la-arrow-right"></i></a>
+                                            <a href="{{ route('blog.single', $item->slug) }}">Read More <i
+                                                    class="las la-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -277,46 +265,42 @@
         </x-advertisement-component>
         <x-advertisement-component direction="top" section="home_blogs" :advertisement=$advertisement>
         </x-advertisement-component>
-        <section id="news_insights_wrapper" class="cs_padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="site_title text-center">
-                            <h2>{{ $website->blog_title }}</h2>
-                            <p><i>{{$website->blog_sub_title }}</i>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-11 m-auto">
-                        <div id="news_slider" class="owl-carousel">
-                            @foreach ($blogs as $item)
-                                <div>
-                                    <div class="news_content_wrapper">
-                                        <div class="news_flex_box">
-                                            <div class="news_thumbnail">
-                                                <img src="{{ image($item->image) }}" alt="">
-                                            </div>
-                                            <div class="news_detail">
-                                                <div class="new_inner_title">
 
-                                                </div>
-                                                <h2><a href="{{ route('blog.single', $item->slug) }}">{{ $item->title }}</a>
-                                                </h2>
-                                                <span class="date_wrap"><span>{{ $item->created_at->format('d-M-Y') }}</span></span>
-                                            </div>
-                                        </div>
+
+        <section id="news_insights_wrapper" class="pt pb">
+            <div class="container">
+                <div class="site_title text-center">
+                    <h2>{{ $website->blog_title }}</h2>
+                    <p><i>{{ $website->blog_sub_title }}</i>
+                    </p>
+                </div>
+                <div id="news_slider" class="owl-carousel owl-theme">
+                    @foreach ($blogs as $item)
+                        <div class="item">
+                            <div class="news_content_wrapper">
+                                <div class="news_flex_box">
+                                    <div class="news_thumbnail">
+                                        <img src="{{ image($item->image) }}" alt="">
+                                    </div>
+                                    <div class="news_detail">
+                                        <h2>
+                                            <a href="{{ route('blog.single', $item->slug) }}">{{ $item->title }}</a>
+                                        </h2>
+                                        <span class="date_wrap">
+                                            <span>{{ $item->created_at->format('d-M-Y') }}</span>
+                                        </span>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
         <x-advertisement-component direction="bottom" section="home_blogs" :advertisement=$advertisement>
         </x-advertisement-component>
+
+
         <section id="service_wrapper" style="display:none;">
             <div class="container">
                 <div class="row">
@@ -353,33 +337,8 @@
                 </div>
             </div>
         </section>
-        {{-- <section id="price_and_planing_wrapper" class="cs_top_padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 m-auto">
-                        <div id="price_plan" class="owl-carousel">
 
-                            @foreach ($pricings as $pricing)
-                                <div>
-                                    <div class="pricingPlan_card">
-                                        <span>{{ $pricing->title }}</span>
-                                        <h1>Rs {!! $pricing->priceFormat !!}</h1>
-                                        <p>{!! $pricing->description !!}</p>
-                                        <ul>
-                                            @foreach ($pricing->features as $item)
-                                                <li><i class="lar la-check-circle"></i>{{ $item }}</li>
-                                            @endforeach
-                                        </ul>
-                                        <a href="#" class="btn btn-danger">Purchase</a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
-        <section id="assistance_wrapper" class="cs_bottom_padding">
+        <section id="assistance_wrapper" class="">
             <div class="container">
                 <div class="ass_inner_wrapper">
                     <div class="row">
@@ -390,18 +349,21 @@
                         <div class="col-lg-4">
                             <div class="assistance_flex">
                                 <a href="{{ url('properties') }}" class="btn">View All Property</a>
-                                {{-- <span class="help_text">in less than 1 minute</span> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+
         <div class="iframe_chat_box">
             <a href="#" data-bs-toggle="modal" data-bs-target="#chat_box_model">
                 <i class="lab la-rocketchat"></i>
             </a>
         </div>
+
+
         <!-- Modal -->
         <div class="modal fade" id="chat_box_model" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -416,6 +378,7 @@
                 </div>
             </div>
         </div>
+
     @endsection
     @push('styles')
         <style>
@@ -479,11 +442,12 @@
             div#chat_box_model .modal-body {
                 padding: 0;
             }
-
         </style>
     @endpush
     @push('scripts')
-        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63888bce65735e001232d53a&product=inline-share-buttons&source=platform" async="async"></script>
+        <script type="text/javascript"
+            src="https://platform-api.sharethis.com/js/sharethis.js#property=63888bce65735e001232d53a&product=inline-share-buttons&source=platform"
+            async="async"></script>
         <script>
             var categoryProperty = function(category_id) {
                 var uri = "{{ route('front.search-properties') }}";
@@ -510,9 +474,9 @@
                 nxtiframe.addClass('test');
             })
         </script>
-         <script>
-            $(document).ready(function(){
-                $(".fav").on('click',function(){
+        <script>
+            $(document).ready(function() {
+                $(".fav").on('click', function() {
                     var property = $(this).data('id');
                     $.ajax({
                         url: "{{ route('favorite') }}",
@@ -522,22 +486,24 @@
                         },
                         success: function(response) {
                             console.log(response);
-                            if(response.success){
-                                $(".favorite"+property+">.la-heart ").toggleClass("lar las");
+                            if (response.success) {
+                                $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
                                 alert(response.success);
-                            }else{
+                            } else {
                                 alert(response.error);
-                            }                    
+                            }
                         },
                         error: function(response) {
-    
+
                         }
                     });
                 });
             });
         </script>
-        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=638886b465735e001232d533&product=inline-share-buttons&source=platform" async="async"></script>
-        @endpush
+        <script type="text/javascript"
+            src="https://platform-api.sharethis.com/js/sharethis.js#property=638886b465735e001232d533&product=inline-share-buttons&source=platform"
+            async="async"></script>
+    @endpush
 
     @section('meta')
         @include('website.shared.meta', ['meta' => $meta])

@@ -3,44 +3,45 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-<section id="bread_crumb_wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul>
-                    <li><a href="{{ url('/') }}">Home</a>/</li>
-                    <li><a href="{{ url('/properties') }}">Properties</a>/</li>
-                    <li><a href="#">{{ $property->title }}</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-    @if ($advertisement->count())
-       <div class="container">
-        <div class="ads_section_cover">
+
+    <section id="bread_crumb_wrapper">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    @foreach ($advertisement as $item)
-                        <div class="ads_wrap" {{ $item->display_size }}>
-                            <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
-                        </div>
-                    @endforeach
+                    <ul>
+                        <li><a href="{{ url('/') }}">Home</a>/</li>
+                        <li><a href="{{ url('/properties') }}">Properties</a>/</li>
+                        <li><a href="#">{{ $property->title }}</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-       </div>
+    </section>
+    @if ($advertisement->count())
+        <div class="container">
+            <div class="ads_section_cover">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @foreach ($advertisement as $item)
+                            <div class="ads_wrap" {{ $item->display_size }}>
+                                <img src="{{ image($item->image) }}" alt="{{ $item->title }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
-      <section id="detail_info_wrapper">
+    <section id="detail_info_wrapper">
         <div class="container">
             <div class="row">
                 @foreach ($property->images as $image)
-                <div class="col-md-3">
-                 <a class="elem" href="{{ image(@$image->name) }}"  data-lcl-thumb="{{ image(@$image->name) }}">
-                     <span style="background-image: url({{ image(@$image->name) }});"></span>
-                 </a>
-                </div>
-                 @endforeach
+                    <div class="col-md-3">
+                        <a class="elem" href="{{ image(@$image->name) }}" data-lcl-thumb="{{ image(@$image->name) }}">
+                            <span style="background-image: url({{ image(@$image->name) }});"></span>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -57,7 +58,7 @@
                                         <div class="main-price">
                                             <i class="las la-coins"></i><strong>RS. {{ $property->start_price }} </strong>
                                         </div>
-                                      
+
                                         <div class="property_address">
                                             <div class="text_tx_property">
                                                 <span><i class="las la-map-marker-alt"></i></span>
@@ -76,19 +77,21 @@
                                             {{-- @if (array_key_exists('park', $property)) --}}
 
                                             @if ($property->park !== 0)
-                                            <span title="Parking" class="detail_icon_"><i class="las la-car"></i>
-                                                <span class="type_badge">{{ $property->park }}</span></span>
+                                                <span title="Parking" class="detail_icon_"><i class="las la-car"></i>
+                                                    <span class="type_badge">{{ $property->park }}</span></span>
                                             @endif
-                                            <span title="{{ $property->total_area . ' ' . $property->area_unit->name }}"class="detail_icon_">
+                                            <span
+                                                title="{{ $property->total_area . ' ' . $property->area_unit->name }}"class="detail_icon_">
                                                 <i class="las la-crop-alt"></i>
-                                                <span class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span>
+                                                <span
+                                                    class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span>
                                             </span>
                                         </div>
                                         <div class="d-flex">
                                             <h1>{{ @$property->title }}</h1>
                                         </div>
                                         <div class="top_tv_verified mt-3">
-            
+
                                             @isset($property->type)
                                                 <span><i class="las la-check"></i>{{ $property->type }}</span>
                                             @endisset
@@ -109,60 +112,57 @@
                                                     <span><i class="las la-check"></i>Insurance</span>
                                                 @endisset
                                             @endif
-            
+
                                             @if ($property->user->is_active == 1)
                                                 <span><i class="las la-check"></i>Verified Builder</span>
                                             @endif
-            
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 ">
                                     <div class="share-wrap">
-                                    <div class="property_verified_ text-end">
-                                        @if (auth()->user())
-                                        <div class="favicon_detail ">
-                                            @php
-                                                $data = auth()->user()->favProperties;
-                                            @endphp
-                                            @if (auth()->user()->favProperties->contains($property->id))
-                                                @dd(auth()->user()->favProperties)
-                                            @endif
-                                            @if (!empty($data))
-                                                @php
-                                                    $count = 0;
-                                                @endphp
-                                                @foreach ($data as $fav)
-                                                    @if ((int) $fav->property_id === (int) $property->id)
-                                                        <a style="color: black" href="javascript:;"
-                                                            class="favorite{{ $property->id }}  fav"
-                                                            data-id="{{ $property->id }}"><i
-                                                                class="las la-heart "></i></a>
-                                                        @php
-                                                            $count++;
-                                                        @endphp
+                                        <div class="property_verified_ text-end">
+                                            @if (auth()->user())
+                                                <div class="favicon_detail ">
+                                                    @php
+                                                        $data = auth()->user()->favProperties;
+                                                    @endphp
+                                                    @if (auth()->user()->favProperties->contains($property->id))
+                                                        @dd(auth()->user()->favProperties)
                                                     @endif
-                                                @endforeach
-                                                @if ($count <= 0)
-                                                    <a href="javascript:;"
-                                                        class="favorite{{ $property->id }}  fav"
-                                                        data-id="{{ $property->id }}"><i
-                                                            class="lar la-heart "></i></a>
-                                                @endif
+                                                    @if (!empty($data))
+                                                        @php
+                                                            $count = 0;
+                                                        @endphp
+                                                        @foreach ($data as $fav)
+                                                            @if ((int) $fav->property_id === (int) $property->id)
+                                                                <a style="color: black" href="javascript:;"
+                                                                    class="favorite{{ $property->id }}  fav"
+                                                                    data-id="{{ $property->id }}"><i
+                                                                        class="las la-heart "></i></a>
+                                                                @php
+                                                                    $count++;
+                                                                @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        @if ($count <= 0)
+                                                            <a href="javascript:;" class="favorite{{ $property->id }}  fav"
+                                                                data-id="{{ $property->id }}"><i
+                                                                    class="lar la-heart "></i></a>
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div onclick="favorite({{ $property->id }})" class="favicon_detail">
+                                                    <a href="javascript:;" class="favorite{{ $property->id }}  fav"
+                                                        data-id="{{ $property->id }}"><i class="lar la-heart "></i></a>
+                                                </div>
                                             @endif
+
                                         </div>
-                                    @else
-                                        <div onclick="favorite({{ $property->id }})" class="favicon_detail">
-                                            <a href="javascript:;"
-                                                class="favorite{{ $property->id }}  fav"
-                                                data-id="{{ $property->id }}"><i
-                                                    class="lar la-heart "></i></a>
-                                        </div>
-                                    @endif
-                                       
+                                        <span class="sharethis-inline-share-buttons"></span>
                                     </div>
-                                    <span class="sharethis-inline-share-buttons"></span>
-                                </div>
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@
                                                 <span>Amenities</span>
                                             </a>
                                         </li>
-                                       
+
                                         <li>
                                             <a data-scroll="FAQ" href="#FAQ" class="dot">
                                                 <span>FAQ</span>
@@ -245,34 +245,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                     <!-- Start Contact Section -->
-                                     <div id="specifications" class="section">
-                                        <div class="containerWrapper">
-                                            <div class="content-wrapper">
-                                                <div class="content">
-                                                    <div class="specification_sw_wrapper">
-                                                        <div class="spy_common_title">
-                                                            <h1>Project specifications</h1>
-                                                        </div>
-                                                        <div class="specification_sc_content">                                                            
-                                                            <div class="specification_sf_flex">
-                                                                    {{-- <div class="specification_box">
+                                <!-- Start Contact Section -->
+                                <div id="specifications" class="section">
+                                    <div class="containerWrapper">
+                                        <div class="content-wrapper">
+                                            <div class="content">
+                                                <div class="specification_sw_wrapper">
+                                                    <div class="spy_common_title">
+                                                        <h1>Project specifications</h1>
+                                                    </div>
+                                                    <div class="specification_sc_content">
+                                                        <div class="specification_sf_flex">
+                                                            {{-- <div class="specification_box">
                                                                         <span>Face Direction</span>
                                                                         <span>{{@$property->property_facing}}</span>
                                                                     </div> --}}
-                                                                @foreach ($property->features as $item)
-                                                                    <div class="specification_box">
-                                                                        <span>{{ $item->title }}</span>
-                                                                        <span>{!! @$item->pivot->value == 'true' ? '<i class="las la-check"></i>' : $item->pivot->value !!}</span>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
+                                                            @foreach ($property->features as $item)
+                                                                <div class="specification_box">
+                                                                    <span>{{ $item->title }}</span>
+                                                                    <span>{!! @$item->pivot->value == 'true' ? '<i class="las la-check"></i>' : $item->pivot->value !!}</span>
+                                                                </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <!-- Start Testimonials Section -->
                                 <div id="Amenities" class="section">
                                     <div class="containerWrapper">
@@ -297,7 +297,7 @@
                                 </div>
                                 <!-- End Testimonials Section -->
 
-                           
+
 
                                 <div id="Amenities" class="section">
                                     <div class="containerWrapper">
@@ -355,7 +355,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -374,36 +374,44 @@
                         <div class="row">
                             {{-- @dd($property) --}}
                             <div class="col-12">
-                                <iframe style="width: 100%;height:auto;" src="https://www.youtube.com/embed/{{$property->youtube_video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe style="width: 100%;height:auto;"
+                                    src="https://www.youtube.com/embed/{{ $property->youtube_video_id }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
                             <div class="col-lg-12">
-                               <div class="right_bar">
-                                <div class="map_container">
-                                    <div class="over_view_bottom_flex" id="hello">
+                                <div class="right_bar">
+                                    <div class="map_container">
+                                        <div class="over_view_bottom_flex" id="hello">
+                                        </div>
+                                    </div>
+                                    <div class="builder_wrapper d-flex">
+                                        <div class="profile"><img src="{{ asset('frontend/gallery/dummyprofile.png') }}"
+                                                alt=""></div>
+                                        <div style="width:50%;padding-left: 10px;">
+                                            <p class="builder_name">{{ $property->user->name }}</p>
+                                            <p class="builder_address">
+                                                <span>Adress:</span>{{ $property->user->full_address }} </p>
+                                        </div>
+                                        <div>
+                                            <div class="icon_wrapper">
+                                                <a href="tel:{{ @$property->user->mobile ?? @$property->user->phone }}"><i
+                                                        class="las la-phone"></i></a>
+                                                {{-- <span>{{ @$property->user->mobile ?? @$property->user->phone }}</span> --}}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="icon_wrapper" data-bs-toggle="modal"
+                                                data-bs-target="#send_message_model">
+                                                <i class="las la-envelope"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="builder_wrapper d-flex">
-                                    <div class="profile"><img src="{{ asset('frontend/gallery/dummyprofile.png') }}" alt=""></div>
-                                    <div style="width:50%;padding-left: 10px;">
-                                        <p class="builder_name">{{ $property->user->name }}</p>
-                                        <p class="builder_address"><span>Adress:</span>{{$property->user->full_address}} </p>
-                                    </div>
-                                   <div>
-                                    <div class="icon_wrapper">
-                                        <a href="tel:{{ @$property->user->mobile ?? @$property->user->phone }}"><i class="las la-phone"></i></a>
-                                        {{-- <span>{{ @$property->user->mobile ?? @$property->user->phone }}</span> --}}
-                                    </div>
-                                   </div>
-                                   <div>
-                                    <div class="icon_wrapper" data-bs-toggle="modal" data-bs-target="#send_message_model">
-                                        <i class="las la-envelope"></i>
-                                    </div>
-                                   </div>                                  
-                                </div>
-                               </div>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -424,8 +432,7 @@
                                             <div class="near_by_content">
                                                 <span>Rs. {{ $relate->start_price }}</span>
                                                 <strong>{{ $relate->address }}</strong>
-                                                <p><a
-                                                        href="">{{ $relate->city->name }}</a>
+                                                <p><a href="">{{ $relate->city->name }}</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -517,8 +524,7 @@
                                 <input type="text" class="form-control" id="exampleFormControlInput1"
                                     placeholder="Name" name="name" value="{{ old('name') }}">
                             </div>
-                            <input type="hidden" name="propertyId" value="{{ $property->id }}"
-                                readonly>
+                            <input type="hidden" name="propertyId" value="{{ $property->id }}" readonly>
                             <div class="mb-3">
                                 <input type="email" class="form-control" id="exampleFormControlInput1"
                                     placeholder="Email Id" name="email" value="{{ old('email') }}">
@@ -530,9 +536,8 @@
                                     </select>
                                 </div>
                                 <div class="form_right">
-                                    <input type="text" class="form-control"
-                                        id="exampleFormControlInput1" placeholder="Mobile No."
-                                        name="contact_info" value="{{ old('contact_info') }}">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Mobile No." name="contact_info" value="{{ old('contact_info') }}">
                                 </div>
                             </div>
 
@@ -549,8 +554,8 @@
 
                             <div class="form_eligibility">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="defaultCheck1" required>
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                                        required>
                                     <label class="form-check-label" for="defaultCheck1">
                                         I wish to share my information with builder.
                                     </label>
@@ -558,8 +563,7 @@
                             </div>
                             <div class="form_fs_submit">
                                 <button class="btn btn-danger">Submit</button>
-                                <span>I agree to {{ config('websites.name') }} <a
-                                        href="#linkhill">T&C</a></span>
+                                <span>I agree to {{ config('websites.name') }} <a href="#linkhill">T&C</a></span>
                             </div>
                         </div>
                     </form>
@@ -612,47 +616,47 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $(".fav").on('click', function() {
-            var property = $(this).data('id');
-            $.ajax({
-                url: "{{ route('favorite') }}",
-                type: 'get',
-                data: {
-                    property_id: property,
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response.success) {
-                        $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
-                        alert(response.success);
-                    } else {
-                        alert(response.error);
-                    }
-                },
-                error: function(response) {
+    <script>
+        $(document).ready(function() {
+            $(".fav").on('click', function() {
+                var property = $(this).data('id');
+                $.ajax({
+                    url: "{{ route('favorite') }}",
+                    type: 'get',
+                    data: {
+                        property_id: property,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
+                            alert(response.success);
+                        } else {
+                            alert(response.error);
+                        }
+                    },
+                    error: function(response) {
 
-                }
+                    }
+                });
             });
         });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function(e) {
-       
-        // live handler
-        lc_lightbox('.elem', {
-            wrap_class: 'lcl_fade_oc',
-            gallery : true,	
-            thumb_attr: 'data-lcl-thumb', 
-            skin: 'minimal',
-            radius: 0,
-            padding	: 0,
-            border_w: 0,
-        });	
-    
-    });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+
+            // live handler
+            lc_lightbox('.elem', {
+                wrap_class: 'lcl_fade_oc',
+                gallery: true,
+                thumb_attr: 'data-lcl-thumb',
+                skin: 'minimal',
+                radius: 0,
+                padding: 0,
+                border_w: 0,
+            });
+
+        });
     </script>
 
     <script>
@@ -660,20 +664,20 @@
             loop: true,
             margin: 10,
             // nav:true,
-            dots:true,
-            dotsData:true,
+            dots: true,
+            dotsData: true,
             responsiveClass: true,
             navText: ["<i class='las la-angle-left'></i>", "<i class='las la-angle-right'></i>"],
             responsive: {
                 0: {
                     items: 1,
-                    },
+                },
                 600: {
                     items: 1,
-                    },
+                },
                 1000: {
                     items: 1,
-                    }
+                }
             }
         })
         $("form[name='propertyEnquiry']").submit(function(e) {
@@ -741,5 +745,7 @@
         //     });
         // });
     </script>
-<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637c810e6fa502001965eddb&product=inline-share-buttons&source=platform" async="async"></script>
+    <script type="text/javascript"
+        src="https://platform-api.sharethis.com/js/sharethis.js#property=637c810e6fa502001965eddb&product=inline-share-buttons&source=platform"
+        async="async"></script>
 @endpush
