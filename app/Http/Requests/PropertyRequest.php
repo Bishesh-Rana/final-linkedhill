@@ -53,6 +53,7 @@ class PropertyRequest extends FormRequest
             'owner_name' => ['nullable'],
             'owner_address' => ['nullable'],
             'owner_phone' => ['nullable'],
+            'owner_email' =>['nullable'],
             'youtube_video_id' => ['nullable'],
             'feature' => ['required', 'boolean'],
             'negotiable' => ['nullable', 'boolean'],

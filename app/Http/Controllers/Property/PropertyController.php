@@ -79,6 +79,7 @@ class PropertyController extends CommonController
         }     
         
         $data['user_id'] = $user_id ;
+        $data['active_status'] = 1 ;
         $sync = collect($data['features'])
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
@@ -147,7 +148,6 @@ class PropertyController extends CommonController
     {
         $data = $this->requiredData($id);
         $users = User::where( 'user_id',null)-> where('is_active','1') -> get();
-
         return view('admin.property.form', compact('data','users'), $data);
     }
 
@@ -160,6 +160,7 @@ class PropertyController extends CommonController
      */
     public function update(PropertyRequest $request, $id)
     {
+        // @dd($request->features[$request->category_id]);
         $property = Property::findorfail($id);
         $data = $request->all();
         if(auth()->user()->isadmin()){
@@ -169,8 +170,9 @@ class PropertyController extends CommonController
             $user_id = $property->user_id;
         }   
         $data['user_id'] =$user_id;
+        $feat = $request->features[$request->category_id];
 
-        $sync = collect($data['features'])
+        $sync = collect($feat)
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
                 return [
@@ -235,7 +237,6 @@ class PropertyController extends CommonController
     private function requiredData($id = null): array
     {
         return [
-
             'bed' => Property::get(),
             'purposes' => Purpose::get(),
             'facilities' => Facility::orderBy('order')->get(),

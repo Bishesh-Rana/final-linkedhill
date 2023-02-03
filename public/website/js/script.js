@@ -42,8 +42,8 @@ $(document).ready(function () {
 });
 
 // password visible and not visibleENd
-$("#property").owlCarousel({
-    loop: true,
+$("#property").owlCarousel({    
+    loop: false,
     nav:false,
     dots:true,
     margin: 20,

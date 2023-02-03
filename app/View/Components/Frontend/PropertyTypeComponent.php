@@ -16,7 +16,7 @@ class PropertyTypeComponent extends Component
      */
     public function __construct()
     {
-        $this->propertiesType = Property::get();
+        $this->propertiesType = Property::where(['status'=>1,'active_status'=>1])->get();
     }
 
     /**

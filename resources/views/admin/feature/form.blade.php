@@ -117,6 +117,21 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="form-group col-md-6">
+                                <label class="label-style">Choose admin input type</label>
+                               <div>
+                                <input type="radio" name="input_type" value="radio" id="i_type_radio">
+                                <label for="i_type_radio"  style="margin-right:10px;">Radio Buttons</label>
+                                <input type="radio" name="input_type" value="text" id="i_type_text">
+                                <label for="i_type_text">Text Input Field</label>
+                               </div>
+
+                                @error('type')
+                                    <span class="error-message">
+                                        *{{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-footer text-right">

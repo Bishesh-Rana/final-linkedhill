@@ -80,7 +80,7 @@
                                                     @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))
                                                     <div><a href="{{route('toggleStatus', $value->id)}}" title="click to toggle status">{{$a}} </a></div>
                                                     @endif
-                                                    @php $active = $value->activeStatus == "1" ? " Active " : " Inactive "; @endphp
+                                                    @php $active = $value->active_status == "1" ? " Active " : " Inactive "; @endphp
                                                     <div><a href="{{route('toggleActiveStatus', $value->id)}}" title="click to toggle active status">{{$active}} </a></div>
                                                     <div>Views: {{$value->view_count}}</div>
                                                     @if(auth()->user()->hasAnyRole('Super Admin', 'Admin'))

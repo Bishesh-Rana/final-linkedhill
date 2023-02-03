@@ -40,7 +40,8 @@ class AdminController extends CommonController
             return redirect()->back()->with('error', 'password do not match');
         }
         
-        $user->update(array_filter($request->all()));      
+        $user->update(array_filter($request->all()));
+        $user->password=bcrypt($request->password);      
         $user->profile = $request->image;
         $user->save();
         if(auth()->user()->hasRole('Agent')){

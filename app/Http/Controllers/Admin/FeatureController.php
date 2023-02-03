@@ -59,9 +59,10 @@ class FeatureController extends Controller
     {       
         $data = $request->validated();
         $data['showOnFilter'] = $request->showOnFilter; 
+        $data['input_type'] = $request->input_type;
         DB::beginTransaction();
         try {
-            $feature =  Feature::create(Arr::except($data, 'category_id'));
+            $feature = Feature::create(Arr::except($data, 'category_id'));
             $feature->category()->sync($data['category_id']);
             DB::commit();
 
@@ -101,7 +102,8 @@ class FeatureController extends Controller
     {
         $feature = Feature::findorfail($id);
         $data = $request->validated();
-        $data['showOnFilter'] = $request->showOnFilter;      
+        $data['showOnFilter'] = $request->showOnFilter;    
+        $data['input_type'] = $request->input_type;  
         DB::beginTransaction();
         try {
             $feature->update(Arr::except($data, 'category_id'));

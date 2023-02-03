@@ -450,7 +450,7 @@
             async="async"></script>
         <script>
             var categoryProperty = function(category_id) {
-                var uri = "{{ route('front.search-properties') }}";
+                var uri = "{{ route('front.search-properties')}}";
                 $.ajax({
                     url: uri,
                     type: 'post',

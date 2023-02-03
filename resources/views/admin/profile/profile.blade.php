@@ -114,10 +114,9 @@
                         <div class="check-list">
                             <label for="">Publish Status</label>
                             <label class="ui-radio ui-radio-primary">
-                                {{-- @dd($admin) --}}
                                 <input type="radio" name="is_active" value="0" <?php echo ($admin->is_active == 0 ?  'checked="checked"' : ''); ?>>
                                 <span class="input-span"></span>
-                                Banned
+                                Deactivate
                             </label>
                             <label class="ui-radio ui-radio-primary">
                                 <input type="radio" name="is_active" value="1" <?php echo ($admin->is_active == 1 ?  'checked="checked"' : ''); ?>>
