@@ -86,7 +86,7 @@ class PropertyRequest extends FormRequest
             'verified_at' => auth()->user()->hasAnyRole('Super Admin', 'Admin') ? now() : null,
             'start_price' => $this->start_price ?? 0,
             'features' => $this->features ?? [],
-            'slug' => Str::slug($this->slug)
+            'slug' => Str::slug($this->title)
         ]);
     }
 }

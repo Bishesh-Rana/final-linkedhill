@@ -86,6 +86,8 @@ class SearchController extends Controller
         // $property =  Property::filter() ->paginate(20);
         // return $properties;
 
+        dd($properties);
+
         return $this->returnResponse(PropertyResource::collection($properties)->sortBy('order'));
     }
 }

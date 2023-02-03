@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-group  label-floating">
                     <label class="label-style">
                         Enter Slug
@@ -85,7 +85,7 @@
                     <x-error name='slug' />
 
                 </div>
-            </div>
+            </div> --}}
 
 
 {{-- --------------------------------------------- --}}

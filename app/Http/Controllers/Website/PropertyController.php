@@ -129,7 +129,78 @@ public function propertyDetail($id, $slug)
         //             $query->orderBy('created_at');
         //     }
         // }) 
-        ->orderBy('order')->paginate(5);
+        ->orderBy('order')->paginate(10);
+
+        $featured_properties =  Property::filter()->where(['status'=>1,'feature'=>1]) 
+        ->when(request('properties'), function($query, $properties) {
+            foreach($properties  as $key=>$value){
+                if($value == 'any'){
+                    //do nothing
+                }
+                else{
+                    $query->whereHas('features', function ($que) use ($key,$value){  
+                        if((int) $value == 0){
+                                $que->where('feature_id',$key)->where('value','=',$value);
+                        }else{
+                            $value = (int) $value;
+                            $que->where('feature_id',$key)->where('value','>=',$value);
+                        }              
+                    });
+                }                    
+            }                     
+        })
+        ->when(request('property_address'), function($query,$var){
+            $cities = City::get();
+            $cities_name = [];
+            foreach($cities as $city){
+                array_push($cities_name,$city->name);
+            }
+            foreach($var as $v){
+                if(in_array($v,$cities_name)){
+                    $city_id = City::where('name',$v)->value('id');
+                    $query->where('city_id','=',$city_id);
+                }else{
+                    $query->where('property_address','=',$v);
+                }
+            }
+            
+        }) 
+        ->when(request('start_prize'), fn ($query) => $query->where('start_price', '>=', request('start_prize')))  
+        ->when(request('end_prize'), fn ($query) => $query->where('start_price', '<=', request('end_prize')))
+        ->when(request('roadtype'), fn ($query) => $query->where('road_type', '=', request('roadtype')))
+        ->when(request('facing'), fn ($query) => $query->where('property_facing', '=', request('facing')))
+        ->when(request('facility'), function($query, $var) {
+            $query->whereHas('facility', function ($que) use ($var){   
+            foreach($var as $v){ 
+                $que->where('title','=',$v);
+            }                        
+            });
+        })
+        ->when(request('area'),function($query,$var){
+            $unit = request('unit');
+            $query->where('total_area','>=',$var)->where('total_area_unit','=',$unit);
+        })
+        ->when(request('listedby'), function($query,$var){
+            switch($var){
+                case "owner":
+                    $query->orderBy('owner_name');
+                    break;
+                case "agent":
+                    $query->whereHas('agent',function($que){
+                        $que->orderBy('owner_id');
+                    });
+                    break;
+                default:
+                    $query->whereHas('agent',function($que){
+                        $que->orderBy('owner_id');
+                    });
+
+            }
+        }) 
+        ->orderBy('order')->paginate(10);
+       
+
+        // dd($featured_properties);
         $meta = $this->getMeta();
         $advertisements = $this->getAd('property'); 
         $purposes = Purpose::all();
@@ -171,7 +242,9 @@ public function propertyDetail($id, $slug)
             $feature_values[$feature->id]=$values;
        }       
         $pagedata = new Menu();
-        return view('website.pages.propertylist', compact('addresses','roadTypes','facilities','pagedata', 'units','meta', 'properties','advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
+
+       
+        return view('website.pages.propertylist', compact('addresses','featured_properties','properties','roadTypes','facilities','pagedata', 'units','meta' ,'advertisements', 'filter' , 'purposes','property','propertyCat','feature_values'))->with('meta', $this->getMeta());
     }
 
     public function getMeta($meta = [])

@@ -151,4 +151,9 @@ class Property extends Model
             \App\QueryFilters\Type::class,
         ];
     }
+
+    public function featureProperty()
+    {
+       return $this->hasMany(PropertyFeature::class,'property_id','id');
+    }
 }

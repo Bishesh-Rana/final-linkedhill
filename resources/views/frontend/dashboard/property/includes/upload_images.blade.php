@@ -14,7 +14,7 @@
                 <label class="label-style"> Image Upload <span class="required-error">*</span></label>
                 <div class="file-loading">
                     <input id="file-5" name="property_images[]" class="file" type="file" multiple
-                        data-preview-file-type="any" data-upload-url="#" data-theme="fas" required>
+                        data-preview-file-type="any" data-upload-url="#" data-theme="fas" >
                 </div>
                 @if ($errors->has('property_images'))
                     <span class="error-message">

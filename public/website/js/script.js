@@ -62,7 +62,7 @@ $("#property").owlCarousel({
 });
 
 $(".feature-property").owlCarousel({
-    loop: true,
+    loop: false,
     margin: 20,
     responsiveClass: true,
     responsive: {

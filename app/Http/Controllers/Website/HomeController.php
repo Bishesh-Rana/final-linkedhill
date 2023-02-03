@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $this->website['blogs'] = Blog::where('type', 'blog')->orderBy('order')->where('featured',1)->limit(4)->get();
         $this->website['news'] = Blog::where('type', 'news')->orderBy('order')->where('featured',1)->limit(4)->get();
-        $this->website['properties'] = Property::where(['status' => 1,'activeStatus'=>1 ,'feature' => 1])->latest()->limit(8)->get();
+        $this->website['properties'] = Property::where(['status' => 1,'active_status'=>1 ,'feature' => 1])->latest()->limit(8)->get();
 
         $this->website['cities'] = City::limit(10)->where('feature_in_homepage', true)->get();
         $this->website['roadtypes'] = RoadType::get();
@@ -170,7 +170,8 @@ class HomeController extends Controller
                     }
                     $addresses = array_unique($addresses);
                         
-                    $properties = Property::where(['status' => 1, 'activeStatus'=>1])->with(['faqs', 'images'])->latest()->paginate(10);
+                    $properties = Property::where(['status' => 1, 'active_status'=>1])->with(['faqs', 'images','features'])->latest()->paginate(10);
+                    $featured_properties = Property::where(['status' => 1, 'active_status'=>1, 'feature'=> 1])->with(['faqs', 'images','features'])->limit(8)->get();
                     $advertisements = $this->getAd('property');
                     $feature_values = [];
                     $features = [];
@@ -194,7 +195,7 @@ class HomeController extends Controller
                 $units = Unit::get();
                 $roadTypes = RoadType::all();
 
-                    return view('website.pages.propertylist', compact('roadTypes','facilities','addresses','units','feature_values','pagedata', 'meta', 'properties', 'advertisements', 'purposes','property','propertyCat','filter'));
+                    return view('website.pages.propertylist', compact('roadTypes','facilities','addresses','units','feature_values','pagedata', 'meta', 'properties','featured_properties', 'advertisements', 'purposes','property','propertyCat','filter'));
                     break;
                 default:
                     return redirect()->route('home');

@@ -115,42 +115,6 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="property_thumbnail_">
-                                                        {{-- <div id="carouselExampleIndicators" class="carousel slide"
-                                                            data-ride="carousel">
-                                                            <ol class="carousel-indicators">
-                                                                <li data-target="#carouselExampleIndicators"
-                                                                    data-slide-to="0" class="active"></li>
-                                                                <li data-target="#carouselExampleIndicators"
-                                                                    data-slide-to="1"></li>
-                                                                <li data-target="#carouselExampleIndicators"
-                                                                    data-slide-to="2"></li>
-                                                            </ol>
-                                                            <div class="carousel-inner">
-
-                                                                @foreach ($property->images as $image)
-                                                                    <div
-                                                                        class="carousel-item {{ @$loop->first ? 'active' : '' }}">
-                                                                        <img class="d-block w-100"
-                                                                            src="{{ image(@$image->name) }}"
-                                                                            alt="First slide">
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                            <a class="carousel-control-prev"
-                                                                href="#carouselExampleIndicators" role="button"
-                                                                data-slide="prev">
-                                                                <span class="carousel-control-prev-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="sr-only">Previous</span>
-                                                            </a>
-                                                            <a class="carousel-control-next"
-                                                                href="#carouselExampleIndicators" role="button"
-                                                                data-slide="next">
-                                                                <span class="carousel-control-next-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="sr-only">Next</span>
-                                                            </a>
-                                                        </div> --}}
                                                         <div id="carouselExampleControls" class="carousel slide"
                                                         data-bs-ride="carousel">
                                                         <div class="carousel-inner">
@@ -203,23 +167,6 @@
                                                                         class="lar la-heart "></i></a>
                                                             </div>
                                                         @endif
-                                                        <div class="property_owner">
-                                                            @if ($property->bed !== 0)
-                                                                <span title="bedroom"><i class="las la-bed"></i><span
-                                                                        class="type_badge">{{ $property->bed }}</span></span>
-                                                            @endif
-                                                            @if ($property->bath !== 0)
-                                                                <span title="bathroom"><i class="las la-bath"></i><span
-                                                                        class="type_badge">{{ $property->bath }}</span></span>
-                                                            @endif
-
-
-                                                            <span
-                                                                title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
-                                                                <i class="las la-crop-alt"></i>
-                                                                <span
-                                                                    class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -256,7 +203,36 @@
                                                                 <span>Rs:{{ @$property->start_price }}</span> &nbsp;
                                                                 {{ @$property->title }}</a>
                                                         </div>
-                                                        <div class="owner ">
+                                                        <div class="premium_options">
+                                                            <ul>
+                                                                @foreach($property->featureProperty as $feature)
+                                                                {{-- bed --}}
+                                                                @if (($feature->feature_id == 19)&&(isset($feature->value))) 
+                                                                    <li>
+                                                                        <i class="las la-bed" title="Bed"></i><span> {{rtrim($feature->value, "+")}}</span>
+                                                                    </li>
+                                                                @endif
+                                                                {{-- bath --}}
+                                                                @if ( ($feature->feature_id == 20)&&(isset($feature->value)))
+                                                                    <li>
+                                                                        <i class="las la-bath" title="Bathroom"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                                    </li>
+                                                                @endif
+                                                                {{-- park --}}
+                                                                @if ( ($feature->feature_id == 18)&&(isset($feature->value)))
+                                                                <li>
+                                                                    <i class="las la-car" title="Parking"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                                </li>
+                                                                @endif
+                                                                @endforeach
+                                                                <li>
+                                                                    <span title="Area">
+                                                                        <i class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="owner mt-2 ">
                                                             <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
                                                             <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
                                                                 class=" "><i class="las la-phone-volume"></i></a>
@@ -318,11 +294,11 @@
                         <h5>Featured Properties</h5>
                     </div>
 
-                    @forelse ($properties as $property)
+                    @forelse ($featured_properties as $property)
                         @if ($property['feature'])
                             <div class="featuredProducts mb-2">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="property_thumbnail_">
                                             <div id="carouselExampleControls" class="carousel slide"
                                                 data-bs-ride="carousel">
@@ -378,24 +354,27 @@
                                                         class="lar la-heart "></i></a>
                                             </div>
                                         @endif
-                                            <div class="property_owner">
-                                                @if ($property->bed !== 0)
-                                                    <span title="bedroom"><i class="las la-bed"></i><span
-                                                            class="type_badge">{{ $property->bed }}</span></span>
-                                                @endif
-
-                                                @if ($property->bath !== 0)
-                                                    <span title="bathroom"><i class="las la-bath"></i><span
-                                                            class="type_badge">{{ $property->bath }}</span></span>
-                                                @endif
-                                                <span
-                                                    title="{{ $property->total_area . ' ' . $property->area_unit->name }}">
-                                                    <i class="las la-crop-alt"></i>
-                                                    <span
-                                                        class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span></span>
-                                            </div>
                                         </div>
 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="top_tt_title">
+                                            <a class=""
+                                                href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
+                                                <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
+                                                <span> {{ @$property->title }}</span></a>
+                                        </div>
+                                        <div class="owner mt-2">
+                                            <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
+                                            <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
+                                                class=" "><i class="las la-phone-volume"></i></a>
+                                            <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
+                                                data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
+                                            <div class="show_button_area">
+                                                <span class="button_show"><i class="las la-angle-down"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="top_tv_verified">
@@ -421,22 +400,34 @@
                                             @endif
 
                                         </div>
-                                        <div class="top_tt_title">
-                                            <a class=""
-                                                href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
-                                                <span> {{ @$property->title }}</span></a>
-                                        </div>
-                                        <div class="owner ">
-                                            <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
-                                            <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
-                                                class=" "><i class="las la-phone-volume"></i></a>
-                                            <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
-                                                data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
-                                            <div class="show_button_area">
-                                                <span class="button_show"><i class="las la-angle-down"></i>
-                                                </span>
-                                            </div>
+                                        <div class="premium_options">
+                                            <ul>
+                                                @foreach($property->featureProperty as $feature)
+                                                {{-- bed --}}
+                                                @if (($feature->feature_id == 19)&&(isset($feature->value))) 
+                                                    <li>
+                                                        <i class="las la-bed" title="Bed"></i><span> {{rtrim($feature->value, "+")}}</span>
+                                                    </li>
+                                                @endif
+                                                {{-- bath --}}
+                                                @if ( ($feature->feature_id == 20)&&(isset($feature->value)))
+                                                    <li>
+                                                        <i class="las la-bath" title="Bathroom"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                    </li>
+                                                @endif
+                                                {{-- park --}}
+                                                @if ( ($feature->feature_id == 18)&&(isset($feature->value)))
+                                                <li>
+                                                    <i class="las la-car" title="Parking"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                </li>
+                                                @endif
+                                                @endforeach
+                                                <li>
+                                                    <span title="Area">
+                                                        <i class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
+                                                    </span>
+                                                </li>
+                                            </ul>
                                         </div>
                                         @if ($property->amenities->count() > 0)
                                             <div class="property_type_ptd_detail">
@@ -458,11 +449,11 @@
                         @endif
 
                     @empty
-                        <div>
+                        <div class="mt-3">
                             <div class="no_result_found_wrapper">
-                                <img src="{{ asset('frontend/gallery/no_result.jpg') }}" alt="">
-                                <h6>No Properties Found</h6>
-                                <p>Return to search page</p>
+                                {{-- <img src="{{ asset('frontend/gallery/no_result.jpg') }}" alt=""> --}}
+                                <h6>Featured Properties Not Found</h6>
+                                {{-- <p>Return to search page</p> --}}
                                 <a href="{{ url('properties') }}" class="btn btn-danger">Go Back</a>
                             </div>
                         </div>

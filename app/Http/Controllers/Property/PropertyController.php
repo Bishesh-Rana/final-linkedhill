@@ -369,7 +369,7 @@ class PropertyController extends CommonController
     public function toggleActiveStatus($id)
     {
         $property = Property::find($id);
-        $property->activeStatus = !$property->activeStatus;
+        $property->active_status = !$property->active_status;
         $property->save();
         request()->session()->flash('message', 'property status changed successfully');
         return redirect()->back();

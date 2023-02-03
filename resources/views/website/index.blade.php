@@ -71,6 +71,7 @@
                     <h2>{{ $website->pro_title }}</h2>
                     <p><i>{{ $website->pro_sub_title }}</i></p>
                 </div>
+                {{-- @dd($properties[0]->features) --}}
                 <div class="owl-carousel owl-theme feature-property">
                     @foreach ($properties as $property)
                         <div class="item">
@@ -144,31 +145,30 @@
                                     </div>
                                     <div class="premium_options">
                                         <ul>
-                                            @if ($property->bed !== 0)
+                                            @foreach($property->featureProperty as $feature)
+                                            {{-- bed --}}
+                                            @if (($feature->feature_id == 19)&&(isset($feature->value))) 
                                                 <li>
                                                     <i class="las la-bed"
-                                                        title="Bed"></i><span>{{ $property->bed }}</span>
+                                                        title="Bed"></i><span> {{rtrim($feature->value, "+")}}</span>
                                                 </li>
                                             @endif
-                                            @if ($property->bath !== 0)
+                                            {{-- bath --}}
+                                            @if ( ($feature->feature_id == 20)&&(isset($feature->value)))
                                                 <li>
                                                     <i class="las la-bath"
-                                                        title="Bathroom"></i><span>{{ $property->bath }}</span>
+                                                        title="Bathroom"></i><span>{{rtrim($feature->value, "+")}}</span>
                                                 </li>
                                             @endif
-                                            @isset($property->park)
-                                                @if ($property->park !== 0)
-                                                    <li>
-                                                        <i class="las la-car"
-                                                            title="Parking"></i><span>{{ $property->park }}</span>
-                                                    </li>
-                                                @endif
-                                            @endisset
+                                            {{-- park --}}
+                                            @if ( ($feature->feature_id == 18)&&(isset($feature->value)))
                                             <li>
-                                                <i class="las la-car" title="Parking"></i><span>0</span>
+                                                <i class="las la-car" title="Parking"></i><span>{{rtrim($feature->value, "+")}}</span>
                                             </li>
+                                            @endif
+                                            @endforeach
                                             <li>
-                                                <span>
+                                                <span title="Area">
                                                     <i
                                                         class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
                                                 </span>
