@@ -3361,11 +3361,13 @@ div#Share_Feedback .modal-dialog {
 
 .property_thumbnail_ img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 .featuredProducts .property_thumbnail_ img {
     width: 100%;
     height: 150px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .property_thumbnail_ {
@@ -3390,7 +3392,7 @@ div#Share_Feedback .modal-dialog {
     width: 25px;
     padding: 2px 5px;
     border-radius: 100%;
-    background: white;
+    /* background: white; */
 }
 .favicon a{
     height: 30px;
@@ -3468,7 +3470,7 @@ div#Share_Feedback .modal-dialog {
     font-size: 14px;
 }
 .owner{
-    display: flex;
+    /* display: flex; */
     /* line-height: 40px; */
 }
 .owner p{

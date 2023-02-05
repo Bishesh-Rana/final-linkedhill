@@ -115,8 +115,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="property_thumbnail_">
-                                                        <div id="carouselExampleControls" class="carousel slide"
-                                                        data-bs-ride="carousel">
+                                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                                         <div class="carousel-inner">
                                                             @foreach ($property->images as $image)
                                                                 <div class="carousel-item {{ @$loop->first ? 'active' : '' }}">
@@ -232,7 +231,7 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <div class="owner mt-2 ">
+                                                        <div class="owner d-flex mt-2 ">
                                                             <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
                                                             <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
                                                                 class=" "><i class="las la-phone-volume"></i></a>
