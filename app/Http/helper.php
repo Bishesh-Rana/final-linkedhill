@@ -107,6 +107,17 @@ function activeMenu($menu)
     return request()->is(str_replace(asset('/'), '', $menu['href'])) ? 'active' : null;
 }
 
+
+function formattedNepaliNumber($value)
+{
+    $locale = 'en_IN';
+    $formatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
+    $number = $value;
+    $formattedNumber = $formatter->format($number);
+    return $formattedNumber;
+}
+
+
 function getSummary($value)
 {
     return Str::limit(strip_tags($value), 160, '...');

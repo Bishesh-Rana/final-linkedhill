@@ -3,6 +3,12 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
+<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+ class="alert alert-success alert-dismissible" id="favalert" role="alert">
+  </div>
+  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+ class="alert alert-danger alert-dismissible" id="favRemovedalert" role="alert">
+  </div>
     <section class="ads_inside_subpage d-none d-md-block">
         <div class="container">
             <div class="ads_section_cover">
@@ -199,7 +205,7 @@
                                                         <div class="top_tt_title">
                                                             <a class="d-flex"
                                                                 href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                                <span>Rs:{{ @$property->start_price }}</span> &nbsp;
+                                                                <span>Rs: {{ formattedNepaliNumber(@$property->start_price) }}</span> &nbsp;
                                                                 {{ @$property->title }}</a>
                                                         </div>
                                                         <div class="premium_options">
@@ -287,7 +293,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 advertisement">
                     <div>
                         <h5>Featured Properties</h5>
@@ -360,7 +365,7 @@
                                         <div class="top_tt_title">
                                             <a class=""
                                                 href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">
-                                                <span>Rs:{{ @$property->start_price }}</span> &nbsp; <br>
+                                                <span>Rs: {{ formattedNepaliNumber(@$property->start_price)}}</span> &nbsp; <br>
                                                 <span> {{ @$property->title }}</span></a>
                                         </div>
                                         <div class="owner mt-2">
@@ -369,10 +374,6 @@
                                                 class=" "><i class="las la-phone-volume"></i></a>
                                             <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
                                                 data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
-                                            <div class="show_button_area">
-                                                <span class="button_show"><i class="las la-angle-down"></i>
-                                                </span>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -437,6 +438,10 @@
                                                 </ul>
                                             </div>
                                         @endif
+                                        {{-- <div class="show_button_area">
+                                            <span class="button_show"><i class="las la-angle-down"></i>
+                                            </span>
+                                        </div> --}}
 
                                         <div class="property_text">
                                             {!! @$property->property_detail !!}
@@ -490,10 +495,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h1>Let us know your feedback
-                        this will allow us to serve you better</h1>
-
-
+                    <h1>Let us know your feedback this will allow us to serve you better</h1>
                     <form action="" name="propertyEnquiry">
                         @csrf
                         <div class="form_spacing">
@@ -544,16 +546,27 @@
                         property_id: property,
                     },
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
                             $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
-                            alert(response.success);
-                        } else {
+                            $('#favalert').html(response.success);
+                            $('#favalert').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(favalert).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
+                        } 
+                        else if(response.removed){
+                            $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
+                            $('#favRemovedalert').html(response.removed);
+                            $('#favRemovedalert').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(favRemovedalert).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
+                        }
+                        else {
                             alert(response.error);
                         }
                     },
                     error: function(response) {
-
                     }
                 });
             });
@@ -562,7 +575,6 @@
     <script>
         function favorite(property) {
             // $(".favorite"+property+">.la-heart ").toggleClass("lar las");
-
         }
     </script>
     <script>
@@ -585,7 +597,6 @@
                         delay: 3000,
                         delayIndicator: false,
                     });
-
                     $('#send_message_model').hide();
                 }
             });

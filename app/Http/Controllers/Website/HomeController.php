@@ -311,7 +311,7 @@ class HomeController extends Controller
             if(!empty($favorite_property)){
                 $favorite_property->delete();
                 return response()->json([
-                    'success'=>"Property remove from favorite list",
+                    'removed'=>"Property removed from favorite list",
                 ]);
             }else{
                 FavouriteList::create(['user_id'=>auth()->user()->id,'property_id'=>$request->property_id]);

@@ -9,12 +9,41 @@
             <div class="card-header" data-background-color="blue">
                 <i class="material-icons">business</i>
             </div>
+         
             <div class="card-content">
                 <p class="category title__card">Property</p>
                 @if(auth()->user()->isAdmin())
                  <h6 class="card-title">{{\App\Models\Property::superAdmin()->count()}}</h6>
                 @else
                     <h6 class="card-title">{{count(auth()->user()->properties)}} </h6>
+                @endif
+            </div>
+            <div class="clearfix"></div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-success">add_box</i>
+                    <a href="{{route('properties.create')}}">Add Property</a>
+                </div>
+                <div class="spacer"></div>
+                <div class="stats pull-right">
+                    <i class="material-icons text-success">settings_applications</i>
+                    <a href="{{route('properties.index')}}">Manage Property </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header" data-background-color="blue">
+                <i class="material-icons">business</i>
+            </div>
+         
+            <div class="card-content">
+                <p class="category title__card">Unapproved Property</p>
+                @if(auth()->user()->isAdmin())
+                 <h6 class="card-title">{{\App\Models\Property::superAdmin()->where('status',0)->count()}}</h6>
+                @else
+                    <h6 class="card-title">{{count(auth()->user()->properties->where('status',0))}} </h6>
                 @endif
             </div>
             <div class="clearfix"></div>

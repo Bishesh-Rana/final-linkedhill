@@ -99,6 +99,12 @@ class PropertyController extends CommonController
 
             $property->features()->sync($sync);
             $property->amenities()->sync($data['amenities'] ?? []);
+            if( ($request->price_label=='other')){
+                $property->price_tag_other = $request->price_tag_other;
+            }
+            else{
+                $property->price_tag_other = null;
+            }
             DB::commit();  
 
             if(auth()->user()->hasRole('Agent') || auth()->user()->isStaff()){
@@ -193,6 +199,14 @@ class PropertyController extends CommonController
                 $data['bath']='0';
             }
             $property->fill($data);
+            // isset($request->price_tag_other)&&
+            if( ($request->price_label=='other')){
+                $property->price_tag_other = $request->price_tag_other;
+            }
+            else{
+                $property->price_tag_other = null;
+            }
+
             $property->save();
             $property->features()->sync($sync);
             $property->amenities()->sync($data['amenities'] ?? []);

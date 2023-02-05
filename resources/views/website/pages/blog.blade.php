@@ -98,7 +98,7 @@
                     <div class="col-lg-12">
                         <div class="trending_property_wrapper">
                             <h1>Want to <span>Sell / Rent</span> out your property for free?</h1>
-                            <a href="#" class="btn btn-link">Post property <i class="las la-arrow-right"></i></a>
+                            <a href="{{ route('agent.getLogin') }}" class="btn btn-link">Post property <i class="las la-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-12">

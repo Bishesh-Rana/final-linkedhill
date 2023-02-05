@@ -49,7 +49,8 @@
                                             <div class="d-flex">
                                                 <div class="categoryselector">
                                                     @foreach ($propertyCat as $key => $propertyC)
-                                                        <input class="form-check-input ad_category filter"  data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox" name="category_id" value="{{ $propertyC->id }}">
+                                                        <input class="form-check-input ad_category filter"  data-ele="filter" id="advance{{ $propertyC->id }}" type="checkbox"
+                                                         name="category_id" value="{{ $propertyC->id }}" {{(@$filter['category_id']==$propertyC->id)?'checked':'' }}>
                                                         <label class="form-check-label" for="advance{{ $propertyC->id }}">{{ $propertyC->name }}</label>
                                                     @endforeach
                                                 </div>
@@ -133,13 +134,13 @@
                                                         <div class="form-group">
                                                             <h3>{{ $name }}</h3>
                                                             <div id="parking">
-                                                                <div class="dynamic ">
+                                                                <div class="dynamic">
                                                                     <select name="properties[{{$key}}]">
-                                                                        <option value="any">Any</option>
+                                                                        <option value="any" selected>Any</option>
                                                                         @foreach ($values as $key1 => $value)
                                                                         @if(array_key_exists( 'properties' , $filter))   
                                                                         {{-- @foreach($filter->properties[$key] --}}
-                                                                            <option value="{{ $value }}" {{($filter['properties'][$key] == $value)?'selected':''}}>{{$value}}{{ ($value == $filter['properties'][(int)$key])}}</option>
+                                                                            <option value="{{ $value }}" {{($filter['properties'][$key] == $value)?'selected':''}}>{{$value}}</option>
                                                                         @else
                                                                         <option value="{{ $value }}" >{{ $value }}</option>
                                                                         @endif
@@ -237,7 +238,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="reset" value="reset" form="searchform"
-                                class="">Clear Filter</button>
+                                class="resetfilter">Clear Filter</button>
                             <button type="submit" form="searchform" class="advance_submit"
                                 data-bs-dismiss="modal">Update</button>
                         </div>
@@ -250,6 +251,9 @@
 
 @push('scripts')
     <script>
+        // $(".resetfilter").on("click", function () {
+        //     $('#searchform')[0].reset()''
+        // });
         
         $(document).ready(function() {
             $('.multiple-facility').select2();

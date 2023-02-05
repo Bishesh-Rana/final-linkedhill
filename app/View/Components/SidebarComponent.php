@@ -232,26 +232,26 @@ class SidebarComponent extends Component
                     ]
                 ]
             ],
-            [
-                'title' => 'Testimonial',
-                'icon' => 'surround_sound',
-                'href' => '#',
-                'permission' => ['testimonial-list', 'testimonial-create'],
-                'child' => [
-                    [
-                        'title' => 'Manage  Testimonial',
-                        'icon' => 'insert_drive_file',
-                        'permission' => ['property-list'],
-                        'href' => route('testimonial.index'),
-                    ],
-                    [
-                        'title' => 'Create Testimonial',
-                        'icon' => 'create',
-                        'permission' => ['property-create'],
-                        'href' => route('testimonial.create'),
-                    ]
-                ]
-            ],
+            // [
+            //     'title' => 'Testimonial',
+            //     'icon' => 'surround_sound',
+            //     'href' => '#',
+            //     'permission' => ['testimonial-list', 'testimonial-create'],
+            //     'child' => [
+            //         [
+            //             'title' => 'Manage  Testimonial',
+            //             'icon' => 'insert_drive_file',
+            //             'permission' => ['property-list'],
+            //             'href' => route('testimonial.index'),
+            //         ],
+            //         [
+            //             'title' => 'Create Testimonial',
+            //             'icon' => 'create',
+            //             'permission' => ['property-create'],
+            //             'href' => route('testimonial.create'),
+            //         ]
+            //     ]
+            // ],
             [
                 'title' => 'Advertisement',
                 'icon' => 'newspaper',
@@ -292,26 +292,26 @@ class SidebarComponent extends Component
                     ]
                 ]
             ],
-            [
-                'title' => 'Team',
-                'icon' => 'group',
-                'href' => '#',
-                'permission' => ['team-list', 'team-create'],
-                'child' => [
-                    [
-                        'title' => 'Manage  Team',
-                        'icon' => 'insert_drive_file',
-                        'permission' => ['property-list'],
-                        'href' => route('team.index'),
-                    ],
-                    [
-                        'title' => 'Create Team',
-                        'icon' => 'create',
-                        'permission' => ['property-create'],
-                        'href' => route('team.create'),
-                    ]
-                ]
-            ],
+            // [
+            //     'title' => 'Team',
+            //     'icon' => 'group',
+            //     'href' => '#',
+            //     'permission' => ['team-list', 'team-create'],
+            //     'child' => [
+            //         [
+            //             'title' => 'Manage  Team',
+            //             'icon' => 'insert_drive_file',
+            //             'permission' => ['property-list'],
+            //             'href' => route('team.index'),
+            //         ],
+            //         [
+            //             'title' => 'Create Team',
+            //             'icon' => 'create',
+            //             'permission' => ['property-create'],
+            //             'href' => route('team.create'),
+            //         ]
+            //     ]
+            // ],
             [
                 'title' => 'Menu',
                 'icon' => 'list',
@@ -353,33 +353,33 @@ class SidebarComponent extends Component
                     ]
                 ]
             ],
-            [
-                'title' => 'Tradelink',
-                'icon' => 'list',
-                'href' => '#',
-                'permission' => ['tradelink-list', 'tradelink-create'],
-                'child' => [
-                    [
-                        'title' => 'Manage  Tradelink  Category',
-                        'icon' => 'insert_drive_file',
-                        'permission' => ['tradelink-category-list'],
-                        'href' => route('tradelink-category.index'),
-                    ],
+            // [
+            //     'title' => 'Tradelink',
+            //     'icon' => 'list',
+            //     'href' => '#',
+            //     'permission' => ['tradelink-list', 'tradelink-create'],
+            //     'child' => [
+            //         [
+            //             'title' => 'Manage  Tradelink  Category',
+            //             'icon' => 'insert_drive_file',
+            //             'permission' => ['tradelink-category-list'],
+            //             'href' => route('tradelink-category.index'),
+            //         ],
 
-                    [
-                        'title' => 'Mange Tradelink',
-                        'icon' => 'insert_drive_file',
-                        'permission' => ['tradelink-list'],
-                        'href' => route('tradelink.index'),
-                    ],
-                    [
-                        'title' => 'Create Tradelink',
-                        'icon' => 'create',
-                        'permission' => ['tradelink-create'],
-                        'href' => route('tradelink.create'),
-                    ]
-                ]
-            ],
+            //         [
+            //             'title' => 'Mange Tradelink',
+            //             'icon' => 'insert_drive_file',
+            //             'permission' => ['tradelink-list'],
+            //             'href' => route('tradelink.index'),
+            //         ],
+            //         [
+            //             'title' => 'Create Tradelink',
+            //             'icon' => 'create',
+            //             'permission' => ['tradelink-create'],
+            //             'href' => route('tradelink.create'),
+            //         ]
+            //     ]
+            // ],
             [
                 'title' => 'Customers',
                 'icon' => 'group_work',

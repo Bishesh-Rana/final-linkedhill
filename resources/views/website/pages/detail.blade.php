@@ -56,7 +56,7 @@
                                 <div class="col-lg-6">
                                     <div class="property_inner">
                                         <div class="main-price">
-                                            <i class="las la-coins"></i><strong>RS. {{ $property->start_price }} </strong>
+                                            <i class="las la-coins"></i><strong>RS. {{formattedNepaliNumber($property->start_price) }} </strong>
                                         </div>
 
                                         <div class="property_address">
@@ -65,7 +65,36 @@
                                                 <span>{{ @$property->property_address }}</span>
                                             </div>
                                         </div>
-                                        <div class="detail_property_owner">
+                                        <div class="premium_options">
+                                            <ul>
+                                                @foreach($property->featureProperty as $feature)
+                                                {{-- bed --}}
+                                                @if (($feature->feature_id == 19)&&(isset($feature->value))) 
+                                                    <li>
+                                                        <i class="las la-bed" title="Bed"></i><span> {{rtrim($feature->value, "+")}}</span>
+                                                    </li>
+                                                @endif
+                                                {{-- bath --}}
+                                                @if ( ($feature->feature_id == 20)&&(isset($feature->value)))
+                                                    <li>
+                                                        <i class="las la-bath" title="Bathroom"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                    </li>
+                                                @endif
+                                                {{-- park --}}
+                                                @if ( ($feature->feature_id == 18)&&(isset($feature->value)))
+                                                <li>
+                                                    <i class="las la-car" title="Parking"></i><span>{{rtrim($feature->value, "+")}}</span>
+                                                </li>
+                                                @endif
+                                                @endforeach
+                                                <li>
+                                                    <span title="Area">
+                                                        <i class="las la-crop-alt"></i>{{ $property->total_area . ' ' . $property->area_unit->name }}
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        {{-- <div class="detail_property_owner">
                                             @if ($property->bed !== 0)
                                                 <span title="bedroom" class="detail_icon_"><i class="las la-bed"></i><span
                                                         class="type_badge">{{ $property->bed }}</span></span>
@@ -74,7 +103,6 @@
                                                 <span title="bathroom" class="detail_icon_"><i class="las la-bath"></i>
                                                     <span class="type_badge">{{ $property->bath }}</span></span>
                                             @endif
-                                            {{-- @if (array_key_exists('park', $property)) --}}
 
                                             @if ($property->park !== 0)
                                                 <span title="Parking" class="detail_icon_"><i class="las la-car"></i>
@@ -86,7 +114,7 @@
                                                 <span
                                                     class="type_badge">{{ $property->total_area . ' ' . $property->area_unit->name }}</span>
                                             </span>
-                                        </div>
+                                        </div> --}}
                                         <div class="d-flex">
                                             <h1>{{ @$property->title }}</h1>
                                         </div>
@@ -240,6 +268,7 @@
                                                 <div class="spy_common_title">
                                                     <h1>Overview </h1>
                                                 </div>
+                                                <p class="mt-1"> <strong>Price:</strong> RS. {{formattedNepaliNumber($property->start_price) }} {{($property->price_label=='other')?$property->price_tag_other:$property->price_label}}</p>
                                                 {!! $property->property_detail !!}
                                             </div>
                                         </div>
@@ -252,7 +281,7 @@
                                             <div class="content">
                                                 <div class="specification_sw_wrapper">
                                                     <div class="spy_common_title">
-                                                        <h1>Project specifications</h1>
+                                                        <h1>Property specifications</h1>
                                                     </div>
                                                     <div class="specification_sc_content">
                                                         <div class="specification_sf_flex">
@@ -430,7 +459,7 @@
                                                     src="{{ image(@$relate->images->first()->name) }}"
                                                     alt=""></a>
                                             <div class="near_by_content">
-                                                <span>Rs. {{ $relate->start_price }}</span>
+                                                <span>Rs. {{ formattedNepaliNumber($relate->start_price) }}  </span>
                                                 <strong>{{ $relate->address }}</strong>
                                                 <p><a href="">{{ $relate->city->name }}</a>
                                                 </p>

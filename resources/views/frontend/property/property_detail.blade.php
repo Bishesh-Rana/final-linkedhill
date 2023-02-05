@@ -45,32 +45,23 @@
     </nav>
     <main class="single-page common-page">
         <section class="single__screen">
-
             <div class="section-rule pt-0">
                 <div class="row">
                     <aside class="col-lg-9 pl-0">
                         <div class="card">
-
                             <div class="slider-for">
                                 <!-- not more than 4 -->
                                 @foreach($property->images as $key => $value)
-
                                     <div class="item">
                                         <a class="image" data-fancybox="gallery" href="{{$value->name}}">
                                             <img src="{{$value->name}}" alt="">
                                         </a>
                                     </div>
-
-
-
                                 @endforeach
-
-
                             </div>
 
                             <div class="slider-nav" >
                                 <!-- must be same image from above -->
-
                                 @foreach($property->images as $key => $value)
                                 <div class="item">
                                     <div class="image">
@@ -78,10 +69,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-
-
-
-
                             </div>
 
                             <div class="card__body">

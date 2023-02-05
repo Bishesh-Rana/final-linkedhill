@@ -194,6 +194,9 @@
 @endsection
 
 @push('script')
+<script src="{{ asset('dashboard/plugins/sortablejs/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('dashboard/plugins/sortablejs/jquery.mjs.nestedSortable.js') }}"></script>
+<script src="{{ asset('dashboard/plugins/toastrjs/toastr.min.js') }}"></script>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -219,7 +222,6 @@
 
 
     });
-
     function deleteCity(id) {
         var csrf_token = $('meta[name="csrf-token"]').attr('content');
 
@@ -232,9 +234,8 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then(function () {
-
             $.ajax({
-                url:'{!!URL::to('admin/type/')!!}' + '/' + id,
+                url:'{!!URL::to('type/')!!}' + '/' + id,
                 type : "POST",
                 data : {'_method' : 'DELETE', '_token' : csrf_token},
 
@@ -256,6 +257,8 @@
         });
 
     }
+
+ 
 
 </script>
 

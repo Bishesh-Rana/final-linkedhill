@@ -226,35 +226,5 @@
             ],
         });
 
-        function deleteCity(id) {
-            var csrf_token = $('meta[name="csrf-token"]').attr('content');
-            swal({
-                title: 'Are you sure?',
-
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
-                $.ajax({
-                    url:'{!!URL::to('admin/blog/')!!}' + '/' + id,
-                    type : "POST",
-                    data : {'_method' : 'DELETE', '_token' : csrf_token},
-                    success:function(){
-                        console.log('success');
-                        location.reload();
-                    },
-                    error:function(){
-                        swal({
-                            title: 'Oops...',
-                            text: data.message,
-                            type: 'error',
-                            timer: '1500'
-                        })
-                    }
-                });
-            });
-        }
 </script>
 @endpush

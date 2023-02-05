@@ -298,7 +298,17 @@
         //         $('.total_area').show();
         //     }
         // })   
-
+        $('#price_label').change(function(){
+            var pricetype = $('#price_label').find(":selected").val();
+            if(pricetype == 'other'){
+                $('#other_type').css('display','block');
+            }
+            else{
+                $('#other_type').css('display', 'none');
+                $('#Price-other').val('');
+            }
+        })
+       
     </script>
     <script>
         $("#file-5").fileinput({

@@ -98,7 +98,7 @@
                                             href="{{ route('property.detail', ['id' => $property->id, 'slug' => $property->slug]) }}">{{ @$property->title }}</a>
                                     </h4>
                                     <div class="position-relative">
-                                        <b>{{ @$property->start_price }}</b>
+                                        <b>{{ formattedNepaliNumber(@$property->start_price)}}</b>
                                         @if (auth()->user())
                                             <div class="favicon">
                                                 @php
