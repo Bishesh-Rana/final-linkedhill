@@ -58,7 +58,6 @@ Route::resource('type', TypeController::class);
 
 
 
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 

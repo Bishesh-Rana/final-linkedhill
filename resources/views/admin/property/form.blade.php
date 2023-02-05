@@ -72,12 +72,12 @@
                                             <div class="ripple-container"></div>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="#panel2" data-toggle="tab" aria-expanded="false">
-                                            <i class="material-icons">travel_explore</i> SEO
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </li>
+                                        {{-- <li class="">
+                                            <a href="#panel2" data-toggle="tab" aria-expanded="false">
+                                                <i class="material-icons">travel_explore</i> SEO
+                                                <div class="ripple-container"></div>
+                                            </a>
+                                        </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                     enctype="multipart/form-data" id="parsleyValidationForm" data-parsley-validate="">
                         @endif
                         @csrf
-                        <div class="tab-content">
+                        <div class="tab-content" id="myTabContent" >
                             <div class="tab-pane active" id="panel1">
                                 <!-- panel-group -->
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -228,7 +228,7 @@
                                 <!-- /panel -group-->
 
                             </div>
-                            <div class="tab-pane" id="panel2">
+                            <div class="tab-pane" id="panel2" >
                                 <div class="row seo">
                                     <div class="form-group margin-style col-md-12">
                                         <label>Meta Keywords</label>

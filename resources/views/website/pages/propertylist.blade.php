@@ -9,6 +9,10 @@
   <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
  class="alert alert-danger alert-dismissible" id="favRemovedalert" role="alert">
   </div>
+  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+  class="alert alert-danger alert-dismissible" id="loginfirst" role="alert">
+   </div>
+  
     <section class="ads_inside_subpage d-none d-md-block">
         <div class="container">
             <div class="ads_section_cover">
@@ -563,7 +567,11 @@
                             }, 3000);
                         }
                         else {
-                            alert(response.error);
+                            $('#loginfirst').html(response.error);
+                            $('#loginfirst').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(loginfirst).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
                         }
                     },
                     error: function(response) {
@@ -573,9 +581,7 @@
         });
     </script>
     <script>
-        function favorite(property) {
-            // $(".favorite"+property+">.la-heart ").toggleClass("lar las");
-        }
+      
     </script>
     <script>
         $("form[name='propertyEnquiry']").submit(function(e) {
