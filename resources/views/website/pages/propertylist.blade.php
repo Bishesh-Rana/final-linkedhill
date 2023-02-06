@@ -245,10 +245,8 @@
                                                             <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
                                                             <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
                                                                 class=" "><i class="las la-phone-volume"></i></a>
-                                                            <a class="icon me-2" href="#" class=""
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#send_message_model"><i
-                                                                    class="las la-sms"></i></a>
+                                                            <a class="icon me-2 sendEnquiry" data-id="{{$property->id}}" data-bs-toggle="modal" data-bs-target="#send_message_model">
+                                                                <i class="las la-sms"></i></a>
                                                             <div class="show_button_area">
                                                                 <span class="button_show"><i
                                                                         class="las la-angle-down"></i>
@@ -376,7 +374,7 @@
                                             <p class="me-2">{{ @$property->user->name }}:-&nbsp;</p>
                                             <a class="icon me-2" href="tel:{{ @$property->owner_phone }}"
                                                 class=" "><i class="las la-phone-volume"></i></a>
-                                            <a class="icon me-2" href="#" class="" data-bs-toggle="modal"
+                                            <a class="icon me-2 sendEnquiry" data-id="{{$property->id}}" data-bs-toggle="modal"
                                                 data-bs-target="#send_message_model"><i class="las la-sms"></i></a>
                                         </div>
                                     </div>
@@ -503,6 +501,7 @@
                     <form action="" name="propertyEnquiry">
                         @csrf
                         <div class="form_spacing">
+                            <input type="hidden" name="propertyId" id="propertyId" value="">
                             <div class="mb-3">
                                 <label for="user_name" class="form-label">Name</label>
                                 <input type="text" name="name" id="Name" class="form-control" id="user_name"
@@ -521,15 +520,14 @@
                             <div class="mb-3">
                                 <label for="subject" class="form-label">Subject</label>
                                 <input type="text" name="subject" class="form-control" id="subject"
-                                    placeholder="Phone Number" value="{{ old('subject') }}">
+                                    placeholder="Subject" value="{{ old('subject') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="Message" class="form-label">Message</label>
                                 <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-danger" type="submit" data-bs-dismiss="modal"
-                                    aria-label="Close">Send Message</button>
+                                <button class="btn btn-danger" type="submit">Send Message</button>
                             </div>
                         </div>
                     </form>
@@ -541,6 +539,12 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+
+            $('.sendEnquiry').on('click', function(){
+                let id = $(this).data('id');
+                $('#propertyId').val(id);
+            })
+
             $(".fav").on('click', function() {
                 var property = $(this).data('id');
                 $.ajax({
@@ -603,7 +607,8 @@
                         delay: 3000,
                         delayIndicator: false,
                     });
-                    $('#send_message_model').hide();
+                    // $('#send_message_model').hide();
+                    $('#send_message_model').modal('hide')
                 }
             });
         });

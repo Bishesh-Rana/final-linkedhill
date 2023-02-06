@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Subscribers')
+@section('title','Enquiry')
 @push('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 @endpush

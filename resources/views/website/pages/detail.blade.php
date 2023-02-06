@@ -634,7 +634,7 @@
                         <div class="mb-3">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type your message"></textarea>
                         </div>
-                        <a href="#" class="btn btn-danger">Submit</a>
+                        <a href="#" class="btn btn-danger ">Submit</a>
                     </div>
                 </div>
 
@@ -729,6 +729,7 @@
                         delay: 3000,
                         delayIndicator: false,
                     });
+                    $('#send_message_model').modal('hide');
                 }
             });
         });
