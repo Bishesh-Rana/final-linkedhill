@@ -86,6 +86,13 @@
                     </li>
                 @endcanany
             @endforeach
+            <li>
+                <a href="{{route('logout')}}" title="logout">
+                    <p class="">Logout <i class="material-icons">exit_to_app</i></p>
+                    
+                    
+                </a>
+            </li>
         </ul>
     </div>
 </div>
