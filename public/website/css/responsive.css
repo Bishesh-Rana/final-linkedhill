@@ -523,7 +523,7 @@
         position: sticky;
         top:0;
         box-shadow: 0px 4px 10px rgb(0 0 0 / 15%);
-        z-index: 1022;
+        z-index: 100202;
     }
     .toggle-btn span{
         background: #000;
@@ -546,13 +546,15 @@
     /* .about_loan_thumbnail{
         height: 350px;
     } */
+    nav#navbar_scroll_spy{
+        top: 60px;
+    }
 }
 
-
-
-
-
 @media screen and (max-width: 767px) {
+    nav#navbar_scroll_spy{
+        top: 60px;
+    }
     .ribbon_menu>a {
         padding: 0;
     }

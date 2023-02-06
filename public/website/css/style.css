@@ -3792,7 +3792,7 @@ section#contact_cw_wrapper {
 
 .contact_form_ input[type="email"],
 .contact_form_ input[type="text"] {
-    height: 55px;
+    height: 38px;
     border-radius: 8px;
 }
 
@@ -6343,4 +6343,8 @@ span#st-1 {
 }
 .back-clr{
     background-color: #c9eaf326!important;
+}
+
+.form-control:focus{
+    box-shadow:none;
 }
