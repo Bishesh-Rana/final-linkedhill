@@ -80,14 +80,24 @@ class PropertyController extends CommonController
         
         $data['user_id'] = $user_id ;
         $data['active_status'] = 1 ;
-        $sync = collect($data['features'])
+        $feat = $request->features[$request->category_id];
+
+        $sync = collect($feat)
             ->filter(fn ($item) => $item)
             ->map(function ($item, $key) {
                 return [
                     'feature_id' => $key,
-                    'value' => $item == "1" ? true : $item,
+                    'value' => $item == "1" ? "true" : $item,
                 ];
             })->toArray();
+        // $sync = collect($data['features'])
+        //     ->filter(fn ($item) => $item)
+        //     ->map(function ($item, $key) {
+        //         return [
+        //             'feature_id' => $key,
+        //             'value' => $item == "1" ? true : $item,
+        //         ];
+        //     })->toArray();
             
         try {
             DB::beginTransaction();
@@ -99,6 +109,7 @@ class PropertyController extends CommonController
 
             $property->features()->sync($sync);
             $property->amenities()->sync($data['amenities'] ?? []);
+
             if( ($request->price_label=='other')){
                 $property->price_tag_other = $request->price_tag_other;
             }

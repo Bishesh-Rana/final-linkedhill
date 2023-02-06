@@ -35,13 +35,14 @@ class AdminController extends CommonController
     }
 
     public function updateProfile($id, Request $request){
+        // @dd($request->all());
         $user = User::findOrFail($id);
-        if($request->password != $request->password_confirmation){
-            return redirect()->back()->with('error', 'password do not match');
-        }
+        // if($request->password != $request->password_confirmation){
+        //     return redirect()->back()->with('error', 'password do not match');
+        // }
         
         $user->update(array_filter($request->all()));
-        $user->password=bcrypt($request->password);      
+        // $user->password=bcrypt($request->password);      
         $user->profile = $request->image;
         $user->save();
         if(auth()->user()->hasRole('Agent')){

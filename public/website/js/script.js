@@ -208,6 +208,9 @@ $("#service_slider").owlCarousel({
         600: {
             items: 2,
         },
+         768: {
+            items: 2,
+        },
         1000: {
             items: 3,
         },
@@ -296,6 +299,9 @@ $("#locality_nearby_slider").owlCarousel({
         600: {
             items: 1,
         },
+        768: {
+            items: 2,
+        },
         1000: {
             items: 3,
         },
@@ -313,6 +319,12 @@ $("#nearby_slider").owlCarousel({
         },
         600: {
             items: 1,
+        },
+        768: {
+            items: 2,
+        },
+         768: {
+            items: 2,
         },
         1000: {
             items: 3,
@@ -354,6 +366,9 @@ $("#price_plan").owlCarousel({
         },
         600: {
             items: 1,
+        },
+         768: {
+            items: 2,
         },
         1000: {
             items: 3,

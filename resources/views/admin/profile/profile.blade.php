@@ -51,16 +51,24 @@
                                 echo old('phone');
                             } ?>">
                         </div>
-
                         <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="text" name="email" placeholder="Enter your email" value="<?php if (isset($admin->email)) {
+                                echo $admin->email;
+                            } else {
+                                echo old('email');
+                            } ?>">
+                        </div>
+
+                        {{-- <div class="form-group">
                             <label>Password</label>
                             <input class="form-control" type="password" name="password" placeholder="Enter your password">
-                        </div>
+                        </div> --}}
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Password Confirmation</label>
                             <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm your password">
-                        </div>
+                        </div> --}}
                         @if(auth()->user()->hasRole('Agent'))
                             <div ><br>
                                 <label>Company Registration File</label>
@@ -94,14 +102,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control" type="text" name="email" placeholder="Enter your email" value="<?php if (isset($admin->email)) {
-                                echo $admin->email;
-                            } else {
-                                echo old('email');
-                            } ?>">
-                        </div>
+                      
                         <x-image name="image" value="{{ @$admin->profile }}" />
                         @if(auth()->user()->hasRole('Agent'))
                             <x-image name="pan" value="{{ @$admin->hasAgency->pan }}" />
@@ -111,7 +112,7 @@
                         <div class="form-group m-form__group">                       
                         </div>
 
-                        <div class="check-list">
+                        {{-- <div class="check-list">
                             <label for="">Publish Status</label>
                             <label class="ui-radio ui-radio-primary">
                                 <input type="radio" name="is_active" value="0" <?php echo ($admin->is_active == 0 ?  'checked="checked"' : ''); ?>>
@@ -123,7 +124,7 @@
                                 <span class="input-span"></span>
                                 Active
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div><br>
                 <button class="btn btn-info confirm" type="submit">Submit</button>

@@ -3,13 +3,13 @@
     @include('website.shared.meta', ['meta' => $meta])
 @endsection
 @section('content')
-<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051;display:none"
  class="alert alert-success alert-dismissible" id="favalert" role="alert">
   </div>
-  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051; display:none;"
  class="alert alert-danger alert-dismissible" id="favRemovedalert" role="alert">
   </div>
-  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1000; display:none;"
+  <div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051; display:none;"
   class="alert alert-danger alert-dismissible" id="loginfirst" role="alert">
    </div>
   

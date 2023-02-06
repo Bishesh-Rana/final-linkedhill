@@ -6343,8 +6343,14 @@ span#st-1 {
 }
 .back-clr{
     background-color: #c9eaf326!important;
+    z-index: -1;
+    
 }
 
 .form-control:focus{
     box-shadow:none;
+}
+
+#st-1 {
+    z-index: 1050!important;
 }
