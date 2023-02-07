@@ -4,6 +4,15 @@
 @endsection
 @section('content')
 
+<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051;display:none"
+ class="alert alert-success alert-dismissible" id="favalert" role="alert">
+ </div>
+<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051; display:none;"
+ class="alert alert-danger alert-dismissible" id="favRemovedalert" role="alert">
+  </div>
+<div style="position: fixed; right:20px;top:0px;width:fit-content;z-index:1051; display:none;"
+  class="alert alert-danger alert-dismissible" id="loginfirst" role="alert">
+</div>
     <section id="bread_crumb_wrapper">
         <div class="container">
             <div class="row">
@@ -656,12 +665,28 @@
                         property_id: property,
                     },
                     success: function(response) {
-                        console.log(response);
                         if (response.success) {
                             $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
-                            alert(response.success);
-                        } else {
-                            alert(response.error);
+                            $('#favalert').html(response.success);
+                            $('#favalert').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(favalert).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
+                        } 
+                        else if(response.removed){
+                            $(".favorite" + property + ">.la-heart ").toggleClass("lar las");
+                            $('#favRemovedalert').html(response.removed);
+                            $('#favRemovedalert').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(favRemovedalert).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
+                        }
+                        else {
+                            $('#loginfirst').html(response.error);
+                            $('#loginfirst').css('opacity', 1).slideDown();
+                            window.setTimeout(function() {
+                                $(loginfirst).fadeTo(500, 0).slideUp(500);
+                            }, 3000);
                         }
                     },
                     error: function(response) {
