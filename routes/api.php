@@ -98,6 +98,7 @@ Route::namespace('Api')->group(function () {
     Route::post('property-types', [PropertyController::class, 'propertyType']);
     Route::post('property-status', [PropertyController::class, 'propertyStatus']);
 
+    Route::get('about-us', [PropertyController::class, 'aboutUs']);
     Route::post('areas', [PropertyController::class, 'getArea']);
     Route::post('units', [PropertyController::class, 'getUnits']);
     Route::post('road-type', [PropertyController::class, 'roadType']);

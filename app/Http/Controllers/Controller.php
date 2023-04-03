@@ -15,7 +15,6 @@ class Controller extends BaseController
 
     public function successResponse($data, $message = 'data fetched successfully')
     {
-
         return response()->json([
             'status' => true,
             'code' => HttpResponse::HTTP_OK,

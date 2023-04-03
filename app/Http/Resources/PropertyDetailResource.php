@@ -31,9 +31,21 @@ class PropertyDetailResource extends JsonResource
             'price_range' => $this->start_price,
             //  'price_range' => $this->start_price . '-' . $this->end_price,
             'address' => $this->property_address,
+            'map_src' => "https://maps.google.com/maps?&amp;q=".urlencode($this->property_address),
             'area' => $this->total_area . ' ' . $this->area_unit->name,
             'new' => $this->created_at->gt(now()->subDays(7)),
             'is_liked' => in_array($this->id, $favourite),
+            'user-details' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+                'profile' => $this->user->profile,
+                'email' => $this->user->email,
+                'mobile' => $this->user->mobile,
+                'image' => $this->user->image,
+                'full_address' => $this->user->full_address,
+                'email_verified_at' => $this->user->email_verified_at,
+                'is_active' => $this->user->is_active,
+            ],
 
             'images' => $this->images->map(function ($n) use ($request) {
                 return array(
@@ -54,10 +66,6 @@ class PropertyDetailResource extends JsonResource
                 'image' => $amenity->image,
                 'id' => $amenity->id,
             ])
-
-
-
-
         ];
     }
 }

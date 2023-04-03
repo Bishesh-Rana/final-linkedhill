@@ -15,7 +15,7 @@ class SearchController extends Controller
     {
         // return $request->all();  
         $filter = $request->all();
-        $properties =  Property::filter()->where(['status'=>1,'activeStatus'=>1])
+        $properties =  Property::filter()->where(['status'=>1,'active_status'=>1])
         ->when(request('properties'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                 if($value == 'any'){
@@ -29,10 +29,25 @@ class SearchController extends Controller
                             $que->where('feature_id',$key)->where('value','>=',$value);
                         }              
                     });
-                }
-                    
+                }                    
             }                     
         })
+        // ->when(request('category_ids'), function($query, $category) {
+        //     foreach($category  as $key=>$value){
+        //         if($value == ''){
+        //         }
+        //         else{
+        //             $query->whereHas('category_id', function ($que) use ($key,$value){  
+        //                 if((int) $value == 0){
+        //                         $que->where('category_id',$key)->where('value','=',$value);
+        //                 }else{
+        //                     $value = (int) $value;
+        //                     $que->where('feature_id',$key)->where('value','>=',$value);
+        //                 }              
+        //             });
+        //         }                    
+        //     }                     
+        // })
         ->when(request('property_address'), function($query,$var){
             $cities = City::get();
             $cities_name = [];
@@ -86,7 +101,7 @@ class SearchController extends Controller
         // $property =  Property::filter() ->paginate(20);
         // return $properties;
 
-        dd($properties);
+        // dd($properties);
 
         return $this->returnResponse(PropertyResource::collection($properties)->sortBy('order'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Area;
 use App\Models\City;
+use App\Models\Menu;
 use App\Models\Type;
 use App\Models\Unit;
 use App\Models\User;
@@ -29,17 +30,19 @@ use App\Http\Resources\PropertyDetailResource;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\PropertyCategoryResource;
+use App\Http\Resources\SearchFeatureResource;
+use App\Models\Category;
 
 class PropertyController extends Controller
 {
     public $limit = 5;
     public function featuredProperties()
     {
-        $properties = Property::where(['status' => 1, 'feature' => true,'activeStatus' => "1"])->latest()->get();
+        $properties = Property::where(['status' => 1, 'feature' => true,'active_status' => "1"])->latest()->get();
         // return $properties;
         return PropertyResource::collection($properties);
     }
-
+    
     public function propertyByCategory()
     {
         $category_id = request('category_id');
@@ -117,6 +120,14 @@ class PropertyController extends Controller
     {
         $area = Area::all();
         return AreaResource::collection($area);
+    }
+    public function aboutUs()
+    {
+        $about = Menu::where('id',2)->first();
+        return response()->json([
+            'data' => $about,
+        ]);
+        return $this->successResponse(new PropertyDetailResource($about));
     }
 
     public function getUnits()
@@ -340,7 +351,7 @@ class PropertyController extends Controller
     public function toggleActiveStatus($id)
     {
         $property = Property::find($id);
-        $property->activeStatus = !$property->activeStatus;
+        $property->active_Status = !$property->active_status;
         $property->save();
         return response(['title'=>'success','message'=>'Property status Changed succesfully'],200);
     }
@@ -400,7 +411,7 @@ class PropertyController extends Controller
         $properties = Property::select('properties.*')
             ->when(!in_array($request->category_id, ['0', null]), fn ($query) => $query->where('category_id', $request->category_id))
             ->where('status','1')
-            ->where('activeStatus','1') 
+            ->where('active_status','1') 
             ->when($request->type == 'featured', fn ($query) => $query->where('feature', 1))
             ->when($request->type == 'listed', fn ($query) => $query->where('feature', 0))
             ->with('area_unit', 'property_category:id,name', 'images')
@@ -414,7 +425,8 @@ class PropertyController extends Controller
     {
         try {
             Validator::make($request->all(), ['id' => ['required', 'exists:properties,id']])->validate();
-            $property = Property::with('area_unit', 'property_category:id,name', 'images', 'features:id,title,image')->findorfail($request->id);
+            $property = Property::with('area_unit','user', 'property_category:id,name', 'images', 'features:id,title,image')->findorfail($request->id);
+            // dd($property->user);
             $property->increment('view_count');
             return $this->successResponse(new PropertyDetailResource($property));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $th) {
@@ -427,25 +439,20 @@ class PropertyController extends Controller
     }
 
     public function getPropertyFeatures(request $request){
-
-        $feature_values = [];
-        $features = [];
-        foreach($request->category_ids as $cat_id){
-            $category = PropertyCategory::findOrFail($cat_id);
-            $all_feature = $category->features->where('showOnFilter',1);
-            foreach($all_feature as $feature){
-                array_push($features,$feature);
-            }
-       }
-       foreach($features as $feature){
-            $values = [];
-            if($feature->value){
-                foreach($feature->value as $val){
-                    array_push($values,$val->value);
+        $category=PropertyCategory::whereIn('id',$request->category_ids)->with('features','features.value')->get();
+        $data=[];
+        foreach($category as $item)
+        {
+            foreach($item->features as $value)
+                {
+                    $data[]=$value;
                 }
-            }
-            $feature_values[$feature->id]=$values;
-       }
-       return $this->successResponse( $feature_values);
+        }
+        $data=collect($data)->unique('id');
+        return response()->json([
+            'status' => true,
+            'data' => $data,
+            'message' => 'successfull'
+        ]);
     }
 }
