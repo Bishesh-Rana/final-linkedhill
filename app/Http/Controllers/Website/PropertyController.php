@@ -43,6 +43,7 @@ public function propertyDetail($id, $slug)
 
     public function search(Request $request)
     {
+        dd($request->all());
         $filter = $request->all();
         $properties =  Property::filter()->where('status',1) 
         ->when(request('properties'), function($query, $properties) {

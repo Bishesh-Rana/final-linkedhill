@@ -67,9 +67,18 @@ class Controller extends BaseController
 
     public function returnResponse($data, $paginate = false)
     {
-        if (!$data || !$data->count()) {
+        if (!$data) {
             return $this->notFoundResponse();
+
+        }elseif(!$data->count()){
+            return response()->json([
+                'status' => true,
+                'code' => 202,  
+                'data' => null,
+                'message' => 'Not matched',
+            ]);
         }
+    
 
         if ($paginate) {
             return $this->successPaginateResponse($data);

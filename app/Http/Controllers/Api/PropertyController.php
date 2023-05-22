@@ -454,5 +454,5 @@ class PropertyController extends Controller
             'data' => $data,
             'message' => 'successfull'
         ]);
-    }
+        }
 }

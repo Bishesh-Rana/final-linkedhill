@@ -11,12 +11,11 @@ use App\Http\Resources\PropertyResource;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
-    {
-        // return $request->all();  
+    public function search(Request $request) 
+    {  
         $filter = $request->all();
         $properties =  Property::filter()->where(['status'=>1,'active_status'=>1])
-        ->when(request('properties'), function($query, $properties) {
+        ->when(request('features'), function($query, $properties) {
             foreach($properties  as $key=>$value){
                 if($value == 'any'){
                 }
@@ -32,22 +31,23 @@ class SearchController extends Controller
                 }                    
             }                     
         })
-        // ->when(request('category_ids'), function($query, $category) {
-        //     foreach($category  as $key=>$value){
-        //         if($value == ''){
-        //         }
-        //         else{
-        //             $query->whereHas('category_id', function ($que) use ($key,$value){  
-        //                 if((int) $value == 0){
-        //                         $que->where('category_id',$key)->where('value','=',$value);
-        //                 }else{
-        //                     $value = (int) $value;
-        //                     $que->where('feature_id',$key)->where('value','>=',$value);
-        //                 }              
-        //             });
-        //         }                    
-        //     }                     
-        // })
+        ->when(request('category_ids'), function($query, $categories) {
+            $query->whereIn('category_id',$categories);
+            // foreach($category  as $key=>$value){
+            //     if($value == ''){
+            //     }
+            //     else{
+            //         $query->whereHas('category_id', function ($que) use ($key,$value){  
+            //             if((int) $value == 0){
+            //                     $que->where('category_id',$key)->where('value','=',$value);
+            //             }else{
+            //                 $value = (int) $value;
+            //                 $que->where('feature_id',$key)->where('value','>=',$value);
+            //             }              
+            //         });
+            //     }                    
+            // }                     
+        })
         ->when(request('property_address'), function($query,$var){
             $cities = City::get();
             $cities_name = [];
@@ -77,7 +77,7 @@ class SearchController extends Controller
         })
         ->when(request('area'),function($query,$var){
             $unit = request('unit');
-            $query->where('total_area','>=',$var)->where('total_area_unit','=',$unit);
+            $query->where('total_area','>=',$var)->where('total_area_unit','==',$unit);
         })
         ->when(request('listedby'), function($query,$var){
             switch($var){
